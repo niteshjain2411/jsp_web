@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSP Header Component</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2a7d8c;
+            --secondary-color: #f4b41a;
+            --text-dark: #333;
+            --light-bg: #fdfdfd;
+            --border-color: #e0e0e0;
+        }
+
+        /* Header */
+        /* top small orange strip then white background, increased height for more presence */
+        header {
+            background: linear-gradient(to bottom, var(--secondary-color) 0 6px, #ffffff 6px 100%);
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            height: 84px; /* increased header height */
+        }
+        .logo-container { display: flex; align-items: center; gap: 18px; }
+        .logo-img { height: 60px; width: auto; }
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 2rem;
+            text-decoration: none;
+        }
+        nav { display: flex; align-items: center; }
+        nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+        .nav-item { position: relative; }
+        /* caret for items that have dropdowns */
+        .nav-item > a { position: relative; display: inline-flex; align-items: center; }
+        .nav-item > a::after {
+            content: '▾';
+            margin-left: 8px;
+            font-size: 0.7rem;
+            color: var(--text-dark);
+            transition: transform 0.2s ease;
+        }
+        /* dropdown with smooth slide & fade */
+        .nav-dropdown {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            min-width: 340px; /* increased width for larger dropdown */
+            max-width: 480px;
+            box-shadow: 0 10px 24px rgba(0,0,0,0.14);
+            z-index: 999;
+            padding: 10px 0; /* more breathing room */
+            transform: translateY(-8px);
+            opacity: 0;
+            visibility: hidden;
+            transition: transform 220ms ease, opacity 220ms ease, visibility 220ms;
+            pointer-events: none;
+        }
+        .nav-item:hover > a::after { transform: rotate(180deg); }
+        .nav-item:hover .nav-dropdown {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+        .nav-dropdown a {
+            display: block;
+            padding: 14px 24px; /* larger touch targets */
+            margin: 0;
+            color: var(--text-dark);
+            font-size: 1rem; /* slightly larger text */
+            border-bottom: 1px solid var(--border-color);
+            transition: background 0.18s, padding-left 0.18s;
+        }
+        .nav-dropdown a:last-child {
+            border-bottom: none;
+        }
+        .nav-dropdown a:hover {
+            background: var(--light-bg);
+            padding-left: 25px;
+        }
+        .donate-btn {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 10px 22px;
+            border-radius: 5px;
+            transition: 0.3s;
+            margin-left: 20px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .donate-btn:hover { background: #1e5e6a; }
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo-container">
+        <img src="../images/JSP_Logo.png" alt="JSP Logo" class="logo-img">
+        <a href="home.html" class="logo">JAIN SANGH PUNE</a>
+    </div>
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="#">JSP foundation</a>
+        <div class="nav-item">
+            <a href="#">Activities</a>
+            <div class="nav-dropdown">
+                <a href="mandirNirman.html">मंदिर निर्माण</a>
+                <a href="santNivasNirman.html">संत निवास निर्माण</a>
+                <a href="anandShala.html">आनंदशाला - खेल खेल में सीखे जैन धर्म</a>
+                <a href="sanskarShivir.html">संस्कार शिविर</a>
+                <a href="sarakUtthan.html">सराक उत्थान</a>
+                <a href="tirthYatra.html">तीर्थ यात्रा</a>
+                <a href="dharmarthAushadhlay.html">धर्मार्थ औषधालय</a>
+                <a href="jirnodhar.html">जीर्णोद्धार</a>
+                <a href="chhatravrittiAvamPratibbaSamman.html">छात्रवृत्ति एवं प्रतिभा सम्मान</a>
+                <a href="samajikKarya.html">सामाजिक कार्य</a>
+            </div>
+        </div>
+        <a href="donate-now.html" class="donate-btn">Donate Now</a>
+    </nav>
+</header>
+</body>
+</html>

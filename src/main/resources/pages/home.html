@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jain Sangh Pune | JSP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap"
+          rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2a7d8c;
+            --secondary-color: #f4b41a;
+            --text-dark: #333;
+            --light-bg: #fdfdfd;
+            --border-color: #e0e0e0;
+        }
+
+        body { font-family: 'Open Sans', sans-serif; margin: 0; padding: 0; color: var(--text-dark); background-color: #fff; }
+
+
+        /* Slideshow Placeholder */
+        .hero-slideshow {
+            width: 100%;
+            height: 600px;
+            background: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+        .hero-slideshow img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        /* Main Content Grid (Side-by-Side) */
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 50px 5%;
+            gap: 40px;
+        }
+
+        /* About Section */
+        .about-col {
+            flex: 1;
+            min-width: 350px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Initiatives Section */
+        .initiatives-col {
+            flex: 1;
+            min-width: 220px;
+            max-width: 400px;
+            height: 300px;
+            background: var(--light-bg);
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-color);
+            margin-top: 0;
+            font-size: 1.8rem;
+            border-left: 5px solid var(--secondary-color);
+            padding-left: 15px;
+        }
+
+
+        .about-text { line-height: 1.8; font-size: 1.05rem; color: #555; }
+
+        /* List Styling */
+        .activity-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .activity-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            min-height: 40px;
+            flex-shrink: 0;
+        }
+        .activity-item:last-child { border-bottom: none; }
+        .activity-icon {
+            width: 22px;
+            height: 22px;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        .activity-item a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .activity-item a:hover {
+            color: var(--secondary-color);
+            text-decoration: underline;
+        }
+
+        @media (max-width: 800px) {
+            .main-content { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+
+<section class="hero-slideshow">
+    <img src="../images/sdjm/sus_jain_mandir.jpeg" alt="Jain Mandir in Sus, Pune">
+</section>
+
+<main class="main-content">
+    <section class="about-col">
+        <h2>About JSP</h2>
+        <div class="about-text">
+            <p>Established on
+                <bold>Mahavir Jayanti 2007</bold>
+                at Manikbag Jain Temple, Jain Sangh Pune (JSP) is a religious and social trust founded by highly
+                educated young professionals.
+            </p>
+            <p>Our mission is to support all Jains residing in or visiting Pune in practicing their faith, providing
+                comprehensive assistance and bringing the community together on a single platform.</p>
+            <br>
+            <p>JSP is officially registered under the <u>Bombay Public Trust Act, 1950 (Reg No: E-6048/PUNE).</u></p>
+        </div>
+    </section>
+
+    <section class="initiatives-col">
+        <h2>Key Initiatives</h2>
+        <ul class="activity-list">
+            <li class="activity-item">
+                <div class="slide-icon">🛕</div>
+                <a href="mandirNirman.html">मंदिर निर्माण</a></li>
+            <li class="activity-item">
+                <div class="slide-icon">🏠</div>
+                <a href="santNivasNirman.html">संत निवास निर्माण</a></li>
+            <li class="activity-item">
+                <div class="slide-icon">🎮</div>
+                <a href="anandShala.html">आनंदशाला - खेल खेल में सीखे जैन धर्म</a></li>
+            <li class="activity-item">
+                <div class="slide-icon">📖</div>
+                <a href="sanskarShivir.html">संस्कार शिविर</a></li>
+            <li class="activity-item">
+                <div class="slide-icon">🤝</div>
+                <a href="sarakUtthan.html">सराक उत्थान</a></li>
+            <li class="activity-item">
+                <div class="slide-icon">👣</div>
+                <a href="tirthYatra.html">तीर्थ यात्रा</a></li>
+            <li class="activity-item">
+                <div class="slide-icon">⚕️</div>
+                <a href="dharmarthAushadhlay.html">धर्मार्थ औषधालय</a></li>
+            <li class="activity-item">
+                <div class="slide-icon">🛠️</div>
+                <a href="jirnodhar.html">जीर्णोद्धार</a></li>
+            <li class="activity-item">
+                <div class="slide-icon">🎓</div>
+                <a href="chhatravrittiAvamPratibbaSamman.html">छात्रवृत्ति एवं प्रतिभा सम्मान</a></li>
+            <li class="activity-item">
+                <div class="slide-icon">🌍</div>
+                <a href="samajikKarya.html">सामाजिक कार्य</a></li>
+        </ul>
+    </section>
+</main>
+
+<div id="footer-placeholder"></div>
+
+<script src="header-loader.js"></script>
+<script src="footer-loader.js"></script>
+<script src="news-loader.js"></script>
+
+</body>
+</html>

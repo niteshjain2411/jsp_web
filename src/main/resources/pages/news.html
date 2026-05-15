@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap"
+          rel="stylesheet">
+    <style>
+        :root {
+          --primary-color: #2a7d8c;
+          --secondary-color: #f4b41a;
+          --text-dark: #333;
+          --light-bg: #fdfdfd;
+          --border-color: #e0e0e0;
+      }
+
+      body { font-family: 'Open Sans', sans-serif; margin: 0; padding: 0; color: var(--text-dark); background-color: #fff; }
+  /* News Section */
+  .news-section {
+  padding: 50px 5%;
+  background: linear-gradient(135deg, rgba(42, 125, 140, 0.05) 0%, rgba(244, 180, 26, 0.05) 100%);
+  border-top: 2px solid var(--border-color);
+  }
+
+  .news-container {
+  max-width: 900px;
+  margin: 0 auto;
+  }
+
+  .news-header {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--primary-color);
+  font-size: 1.8rem;
+  border-left: 5px solid var(--secondary-color);
+  padding-left: 15px;
+  margin-top: 0;
+  margin-bottom: 30px;
+  }
+
+  .news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  }
+
+  .news-card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .news-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(42, 125, 140, 0.2);
+  }
+
+  .news-card-image {
+  width: 100%;
+  height: 180px;
+  background: var(--light-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  }
+
+  .news-card-content {
+  padding: 20px;
+  }
+
+  .news-date {
+  font-size: 0.85rem;
+  color: var(--secondary-color);
+  font-weight: 600;
+  margin-bottom: 8px;
+  }
+
+  .news-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  font-weight: 600;
+  margin: 0 0 10px 0;
+  line-height: 1.4;
+  }
+
+  .news-excerpt {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0;
+  line-height: 1.6;
+  }
+
+  .news-link {
+  display: inline-block;
+  margin-top: 12px;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: 0.3s;
+  }
+
+  .news-link:hover {
+  color: var(--secondary-color);
+  }
+
+  @media (max-width: 800px) {
+  .news-grid { grid-template-columns: 1fr; }
+  }
+    </style>
+</head>
+<section class="news-section">
+    <div class="news-container">
+        <h2 class="news-header">Latest News</h2>
+        <div class="news-grid">
+            <div class="news-card">
+                <div class="news-card-image">📰</div>
+                <div class="news-card-content">
+                    <div class="news-date">June 15, 2024</div>
+                    <h3 class="news-title">JSP Celebrates 17th Anniversary with Community Fest</h3>
+                        <p class="news-excerpt">Jain Sangh Pune marked its 17th anniversary with a grand community fest
+                    at Manikbag Jain Temple, featuring cultural performances, religious discourses, and a charity drive
+                    for local causes.</p>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news-card-image">📸</div>
+                <div class="news-card-content">
+                    <div class="news-date">May 10, 2024</div>
+                    <h3 class="news-title  ">JSP Organizes Tirth Yatra to Shikharji</h3>
+                    <p class="news-excerpt">A group of 50 devotees from JSP embarked on a spiritual journey to
+                        Shikharji, one of the most revered Jain pilgrimage sites, fostering community bonding and
+                        spiritual growth.</p>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news-card-image">🎓</div>
+                <div class="news-card-content">
+                    <div class="news-date">April 5, 2024</div>
+                    <h3 class="news-title">JSP Awards Scholarships to Promising Students</h3>
+                    <p class="news-excerpt">In its ongoing commitment to education, JSP awarded scholarships to 20
+                        deserving students from the Jain community, recognizing their academic excellence and
+                        potential.</p>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news-card-image"><img src="../images/sdjm/images.jpg" height="200", width="150"/></div>
+                <div class="news-card-content">
+                    <div class="news-date">March 20, 2024</div>
+                    <h3 class="news-title">JSP Launches Charity Drive for Local Orphanage</h3>
+                    <p class="news-excerpt">Jain Sangh Pune initiated a charity drive to support a local orphanage,
+                        collecting donations of clothes, books, and essential supplies from the community.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</html>

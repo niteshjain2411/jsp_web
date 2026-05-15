@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>मंदिर निर्माण - Jain Sangh Pune | JSP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2a7d8c;
+            --secondary-color: #f4b41a;
+            --text-dark: #333;
+            --light-bg: #fdfdfd;
+            --border-color: #e0e0e0;
+        }
+
+        body { font-family: 'Open Sans', sans-serif; margin: 0; padding: 0; color: var(--text-dark); background-color: #fff; }
+
+        nav a { margin-left: 20px; text-decoration: none; color: var(--text-dark); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; }
+        .donate-btn { background: var(--primary-color); color: #fff; padding: 10px 22px; border-radius: 5px; transition: 0.3s; }
+        .donate-btn:hover { background: #1e5e6a; }
+
+        .back-link { display: inline-block; margin: 20px 5%; color: var(--primary-color); text-decoration: none; font-weight: 600; }
+        .back-link:hover { text-decoration: underline; }
+
+        .content { padding: 40px 5%; max-width: 900px; margin: 0 auto; }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            border-left: 5px solid var(--secondary-color);
+            padding-left: 15px;
+            margin-top: 0;
+        }
+
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            border-left: 5px solid var(--secondary-color);
+            padding-left: 15px;
+            margin-top: 30px;
+        }
+
+        .content-text { line-height: 1.8; font-size: 1.05rem; color: #555; }
+
+        .mandir-section {
+            background: var(--light-bg);
+            padding: 30px;
+            border-radius: 8px;
+            margin: 30px 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .slideshow-container {
+            position: relative;
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .slideshow-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .slide.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .slide img:hover {
+            transform: scale(1.02);
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 3px;
+            background-color: rgba(0, 0, 0, 0.5);
+            user-select: none;
+            z-index: 10;
+        }
+
+        .next {
+            right: 0;
+        }
+
+        .prev {
+            left: 0;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .dots-container {
+            text-align: center;
+            padding: 5px;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 12px;
+            width: 12px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .dot.active {
+            background-color: var(--secondary-color);
+        }
+
+        .slide-counter {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            z-index: 10;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 8px;
+        }
+
+        .address-map-flex {
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
+            align-items: flex-start;
+            margin: 20px 0;
+        }
+
+        .left-column, .right-column {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .map-container {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 350px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+
+        .address-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .address-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .address-info h3 {
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 8px;
+        }
+
+        .address-info h3:first-child {
+            margin-top: 0;
+        }
+
+        .info-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(42, 125, 140, 0.05);
+            border-left: 4px solid var(--secondary-color);
+            border-radius: 4px;
+        }
+
+        .info-section p {
+            line-height: 1.8;
+            margin: 8px 0;
+            font-size: 0.95rem;
+        }
+
+        .info-section strong {
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .address-text {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .address-text br:first-child::before {
+            content: '';
+        }
+
+        .contact-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            margin: 5px 0;
+        }
+
+        .contact-link:hover {
+            color: var(--secondary-color);
+            text-decoration: underline;
+        }
+
+        .timing-text {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        @media (max-width: 800px) {
+            .address-map-flex { flex-direction: column; }
+            .slideshow-container { max-width: 100%; }
+        }
+
+    </style>
+</head>
+<body>
+
+<script src="header-loader.js"></script>
+<script src="footer-loader.js"></script>
+
+<div id="header-placeholder"></div>
+
+<a href="home.html" class="back-link">← Back to Home</a>
+
+<main class="content">
+    <h1>मंदिर निर्माण (Temple Construction)</h1>
+    <div class="content-text">
+        <p>Jain Sangh Pune is dedicated to the construction and maintenance of temples to provide a sacred space for
+            worship and spiritual practice. Our temple construction initiative aims to create magnificent structures
+            that serve as cultural and religious centers for the Jain community.</p>
+        <p>Through this initiative, we work towards:</p>
+        <ul>
+            <li>Building new temples following traditional Jain architectural principles</li>
+            <li>Restoring and maintaining existing temples</li>
+            <li>Creating spaces for community gatherings and religious ceremonies</li>
+            <li>Preserving Jain heritage and culture</li>
+        </ul>
+        <p>The temples serve as beacons of faith and spirituality, welcoming all devotees and members of the community
+            to experience the divine presence and engage in meaningful worship.</p>
+    </div>
+
+    <!-- Main Temple Section -->
+    <div class="mandir-section">
+        <h2>श्री 1008 नेमिनाथ दिगंबर जैन मंदिर</h2>
+        <h3 style="color: var(--secondary-color); margin-top: 0;">Shri 1008 Neminath Digamber Jain Mandir</h3>
+
+        <p style="line-height: 1.8; font-size: 1.05rem; color: #555;">
+            Shri 1008 Neminath Digamber Jain Mandir, located in the Gyanoday Digambar Jain Society at Sus, Pune, is a
+            sacred temple dedicated to Lord Neminath, the 22nd Tirthankara. This beautiful temple serves as a spiritual
+            hub for the Jain community, offering a place for prayer, meditation, and religious ceremonies. The temple
+            stands as a testament to the deep faith and commitment of the devotees in preserving and promoting Jainism
+            in the region.
+        </p>
+
+        <h2>Photo Gallery</h2>
+        <div class="slideshow-container">
+            <div class="slideshow-wrapper">
+                <div class="slide active">
+                    <img src="../images/sdjm/sus_jain_mandir.jpeg"
+                         alt="Shri 1008 Neminath Digamber Jain Mandir - Main View">
+                </div>
+                <div class="slide">
+                    <img src="../images/sdjm/Guru-ji.jpeg" alt="Guru Ji - Spiritual Guide">
+                </div>
+                <div class="slide">
+                    <img src="../images/sdjm/images.jpg" alt="Temple Images">
+                </div>
+                <div class="slide">
+                    <img src="../images/sdjm/muni shree Akshay Sagar ji.jpeg" alt="Muni Shree Akshay Sagar Ji">
+                </div>
+            </div>
+            <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+            <a class="next" onclick="changeSlide(1)">&#10095;</a>
+            <div class="slide-counter">
+                <span id="currentSlide">1</span> / <span id="totalSlides">4</span>
+            </div>
+        </div>
+        <div class="dots-container">
+            <span class="dot active" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+        </div>
+
+        <h2>About the Temple</h2>
+        <p style="line-height: 1.8; font-size: 1.05rem; color: #555;">
+            The temple is architecturally designed following traditional Jain principles and serves as a peaceful
+            sanctuary for devotees. It is known for its serene atmosphere, well-maintained premises, and community
+            activities. The temple hosts regular religious ceremonies, festivals, and cultural events celebrating Jain
+            traditions throughout the year.
+        </p>
+
+        <h2>Location & Address</h2>
+        <div class="address-map-flex">
+            <div class="left-column">
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d7564.752070927708!2d73.75308269918578!3d18.557078202437843!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1ssus%20jain%20mandir%20google%20location!5e0!3m2!1sen!2sin!4v1777204323228!5m2!1sen!2sin"
+                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div class="info-section">
+                    <h3>Full Address</h3>
+                    <p>
+                        <span style="font-weight: 600; color: var(--primary-color);">Shri 1008 Neminath Digamber Jain Mandir</span><br>
+                        Near Bhagawan Neminath Chowk<br>
+                        Sus, Pune - 411021<br>
+                        <span style="color: #666;">Maharashtra, India</span>
+                    </p>
+                </div>
+            </div>
+            <div class="right-column">
+                <div class="info-section">
+                    <h3>Contact Information</h3>
+                    <table>
+                        <tr>
+                            <td><strong>📧 Email:</strong></td>
+                            <td><a href="mailto:susjainmandir@gmail.com"
+                                   class="contact-link">susjainmandir@gmail.com</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>📞 Phone:</strong></td>
+                            <td><a href="tel:+91-8799928255" class="contact-link">+91 8799928255</a></td>
+                        <tr>
+                            <td><strong><i class="fab fa-whatsapp"></i> WhatsApp:</strong></td>
+                            <td><a href="https://wa.me/918799928255" target="_blank" class="contact-link whatsapp-link">+91 8799928255
+                            </a></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="info-section">
+                    <h3>Timing</h3>
+                    <p class="timing-text">
+                        The temple is open for devotees <strong>throughout the day</strong> for worship and meditation.
+                    </p>
+                    <p style="margin-top: 10px; color: #666; font-size: 0.9rem;">
+                        <strong>Special ceremonies</strong> and events are organized on <strong>auspicious occasions and
+                        festivals</strong> according to the Jain calendar.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <h2>Temple Videos</h2>
+        <p style="line-height: 1.8; font-size: 1.05rem; color: #555;">
+            Explore the beauty and spirituality of Shri 1008 Neminath Digamber Jain Mandir through videos and virtual
+            tours:
+        </p>
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/GGpdfnIjJEQ" allowfullscreen=""
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+        </div>
+
+        <h2>Visiting Information</h2>
+        <div class="content-text">
+            <p><strong>How to Reach:</strong></p>
+            <ul>
+                <li>Located at Bhagawan Neminath Chowk in Sus, Pune</li>
+                <li>Easy accessibility via major roads in the Sus area</li>
+                <li>Parking facilities available on premises</li>
+                <li>Close to public transportation</li>
+                <li>Clean and well-maintained prayer halls</li>
+                <li>Meditation spaces</li>
+                <li>Community gathering areas</li>
+                <li>Facilities for religious ceremonies and functions</li>
+            </ul>
+            <p>The temple welcomes devotees and visitors throughout the year. For specific event timings and festival
+                celebrations, please contact the temple directly.</p>
+        </div>
+    </div>
+</main>
+<div id="footer-placeholder"></div>
+
+<script>
+    let slideIndex = 1;
+    let slides = document.querySelectorAll('.slide');
+    let totalSlides = slides.length;
+    let autoPlayInterval;
+    let isPaused = false;
+    document.getElementById('totalSlides').textContent = totalSlides;
+
+    function changeSlide(n) {
+        showSlide(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlide(slideIndex = n);
+    }
+
+    function showSlide(n) {
+        let slides = document.querySelectorAll('.slide');
+        let dots = document.querySelectorAll('.dot');
+
+        if (n > slides.length) {
+            slideIndex = 1;
+        }
+        if (n < 1) {
+            slideIndex = slides.length;
+        }
+
+        slides.forEach(slide => {
+            slide.classList.remove('active');
+        });
+
+        dots.forEach(dot => {
+            dot.classList.remove('active');
+        });
+
+        if (slides.length > 0) {
+            slides[slideIndex - 1].classList.add('active');
+        }
+        if (dots.length > 0 && slideIndex - 1 < dots.length) {
+            dots[slideIndex - 1].classList.add('active');
+        }
+
+        document.getElementById('currentSlide').textContent = slideIndex;
+    }
+
+    function startAutoPlay() {
+        if (!isPaused) {
+            autoPlayInterval = setInterval(() => {
+                changeSlide(1);
+            }, 4000); // Change slide every 4 seconds
+        }
+    }
+
+    function stopAutoPlay() {
+        clearInterval(autoPlayInterval);
+    }
+
+    function pauseAutoPlay() {
+        isPaused = true;
+        stopAutoPlay();
+    }
+
+    function resumeAutoPlay() {
+        isPaused = false;
+        startAutoPlay();
+    }
+
+    // Add event listeners for pause on hover
+    document.querySelector('.slideshow-container').addEventListener('mouseenter', pauseAutoPlay);
+    document.querySelector('.slideshow-container').addEventListener('mouseleave', resumeAutoPlay);
+
+    // Start autoplay when page loads
+    document.addEventListener('DOMContentLoaded', startAutoPlay);
+</script>
+
+</body>
+</html>
+

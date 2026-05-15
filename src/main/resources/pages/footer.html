@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSP Footer Component</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Footer */
+        footer {
+            background: #222;
+            color: #bbb;
+            padding: 40px 5% 20px;
+            font-size: 0.9rem;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        .footer-bottom {
+            border-top: 1px solid #333;
+            margin-top: 30px;
+            padding-top: 20px;
+            text-align: center;
+        }
+        .footer-grid.address-map-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+        .footer-map {
+            min-width: 120px;
+            max-width: 90px;
+        }
+        .footer-contact {
+            min-width: 180px;
+            margin-left: auto;
+        }
+        footer a {
+            color: #bbb;
+            text-decoration: none;
+        }
+        footer a:hover {
+            color: #f4b41a;
+            text-decoration: underline;
+        }
+        strong {
+            color: #fff;
+        }
+        @media (max-width: 800px) {
+            .footer-grid { flex-direction: column; }
+        }
+        .social-media {
+            text-align: right;
+            margin-top: 5px;
+        }
+        .social-media a {
+            margin: 0 5px;
+            color: #bbb;
+            font-size: 1.0rem;
+        }
+        .social-media a:hover {
+            color: #f4b41a;
+        }
+    </style>
+</head>
+<body>
+<footer>
+    <div class="footer-grid address-map-flex">
+        <div class="footer-map">
+            <iframe src="https://www.google.com/maps?q=B112,+Gyanoday+Digambar+Jain+Society,+Bhagawan+Neminath+Chowk,+Sus,+Pune-411021&output=embed" width="120" height="60" style="border:0; border-radius:8px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div>
+            <strong>Address</strong><br>
+            B112, Gyanoday Digambar Jain Society,<br>Bhagawan Neminath Chowk, Sus, Pune-411021
+        </div>
+        <div class="footer-contact">
+            <strong>Contact</strong><br>
+            Email: <a href="mailto:jainsanghpune@gmail.com">jainsanghpune@gmail.com</a><br>
+            Phone: <a href="tel:+918799928257">+91 8799928257</a>
+        </div>
+    </div>
+    <div class="social-media">
+        <a href="https://www.youtube.com/@jainsanghpune" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.facebook.com/jainsanghpune.jsp.3" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/jainsanghpune/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+        <a href="https://x.com/jainsanghpune" target="_blank" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i></a>
+    </div>
+
+    <div class="footer-bottom">
+        &copy; 2026 Jain Sangh Pune (JSP). All rights reserved.
+    </div>
+</footer>
+</body>
+</html>
