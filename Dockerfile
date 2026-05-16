@@ -1,4 +1,5 @@
-FROM openjdk:24-jdk-slim
+FROM eclipse-temurin:24-jdk-alpine
+WORKDIR /app
 COPY target/*.jar app.jar
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
