@@ -4,44 +4,259 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>सराक उत्थान - Jain Sangh Pune | JSP</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-color: #2a7d8c;
+            --primary-dark: #1e5e6a;
+            --primary-light: #f0f7f8;
             --secondary-color: #f4b41a;
-            --text-dark: #333;
+            --text-dark: #2c3e50;
+            --text-muted: #5a6c7d;
             --light-bg: #fdfdfd;
-            --border-color: #e0e0e0;
+            --border-color: #e2e8f0;
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            --transition: all 0.3s ease;
         }
 
-        body { font-family: 'Open Sans', sans-serif; margin: 0; padding: 0; color: var(--text-dark); background-color: #fff; }
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-dark);
+            background-color: #fff;
+            line-height: 1.8;
+        }
 
-        nav a { margin-left: 20px; text-decoration: none; color: var(--text-dark); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; }
-        .donate-btn { background: var(--primary-color); color: #fff; padding: 10px 22px; border-radius: 5px; transition: 0.3s; }
-        .donate-btn:hover { background: #1e5e6a; }
+        nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            transition: var(--transition);
+        }
+        nav a:hover {
+            color: var(--primary-color);
+        }
 
-        .back-link { display: inline-block; margin: 20px 5%; color: var(--primary-color); text-decoration: none; font-weight: 600; }
-        .back-link:hover { text-decoration: underline; }
+        .donate-btn {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 10px 22px;
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+        .donate-btn:hover {
+            background: var(--primary-dark);
+        }
 
-        .content { padding: 40px 5%; max-width: 900px; margin: 0 auto; }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            margin: 30px 5% 10px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            text-align: left;
+            transition: var(--transition);
+        }
+        .back-link:hover {
+            color: var(--primary-dark);
+            transform: translateX(-3px);
+        }
 
-        h1 {
+        .content {
+            padding: 20px 5% 60px;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        h1, h2, h3 {
             font-family: 'Montserrat', sans-serif;
             color: var(--primary-color);
-            font-size: 2.2rem;
-            border-left: 5px solid var(--secondary-color);
-            padding-left: 15px;
-            margin-top: 0;
+            text-align: left;
         }
 
-        .content-text { line-height: 1.8; font-size: 1.05rem; color: #555; }
+        h1 {
+            font-size: 2.5rem;
+            margin-top: 10px;
+            margin-bottom: 35px;
+            position: relative;
+            padding-bottom: 15px;
+            font-weight: 700;
+        }
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 85px;
+            height: 4px;
+            background: var(--secondary-color);
+            border-radius: 2px;
+        }
 
-        footer { background: #222; color: #bbb; padding: 40px 5% 20px; font-size: 0.9rem; margin-top: 60px; }
+        h2 {
+            font-size: 1.75rem;
+            margin-top: 50px;
+            margin-bottom: 25px;
+            font-weight: 600;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 1.35rem;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .content-text {
+            font-size: 1.05rem;
+            color: var(--text-dark);
+            text-align: justify;
+        }
+        .content-text p {
+            margin-bottom: 20px;
+        }
+        .content-text b {
+            color: #111;
+        }
+
+        /* Enhanced Video Section */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            margin: 30px 0 45px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Dynamic Media & Info Grids */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 25px 0 40px;
+        }
+
+        .info-card {
+            background-color: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 25px;
+            text-align: left;
+            font-size: 0.95rem;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+        .info-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+        }
+
+        .info-card h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+        }
+        .info-card p {
+            text-align: justify;
+            margin-bottom: 15px;
+            color: var(--text-muted);
+        }
+
+        .info-card ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+        .info-card ul li {
+            margin-bottom: 8px;
+            color: var(--text-muted);
+        }
+        .info-card ul li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Specialized Styling for purely image cards */
+        .info-card.img-only-card {
+            padding: 10px;
+            overflow: hidden;
+        }
+        .info-card.img-only-card img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            border-radius: 6px;
+            display: block;
+            transition: var(--transition);
+        }
+        .info-card.img-only-card:hover img {
+            transform: scale(1.02);
+        }
+
+        /* Grid specific span utility */
+        .grid-span-2 {
+            grid-column: span 2;
+        }
+        @media (max-width: 768px) {
+            .grid-span-2 { grid-column: span 1; }
+            .info-card.img-only-card img { height: auto; }
+        }
+
+        /* Beautiful Clean Highlight Box */
+        .highlight-box {
+            background: var(--primary-light);
+            border-left: 5px solid var(--primary-color);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+            box-shadow: var(--card-shadow);
+        }
+        .highlight-box p { text-align: justify; margin: 0; font-size: 1.05rem; }
+
+        /* Legacy Initiative Block Styling Refined */
+        .sarak-initiative-section {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            padding: 30px !important;
+            margin: 25px auto 40px !important;
+        }
+
+        /* Traditional Footer */
+        footer {
+            background: #1a252f;
+            color: #afb9c1;
+            padding: 50px 5% 25px;
+            font-size: 0.9rem;
+            margin-top: 60px;
+        }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; }
-        .footer-bottom { border-top: 1px solid #333; margin-top: 30px; padding-top: 20px; text-align: center; }
+        .footer-bottom { border-top: 1px solid #2c3e50; margin-top: 35px; padding-top: 20px; text-align: center; color: #7f8c8d; }
     </style>
 </head>
 <body>
+
 <script src="header-loader.js"></script>
 <script src="footer-loader.js"></script>
 
@@ -51,20 +266,155 @@
 
 <main class="content">
     <h1>सराक उत्थान (Welfare Enhancement)</h1>
+
     <div class="content-text">
-        <p>Sarak Utthan is an initiative dedicated to the holistic welfare and upliftment of the Jain community members. This program addresses the social, economic, and spiritual well-being of individuals and families.</p>
-        <p>The initiative focuses on:</p>
-        <ul>
-            <li>Financial assistance for underprivileged community members</li>
-            <li>Healthcare support and awareness programs</li>
-            <li>Educational assistance for deserving students</li>
-            <li>Community development projects</li>
-        </ul>
-        <p>Through Sarak Utthan, Jain Sangh Pune ensures that all members of the community have access to essential services and opportunities for a better quality of life.</p>
+        <p>
+            <b>सराक 'अपभ्रंश ऑफ़ श्रावक'</b> : The term <b>सराक</b> originates as a phonetic corruption (Apabhraṇśa) of the Sanskrit word <b>Śrāvaka</b> (meaning a Jain layman or listener). The Saraks represent an ancient Jain ethnoreligious community that has proudly retained profound Jain practices, such as strict vegetarianism, since antiquity.
+        </p>
+    </div>
+
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/-U1YcYOu6sU?si=XG6o7QqPsBa6Wuny"
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+        </iframe>
+    </div>
+
+    <h2>The Sarak Diaspora & Culture</h2>
+    <div class="content-text">
+        <p>
+            Ancient texts and archaeological records, including accounts from the Kalpa Sūtra, suggest that the Tirthankara Mahavira himself visited this community's native regions (historically known as Vajjabhumi). Legends and scholarship even note that the renowned Jain scholar Bhadrabahu may have belonged to the Sarak lineage.
+        </p>
+
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>Geographic Distribution</h3>
+                <p>The total global population is estimated between <b>34,000 to 50,000</b> individuals, concentrated across eastern regions:</p>
+                <ul>
+                    <li><b>West Bengal:</b> 25,000–35,000 (Purulia, Bankura, and Bardhaman districts)</li>
+                    <li><b>Jharkhand:</b> 5,000–10,000 (Ranchi, Dumka, Giridih, and Singhbhum regions)</li>
+                    <li><b>Odisha:</b> 2,000–5,000</li>
+                    <li><b>Other areas:</b> Bihar, Assam, and parts of Bangladesh</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h3>Linguistic Diversity</h3>
+                <p>Despite their shared ancestry, geographical diffusion has led the Saraks to adopt local regional tongues while maintaining their spiritual identity. Today, Sarak families speak:</p>
+                <ul>
+                    <li>Bengali (primarily in Bengal & Jharkhand)</li>
+                    <li>Singhbhumi Odia</li>
+                    <li>Hindi, Assamese, and Bihari languages</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>Contribution of <u>Jain Sangh Pune</u> in सराक उत्थान</h2>
+
+        <div>
+            <h3>जैन धर्म प्रभावना</h3>
+
+            <section class="sarak-initiative-section" style="font-family: 'Open Sans', sans-serif; max-width: 100%; color: var(--text-dark); line-height: 1.8;">
+                <p style="font-size: 16px; color: var(--text-muted); margin-bottom: 25px; text-align: justify;">
+                    For several years, <b>Jain Sangh Pune</b>, supported by over 50 dedicated <em>Dharm Sarthi</em> volunteers, has been regularly organizing <em>Shravak Sanskar</em> camps in the remote Sarak regions.
+                </p>
+
+                <h3 style="color: var(--primary-color); font-family: 'Montserrat', sans-serif; font-weight:600; font-size: 1.2rem; margin-bottom: 20px; margin-top:0; border:none; padding:0;">
+                    The core focus of these camps includes:
+                </h3>
+
+                <ul style="list-style-type: none; padding-left: 0; margin:0;">
+                    <li style="margin-bottom: 15px; padding-left: 30px; position: relative; text-align: justify;">
+                        <span style="position: absolute; left: 0; top: 0; color: var(--secondary-color); font-weight: bold;">✨</span>
+                        <strong style="color: #111;">Religious & Cultural Roots:</strong>
+                        Introducing and strengthening Jain values and traditions among Sarak Jains.
+                    </li>
+
+                    <li style="margin-bottom: 15px; padding-left: 30px; position: relative; text-align: justify;">
+                        <span style="position: absolute; left: 0; top: 0; color: var(--secondary-color); font-weight: bold;">✨</span>
+                        <strong style="color: #111;">Education & Empowerment:</strong>
+                        Guiding the youth toward higher education and sustainable employment opportunities.
+                    </li>
+
+                    <li style="margin-bottom: 0; padding-left: 30px; position: relative; text-align: justify;">
+                        <span style="position: absolute; left: 0; top: 0; color: var(--secondary-color); font-weight: bold;">✨</span>
+                        <strong style="color: #111;">Holistic Development:</strong>
+                        Sowing the seeds of moral virtues and ethical values for a meaningful human life.
+                    </li>
+                </ul>
+            </section>
+
+            <div class="info-grid">
+                <div class="info-card img-only-card">
+                    <img src="../images/Saraak/Saraak_1.jpg" alt="Jain Sangh Pune Event">
+                </div>
+                <div class="info-card img-only-card">
+                    <img src="../images/Saraak/Saraak_7.jpg" alt="Jain Sangh Pune Event">
+                </div>
+                <div class="info-card img-only-card">
+                    <img src="../images/Saraak/Saraak_4.jpg" alt="Jain Sangh Pune Event">
+                </div>
+                <div class="info-card img-only-card">
+                    <img src="../images/Saraak/Saraak_2023.jpg" alt="Jain Sangh Pune Event">
+                </div>
+                <div class="info-card img-only-card grid-span-2">
+                    <img src="../images/Saraak/Saraak_10.jpg" alt="Jain Sangh Pune Event" style="height: 280px;">
+                </div>
+            </div>
+
+            <h3>प्रतिभा सम्मान 2023</h3>
+            <div class="content-text">
+                <p>
+                    In 2023, Jain Sangh Pune organized the prestigious 'प्रतिभा सम्मान' event to honor and celebrate the remarkable achievements of individuals from the Sarak community. This event not only recognized outstanding contributions in various fields but also served as a platform to inspire and motivate future generations of Saraks to continue striving for excellence while upholding their rich cultural heritage.
+                </p>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card img-only-card">
+                    <img src="../images/Saraak/Saraak_Pratibha_samman_2023_1.jpg" alt="Jain Sangh Pune Event">
+                </div>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card img-only-card">
+                    <img src="../images/Saraak/Saraak_3.jpg" alt="Jain Sangh Pune Event">
+                </div>
+                <div class="info-card img-only-card">
+                    <img src="../images/Saraak/Saraak_Pratibha_samman_2023.jpg" alt="Jain Sangh Pune Event">
+                </div>
+            </div>
+
+            <h3>घर्म प्रभावना एवं जागरूकता जुलूस</h3>
+            <div class="info-grid">
+                <div class="info-card img-only-card">
+                    <img src="../images/Saraak/Saraak_2.jpg" alt="Jain Sangh Pune Event">
+                </div>
+                <div class="info-card img-only-card">
+                    <img src="../images/Saraak/Saraak_15.jpg" alt="Jain Sangh Pune Event">
+                </div>
+            </div>
+            <div class="info-grid">
+                <div class="info-card img-only-card">
+                    <img src="../images/Saraak/Saraak_11.jpg" alt="Jain Sangh Pune Event">
+                </div>
+                <div class="info-card img-only-card">
+                    <img src="../images/Saraak/Saraak_6.jpg" alt="Jain Sangh Pune Event">
+                </div>
+            </div>
+
+            <h3>तीर्थ दर्शन एवं संरक्षण</h3>
+            <div class="info-grid">
+                <div class="info-card img-only-card">
+                    <img src="../images/Saraak/Saraak_13.jpg" alt="Jain Sangh Pune Event">
+                </div>
+                <div class="info-card img-only-card">
+                    <img src="../images/Saraak/Saraak_5.jpg" alt="Jain Sangh Pune Event">
+                </div>
+            </div>
+        </div>
     </div>
 </main>
-<div id="footer-placeholder"></div>
 
+<div id="footer-placeholder"></div>
 </body>
 </html>
-
