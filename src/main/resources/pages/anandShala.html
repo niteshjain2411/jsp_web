@@ -1,40 +1,237 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>आनंदशाला - Jain Sangh Pune | JSP</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
     <style>
+        /* Modern Design System Matches The Theme */
         :root {
-            --primary-color: #2a7d8c;
-            --secondary-color: #f4b41a;
-            --text-dark: #333;
-            --light-bg: #fdfdfd;
-            --border-color: #e0e0e0;
+            --primary-color: #1e6b7a;
+            --primary-light: #f0f7f8;
+            --secondary-color: #e5a914;
+            --secondary-light: #fffbeb;
+            --text-dark: #2d3748;
+            --text-muted: #5a6a85;
+            --bg-light: #fcfbfa;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --border-radius: 16px;
         }
 
-        body { font-family: 'Open Sans', sans-serif; margin: 0; padding: 0; color: var(--text-dark); background-color: #fff; }
+        body {
+            font-family: 'Noto Sans Devanagari', 'Open Sans', sans-serif;
+            background-color: #f7f5f2;
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+        }
 
-        .back-link { display: inline-block; margin: 20px 5%; color: var(--primary-color); text-decoration: none; font-weight: 600; }
-        .back-link:hover { text-decoration: underline; }
+        h1, h2, h3, h4 {
+            font-family: 'Noto Sans Devanagari', 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
 
-        .content { padding: 40px 5%; max-width: 900px; margin: 0 auto; }
+        .content {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
 
-        h1 {
-            font-family: 'Montserrat', sans-serif;
+        /* Back Link Button */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
             color: var(--primary-color);
-            font-size: 2.2rem;
-            border-left: 5px solid var(--secondary-color);
-            padding-left: 15px;
-            margin-top: 0;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            margin: 20px 0 0 20px;
+            padding: 10px 18px;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: var(--transition-smooth);
+        }
+        .back-link:hover {
+            transform: translateX(-5px);
+            background: var(--primary-light);
         }
 
-        .content-text { line-height: 1.8; font-size: 1.05rem; color: #555; }
+        /* Main Heading */
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            position: relative;
+            border-left: none;
+            padding-left: 0;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary-color);
+            margin: 12px auto 0;
+            border-radius: 2px;
+        }
 
-        footer { background: #222; color: #bbb; padding: 40px 5% 20px; font-size: 0.9rem; margin-top: 60px; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; }
-        .footer-bottom { border-top: 1px solid #333; margin-top: 30px; padding-top: 20px; text-align: center; }
+        h2 {
+            font-size: 1.8rem;
+            border-left: 5px solid var(--primary-color);
+            padding-left: 15px;
+            margin-top: 50px;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+        }
+
+        /* Intro Info Box */
+        .info-box {
+            font-size: 1.1rem;
+            color: #4a5568;
+            text-align: justify;
+            background: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            border-top: 4px solid var(--primary-color);
+            margin: 25px 0;
+        }
+        .info-box p {
+            margin: 0;
+            color: #4a5568;
+        }
+
+        /* Dashboard Stats Grid Layout */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        @media (max-width: 850px) {
+            .stats-grid { grid-template-columns: 1fr; }
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            border-bottom: 4px solid var(--primary-light);
+            transition: var(--transition-smooth);
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-bottom-color: var(--primary-color);
+        }
+        .stat-number {
+            font-size: 2.3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* Timeline Card Sections */
+        .year-section {
+            background: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            margin-bottom: 30px;
+            border-bottom: none;
+        }
+        .year-section h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            background: transparent;
+            display: block;
+            border-radius: 0;
+        }
+        .year-section p {
+            color: #4a5568;
+            font-size: 1.05rem;
+        }
+
+        /* Styled Features/Bullet Lists */
+        .year-section ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 12px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+        .year-section li {
+            position: relative;
+            padding-left: 30px;
+            font-size: 1.05rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+        .year-section li::before {
+            content: '🌸';
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        /* COVID-19 Alert Box Restyled */
+        .covid-gap-box {
+            background: linear-gradient(135deg, #fff5f5 0%, #fff0f0 100%);
+            border: 1px dashed #feb2b2;
+            border-left: 5px solid #f56565;
+            padding: 25px;
+            margin: 35px 0;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+        }
+        .covid-text h4 {
+            margin: 0 0 10px 0;
+            color: #c53030;
+            font-size: 1.2rem;
+        }
+        .covid-text p {
+            margin: 0;
+            font-size: 1.05rem;
+            color: #742a2a;
+            line-height: 1.7;
+        }
+
+        /* Special Features Callout Block */
+        .special-box {
+            background: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            border-left: 5px solid var(--secondary-color);
+            margin: 40px 0;
+        }
+        .special-box p {
+            margin: 0;
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
     </style>
 </head>
 <body>
@@ -43,20 +240,226 @@
 <script src="footer-loader.js"></script>
 
 <div id="header-placeholder"></div>
-<a href="home.html" class="back-link">← Back to Home</a>
+<a href="home.html" class="back-link"><i class="fas fa-arrow-left"></i>Back to Home</a>
 
 <main class="content">
     <h1>आनंदशाला (Play-based Jain Learning)</h1>
+
     <div class="content-text">
-        <p>AnandShala is an innovative initiative by Jain Sangh Pune that teaches Jain principles and values through fun and interactive games. This program makes spiritual education engaging and memorable for children.</p>
-        <p>The AnandShala program includes:</p>
-        <ul>
-            <li>Interactive games and activities based on Jain philosophy</li>
-            <li>Storytelling sessions featuring Jain saints and principles</li>
-            <li>Character development through play-based learning</li>
-            <li>Community engagement for children and families</li>
-        </ul>
-        <p>By combining education with entertainment, AnandShala ensures that children develop a strong connection with their faith while enjoying the learning process.</p>
+        <div class="info-box">
+            <p><b>जैन संघ पुणे (JSP)</b> प्रत्येक वर्ष एक अनोखी कार्यशाला का आयोजन करता है, जिसमें खेल-खेल में बच्चों को
+                जैन धर्म के गहरे सिद्धांत बेहद सरल और रोचक तरीके से समझाए जाते हैं। इसके साथ ही, वर्तमान परिप्रेक्ष्य
+                (Modern Context) से संबंधित महत्वपूर्ण विषयों को जैन धर्म के साथ जोड़कर बच्चों के सर्वांगीण और नैतिक
+                विकास पर विशेष ध्यान दिया जाता है।</p>
+        </div>
+        <h2 class="section-title"><i class="fa-solid fa-chart-line"></i> हमारा प्रभाव (Our Impact)</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <i class="fa-solid fa-calendar-check"></i>
+                <div class="stat-number">6+ वर्ष</div>
+                <div class="stat-label">सफल आयोजन का अनुभव</div>
+            </div>
+            <div class="stat-card">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <div class="stat-number">1000+</div>
+                <div class="stat-label">लाभान्वित विद्यार्थी (8 से 18 वर्ष)</div>
+            </div>
+            <div class="stat-card">
+                <i class="fa-solid fa-map-location-dot"></i>
+                <div class="stat-number">विभिन्न स्थान</div>
+                <div class="stat-label">पुणे के अलग-अलग क्षेत्रों में सक्रियता</div>
+            </div>
+        </div>
+
+        <div class="info-grid">
+            <div class="info-card">
+                <img src="../images/anandshala/anandshala_1.jpg" alt="Anandshala Workshop" class="info-image">
+            </div>
+            <div class="info-card">
+                <img src="../images/anandshala/anadshala_2.jpg" alt="Anandshala Workshop" class="info-image">
+            </div>
+        </div>
+        <div class="info-grid">
+            <div class="info-card">
+                <img src="../images/anandshala/activity_1.jpg" alt="Anandshala Workshop" class="info-image">
+            </div>
+            <div class="info-card">
+                <img src="../images/anandshala/activity_2.jpg" alt="Anandshala Workshop" class="info-image">
+            </div>
+        </div>
+        <div class="info-grid">
+            <div class="info-card">
+                <img src="../images/anandshala/Poojan.jpg" alt="Anandshala Workshop" class="info-image">
+            </div>
+            <div class="info-card">
+                <img src="../images/anandshala/Lunch.jpg" alt="Anandshala Workshop" class="info-image">
+            </div>
+        </div>
+        <div class="info-grid">
+            <div class="info-card">
+                <img src="../images/anandshala/Yoga.jpg" alt="Anandshala Workshop" class="info-image">
+            </div>
+            <div class="info-card">
+                <img src="../images/anandshala/Teachers.jpg" alt="Anandshala Workshop" class="info-image">
+            </div>
+        </div>
+
+        <h2 class="section-title"><i class="fa-solid fa-clock-rotate-left"></i> वार्षिक यात्रा और मुख्य आकर्षण (Yearly Highlights)</h2>
+
+        <div class="year-section">
+            <div class="year-header">
+                <div class="year-title-block">
+                    <h3>2019: माणिकबाग</h3>
+                </div>
+                <div class="meta-badges">
+                    <span class="badge badge-venue"><i class="fa-solid fa-gopuram"></i> दिगम्बर जैन मंदिर</span>
+                    <span class="badge badge-age"><i class="fa-solid fa-users"></i> 130+ बच्चे</span>
+                </div>
+            </div>
+            <p>माणिकबाग दिगम्बर जैन मंदिर में आयोजित इस कार्यशाला में 130 से अधिक बच्चों ने भाग लिया था। इस कार्यक्रम का
+                मुख्य आकर्षण यह था कि बच्चों को जैन धर्म के मूल सिद्धांतों को खेल-खेल में सिखाया गया, जिससे वे न केवल
+                धार्मिक ज्ञान प्राप्त कर सके, बल्कि नैतिक और सामाजिक मूल्यों को भी समझ सके।</p>
+
+            <div class="bullets-heading"><i class="fa-solid fa-bookmark"></i> मुख्य बिंदु:</div>
+            <ul>
+                <li><i class="fa-solid fa-om"></i> अर्हम ध्यान योग</li>
+                <li><i class="fa-solid fa-hands-praying"></i> सच्चे देव-शास्त्र-गुरु</li>
+                <li><i class="fa-solid fa-hourglass-half"></i> Time-Travel एवं काल-चक्र</li>
+                <li><i class="fa-solid fa-dharmachakra"></i> समवशरण रचना</li>
+                <li><i class="fa-solid fa-shrimp"></i> हम कितने शाकाहारी - E-कोड्स का भ्रमजाल</li>
+            </ul>
+        </div>
+
+        <div class="covid-gap-box">
+            <div class="covid-icon">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <div class="covid-text">
+                <h4>2020 - 2021: कोरोना महामारी अंतराल (COVID-19 Break)</h4>
+                <p>वैश्विक कोरोना महामारी (COVID-19) के कारण और बच्चों की सुरक्षा को सर्वोपरि रखते हुए, इन दो वर्षों में
+                    आनंदशाला की ऑन-ग्राउंड कार्यशालाओं का आयोजन नहीं किया जा सका। इस कठिन समय में जैन संघ पुणे ने
+                    सामूहिक स्वास्थ्य और सुरक्षा नियमों का पूरी तरह पालन किया।</p>
+            </div>
+        </div>
+
+        <div class="year-section">
+            <div class="year-header">
+                <div class="year-title-block">
+                    <h3>2022: HND Boarding</h3>
+                </div>
+                <div class="meta-badges">
+                    <span class="badge badge-venue"><i class="fa-solid fa-hotel"></i> HND Boarding</span>
+                    <span class="badge badge-age"><i class="fa-solid fa-child"></i> 7 से 18 वर्ष (150 बच्चे)</span>
+                </div>
+            </div>
+            <p>वर्ष 2022 में आनंदशाला का आयोजन 2 Weekends में HND Boarding में किया गया था। इसमें 7 से 18 वर्ष के करीब
+                150 बच्चे सम्मिलित हुए थे।</p>
+
+            <div class="bullets-heading"><i class="fa-solid fa-bookmark"></i> मुख्य बिंदु:</div>
+            <ul>
+                <li><i class="fa-solid fa-earth-asia"></i> जैन भूगोल</li>
+                <li><i class="fa-solid fa-gem"></i> तीन लोक में Treasure Hunt</li>
+                <li><i class="fa-solid fa-robot"></i> Robotics & Yoga Activities</li>
+                <li><i class="fa-solid fa-water"></i> अभिषेक पूजन</li>
+                <li><i class="fa-solid fa-puzzle-piece"></i> Toy Making Activity</li>
+            </ul>
+        </div>
+
+        <div class="year-section">
+            <div class="year-header">
+                <div class="year-title-block">
+                    <h3>2023: पारस भवन, चिंचवड़</h3>
+                </div>
+                <div class="meta-badges">
+                    <span class="badge badge-venue"><i class="fa-solid fa-building-columns"></i> पारस भवन</span>
+                    <span class="badge badge-age"><i class="fa-solid fa-child"></i> 7 से 18 वर्ष (150 बच्चे)</span>
+                </div>
+            </div>
+            <p>वर्ष 2023 में आनंदशाला का आयोजन पारस भवन, चिंचवड़ में किया गया था। इसमें भी 7 से 18 वर्ष के करीब 150
+                बच्चों ने उत्साहपूर्वक भाग लिया।</p>
+
+            <div class="bullets-heading"><i class="fa-solid fa-bookmark"></i> मुख्य बिंदु:</div>
+            <ul>
+                <li><i class="fa-solid fa-flask-vial"></i> Jain Science v/s Modern Science</li>
+                <li><i class="fa-solid fa-filter"></i> पानी छानने एवं रात्रि भोजन त्याग का महत्त्व</li>
+                <li><i class="fa-solid fa-globe"></i> Jain Geography</li>
+                <li><i class="fa-solid fa-palette"></i> Arts & Crafts</li>
+                <li><i class="fa-solid fa-clapperboard"></i> अभिषेक पूजन एवं Talent Show</li>
+            </ul>
+        </div>
+
+        <div class="year-section">
+            <div class="year-header">
+                <div class="year-title-block">
+                    <h3>2024: वर्धमान प्रतिष्ठान</h3>
+                </div>
+                <div class="meta-badges">
+                    <span class="badge badge-venue"><i class="fa-solid fa-landmark"></i> वर्धमान प्रतिष्ठान</span>
+                    <span class="badge badge-age"><i class="fa-solid fa-child"></i> 7 से 18 वर्ष (150 बच्चे)</span>
+                </div>
+            </div>
+            <p>वर्ष 2024 में आनंदशाला का भव्य आयोजन वर्धमान प्रतिष्ठान में किया गया था, जिसमें 7 से 18 वर्ष के लगभग 150
+                बच्चे सम्मिलित हुए।</p>
+
+            <div class="bullets-heading"><i class="fa-solid fa-bookmark"></i> मुख्य बिंदु:</div>
+            <ul>
+                <li><i class="fa-solid fa-monument"></i> History of Jainism</li>
+                <li><i class="fa-solid fa-users-rays"></i> पञ्च परमेष्ठी एवं आचार्य परंपरा</li>
+                <li><i class="fa-solid fa-book-open-reader"></i> आचार्य विद्यासागर जी महाराज - मूकमाटी</li>
+                <li><i class="fa-solid fa-brush"></i> Pot Making Activity</li>
+            </ul>
+        </div>
+
+        <div class="year-section">
+            <div class="year-header">
+                <div class="year-title-block">
+                    <h3>2025: खराड़ी और चिंचवड़</h3>
+                    <h4>वर्धमान प्रतिष्ठान एवं पारस भवन</h4>
+                </div>
+                <div class="meta-badges">
+                    <span class="badge badge-venue"><i class="fa-solid fa-map-pin"></i> दोहरे स्थान (Dual Venues)</span>
+                    <span class="badge badge-age"><i class="fa-solid fa-users"></i> कुल 220+ बच्चे</span>
+                </div>
+            </div>
+            <p>वर्ष 2025 में आनंदशाला का आयोजन खराड़ी और पारस भवन चिंचवड़ में एक साथ किया गया। दोनों स्थानों को मिलाकर कुल
+                220+ बच्चों ने इसमें सहभागिता दर्ज की। इस वर्ष की विशेष पहल के रूप में अभिभावकों के लिए एक विशेष <b>Parenting
+                    Session</b> भी आयोजित किया गया था।</p>
+
+            <div class="bullets-heading"><i class="fa-solid fa-bookmark"></i> मुख्य बिंदु:</div>
+            <ul>
+                <li><i class="fa-solid fa-book"></i> बारह भावना एवं मेरी भावना</li>
+                <li><i class="fa-solid fa-microscope"></i> Science behind Jainism</li>
+                <li><i class="fa-solid fa-heart-pulse"></i> Feel the power of Gratitude</li>
+                <li><i class="fa-solid fa-pen-to-square"></i> Self-care Journal</li>
+            </ul>
+        </div>
+
+        <div class="year-section">
+            <div class="year-header">
+                <div class="year-title-block">
+                    <h3>2026: सुस (Special Edition)</h3>
+                    <h4>आओ धर्म से जीना सीखें (संस्कार शिविर)</h4>
+                </div>
+                <div class="meta-badges">
+                    <span class="badge badge-venue"><i class="fa-solid fa-gopuram"></i> मुनि श्री अक्षय सागर जी सानिध्य</span>
+                    <span class="badge badge-age"><i class="fa-solid fa-people-roof"></i> बच्चों एवं बड़ों (18+) हेतु</span>
+                </div>
+            </div>
+            <p>इस वर्ष 2026 में, <b>वात्सल्यमूर्ति मुनि श्री अक्षय सागर महाराज जी</b> के पावन
+                सानिध्य में एक भव्य <b>'संस्कार शिविर'</b> का आयोजन किया गया था। इस शिविर की अनूठी विशेषता यह रही कि इसमें
+                बच्चों के साथ-साथ बड़ों (18+ आयु वर्ग) के लिए भी विशेष सत्र रखे गए, जिससे पूरे परिवार को एक साथ नैतिक और
+                आध्यात्मिक मूल्यों को समझने का सुनहरा अवसर मिला।</p>
+
+            <div class="bullets-heading"><i class="fa-solid fa-bookmark"></i> मुख्य बिंदु:</div>
+            <ul>
+                <li><i class="fa-solid fa-children"></i> Parenting Session</li>
+                <li><i class="fa-solid fa-brain"></i> Emotional Quotient</li>
+                <li><i class="fa-solid fa-utensils"></i> Know your food</li>
+                <li><i class="fa-solid fa-wand-magic-sparkles"></i> Science behind Jain Rituals</li>
+                <li><i class="fa-solid fa-ban"></i> Aimless violence अनर्थदण्ड</li>
+                <li><i class="fa-solid fa-mobile-screen-button"></i> Disadvantages of Mobile</li>
+            </ul>
+        </div>
     </div>
 </main>
 
@@ -64,4 +467,3 @@
 
 </body>
 </html>
-
