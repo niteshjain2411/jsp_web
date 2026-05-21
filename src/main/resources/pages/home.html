@@ -4,120 +4,361 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jain Sangh Pune | JSP</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap"
           rel="stylesheet">
     <style>
         :root {
             --primary-color: #2a7d8c;
+            --primary-dark: #1e5c68;
+            --primary-light: #eef7f9;
             --secondary-color: #f4b41a;
-            --text-dark: #333;
-            --light-bg: #fdfdfd;
-            --border-color: #e0e0e0;
+            --secondary-accent: #e67e22;
+            --text-dark: #2c3e50;
+            --text-muted: #607d8b;
+            --light-bg: #f8fbfb;
+            --border-color: #e2e8f0;
+            --card-bg: #ffffff;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.02);
+            --shadow-md: 0 10px 25px rgba(42, 125, 140, 0.08);
+            --shadow-lg: 0 15px 35px rgba(0,0,0,0.1);
+            --radius-md: 12px;
+            --radius-sm: 6px;
         }
 
-        body { font-family: 'Open Sans', sans-serif; margin: 0; padding: 0; color: var(--text-dark); background-color: #fff; }
+        * {
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-dark);
+            background-color: #fafdfd;
+            line-height: 1.6;
+        }
 
-        /* Slideshow Placeholder */
+        /* Hero / Banner Showcase Section */
         .hero-slideshow {
             width: 100%;
-            height: 600px;
-            background: #eee;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-bottom: 1px solid var(--border-color);
+            height: 500px;
+            position: relative;
+            background: #111;
             overflow: hidden;
         }
         .hero-slideshow img {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
             object-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            z-index: 1;
+        }
+        .hero-slideshow img.active {
+            opacity: 0.85;
+            z-index: 2;
+        }
+        .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+            padding: 40px 5%;
+            color: #fff;
+            z-index: 10;
+        }
+        .hero-overlay h1 {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0 0 10px 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
-        /* Main Content Grid (Side-by-Side) */
+        /* Main Content Structural Grid */
         .main-content {
             display: flex;
             flex-wrap: wrap;
-            padding: 50px 5%;
+            padding: 60px 5% 30px 5%;
             gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
-        /* About Section */
+        /* About Section Structural Column */
         .about-col {
-            flex: 1;
+            flex: 1.4;
             min-width: 350px;
-            height: 400px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Initiatives Section */
-        .initiatives-col {
-            flex: 1;
-            min-width: 220px;
-            max-width: 400px;
-            height: 300px;
-            background: var(--light-bg);
-            padding: 30px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
-            overflow-y: auto;
-            position: relative;
         }
 
         h2 {
             font-family: 'Montserrat', sans-serif;
             color: var(--primary-color);
             margin-top: 0;
-            font-size: 1.8rem;
-            border-left: 5px solid var(--secondary-color);
+            margin-bottom: 25px;
+            font-size: 2rem;
+            font-weight: 700;
+            border-left: 6px solid var(--secondary-color);
             padding-left: 15px;
+            letter-spacing: -0.5px;
         }
 
+        .about-text {
+            font-size: 1.1rem;
+            color: #4a5568;
+            background: var(--card-bg);
+            padding: 35px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+        }
+        .about-text p {
+            margin-top: 0;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        .about-text p:last-child {
+            margin-bottom: 0;
+        }
+        .trust-badge {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary-color);
+            padding: 12px 20px;
+            font-size: 1rem;
+            color: var(--primary-dark);
+            font-weight: 600;
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            margin-top: 25px;
+        }
 
-        .about-text { line-height: 1.8; font-size: 1.05rem; color: #555; }
-
-        /* List Styling */
-        .activity-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        /* Compact Initiatives & Events Area */
+        .initiatives-col {
+            flex: 1;
+            min-width: 320px;
+            max-width: 460px;
+            background: var(--card-bg);
+            padding: 24px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-md);
             display: flex;
             flex-direction: column;
         }
-        .activity-item {
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            align-items: center;
-            font-size: 0.9rem;
-            min-height: 40px;
-            flex-shrink: 0;
-        }
-        .activity-item:last-child { border-bottom: none; }
-        .activity-icon {
-            width: 22px;
-            height: 22px;
-            margin-right: 15px;
-            flex-shrink: 0;
-        }
-        .activity-item a {
-            text-decoration: none;
+
+        .events-title {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
             color: var(--primary-color);
-            font-weight: 500;
-            transition: 0.3s;
+            margin-top: 0;
+            margin-bottom: 16px;
+            font-size: 1.4rem;
+            font-weight: 700;
         }
-        .activity-item a:hover {
-            color: var(--secondary-color);
+        .event-banner-container {
+            width: 100%;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+        }
+        .event-banner {
+            width: 100%;
+            display: block;
+            height: auto;
+            transition: transform 0.5s ease;
+        }
+        .event-banner-container:hover .event-banner {
+            transform: scale(1.03);
+        }
+        .event-header {
+            text-align: center;
+            background: var(--primary-light);
+            padding: 12px;
+            border-radius: var(--radius-sm);
+            border: 1px solid #d1e9ed;
+            margin-bottom: 16px;
+        }
+        .event-badge {
+            background: var(--secondary-color);
+            color: #fff;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 6px;
+            letter-spacing: 0.3px;
+        }
+        .event-main-title {
+            margin: 2px 0;
+            font-size: 1.15rem;
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+        .event-date {
+            font-weight: 700;
+            color: var(--secondary-accent);
+            margin-top: 4px;
+            font-size: 0.88rem;
+        }
+        .session-divider {
+            background: #f1f5f9;
+            color: var(--primary-dark);
+            padding: 6px 10px;
+            margin: 16px 0 8px 0;
+            border-left: 3px solid var(--primary-color);
+            font-size: 0.9rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+        }
+        .schedule-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .schedule-list li {
+            display: flex;
+            padding: 8px 0;
+            border-bottom: 1px dashed var(--border-color);
+            font-size: 0.88rem;
+            line-height: 1.4;
+        }
+        .schedule-list li:last-child {
+            border-bottom: none;
+        }
+        .time {
+            font-weight: 700;
+            color: var(--secondary-accent);
+            min-width: 75px;
+            flex-shrink: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .desc {
+            color: #334155;
+            flex-grow: 1;
+        }
+        .topics-note {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 3px;
+            font-style: italic;
+        }
+        .topic-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-top: 6px;
+        }
+        .tag {
+            background: var(--primary-light);
+            color: var(--primary-color);
+            font-size: 0.75rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid #d1e9ed;
+            font-weight: 600;
+        }
+        .event-footer {
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 2px dashed var(--border-color);
+            text-align: center;
+        }
+        .map-btn {
+            display: inline-block;
+            background: #4285F4;
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+            transition: background 0.2s;
+        }
+        .map-btn:hover {
+            background: #357ae8;
+        }
+        .inviter {
+            margin-bottom: 8px;
+            color: #475569;
+            font-size: 0.85rem;
+        }
+        .contacts {
+            font-size: 0.85rem;
+            color: #475569;
+            background: #f8fafc;
+            padding: 8px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+        }
+        .contacts a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 2px;
+        }
+        .contacts a:hover {
             text-decoration: underline;
         }
 
-        @media (max-width: 800px) {
-            .main-content { flex-direction: column; }
+        /* Aggregated Impact/Stats Matrix styling */
+        .stats-section {
+            padding: 30px 0 10px 0;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 20px 15px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
+        }
+        .stat-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+        .stat-number {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            color: #475569;
+            font-weight: 600;
+        }
+
+        /* Adaptive Responsive Breakpoints */
+        @media (max-width: 992px) {
+            .main-content { flex-direction: column; padding-top: 40px; }
+            .initiatives-col { max-width: 100%; min-width: 100%; }
+            .hero-slideshow { height: 350px; }
+            .hero-overlay h1 { font-size: 1.8rem; }
         }
     </style>
 </head>
@@ -126,59 +367,149 @@
 <div id="header-placeholder"></div>
 
 <section class="hero-slideshow">
-    <img src="../images/sdjm/sus_jain_mandir.jpeg" alt="Jain Mandir in Sus, Pune">
+    <!-- Add all images from your images/home folder here -->
+    <!-- Ensure the first image has the 'active' class -->
+    <img src="../images/home/sus_jain_mandir.jpeg" alt="Sus Digambar Jain Mandir" class="active">
+    <img src="../images/home/Kalgi_1.jpg" alt="Ahimsa rally">
+    <img src="../images/home/kalgi_3.jpg" alt="Kalgi">
+    <img src="../images/home/Milestone_tamilnadu_temple_2.jpg" alt="JSP Sign Board">
+    <img src="../images/home/BDC_Main.jpeg" alt="Blood donation camp">
+    <img src="../images/home/JSP_founders.jpg" alt="JSP founders">
+    <img src="../images/home/Saraak_10.jpg" alt="Saraak">
+    <img src="../images/home/Saraak_15.jpg" alt="Saraak">
+    <img src="../images/home/Shivir_1.jpg" alt="Shivir">
+    <img src="../images/home/teerth_yatra_jintoor_2.jpeg" alt="Teerth Yatra">
+    <img src="../images/home/Social_Service (4).jpeg" alt="Floor relief">
+    <img src="../images/home/Social_Service%20(2).jpeg" alt="Covid help">
+    <img src="../images/home/Social_Service (1).jpeg" alt="Teerth Yatra">
+    <img src="../images/home/Yoga.jpg" alt="Anandshala_Yoga">
+    <img src="../images/home/anandshala_1.jpg" alt="Anandshala">
+    <img src="../images/home/Teachers.jpg" alt="Pathshala Teacher">
+
+    <div class="hero-overlay">
+        <h1>Welcome to Jain Sangh Pune</h1>
+    </div>
 </section>
 
 <main class="main-content">
+
     <section class="about-col">
         <h2>About JSP</h2>
         <div class="about-text">
-            <p>Established on
-                <bold>Mahavir Jayanti 2007</bold>
-                at Manikbag Jain Temple, Jain Sangh Pune (JSP) is a religious and social trust founded by highly
-                educated young professionals.
-            </p>
-            <p>Our mission is to support all Jains residing in or visiting Pune in practicing their faith, providing
-                comprehensive assistance and bringing the community together on a single platform.</p>
-            <br>
-            <p>JSP is officially registered under the <u>Bombay Public Trust Act, 1950 (Reg No: E-6048/PUNE).</u></p>
+            <p>Established on <b>Mahavir Jayanti 2007</b> at Manikbag Jain Temple, Jain Sangh Pune (JSP) is a religious and social trust founded by highly educated young professionals.</p>
+            <p>Our mission is to support all Jains residing in or visiting Pune in practicing their faith, providing comprehensive assistance and bringing the community together on a single platform.</p>
+            <div class="trust-badge">
+                ⚖️ JSP is officially registered under the Public Trust Act, 1950 (Reg No: E-6048/PUNE).
+            </div>
         </div>
+
+        <section class="stats-section">
+            <h2>Our Impact | हमारी उपलब्धियां</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon"><img src="../images/JSP_sign_board.png" alt="Sign Board" style="width: 45%; height: auto;"></div>
+                    <div class="stat-number">800+</div>
+                    <div class="stat-label">Sign Boards Installed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👨‍👩‍👧‍👦</div>
+                    <div class="stat-number">7000+</div>
+                    <div class="stat-label">परिवारों की आर्थिक मदद</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👵</div>
+                    <div class="stat-number">700+</div>
+                    <div class="stat-label">विधवा पेंशन सहायता</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🎓</div>
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">छात्रवृत्ति वितरण</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🚌</div>
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">तीर्थ यात्राएं</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🏢</div>
+                    <div class="stat-number">JSP</div>
+                    <div class="stat-label">सुरक्षित जैन सोसाइटी</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⚕️</div>
+                    <div class="stat-number">सेवा</div>
+                    <div class="stat-label">धर्मार्थ औषधालय</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🏡</div>
+                    <div class="stat-number">आश्रय</div>
+                    <div class="stat-label">भव्य संत निवास परिसर</div>
+                </div>
+            </div>
+        </section>
     </section>
 
-    <section class="initiatives-col">
-        <h2>Key Initiatives</h2>
-        <ul class="activity-list">
-            <li class="activity-item">
-                <div class="slide-icon">🛕</div>
-                <a href="mandirNirman.html">मंदिर निर्माण</a></li>
-            <!--<li class="activity-item">
-                <div class="slide-icon">🏠</div>
-                <a href="santNivasNirman.html">संत निवास निर्माण</a></li>-->
-            <li class="activity-item">
-                <div class="slide-icon">🎮</div>
-                <a href="anandShala.html">आनंदशाला - खेल खेल में सीखे जैन धर्म</a></li>
-           <!-- <li class="activity-item">
-                <div class="slide-icon">📖</div>
-                <a href="sanskarShivir.html">संस्कार शिविर</a></li>-->
-            <li class="activity-item">
-                <div class="slide-icon">🤝</div>
-                <a href="sarakUtthan.html">सराक उत्थान</a></li>
-            <li class="activity-item">
-                <div class="slide-icon">👣</div>
-                <a href="tirthYatra.html">तीर्थ यात्रा</a></li>
-            <li class="activity-item">
-                <div class="slide-icon">⚕️</div>
-                <a href="dharmarthAushadhlay.html">धर्मार्थ औषधालय</a></li>
-            <li class="activity-item">
-                <div class="slide-icon">🛠️</div>
-                <a href="jirnodhar.html">जीर्णोद्धार</a></li>
-            <li class="activity-item">
-                <div class="slide-icon">🎓</div>
-                <a href="chhatravrittiAvamPratibbaSamman.html">छात्रवृत्ति एवं प्रतिभा सम्मान</a></li>
-            <li class="activity-item">
-                <div class="slide-icon">🌍</div>
-                <a href="samajikKarya.html">सामाजिक कार्य</a></li>
-        </ul>
+    <section class="info-card initiatives-col">
+        <h3 class="events-title">News & Upcoming Events</h3>
+
+        <div class="event-banner-container">
+            <img src="../images/utthan.jpeg" alt="Utthan Event Banner" class="event-banner">
+        </div>
+
+        <div style="height:500px; overflow:auto">
+            <div class="event-header">
+                <span class="event-badge">प्रथम अधिवेशन एवं जन संवाद</span>
+                <h4 class="event-main-title">🌈 जैन संघ पुणे आयोजित 🌈</h4>
+                <div class="event-date">🗓️ 31 May - रविवार (द्वितीय दिवस)</div>
+            </div>
+
+            <div class="schedule-container">
+                <h5 class="session-divider">🌅 सुबह का सत्र</h5>
+                <ul class="schedule-list">
+                    <li><span class="time">08:00 AM</span> <span class="desc">आचार्य श्री चित्र अनावरण और दीप प्रज्वलन</span></li>
+                    <li><span class="time">08:30 AM</span> <span class="desc">जैन संघ पुणे अधिवेशन भूमिका</span></li>
+                    <li><span class="time">08:45 AM</span> <span class="desc">मुनि श्री 108 अक्षय सागर जी प्रवचन</span></li>
+                    <li><span class="time">09:30 AM</span> <span class="desc">स्वल्पाहार</span></li>
+                    <li><span class="time">09:40 AM</span> <span class="desc">मुनिश्री आहार चर्या</span></li>
+                    <li><span class="time">12:30 PM</span> <span class="desc" style="color: var(--primary-color); font-weight: bold;">🍱 वात्सल्य भोजन (Till 1:30 PM)</span></li>
+                </ul>
+
+                <h5 class="session-divider">☀️ दोपहर एवं संध्या सत्र</h5>
+                <ul class="schedule-list">
+                    <li><span class="time">01:30 PM</span> <span class="desc">मुनि श्री पाद प्रक्षालन एवं शास्त्र भेंट</span></li>
+                    <li><span class="time">02:00 PM</span>
+                        <span class="desc">
+                            <b>JSP संक्षिप्त परिचय और आपके प्रश्न</b>
+                            <span class="topics-note">(इस दौरान नीचे दिए गए विषयों पर परिचय एवं संवाद होगा)</span>
+                            <div class="topic-tags">
+                                <span class="tag">जैन सोसाइटी निर्माण</span>
+                                <span class="tag">तीर्थयात्रा</span>
+                                <span class="tag">औषधालय</span>
+                                <span class="tag">हथकरघा</span>
+                                <span class="tag">जनगणना</span>
+                                <span class="tag">शास्त्र संरक्षण एवं प्रकाशन</span>
+                                <span class="tag">जीवदया</span>
+                            </div>
+                        </span>
+                    </li>
+                    <li><span class="time">04:30 PM</span> <span class="desc">मुनि श्री मंगल प्रवचन</span></li>
+                    <li><span class="time">05:30 PM</span> <span class="desc" style="color: var(--primary-color); font-weight: bold;">🍽️ सांध्यकालीन भोजन</span></li>
+                </ul>
+            </div>
+
+            <div class="event-footer">
+                <a href="https://maps.app.goo.gl/LMKLEVMPWdJi3sBM9?g_st=aw" target="_blank" class="map-btn">📍 View Event
+                    Map</a>
+                <div class="inviter"><b>निवेदक:</b> जैन संघ पुणे (जेएसपी)</div>
+                <div class="contacts">
+                    <b>📞 संपर्क सूत्र:</b>
+                    <a href="tel:8799928256">8799928256</a> |
+                    <a href="tel:8087597176">8087597176</a> |
+                    <a href="tel:8888832198">8888832198</a>
+                </div>
+            </div>
+        </div>
     </section>
 </main>
 
@@ -187,6 +518,23 @@
 <script src="header-loader.js"></script>
 <script src="footer-loader.js"></script>
 <script src="news-loader.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const slides = document.querySelectorAll('.hero-slideshow img');
+        let currentSlide = 0;
+        const slideInterval = 5000; // Change image every 5 seconds (5000ms)
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        if (slides.length > 1) {
+            setInterval(nextSlide, slideInterval);
+        }
+    });
+</script>
 
 </body>
 </html>

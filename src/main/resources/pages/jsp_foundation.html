@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSP Foundation - Jain Sangh Pune | JSP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* Shared Modern Design System from mandirNirman */
+        :root {
+            --primary-color: #d2691e;
+            --primary-light: #fff5ee;
+            --secondary-color: #ff8c00;
+            --text-dark: #2c3e50;
+            --text-muted: #5a6b7c;
+            --bg-light: #fcfbfa;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --hover-shadow: 0 15px 35px rgba(210, 105, 30, 0.15);
+            --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --border-radius: 16px;
+
+            /* Tier Border accents */
+            --tier-1-color: #d9383a;
+            --tier-2-color: #144d57;
+            --tier-3-color: #2e7d32;
+            --tier-4-color: #ff8c00;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f7f5f2;
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Back Link Button */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            margin: 20px 0 0 20px;
+            padding: 10px 18px;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: var(--transition-smooth);
+        }
+        .back-link:hover {
+            transform: translateX(-5px);
+            background: var(--primary-light);
+        }
+
+        /* Top Salutation & Branding */
+        .top-salutation {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #b24d00;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .main-deity-img {
+            display: block;
+            margin: 0 auto 30px auto;
+            max-width: 140px;
+            filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.15));
+            transition: var(--transition-smooth);
+        }
+        .main-deity-img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Main Sections styled like Intro text and Visiting boxes */
+        .main-section {
+            background: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            margin-bottom: 40px;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        /* Standardized Headings */
+        .section-heading {
+            text-align: center;
+            font-size: 2rem;
+            color: #4a2300;
+            margin-top: 10px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .section-heading::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--secondary-color);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .sub-section-heading {
+            font-size: 1.6rem;
+            border-left: 5px solid var(--primary-color);
+            padding-left: 15px;
+            margin-top: 40px;
+            margin-bottom: 30px;
+            color: #4a2300;
+        }
+
+        /* ---------------------------------------------
+           VISUAL TREE STRUCTURE LAYOUT
+        --------------------------------------------- */
+        .tree-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .tree-level {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .tree-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            justify-content: center;
+            justify-items: center;
+        }
+
+        /* Dynamic Adjustment for Tiers with fewer items so they sit centered beautifully */
+        .tier-1 .tree-row {
+            max-width: 600px;
+            margin: 0 auto;
+            grid-template-columns: repeat(2, 1fr);
+        }
+        @media (max-width: 600px) {
+            .tier-1 .tree-row { grid-template-columns: 1fr; }
+        }
+
+        /* Modernized Guru Cards matching info-card system */
+        .guru-card {
+            background: var(--bg-light);
+            border: 1px solid #eae6e0;
+            border-radius: var(--border-radius);
+            padding: 16px;
+            text-align: center;
+            width: 100%;
+            max-width: 240px;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition-smooth);
+            box-sizing: border-box;
+        }
+
+        .guru-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        /* Image Wrapper with Elegance */
+        .guru-img-wrapper {
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            overflow: hidden;
+            border-radius: 12px;
+            background: #f1f5f9;
+            margin-bottom: 12px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.05);
+        }
+
+        /* Om placeholder fallback setup if image breaks */
+        .guru-img-wrapper::before {
+            content: 'ॐ';
+            font-size: 2.5rem;
+            color: #cbd5e1;
+            position: absolute;
+        }
+
+        .guru-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            position: relative;
+            z-index: 2;
+            transition: var(--transition-smooth);
+            background-color: #fff;
+        }
+
+        .guru-img-wrapper img:not([src]), .guru-img-wrapper img[src=""] {
+            opacity: 0;
+        }
+
+        .guru-card:hover .guru-img-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .guru-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: 10px 0;
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.4;
+        }
+
+        .guru-tag {
+            font-size: 0.75rem;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        /* --- SIZING AND DESIGN ADJUSTMENTS PER TIER --- */
+
+        /* Tier 1 & 2 Standard Base */
+        .tier-1 .guru-card { border-top: 4px solid var(--tier-1-color); }
+        .tier-1 .guru-tag { background: var(--tier-1-color); }
+
+        .tier-2 .guru-card { border-top: 4px solid var(--tier-2-color); }
+        .tier-2 .guru-tag { background: var(--tier-2-color); }
+
+        /* Tier 3: Smaller than Tier 2 */
+        .tier-3 .guru-card {
+            border-top: 4px solid var(--tier-3-color);
+            max-width: 190px;
+            padding: 12px;
+        }
+        .tier-3 .guru-tag { background: var(--tier-3-color); }
+        .tier-3 .guru-name { font-size: 0.85rem; min-height: 40px; }
+
+        /* Tier 4: Smaller than Tier 3 & Forced in one straight line */
+        .tier-4-container {
+            width: 100%;
+            overflow-x: auto; /* Graceful scroll fallback if viewport gets extremely narrow */
+        }
+
+        .tier-4-container .tree-row {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: stretch;
+            gap: 15px; /* Base tight spacing */
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .tier-4 .guru-card {
+            border-top: 4px solid var(--tier-4-color);
+            max-width: 145px;
+            padding: 10px;
+            flex: 0 0 auto; /* Stop resizing or collapsing */
+        }
+
+        .tier-4 .guru-name {
+            font-size: 0.78rem;
+            min-height: 36px;
+            margin: 6px 0;
+        }
+
+        /* Separation space rule between Rahul Bhaiya and Gayatri Didi */
+        .space-divider {
+            margin-left: 35px;
+        }
+
+        /* ---------------------------------------------
+           TIMELINE SECTION
+        --------------------------------------------- */
+        .history-intro {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            text-align: justify;
+            margin-bottom: 40px;
+        }
+
+        .timeline-wrapper {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding-left: 30px;
+        }
+
+        /* Timeline axis line using primary tint scheme */
+        .timeline-wrapper::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            bottom: 10px;
+            width: 3px;
+            background: var(--primary-light);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 35px;
+        }
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Timeline pointer dots */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -36px;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+            border: 4px solid white;
+            box-shadow: 0 0 8px rgba(0,0,0,0.1);
+            z-index: 2;
+            transition: var(--transition-smooth);
+        }
+
+        .timeline-item:hover::before {
+            background: var(--primary-color);
+            transform: scale(1.2);
+        }
+
+        .timeline-year {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            background: var(--primary-light);
+            display: inline-block;
+            padding: 3px 14px;
+            border-radius: 6px;
+        }
+
+        .timeline-text {
+            font-size: 0.98rem;
+            color: var(--text-dark);
+            margin: 0;
+            text-align: justify;
+            background: var(--bg-light);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--secondary-color);
+            box-shadow: var(--card-shadow);
+        }
+
+        /* Elegant Footer Note card matching the visiting-box look */
+        .footer-note {
+            text-align: center;
+            color: var(--text-dark);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            background: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            border-top: 4px solid var(--secondary-color);
+            margin-top: 30px;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .main-section {
+                padding: 25px 20px;
+            }
+            .section-heading {
+                font-size: 1.6rem;
+            }
+            .top-salutation {
+                font-size: 1.8rem;
+            }
+            .guru-card {
+                max-width: 100%;
+            }
+            .tier-3 .guru-card, .tier-4 .guru-card {
+                max-width: 100%; /* allows standard mobile adaptability */
+            }
+            .tier-4-container .tree-row {
+                flex-wrap: wrap; /* wraps beautifully on tight mobile layouts */
+                justify-content: center;
+            }
+            .space-divider {
+                margin-left: 0; /* resets separation on stacked small items */
+            }
+            .timeline-wrapper {
+                padding-left: 20px;
+            }
+            .timeline-item::before {
+                left: -24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<script src="header-loader.js"></script>
+<script src="footer-loader.js"></script>
+<div id="header-placeholder"></div>
+
+<a href="home.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
+
+<div class="container">
+    <main>
+        <section class="main-section">
+            <div class="top-salutation">श्री महावीराय नमः</div>
+            <img src="../images/jsp_foundation/Bhagwaan Mahaveer.png" alt="भगवान महावीर" class="main-deity-img">
+
+            <h2 class="section-heading">मंगल आशीर्वाद एवं मार्गदर्शक</h2>
+
+            <div class="tree-container">
+                <div class="tree-level tier-1">
+                    <div class="tree-row">
+                        <div class="guru-card">
+                            <div class="guru-img-wrapper">
+                                <img src="../images/jsp_foundation/Vidyasagar_ji.png"
+                                     alt="संत शिरोमणि आचार्य श्री 108 विद्यासागर जी महाराज">
+                            </div>
+                            <div class="guru-name">संत शिरोमणि आचार्य श्री 108 विद्यासागर जी महाराज</div>
+                        </div>
+                        <div class="guru-card">
+                            <div class="guru-img-wrapper">
+                                <img src="../images/jsp_foundation/samaysagar_ji.png"
+                                     alt="आचार्य प्रवर श्री समय सागर जी महाराज">
+                            </div>
+                            <div class="guru-name">आचार्य प्रवर श्री 108 समय सागर जी महाराज</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="sub-section-heading">प्रेरणा एवं मार्गदर्शन</h3>
+
+                <div class="tree-level tier-2">
+                    <div class="tree-row">
+                        <div class="guru-card">
+                            <div class="guru-img-wrapper">
+                                <img src="../images/jsp_foundation/niyamsagar_ji.png"
+                                     alt="मुनि श्री नियम सागर जी महाराज">
+                            </div>
+                            <div class="guru-name">मुनि श्री 108 नियम सागर जी महाराज</div>
+                        </div>
+                        <div class="guru-card">
+                            <div class="guru-img-wrapper">
+                                <img src="../images/jsp_foundation/akshay_sagar_ji.png"
+                                     alt="मुनि श्री अक्षय सागर जी महाराज">
+                            </div>
+                            <div class="guru-name">मुनि श्री 108 अक्षय सागर जी महाराज</div>
+                        </div>
+                        <div class="guru-card">
+                            <div class="guru-img-wrapper">
+                                <img src="../images/jsp_foundation/vineet_sagar_ji.png"
+                                     alt="मुनि श्री विनीत सागर जी महाराज">
+                            </div>
+                            <div class="guru-name">मुनि श्री 108 विनीत सागर जी महाराज</div>
+                        </div>
+                        <div class="guru-card">
+                            <div class="guru-img-wrapper">
+                                <img src="../images/jsp_foundation/chandra_prabh_sagar_ji.png"
+                                     alt="मुनि श्री चंद्रप्रभ सागर जी महाराज">
+                            </div>
+                            <div class="guru-name">मुनि श्री 108 चंद्रप्रभ सागर जी महाराज</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="sub-section-heading">आधार स्तम्भ</h3>
+
+                <div class="tree-level tier-3">
+                    <div class="tree-row">
+                        <div class="guru-card">
+                            <div class="guru-img-wrapper">
+                                <img src="../images/jsp_foundation/savinay_sagar_ji.png"
+                                     alt="मुनि श्री सविनय सागर जी महाराज">
+                            </div>
+                            <div class="guru-name">मुनि श्री 108 सविनय सागर जी महाराज</div>
+                            <div><small>(पूर्व में मधुर भैया)</small></div>
+                        </div>
+                        <div class="guru-card">
+                            <div class="guru-img-wrapper">
+                                <img src="../images/jsp_foundation/manan_sagar_ji.png"
+                                     alt="मुनि श्री मनन सागर जी महाराज">
+                            </div>
+                            <div class="guru-name">मुनि श्री 108 मनन सागर जी महाराज</div>
+                            <div><small>(पूर्व में सचिन भैया)</small></div>
+                        </div>
+                        <div class="guru-card">
+                            <div class="guru-img-wrapper">
+                                <img src="../images/jsp_foundation/anunay_sagar_ji.png"
+                                     alt="ऐलक श्री अनुनय  सागर जी महाराज">
+                            </div>
+                            <div class="guru-name">ऐलक श्री 105 अनुनय सागर जी महाराज</div>
+                            <div><small>(पूर्व में चंद्र प्रकाश भैया)</small></div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="sub-section-heading">आधार स्तम्भ एवं वर्तमान में क्रियाशील</h3>
+
+                <div class="tree-level tier-4 tier-4-container">
+                    <div class="tree-row">
+                        <div class="guru-card">
+                            <div class="guru-img-wrapper">
+                                <img src="../images/jsp_foundation/Br_Saket.png" alt="बाल ब्रम्हचारी साकेत भैया">
+                            </div>
+                            <div><small>ब्रम्हचारी साकेत भैया</small></div>
+                        </div>
+                        <div class="guru-card">
+                            <div class="guru-img-wrapper">
+                                <img src="../images/jsp_foundation/Br_Apurva.png" alt="बाल ब्रम्हचारी अपूर्व भैया ">
+                            </div>
+                            <div><small>ब्रम्हचारी अपूर्व भैया</small></div>
+                        </div>
+                        <div class="guru-card">
+                            <div class="guru-img-wrapper">
+                                <img src="../images/jsp_foundation/Br_Himanshu.png" alt="बाल ब्रम्हचारी हिमांशु भैया ">
+                            </div>
+                            <div><small>ब्रम्हचारी हिमांशु भैया </small></div>
+                        </div>
+                        <div class="guru-card">
+                            <div class="guru-img-wrapper">
+                                <img src="../images/jsp_foundation/Br_Rahul.png" alt="बाल ब्रम्हचारी राहुल भैया ">
+                            </div>
+                            <div><small>ब्रम्हचारी राहुल भैया</small></div>
+                        </div>
+
+                        <div class="guru-card space-divider">
+                            <div class="guru-img-wrapper">
+                                <img src="../images/jsp_foundation/Gayatri_did.png" alt="ब्रम्हचारिणी गायत्री दीदी ">
+                            </div>
+                            <div><small>ब्रम्हचारिणी गायत्री दीदी </small></div>
+                        </div>
+                        <div class="guru-card">
+                            <div class="guru-img-wrapper">
+                                <img src="../images/jsp_foundation/Pranya_didi.png" alt="ब्रम्हचारिणी प्रण्या दीदी ">
+                            </div>
+                            <div><small>ब्रम्हचारिणी प्रण्या दीदी</small></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="main-section">
+            <h2 class="section-heading">संस्था की ऐतिहासिक पृष्ठभूमि और विकास यात्रा</h2>
+            <p class="history-intro">
+                पुणे महानगर जो कि भारत देश का एक बहुत बड़ा IT Hub है, यहाँ प्रति वर्ष हजारों-लाखों इंजीनियर ग्रेजुएट्स
+                जॉब के लिए आते हैं। इन्हीं लाखों इंजीनियर्स की भीड़ में से कुछ धर्मप्रेमी नवयुवकों के अनथक प्रयासों से
+                इस महान संघ की नींव रखी गई।
+            </p>
+
+            <div class="timeline-wrapper">
+                <div class="timeline-item">
+                    <div class="timeline-year">वर्ष 2007</div>
+                    <p class="timeline-text">कुछ धर्म प्रेमी नवयुवकों के मन के अंदर जैन धर्म प्रभावना का दृढ़ संकल्प और
+                        सम्पूर्ण जैन समाज पुणे को एक साथ जोड़ने का जुनून जागा। इन युवाओं ने <b>श्री चन्द्रप्रभु जिनालय,
+                            गुरुवार पेठ</b> में नियमित स्वाध्याय करना प्रारम्भ किया और वहीं से एक विशाल संघ की नींव रखी
+                        जाने लगी।</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">वर्ष 2009</div>
+                    <p class="timeline-text"><b>श्री दिगंबर जैन मंदिर, माणिकबाग</b> में इन युवाओं को चतुर्थ काल की चर्या
+                        का अक्षरशः पालन करने वाले <b>मुनि श्री विनीत सागर जी महाराज</b> और <b>मुनि श्री चन्द्रप्रभ सागर
+                            जी महाराज</b> का परम सानिध्य मिला। दोनों युगल महाराज ने इन युवाओं पर अपने वात्सल्य की वर्षा
+                        करते हुए संघ को <b>"जैन संघ पुणे" (Jain Sangh Pune)</b> के नाम से पंजीकृत (Register) करने की
+                        दिव्य प्रेरणा प्रदान की।</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">वर्ष 2010</div>
+                    <p class="timeline-text">पुणे की धरा पर पहली बार वात्सल्य मूर्ति <b>मुनि श्री अक्षय सागर जी
+                        महाराज</b> का मंगल आगमन हुआ। उनके कुशल मार्गदर्शन और प्रेरणा से पुणे के सभी जैन धर्मावलंबियों को
+                        एक साथ एक मंच पर लाने का अभूतपूर्व प्रकल्प शुरू हुआ। इसी दौरान एक आदर्श जैन सोसाइटी की योजना
+                        बनाई गयी जहाँ भव्य जैन मंदिर के साथ सैकड़ों जैन परिवार एक साथ रहकर निरंतर जैन धर्म के मार्ग पर
+                        आगे बढ़ सकें।</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">वर्ष 2012</div>
+                    <p class="timeline-text"><b>मुनि श्री नियम सागर जी महाराज</b> का पुणे में आगमन हुआ। जैन संघ पुणे के
+                        युवाओं में मुनि सानिध्य पाने की ललक और मुनि सेवा के अगाध भाव को देखकर मुनि श्री नियम सागर जी
+                        महाराज ने इन युवाओं को कई नियमों से संवारा। उन्होंने युवाओं को मोक्ष मार्ग चुनकर उस पर कदम आगे
+                        बढ़ाने की परम प्रेरणा दी। मुनि श्री के पावन आशीर्वाद और प्रेरणा से बाल ब्रह्मचारी भैया और दीदी
+                        लोगों का एक बहुत बड़ा आध्यात्मिक समूह तैयार हुआ। इसके अलावा कई गृहस्थों ने उच्च प्रतिमा व्रत
+                        धारण कर समाज के सामने उत्कृष्ट उदाहरण प्रस्तुत किया।</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">वर्ष 2015</div>
+                    <p class="timeline-text">
+                        वर्ष 2015 में तीन <b>जैन सोसाइटी</b> का परिसर में जिनालय के साथ निर्माण पूर्ण हुआ|
+                        <br><br>
+                        • <b>श्री सुस दिगंबर जैन मंदिर</b> : ज्ञानोदय दिगंबर जैन सोसाइटी, सुस<br>
+                        • <b>श्री आदिनाथ दिगंबर जैन मंदिर</b> : वीरोदय, खराड़ी<br>
+                        • <b>श्री सुपार्श्वनाथ दिगंबर जैन मंदिर</b> : ड्रीम्स वीरोदय, खराड़ी<br><br>
+                        इसके अलावा इसी वर्ष तमिलनाडु के विभिन्न क्षेत्रों में स्थित प्राचीन जैन मंदिरों के जीर्णोद्धार
+                        और संरक्षण का कार्य शुरू किया गया।
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">वर्ष 2016</div>
+                    <p class="timeline-text">तीर्थ यात्रायें :<br>
+                        • <b>शिखर जी : 120 यात्री</b><br>
+                        • <b>अष्टापद : 108 यात्री</b><br>
+                        • <b>गिरनार जी : 56 यात्री</b><br>
+                        <br>
+                        कोनकोंडला(आचार्य कुंद कुंद देव की जन्म भूमि) में क्षेत्र के संरक्षण के उद्देश्य से विशाल <b>अहिंसा
+                            रैली</b> जिसमें 500 से अधिक लोगो ने हिस्सा लिया।</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">वर्ष 2017</div>
+                    <p class="timeline-text"><b>कलगी, गुलबर्गा</b> के मंदिरों का संरक्षण कार्य और विशाल <b>अहिंसा विद्या
+                        पद यात्रा</b> जिसमें 1000 से अधिक लोगो ने हिस्सा लिया का आयोजन।</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">वर्ष 2019</div>
+                    <p class="timeline-text">सांगली, कोल्हापुर के क्षेत्रो में आई भीषण बाढ़ में राहत कार्य।</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">वर्ष 2020 - 22</div>
+                    <p class="timeline-text">कोरोना काल में 7000 से अधिक परिवारों के घर तक भोजन सामग्री पहुँचाना, 700 से
+                        अधिक विधवाओं को पेंशन पहुँचना। 50+ आर्थिक रूप से कमजोर छात्रों को छात्रवृत्ति प्रदान
+                        करना।<br><br>
+                        वर्ष 2022 से प्रति वर्ष सराक क्षेत्र में जाकर जिन धर्म श्रावक संस्कार शिविर लगाया जा रहा है।</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">वर्ष 2023</div>
+                    <p class="timeline-text">सुस दिगंबर जैन मंदिर का निर्माण कार्य पूर्ण और निर्यापक श्रमण श्री 108 वीर
+                        सागर जी महराज के मंगल सानिध्य में भव्य ऐतिहासिक पञ्च-कल्याणक सम्पन्न हुआ|</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">वर्ष 2024 से अब तक</div>
+                    <p class="timeline-text">सुस में श्री दिगंबर जैन मंदिर के पास विद्या शांति निलय नाम से 6 मंजिला संत
+                        निवास-यात्री निवास-समाधि भवन का कार्य प्रारंभ हुआ|</p>
+                </div>
+            </div>
+        </section>
+        <div class="main-section" style="text-align: center;">
+            <img src="../images/jsp_foundation/JSP_founders.jpg" height="600px" width="900px">
+            <h3><u>JSP founders</u></h3>
+
+            <div class="footer-note">
+                यह सभी उत्कृष्ट व्यक्तित्व निरंतर जैन धर्म प्रभावना में तन-मन-धन से अपनी नि:स्वार्थ सेवाएँ दे रहे हैं।
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<div id="footer-placeholder"></div>
+</body>
+</html>
