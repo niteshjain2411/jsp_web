@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Registration Data</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .header-info {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #666;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            font-size: 18px;
+            color: #667eea;
+        }
+
+        .error {
+            background: #fee;
+            border: 1px solid #fcc;
+            color: #c00;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .success-message {
+            background: #efe;
+            border: 1px solid #cfc;
+            color: #060;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        thead {
+            background: #667eea;
+            color: white;
+        }
+
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            border: 1px solid #667eea;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+        }
+
+        tbody tr:hover {
+            background: #f5f5f5;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #fafafa;
+        }
+
+        .activities-cell {
+            font-size: 12px;
+            color: #555;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #764ba2;
+        }
+
+        .export-btn {
+            background: #27ae60;
+        }
+
+        .export-btn:hover {
+            background: #229954;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🙏 Volunteer Registration Data</h1>
+        <div class="header-info" id="headerInfo"></div>
+
+        <div class="controls">
+            <button onclick="fetchRegistrations()">🔄 Refresh Data</button>
+            <button class="export-btn" onclick="exportToCSV()">📥 Export to CSV</button>
+        </div>
+
+        <div id="message"></div>
+        <div id="loading" class="loading" style="display: none;">Loading registrations...</div>
+        <div id="tableContainer" style="display: none;">
+            <table id="registrationTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>City</th>
+                        <th>Gender</th>
+                        <th>Age</th>
+                        <th>Professional Skills</th>
+                        <th>Selected Activities</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        let registrationData = [];
+
+        // Fetch registrations when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchRegistrations();
+        });
+
+        function fetchRegistrations() {
+            const messageDiv = document.getElementById('message');
+            const loadingDiv = document.getElementById('loading');
+            const tableContainer = document.getElementById('tableContainer');
+            const headerInfo = document.getElementById('headerInfo');
+
+            messageDiv.innerHTML = '';
+            loadingDiv.style.display = 'block';
+            tableContainer.style.display = 'none';
+
+            // Determine the correct API path
+            const apiUrl = window.location.pathname.includes('/jainsanghpune/')
+                ? '/jainsanghpune/api/registration/all'
+                : '/api/registration/all';
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    loadingDiv.style.display = 'none';
+
+                    if (data.success && data.data && Array.isArray(data.data)) {
+                        registrationData = data.data;
+                        displayTable();
+                        headerInfo.innerHTML = `<p>Total Registrations: <strong>${data.count}</strong></p>`;
+                        tableContainer.style.display = 'block';
+                    } else if (!data.success) {
+                        showError(data.message || 'Failed to fetch registrations');
+                    } else {
+                        showError('Invalid data format received');
+                    }
+                })
+                .catch(error => {
+                    loadingDiv.style.display = 'none';
+                    showError('Error fetching data: ' + error.message);
+                    console.error('Error:', error);
+                });
+        }
+
+        function displayTable() {
+            const tableBody = document.getElementById('tableBody');
+            tableBody.innerHTML = '';
+
+            if (registrationData.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="9" class="no-data">No registrations found</td></tr>';
+                return;
+            }
+
+            registrationData.forEach((registration, index) => {
+                const row = document.createElement('tr');
+                const activities = registration.selectedActivities && registration.selectedActivities.length > 0
+                    ? registration.selectedActivities.join(', ')
+                    : '-';
+
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${registration.fullName || '-'}</td>
+                    <td>${registration.email || '-'}</td>
+                    <td>${registration.phone || '-'}</td>
+                    <td>${registration.city || '-'}</td>
+                    <td>${registration.gender || '-'}</td>
+                    <td>${registration.age || '-'}</td>
+                    <td>${registration.professionSkills || '-'}</td>
+                    <td class="activities-cell">${activities}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        function showError(message) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.innerHTML = `<div class="error">❌ ${message}</div>`;
+        }
+
+        function showSuccess(message) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.innerHTML = `<div class="success-message">✅ ${message}</div>`;
+        }
+
+        function exportToCSV() {
+            if (registrationData.length === 0) {
+                showError('No data to export');
+                return;
+            }
+
+            let csv = 'Full Name,Email,Phone,City,Gender,Age,Professional Skills,Selected Activities\n';
+
+            registrationData.forEach(registration => {
+                const activities = registration.selectedActivities ? registration.selectedActivities.join('; ') : '';
+                csv += `"${registration.fullName || ''}","${registration.email || ''}","${registration.phone || ''}","${registration.city || ''}","${registration.gender || ''}","${registration.age || ''}","${registration.professionSkills || ''}","${activities}"\n`;
+            });
+
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv));
+            element.setAttribute('download', `registrations_${new Date().toISOString().split('T')[0]}.csv`);
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+
+            showSuccess('Data exported successfully!');
+        }
+    </script>
+</body>
+</html>

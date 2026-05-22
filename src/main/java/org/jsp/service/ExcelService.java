@@ -171,7 +171,7 @@ public class ExcelService {
                     reg.setProfessionSkills(getCellValueAsString(row.getCell(7)));
                     String activitiesStr = getCellValueAsString(row.getCell(8));
                     if (!activitiesStr.isEmpty()) {
-                        reg.setSelectedActivities(activitiesStr.split(",\\s*"));
+                        reg.setSelectedActivities(reg.getSelectedActivities());
                     }
                     registrations.add(reg);
                 }
