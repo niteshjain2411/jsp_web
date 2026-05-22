@@ -1,0 +1,6 @@
+[[_]]
+schema = "google.buildpack.project"
+
+[[build.env]]
+name = "GOOGLE_RUNTIME_VERSION"
+value = "21"
