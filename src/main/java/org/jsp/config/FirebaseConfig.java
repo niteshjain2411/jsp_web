@@ -6,6 +6,8 @@ import com.google.firebase.FirebaseOptions;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.annotation.PostConstruct;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
 @Configuration
@@ -47,7 +49,7 @@ public class FirebaseConfig {
         return FirebaseApp.getInstance();
     }*/
 
-    /*@PostConstruct
+    @PostConstruct
     public void init() {
         try {
             // Reads the raw JSON string directly from the Cloud Run environment variable
@@ -65,5 +67,5 @@ public class FirebaseConfig {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }*/
+    }
 }
