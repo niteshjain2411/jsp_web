@@ -4,10 +4,13 @@ import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
+import java.io.InputStream;
 
 @Configuration
 public class FirebaseConfig {
@@ -15,7 +18,7 @@ public class FirebaseConfig {
     @Value("${firebase.project-id:}")
     private String firebaseProjectId;
 
-    @PostConstruct
+    /*@PostConstruct
     public void initializeFirebase() {
         try {
             // Check if already initialized to prevent duplicate initialization exceptions during hot-reloads
@@ -50,9 +53,9 @@ public class FirebaseConfig {
             System.err.println("Failed to initialize Firebase: " + e.getMessage());
             throw new RuntimeException("Firebase initialization failed", e);
         }
-    }
+    }*/
 
-    /*@Bean
+    @Bean
     public FirebaseApp initializeFirebase() throws IOException {
         // Read the service account JSON from resources folder
         FirebaseOptions options;
@@ -70,5 +73,5 @@ public class FirebaseConfig {
         }
 
         return FirebaseApp.getInstance();
-    }*/
+    }
 }
