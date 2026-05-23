@@ -14,14 +14,6 @@ import java.util.concurrent.ExecutionException;
 @Service
 public class FirestoreService {
 
-   /* public boolean saveData(String collection, String documentId, Object data) {
-        // Access Firestore directly via the initialized Admin SDK
-        Firestore db = FirestoreClient.getFirestore();
-        db.collection(collection).document(documentId).set(data);
-        System.out.println("Data saved successfully to Firestore!");
-        return true;
-    }*/
-
     public <T> List<T> fetchAll(String collection, Class<T> clazz) throws InterruptedException, ExecutionException {
         Firestore db = FirestoreClient.getFirestore();
         ApiFuture<QuerySnapshot> future = db.collection(collection).get();
