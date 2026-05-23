@@ -140,7 +140,7 @@ public class ExcelService {
 
         // Selected Activities
         Cell cell8 = row.createCell(8);
-        cell8.setCellValue(registration.getSelectedActivitiesAsString());
+        cell8.setCellValue(registration.getSelectedActivities().stream().map(String::toString).reduce((a, b) -> a + ", " + b).orElse(""));
     }
 
     /**

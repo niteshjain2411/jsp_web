@@ -15,14 +15,4 @@ public class VolunteerRegistrationData {
     private String city;
     private List<String> selectedActivities;
     private String professionSkills;
-
-    public String getSelectedActivitiesAsString() {
-        if (selectedActivities == null || selectedActivities.isEmpty()) {
-            return "";
-        }
-        final StringBuilder sb = new StringBuilder();
-        selectedActivities.forEach(activity -> sb.append(activity).append(", "));
-        // Remove trailing comma and space
-        return sb.substring(0, sb.length() - 2);
-    }
 }
