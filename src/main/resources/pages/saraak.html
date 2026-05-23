@@ -4,9 +4,109 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>सराक उत्थान - Jain Sangh Pune | JSP</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap"
-          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Compact & Color Enhancements matching Samajik Karya */
+        .compact-hero {
+            background: linear-gradient(135deg, #0F4C5C 0%, #1D5C6E 100%);
+            color: #ffffff;
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .section-title {
+            color: #0F4C5C;
+            border-left: 5px solid #E28743;
+            padding-left: 12px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        .service-feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .feature-card {
+            padding: 15px;
+            border-radius: 8px;
+            background: #ffffff;
+            border-top: 4px solid #4A154B;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: transform 0.2s;
+        }
+        .feature-card:hover { transform: translateY(-2px); }
+        .feature-card.color-1 { border-top-color: #4A154B; background-color: #FDFBFC; }
+        .feature-card.color-2 { border-top-color: #E28743; background-color: #FFFDF9; }
+        .feature-card.color-3 { border-top-color: #0F4C5C; background-color: #F5FAFA; }
+
+        /* Sarak Diaspora Cards - Updated to high-contrast light backgrounds */
+        .diaspora-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .diaspora-card {
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .geo-light-bg {
+            border-top: 4px solid #4A154B;
+            background-color: #FDFBFC;
+            color: #222222;
+        }
+        .lang-light-bg {
+            border-top: 4px solid #5E503F;
+            background-color: #FAF9F6;
+            color: #222222;
+        }
+
+        .diaspora-card ul {
+            padding-left: 20px;
+            margin: 8px 0 0 0;
+        }
+        .diaspora-card li {
+            font-size: 14px;
+            color: #444444;
+            line-height: 1.5;
+            margin-bottom: 4px;
+        }
+
+        /* Dynamic wrapper adjusting height to prevent trimming */
+        .img-container {
+            width: 100%;
+            height: auto;
+            background: #fdfdfd;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .full-visible-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+        .video-container {
+            width: 100%;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+        }
+        .video-container iframe {
+            width: 100%;
+            display: block;
+        }
+    </style>
 </head>
 <body>
 <script src="header-loader.js"></script>
@@ -17,178 +117,161 @@
 <a href="home.html" class="back-link">← Back to Home</a>
 
 <main class="content">
-    <h1>सराक उत्थान (Welfare Enhancement)</h1>
-    <div class="content-text">
-        <p><b>सराक 'अपभ्रंश ऑफ़ श्रावक'</b> : The term <b>सराक</b> originates as a phonetic corruption (Apabhraṇśa) of
-            the Sanskrit word <b>Śrāvaka</b>
-            (meaning a Jain layman or listener). The Saraks represent an ancient Jain ethnoreligious community that has
-            proudly retained profound Jain practices, such as strict vegetarianism, since antiquity.</p>
+
+    <div class="compact-hero">
+        <h1 style="color: #fff; margin: 0 0 8px 0; font-size: 28px;">सराक उत्थान (Welfare Enhancement)</h1>
+        <p style="margin: 0; font-size: 15px; opacity: 0.95; line-height: 1.5;">
+            <b>सराक 'अपभ्रंश ऑफ़ श्रावक'</b> : The term <b>सराक</b> originates as a phonetic corruption (Apabhraṇśa) of the Sanskrit word <b>Śrāvaka</b> (meaning a Jain layman or listener). The Saraks represent an ancient Jain ethnoreligious community that has proudly retained profound Jain practices, such as strict vegetarianism, since antiquity.
+        </p>
     </div>
 
     <div class="video-container">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/-U1YcYOu6sU?si=XG6o7QqPsBa6Wuny"
-                title="YouTube video player" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/-U1YcYOu6sU?si=XG6o7QqPsBa6Wuny" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
 
-    <h2>The Sarak Diaspora & Culture</h2>
-    <div class="content-text">
-        <p>Ancient texts and archaeological records, including accounts from the Kalpa Sūtra, suggest that the
-            Tirthankara Mahavira himself visited this community's native regions (historically known as Vajjabhumi).
-            Legends and scholarship even note that the renowned Jain scholar Bhadrabahu may have belonged to the Sarak
-            lineage.</p>
+    <h2 class="section-title">The Sarak Diaspora & Culture</h2>
+    <div class="content-text" style="margin-bottom: 20px;">
+        <p style="margin-top: 0; font-size: 15px; color: #444; line-height: 1.6; text-align: justify;">
+            Ancient texts and archaeological records, including accounts from the Kalpa Sūtra, suggest that the Tirthankara Mahavira himself visited this community's native regions (historically known as Vajjabhumi). Legends and scholarship even note that the renowned Jain scholar Bhadrabahu may have belonged to the Sarak lineage.
+        </p>
+    </div>
 
-        <div class="info-grid">
-            <div class="info-card">
-                <h3>Geographic Distribution</h3>
-                The total global population is estimated between <b>34,000 to 50,000</b> individuals,
-                concentrated across eastern regions:
-                <ul>
-                    <li><b>West Bengal:</b> 25,000–35,000 (Purulia, Bankura, and Bardhaman districts)</li>
-                    <li><b>Jharkhand:</b> 5,000–10,000 (Ranchi, Dumka, Giridih, and Singhbhum regions)</li>
-                    <li><b>Odisha:</b> 2,000–5,000</li>
-                    <li><b>Other areas:</b> Bihar, Assam, and parts of Bangladesh</li>
-                </ul>
-            </div>
-            <div class="info-card">
-                <h3>Linguistic Diversity</h3>
-                <p>Despite their shared ancestry, geographical diffusion has led the Saraks to adopt local regional
-                    tongues while maintaining their spiritual identity. Today, Sarak families speak:</p>
-                <ul>
-                    <li>Bengali (primarily in Bengal & Jharkhand)</li>
-                    <li>Singhbhumi Odia</li>
-                    <li>Hindi, Assamese, and Bihari languages</li>
-                </ul>
-            </div>
+    <div class="diaspora-grid">
+        <div class="diaspora-card geo-light-bg">
+            <h3 style="color: #4A154B; margin-top: 0; margin-bottom: 8px; font-size: 18px;">Geographic Distribution</h3>
+            <p style="margin: 0; font-size: 14px; line-height: 1.5;">Total global population estimated between <b>34,000 to 50,000</b> individuals, concentrated across eastern regions:</p>
+            <ul>
+                <li><b>West Bengal:</b> 25,000–35,000 (Purulia, Bankura, and Bardhaman districts)</li>
+                <li><b>Jharkhand:</b> 5,000–10,000 (Ranchi, Dumka, Giridih, and Singhbhum regions)</li>
+                <li><b>Odisha:</b> 2,000–5,000</li>
+                <li><b>Other areas:</b> Bihar, Assam, and parts of Bangladesh</li>
+            </ul>
         </div>
-
-        <h2>Contribution of <u>Jain Sangh Pune</u> in सराक उत्थान</h2>
-        <div>
-            <h3>जैन धर्म प्रभावना </h3>
-            <section class="content-section" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 2px auto; padding: 2px; color: #333; line-height: 1.6;">
-                <p style="font-size: 16px; color: #555; margin-bottom: 25px; text-align: justify;">
-                    For several years, <b>Jain Sangh Pune</b>, supported by over 50 dedicated <em>Dharm Sarthi</em>
-                    volunteers, has been regularly organizing <em>Shravak Sanskar</em> camps in the remote Sarak
-                    regions.
-                </p>
-
-                <h3 style="color: #611f69; font-size: 20px; margin-bottom: 15px;">
-                    The core focus of these camps includes:
-                </h3>
-
-                <ul style="list-style-type: none; padding-left: 0;">
-
-                    <li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
-                        <span style="position: absolute; left: 0; top: 2px; color: #4A154B;">✨</span>
-                        <strong style="color: #222;">Religious & Cultural Roots:</strong>
-                        Introducing and strengthening Jain values and traditions among Sarak Jains.
-                    </li>
-
-                    <li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
-                        <span style="position: absolute; left: 0; top: 2px; color: #4A154B;">✨</span>
-                        <strong style="color: #222;">Education & Empowerment:</strong>
-                        Guiding the youth toward higher education and sustainable employment opportunities.
-                    </li>
-
-                    <li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
-                        <span style="position: absolute; left: 0; top: 2px; color: #4A154B;">✨</span>
-                        <strong style="color: #222;">Holistic Development:</strong>
-                        Sowing the seeds of moral virtues and ethical values for a meaningful human life.
-                    </li>
-
-                </ul>
-            </section>
-            <div class="info-grid">
-                <div class="info-card">
-                    <img src="../images/saraak/Saraak_1.jpg" alt="Jain Sangh Pune Event"
-                         style="width: 100%; height: auto; border-radius: 6px; margin-top: 10px;">
-                </div>
-                <div class="info-card">
-                    <img src="../images/saraak/Saraak_7.jpg" alt="Jain Sangh Pune Event"
-                         style="width: 100%; height: auto; border-radius: 6px; margin-top: 10px;">
-                </div>
-                <div class="info-card">
-                    <img src="../images/saraak/Saraak_4.jpg" alt="Jain Sangh Pune Event"
-                         style="width: 100%; height: auto; border-radius: 6px; margin-top: 10px;">
-                </div>
-            </div>
-            <div class="info-grid">
-                <div class="info-card">
-                    <img src="../images/saraak/Saraak_2023.jpg" alt="Jain Sangh Pune Event"
-                         style="width: 100%; height: auto; border-radius: 6px; margin-top: 10px;">
-                </div>
-                <div class="info-card" style="grid-column: span 2;">
-                    <img src="../images/saraak/Saraak_10.jpg" alt="Jain Sangh Pune Event"
-                         style="width: 100%; height: auto; border-radius: 6px; margin-top: 10px;">
-                </div>
-            </div>
-            <h3>प्रतिभा सम्मान 2023</h3>
-            <div class="content-text">
-                <p>In 2023, Jain Sangh Pune organized the prestigious 'प्रतिभा सम्मान' event to honor and celebrate the
-                    remarkable achievements of individuals from the Sarak community. This event not only recognized
-                    outstanding contributions in various fields but also served as a platform to inspire and motivate
-                    future generations of Saraks to continue striving for excellence while upholding their rich cultural
-                    heritage.</p>
-            </div>
-            <div class="info-grid">
-                <div class="info-card">
-                    <img src="../images/saraak/Saraak_Pratibha_samman_2023_1.jpg" alt="Jain Sangh Pune Event"
-                         style="width: 100%; height: auto; border-radius: 6px; margin-top: 10px;">
-                </div>
-
-            </div>
-            <div class="info-grid">
-                <div class="info-card">
-                    <img src="../images/saraak/Saraak_3.jpg" alt="Jain Sangh Pune Event"
-                         style="width: 100%; height: auto; border-radius: 6px; margin-top: 10px;">
-                </div>
-                <div class="info-card">
-                    <img src="../images/saraak/Saraak_Pratibha_samman_2023.jpg" alt="Jain Sangh Pune Event"
-                         style="width: 100%; height: auto; border-radius: 6px; margin-top: 10px;">
-                </div>
-            </div>
-            <h3>घर्म प्रभावना एवं जागरूकता जुलूस </h3>
-            <div class="content-text">
-                <p>जैन संघ पुणे प्रति वर्ष पर्युषण पर्व में 10 दिन इन सराक क्षेत्रों में संस्कार शिविर का आयोजन करता है| पर्व में अनंत चतुर्दशी के दिन जैन धर्म प्रभावना एवं जागरूकता जुलुस रैली निकाली जाती है, जिसमें बच्चे, बड़े और बूढ़े सभी बहुत हर्ष और उत्साह के साथ हिस्सा लेते है</p>
-            </div>
-            <div class="info-grid">
-                <div class="info-card">
-                    <img src="../images/saraak/Saraak_2.jpg" alt="Jain Sangh Pune Event"
-                         style="width: 100%; height: auto; border-radius: 6px; margin-top: 10px;">
-                </div>
-                <div class="info-card">
-                    <img src="../images/saraak/Saraak_15.jpg" alt="Jain Sangh Pune Event"
-                         style="width: 100%; height: auto; border-radius: 6px; margin-top: 10px;">
-                </div>
-            </div>
-            <div class="info-grid">
-                <div class="info-card">
-                    <img src="../images/saraak/Saraak_11.jpg" alt="Jain Sangh Pune Event"
-                         style="width: 100%; height: auto; border-radius: 6px; margin-top: 10px;">
-                </div>
-                <div class="info-card">
-                    <img src="../images/saraak/Saraak_6.jpg" alt="Jain Sangh Pune Event"
-                         style="width: 100%; height: auto; border-radius: 6px; margin-top: 10px;">
-                </div>
-            </div>
-            <h3>तीर्थ दर्शन एवं संरक्षण </h3>
-            <div class="content-text">
-                <p>सराक क्षेत्रों के आस पास कई प्राचीन जैन मंदिर एवं प्रतिमाएं प्राप्त होती रहती है| जैन संघ पुणे के कार्यकर्त्ता मंदिर और प्रतिमाओं के संरक्षण के लिए प्रयासरत है | </p>
-            </div>
-            <div class="info-grid">
-                <div class="info-card">
-                    <img src="../images/saraak/Saraak_13.jpg" alt="Jain Sangh Pune Event"
-                         style="width: 100%; height: auto; border-radius: 6px; margin-top: 10px;">
-                </div>
-                <div class="info-card">
-                    <img src="../images/saraak/Saraak_5.jpg" alt="Jain Sangh Pune Event"
-                         style="width: 100%; height: auto; border-radius: 6px; margin-top: 10px;">
-                </div>
-            </div>
+        <div class="diaspora-card lang-light-bg">
+            <h3 style="color: #5E503F; margin-top: 0; margin-bottom: 8px; font-size: 18px;">Linguistic Diversity</h3>
+            <p style="margin: 0; font-size: 14px; line-height: 1.5;">Despite their shared ancestry, geographical diffusion has led the Saraks to adopt local regional tongues while maintaining their spiritual identity. Sarak families speak:</p>
+            <ul>
+                <li>Bengali (primarily in Bengal & Jharkhand)</li>
+                <li>Singhbhumi Odia</li>
+                <li>Hindi, Assamese, and Bihari languages</li>
+            </ul>
         </div>
     </div>
+
+    <h2 class="section-title">Contribution of Jain Sangh Pune in सराक उत्थान</h2>
+
+    <h3 style="color: #0F4C5C; font-size: 18px; margin-bottom: 12px; margin-top: 20px;">जैन धर्म प्रभावना</h3>
+    <p style="font-size: 15px; color: #444; margin-bottom: 20px; text-align: justify; line-height: 1.5;">
+        For several years, <b>Jain Sangh Pune</b>, supported by over 50 dedicated <em>Dharm Sarthi</em> volunteers, has been regularly organizing <em>Shravak Sanskar</em> camps in the remote Sarak regions.
+    </p>
+
+    <div class="service-feature-grid">
+        <div class="feature-card color-3">
+            <strong style="color: #0F4C5C; font-size: 16px; display: block; margin-bottom: 6px;">✨ Religious & Cultural Roots</strong>
+            <span style="font-size: 14px; color: #444;">Introducing and strengthening Jain values and traditions among Sarak Jains.</span>
+        </div>
+        <div class="feature-card color-2">
+            <strong style="color: #E28743; font-size: 16px; display: block; margin-bottom: 6px;">✨ Education & Empowerment</strong>
+            <span style="font-size: 14px; color: #444;">Guiding the youth toward higher education and sustainable employment opportunities.</span>
+        </div>
+        <div class="feature-card color-1">
+            <strong style="color: #4A154B; font-size: 16px; display: block; margin-bottom: 6px;">✨ Holistic Development</strong>
+            <span style="font-size: 14px; color: #444;">Sowing the seeds of moral virtues and ethical values for a meaningful human life.</span>
+        </div>
+    </div>
+
+    <div class="info-grid" style="margin-bottom: 25px;">
+        <div class="img-container">
+            <img src="../images/saraak/Saraak_1.jpg" alt="Jain Sangh Pune Event" class="full-visible-img">
+        </div>
+        <div class="img-container">
+            <img src="../images/saraak/Saraak_7.jpg" alt="Jain Sangh Pune Event" class="full-visible-img">
+        </div>
+        <div class="img-container">
+            <img src="../images/saraak/Saraak_4.jpg" alt="Jain Sangh Pune Event" class="full-visible-img" style="height: 700px; object-fit: cover;">
+        </div>
+    </div>
+
+    <div class="info-grid" style="margin-bottom: 30px;">
+        <div class="img-container">
+            <img src="../images/saraak/Saraak_2023.jpg" alt="Jain Sangh Pune Event" class="full-visible-img">
+        </div>
+        <div style="grid-column: span 2;" class="img-container">
+            <img src="../images/saraak/Saraak_10.jpg" alt="Jain Sangh Pune Event" class="full-visible-img">
+        </div>
+    </div>
+
+    <h3 style="color: #0F4C5C; font-size: 18px; margin-bottom: 12px;">प्रतिभा सम्मान 2023</h3>
+    <div class="content-text" style="margin-bottom: 20px;">
+        <p style="font-size: 15px; color: #444; line-height: 1.5; text-align: justify; margin-top: 0;">
+            In 2023, Jain Sangh Pune organized the prestigious 'प्रतिभा सम्मान' event to honor and celebrate the remarkable achievements of individuals from the Sarak community. This event not only recognized outstanding contributions in various fields but also served as a platform to inspire and motivate future generations of Saraks to continue striving for excellence while upholding their rich cultural heritage.
+        </p>
+    </div>
+
+    <div class="info-grid" style="margin-bottom: 15px;">
+        <div style="grid-column: span 2;" class="img-container">
+            <img src="../images/saraak/Saraak_Pratibha_samman_2023_1.jpg" alt="Jain Sangh Pune Event" class="full-visible-img">
+        </div>
+    </div>
+
+    <div class="info-grid" style="margin-bottom: 30px;">
+        <div class="img-container">
+            <img src="../images/saraak/Saraak_3.jpg" alt="Jain Sangh Pune Event" class="full-visible-img">
+        </div>
+        <div class="img-container">
+            <img src="../images/saraak/Saraak_Pratibha_samman_2023.jpg" alt="Jain Sangh Pune Event" class="full-visible-img">
+        </div>
+    </div>
+
+    <h3 style="color: #0F4C5C; font-size: 18px; margin-bottom: 12px;">घर्म प्रभावना एवं जागरूकता जुलूस</h3>
+    <div class="content-text" style="margin-bottom: 20px;">
+        <p style="font-size: 15px; color: #444; line-height: 1.5; text-align: justify; margin-top: 0;">
+            जैन संघ पुणे प्रति वर्ष पर्युषण पर्व में 10 दिन इन सराक क्षेत्रों में संस्कार शिविर का आयोजन करता है| पर्व में अनंत चतुर्दशी के दिन जैन धर्म प्रभावना एवं जागरूकता जुलुस रैली निकाली जाती है, जिसमें बच्चे, बड़े और बूढ़े सभी बहुत हर्ष और उत्साह के साथ हिस्सा लेते है
+        </p>
+    </div>
+
+    <div class="info-grid" style="margin-bottom: 15px;">
+        <div class="img-container">
+            <img src="../images/saraak/Saraak_2.jpg" alt="Jain Sangh Pune Event" class="full-visible-img">
+        </div>
+        <div class="img-container">
+            <img src="../images/saraak/Saraak_15.jpg" alt="Jain Sangh Pune Event" class="full-visible-img">
+        </div>
+    </div>
+
+    <div class="info-grid" style="margin-bottom: 30px;">
+        <div class="img-container">
+            <img src="../images/saraak/Saraak_11.jpg" alt="Jain Sangh Pune Event" class="full-visible-img">
+        </div>
+        <div class="img-container">
+            <img src="../images/saraak/Saraak_6.jpg" alt="Jain Sangh Pune Event" class="full-visible-img">
+        </div>
+    </div>
+
+    <h3 style="color: #0F4C5C; font-size: 18px; margin-bottom: 12px;">तीर्थ दर्शन एवं संरक्षण</h3>
+    <div class="content-text" style="margin-bottom: 20px;">
+        <p style="font-size: 15px; color: #444; line-height: 1.5; text-align: justify; margin-top: 0;">
+            सराक क्षेत्रों के आस पास कई प्राचीन जैन मंदिर एवं प्रतिमाएं प्राप्त होती रहती है| जैन संघ पुणे के कार्यकर्त्ता मंदिर और प्रतिमाओं के संरक्षण के लिए प्रयासरत है |
+        </p>
+    </div>
+
+    <div class="info-grid" style="margin-bottom: 25px;">
+        <div class="img-container">
+            <img src="../images/saraak/Saraak_13.jpg" alt="Jain Sangh Pune Event" class="full-visible-img">
+        </div>
+        <div class="img-container">
+            <img src="../images/saraak/Saraak_5.jpg" alt="Jain Sangh Pune Event" class="full-visible-img">
+        </div>
+    </div>
+
+    <div class="content-text" style="margin-top: 35px; background-color: #F5FAFA; padding: 15px; border-radius: 8px; border: 1px dashed #0F4C5C;">
+        <p style="text-align: center; font-style: italic; color: #0F4C5C; font-weight: 600; font-size: 16px; margin: 0;">
+            "इन सभी सेवा कार्यों के माध्यम से संगठन निरंतर मानवता, सहयोग एवं सामाजिक उत्थान के मूल्यों को आगे बढ़ाने हेतु समर्पित है।"
+        </p>
+    </div>
+
 </main>
+
 <div id="footer-placeholder"></div>
 </body>
 </html>

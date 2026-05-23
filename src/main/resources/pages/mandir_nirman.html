@@ -4,580 +4,341 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>मंदिर निर्माण - Jain Sangh Pune | JSP</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <style>
-        /* Modern Design System & Variables */
-        :root {
-            --primary-color: #d2691e;
-            --primary-light: #fff5ee;
-            --secondary-color: #ff8c00;
-            --text-dark: #2c3e50;
-            --text-muted: #5a6b7c;
-            --bg-light: #fcfbfa;
-            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            --border-radius: 16px;
-        }
-
-        body {
-            font-family: 'Open Sans', sans-serif;
-            background-color: #f7f5f2;
-            color: var(--text-dark);
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
-
-        h1, h2, h3, h4 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            color: var(--text-dark);
-        }
-
-        .content {
-            max-width: 1100px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        /* Back Link Button */
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            color: var(--primary-color);
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            margin: 20px 0 0 20px;
-            padding: 10px 18px;
-            background: white;
-            border-radius: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            transition: var(--transition-smooth);
-        }
-        .back-link:hover {
-            transform: translateX(-5px);
-            background: var(--primary-light);
-        }
-
-        /* Main Heading */
-        h1 {
-            text-align: center;
-            font-size: 2.5rem;
-            color: #b24d00;
-            margin-bottom: 40px;
-            position: relative;
-        }
-        h1::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: var(--secondary-color);
-            margin: 12px auto 0;
-            border-radius: 2px;
-        }
-
-        h2 {
-            font-size: 1.8rem;
-            border-left: 5px solid var(--primary-color);
-            padding-left: 15px;
-            margin-top: 50px;
+        /* Compact & Color Enhancements matching samajik_karya */
+        .compact-hero {
+            background: linear-gradient(135deg, #4A154B 0%, #611f69 100%);
+            color: #ffffff;
+            padding: 20px 25px;
+            border-radius: 12px;
             margin-bottom: 25px;
-            color: #4a2300;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
-
-        .intro-text {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            text-align: justify;
-            background: white;
-            padding: 25px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--card-shadow);
-            border-top: 4px solid var(--primary-color);
-        }
-
-        /* Enhanced Slideshow */
-        .slideshow-container {
-            position: relative;
-            max-width: 850px;
-            margin: 30px auto;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-            background: #000;
-        }
-        .slideshow-wrapper {
-            height: 480px;
-            position: relative;
-        }
-        .slide {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 0.8s ease-in-out;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .slide.active {
-            opacity: 1;
-            z-index: 1;
-        }
-        .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .prev, .next {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            padding: 16px;
-            color: white;
-            font-weight: bold;
+        .section-title {
+            color: #0F4C5C;
+            border-left: 5px solid #E28743;
+            padding-left: 12px;
+            margin-top: 30px;
+            margin-bottom: 15px;
             font-size: 22px;
-            transition: var(--transition-smooth);
-            border-radius: 50%;
-            user-select: none;
-            z-index: 2;
-            background: rgba(0, 0, 0, 0.4);
-            width: 25px;
-            height: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 15px;
         }
-        .next { right: 0; }
-        .prev:hover, .next:hover { background: var(--primary-color); }
-
-        .slide-counter {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            background: rgba(0,0,0,0.6);
-            color: white;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-family: 'Montserrat', sans-serif;
-            z-index: 2;
-        }
-        .dots-container {
-            text-align: center;
-            margin-top: 15px;
-        }
-        .dot {
-            cursor: pointer;
-            height: 10px;
-            width: 10px;
-            margin: 0 5px;
-            background-color: #ccc;
-            border-radius: 50%;
-            display: inline-block;
-            transition: var(--transition-smooth);
-        }
-        .dot.active, .dot:hover { background-color: var(--primary-color); width: 24px; border-radius: 10px; }
-
-        /* Video Container responsive ratio */
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            max-width: 850px;
-            margin: 30px auto;
-            border-radius: var(--border-radius);
-            box-shadow: var(--card-shadow);
-        }
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        /* Sant Niwas Features list styling */
-        .features-box {
-            background: white;
-            padding: 30px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--card-shadow);
-            margin-bottom: 30px;
-        }
-        .features-box ul {
-            list-style: none;
-            padding: 0;
+        .service-feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 15px;
+            margin-bottom: 25px;
         }
-        .features-box li {
-            position: relative;
-            padding-left: 30px;
-            font-size: 1.05rem;
-            color: var(--text-dark);
-            font-weight: 500;
+        .feature-card {
+            padding: 15px;
+            border-radius: 8px;
+            background: #ffffff;
+            border-top: 4px solid #4A154B;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: transform 0.2s;
         }
-        .features-box li::before {
-            content: '🌸';
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
-        .info-card {
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--card-shadow);
-            transition: var(--transition-smooth);
-        }
-        .info-card:hover { transform: translateY(-5px); }
+        .feature-card:hover { transform: translateY(-2px); }
+        .feature-card.color-1 { border-top-color: #4A154B; background-color: #FDFBFC; }
+        .feature-card.color-2 { border-top-color: #E28743; background-color: #FFFDF9; }
+        .feature-card.color-3 { border-top-color: #0F4C5C; background-color: #F5FAFA; }
 
-        /* Dashboard Grid Layout for Map, Address, Info */
-        .address-map-flex {
+        .emergency-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-top: 30px;
+            gap: 15px;
+            margin-bottom: 20px;
         }
-        @media (max-width: 850px) {
-            .address-map-flex { grid-template-columns: 1fr; }
-            .slideshow-wrapper { height: 320px; }
+        @media (max-width: 768px) {
+            .emergency-grid { grid-template-columns: 1fr; }
         }
+        .emergency-card {
+            padding: 15px;
+            border-radius: 8px;
+            color: white;
+        }
+        .covid-bg { background: linear-gradient(135deg, #1D3557 0%, #457B9D 100%); }
+        .flood-bg { background: linear-gradient(135deg, #5E503F 0%, #A9927D 100%); }
 
-        .info-section {
-            background: white;
-            padding: 25px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--card-shadow);
-            margin-bottom: 25px;
-        }
-        .info-section h3 {
-            margin-top: 0;
-            color: var(--primary-color);
-            font-size: 1.3rem;
-            border-bottom: 2px solid var(--primary-light);
-            padding-bottom: 10px;
-            margin-bottom: 15px;
-        }
-
-        .map-container {
-            border-radius: var(--border-radius);
+        /* Dynamic wrapper adjusting height to prevent trimming */
+        .img-container {
+            width: 100%;
+            height: auto;
+            background: #fdfdfd;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.06);
             overflow: hidden;
-            box-shadow: var(--card-shadow);
-            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .full-visible-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+
+        /* Re-used Grid classes from layout */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
             margin-bottom: 25px;
         }
-        .map-container iframe { width: 100%; height: 100%; border: 0; }
+        .info-card {
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
 
         /* Modernized Timings & Tables */
         .contact-table {
             width: 100%;
             border-collapse: collapse;
+            font-size: 14px;
         }
         .contact-table td {
-            padding: 12px 8px;
+            padding: 8px 4px;
             border-bottom: 1px solid #f0f0f0;
         }
         .contact-link {
             text-decoration: none;
-            color: var(--text-dark);
+            color: #444;
             font-weight: 600;
-            transition: var(--transition-smooth);
         }
-        .contact-link:hover { color: var(--primary-color); }
+        .contact-link:hover { color: #4A154B; }
         .whatsapp-link { color: #25d366 !important; }
 
         .schedule-container {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
         }
         .session-section {
-            background: var(--bg-light);
-            padding: 15px;
-            border-left: 4px solid var(--secondary-color);
-            border-radius: 4px 12px 12px 4px;
+            background: #F8F9FA;
+            padding: 12px;
+            border-left: 4px solid #E28743;
+            border-radius: 4px;
         }
         .session-heading {
-            margin: 0 0 10px 0;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            margin: 0 0 6px 0;
+            font-size: 15px;
+            color: #0F4C5C;
         }
         .program-list { list-style: none; padding: 0; margin: 0; }
         .program-item {
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
-            font-weight: 500;
+            font-size: 14px;
         }
-        .program-name { color: var(--text-dark); }
-        .program-time { color: var(--primary-color); font-weight: 600; }
-        .timing-text {
-            font-size: 0.95rem;
-            font-style: italic;
-            text-align: center;
-            color: var(--text-muted);
-            margin-top: 10px;
-        }
+        .program-name { color: #444; }
+        .program-time { color: #4A154B; font-weight: 600; }
 
-        /* Visiting Information */
-        .visiting-box {
-            background: white;
-            padding: 30px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--card-shadow);
-        }
-        .visiting-box ul {
+        .visiting-list {
             padding-left: 20px;
+            margin: 0;
+            font-size: 14px;
+            color: #444;
         }
-        .visiting-box li {
-            margin-bottom: 10px;
-            color: var(--text-muted);
+        .visiting-list li {
+            margin-bottom: 8px;
         }
     </style>
 </head>
 <body>
-
 <script src="header-loader.js"></script>
 <script src="footer-loader.js"></script>
 
 <div id="header-placeholder"></div>
 
-<a href="home.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
+<a href="home.html" class="back-link">← Back to Home</a>
 
 <main class="content">
-    <h1>श्री 1008 नेमिनाथ दिगंबर जैन मंदिर</h1>
 
-    <div class="mandir-section">
-        <p class="intro-text">
+    <div class="compact-hero">
+        <h1 style="color: #fff; margin: 0 0 8px 0; font-size: 28px;">श्री 1008 नेमिनाथ दिगंबर जैन मंदिर</h1>
+        <p style="margin: 0; font-size: 15px; opacity: 0.95; line-height: 1.5;">
             Shri 1008 Neminath Digamber Jain Mandir, located in the Gyanoday Digambar Jain Society at Sus, Pune, is a
             sacred temple dedicated to Lord Neminath, the 22nd Tirthankara. This beautiful temple serves as a spiritual
-            hub for the Jain community, offering a place for prayer, meditation, and religious ceremonies. The temple
-            stands as a testament to the deep faith and commitment of the devotees in preserving and promoting Jainism
-            in the region.
+            hub for the Jain community, offering a place for prayer, meditation, and religious ceremonies.
         </p>
+    </div>
 
-        <h2>Photo Gallery</h2>
-        <div class="slideshow-container">
-            <div class="slideshow-wrapper">
-                <div class="slide active">
-                    <img src="../images/sdjm/sus_jain_mandir.jpeg" alt="Shri 1008 Neminath Digamber Jain Mandir - Main View">
-                </div>
-                <div class="slide">
-                    <img src="../images/sdjm/Guru-ji.jpeg" alt="Guru Ji - Spiritual Guide">
-                </div>
-                <div class="slide">
-                    <img src="../images/sdjm/images.jpg" alt="Temple Images">
-                </div>
-                <div class="slide">
-                    <img src="../images/sdjm/muni shree Akshay Sagar ji.jpeg" alt="Muni Shree Akshay Sagar Ji">
-                </div>
-                <div class="slide">
-                    <img src="../images/sdjm/vedi.JPG" alt="Vedi - Sacred Space">
-                </div>
-            </div>
-            <a class="prev" onclick="changeSlide(-1)">❮</a>
-            <a class="next" onclick="changeSlide(1)">❯</a>
-            <div class="slide-counter">
-                <span id="currentSlide">1</span> / <span id="totalSlides">5</span>
+    <h2 class="section-title">Photo Gallery</h2>
+    <div class="info-grid">
+        <div style="grid-column: span 2;">
+            <div class="img-container">
+                <img src="../images/sdjm/sus_jain_mandir.jpeg" alt="Shri 1008 Neminath Digamber Jain Mandir - Main View"
+                     class="full-visible-img">
             </div>
         </div>
-        <div class="dots-container">
-            <span class="dot active" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
-            <span class="dot" onclick="currentSlide(4)"></span>
-            <span class="dot" onclick="currentSlide(5)"></span>
-        </div>
-
-        <h2>About the Temple</h2>
-        <p class="intro-text" style="margin-bottom: 30px;">
-            The temple is architecturally designed following traditional Jain principles and serves as a peaceful
-            sanctuary for devotees. It is known for its serene atmosphere, well-maintained premises, and community
-            activities. The temple hosts regular religious ceremonies, festivals, and cultural events celebrating Jain
-            traditions throughout the year.
-            <br><br>
-            Explore the beauty and spirituality of Shri 1008 Neminath Digamber Jain Mandir through videos and virtual tours:
-        </p>
-
-        <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/GGpdfnIjJEQ" allowfullscreen=""
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
-        </div>
-
-        <h2>संत निवास - विद्या शान्ति निलय</h2>
+    </div>
+    <div class="info-grid">
         <div>
-            <p class="intro-text" style="margin-bottom: 25px;">
-                Jain Sangh Pune is developing a Sant Niwas (Residence for Saints) named Vidya Shanti Nilay within the
-                temple premises. This residence will provide a peaceful and conducive environment for Jain saadhu to stay, meditate, and
-                engage in spiritual practices. The Sant Niwas will be equipped with basic amenities and facilities to support the spiritual needs of
-                the residents, fostering a deeper connection with the temple and its activities.
+            <img src="../images/sdjm/Guru-ji.jpeg" alt="Guru Ji - Spiritual Guide" class="full-visible-img">
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <img src="../images/sdjm/muni shree Akshay Sagar ji.jpeg" alt="Muni Shree Akshay Sagar Ji"
+                 class="full-visible-img">
+            <img src="../images/sdjm/images.jpg" alt="Vedi - Sacred Space" class="full-visible-img">
+        </div>
+    </div>
+
+    <h2 class="section-title">About the Temple</h2>
+    <div class="info-grid" style="grid-template-columns: 1fr 1fr;">
+        <div class="info-card" style="background-color: #F5FAFA; border-top: 4px solid #0F4C5C;">
+            <p style="margin: 0; font-size: 14px; color: #444; line-height: 1.6;">
+                The temple is architecturally designed following traditional Jain principles and serves as a peaceful
+                sanctuary for devotees. It is known for its serene atmosphere, well-maintained premises, and community
+                activities. The temple hosts regular religious ceremonies, festivals, and cultural events celebrating
+                Jain traditions throughout the year. Explore the beauty and spirituality of the temple through our
+                active community.
             </p>
-
-            <div class="features-box">
-                <h3 style="margin-top:0; color: var(--primary-color);">Features and Benefits</h3>
-                <ul>
-                    <li>मुनि महराज, माताजी एवं व्रतियों के रुकने के लिए नैसर्गिक उत्तम स्थान</li>
-                    <li>समाधि कक्ष - अंतिम समय में समाधि, सल्लेखना के लिए उपयुक्त</li>
-                    <li>स्वाध्याय एवं प्रवचन हाल</li>
-                    <li>यात्री विश्राम कक्ष</li>
-                </ul>
-            </div>
-
-            <h3>Proposed Sant Niwas</h3>
-            <div class="info-card">
-                <img src="../images/sdjm/Sant_nivaas_proposed.jpeg" alt="Proposed Sant Niwas" style="width: 100%; display: block;">
+        </div>
+        <div class="info-card">
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; box-shadow: 0 3px 10px rgba(0,0,0,0.06);">
+                <iframe src="https://www.youtube.com/embed/GGpdfnIjJEQ" allowfullscreen=""
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"></iframe>
             </div>
         </div>
+    </div>
 
-        <h2>Location & Address</h2>
-        <div class="address-map-flex">
-            <div class="left-column">
-                <div class="map-container">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d7564.752070927708!2d73.75308269918578!3d18.557078202437843!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1ssus%20jain%20mandir%20google%20location!5e0!3m2!1sen!2sin!4v1777204323228!5m2!1sen!2sin" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-                <div class="info-section">
-                    <h3><i class="fas fa-map-marker-alt"></i> Full Address</h3>
-                    <p style="margin: 0; line-height: 1.8;">
-                        <b style="color: var(--primary-color); font-size: 1.1rem; display: block; margin-bottom: 5px;">Shri 1008 Neminath Digamber Jain Mandir</b>
-                        Near Bhagawan Neminath Chowk<br>
-                        Sus, Pune - 411021<br>
-                        <span style="color: var(--text-muted); font-size: 0.95rem; font-weight: 600;">Maharashtra, India</span>
-                    </p>
-                </div>
+    <h2 class="section-title">संत निवास - विद्या शान्ति निलय</h2>
+    <div class="emergency-grid">
+        <div class="emergency-card covid-bg" style="background: linear-gradient(135deg, #4A154B 0%, #611f69 100%);">
+            <h3 style="color: #fff; margin-top: 0; margin-bottom: 8px; font-size: 18px;">प्रस्तावित संत निवास</h3>
+            <p style="margin: 0; font-size: 14px; opacity: 0.9; line-height: 1.5;">जैन संघ पुणे द्वारा मंदिर परिसर के भीतर 'विद्या शांति निलय' नामक एक संत निवास (साधुओं के रहने का स्थान) का निर्माण किया जा रहा है। यह निवास स्थान जैन साधुओं के ठहरने, ध्यान लगाने और आध्यात्मिक साधना करने के लिए एक शांत और अनुकूल वातावरण प्रदान करेगा।</p>
+        </div>
+        <div class="emergency-card flood-bg" style="background: linear-gradient(135deg, #0F4C5C 0%, #457B9D 100%);">
+            <h3 style="color: #fff; margin-top: 0; margin-bottom: 8px; font-size: 18px;">विशेषताएं और लाभ</h3>
+            <p style="margin: 0; font-size: 14px; opacity: 0.9; line-height: 1.5;">यह संत निवास यहाँ रहने वाले साधुओं की आध्यात्मिक आवश्यकताओं को पूरा करने के लिए बुनियादी सुख-सुविधाओं और साधनों से सुसज्जित होगा, जिससे मंदिर और इसकी धार्मिक गतिविधियों के साथ एक गहरा जुड़ाव स्थापित हो सके।</p>
+        </div>
+    </div>
+    <div class="service-feature-grid">
+        <div class="feature-card color-1">
+            <strong style="color: #4A154B; font-size: 16px; display: block; margin-bottom: 6px;">🌸 उत्तम स्थान</strong>
+            <span style="font-size: 14px; color: #444;">मुनि महराज, माताजी एवं व्रतियों के रुकने के लिए नैसर्गिक उत्तम स्थान।</span>
+        </div>
+        <div class="feature-card color-2">
+            <strong style="color: #E28743; font-size: 16px; display: block; margin-bottom: 6px;">🌸 समाधि कक्ष</strong>
+            <span style="font-size: 14px; color: #444;">अंतिम समय में समाधि, सल्लेखना के लिए उपयुक्त विशेष व्यवस्था।</span>
+        </div>
+        <div class="feature-card color-3">
+            <strong style="color: #0F4C5C; font-size: 16px; display: block; margin-bottom: 6px;">🌸 स्वाध्याय एवं प्रवचन</strong>
+            <span style="font-size: 14px; color: #444;">धार्मिक चर्चाओं, प्रवचन और स्वाध्याय के लिए उपयुक्त हाल की सुविधा।</span>
+        </div>
+        <div class="feature-card color-1">
+            <strong style="color: #4A154B; font-size: 16px; display: block; margin-bottom: 6px;">🌸 यात्री विश्राम कक्ष</strong>
+            <span style="font-size: 14px; color: #444;">बाहर से आने वाले श्रद्धालुओं और यात्रियों के ठहरने के लिए उत्तम व्यवस्था।</span>
+        </div>
+        <div class="feature-card color-2">
+            <strong style="color: #E28743; font-size: 16px; display: block; margin-bottom: 6px;">🌸 छात्र आवास (हॉस्टल)</strong>
+            <span style="font-size: 14px; color: #444;">विद्यार्थियों की सुविधा, सुरक्षित माहौल और उच्च शिक्षा हेतु उत्तम हॉस्टल व्यवस्था।</span>
+        </div>
+        <div class="feature-card color-3">
+            <strong style="color: #0F4C5C; font-size: 16px; display: block; margin-bottom: 6px;">🌸 वीर बाल संस्कार पाठशाला हॉल</strong>
+            <span style="font-size: 14px; color: #444;">बच्चों में नैतिक मूल्यों, जैन धर्म के सिद्धांतों और सुसंस्कृत संस्कारों के निर्माण हेतु विशेष हॉल।</span>
+        </div>
+    </div>
+    <div class="info-grid" style="margin-bottom: 15px;">
+        <div style="grid-column: span 2;">
+            <div class="img-container">
+                <img src="../images/sdjm/Sant_nivaas_proposed.jpeg" alt="Proposed Sant Niwas Layout"
+                     class="full-visible-img">
             </div>
+        </div>
+    </div>
 
-            <div class="right-column">
-                <div class="info-section">
-                    <h3><i class="fas fa-phone-alt"></i> Contact Information</h3>
-                    <table class="contact-table">
-                        <tr>
-                            <td style="width: 35%;"><b>📧 Email:</b></td>
-                            <td><a href="mailto:susjainmandir@gmail.com" class="contact-link">susjainmandir@gmail.com</a></td>
-                        </tr>
-                        <tr>
-                            <td><b>📞 Phone:</b></td>
-                            <td><a href="tel:+91-8799928255" class="contact-link">+91 8799928255</a></td>
-                        </tr>
-                        <tr>
-                            <td><b><i class="fab fa-whatsapp"></i> WhatsApp:</b></td>
-                            <td><a href="https://wa.me/918799928255" target="_blank" class="contact-link whatsapp-link">+91 8799928255</a></td>
-                        </tr>
-                    </table>
+    <h2 class="section-title">Location, Timing & Contact</h2>
+    <div class="info-grid">
+        <div class="info-card">
+            <div class="img-container" style="height: 180px; margin-bottom: 12px;">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d7564.752070927708!2d73.75308269918578!3d18.557078202437843!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1ssus%20jain%20mandir%20google%20location!5e0!3m2!1sen!2sin!4v1777204323228!5m2!1sen!2sin"
+                        loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        style="width: 100%; height: 100%; border: 0;"></iframe>
+            </div>
+            <strong style="color: #0F4C5C; font-size: 15px; display: block; margin-bottom: 4px;">📍 Full Address</strong>
+            <p style="margin: 0; font-size: 13px; color: #444; line-height: 1.4;">
+                <b>Shri 1008 Neminath Digamber Jain Mandir</b><br>
+                Near Bhagawan Neminath Chowk, Sus, Pune - 411021<br>
+                Maharashtra, India
+            </p>
+        </div>
+
+        <div class="info-card">
+            <strong style="color: #4A154B; font-size: 16px; display: block; margin-bottom: 8px;">📞 Contact
+                Information</strong>
+            <table class="contact-table">
+                <tr>
+                    <td style="width: 30%;"><b>Email:</b></td>
+                    <td><a href="mailto:susjainmandir@gmail.com" class="contact-link">susjainmandir@gmail.com</a></td>
+                </tr>
+                <tr>
+                    <td><b>Phone:</b></td>
+                    <td><a href="tel:+91-8799928255" class="contact-link">+91 8799928255</a></td>
+                </tr>
+                <tr>
+                    <td><b>WhatsApp:</b></td>
+                    <td><a href="https://wa.me/918799928255" target="_blank" class="contact-link whatsapp-link">+91
+                        8799928255</a></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="info-card">
+            <strong style="color: #E28743; font-size: 16px; display: block; margin-bottom: 8px;">⏰ Temple
+                Timings</strong>
+            <div class="schedule-container">
+                <div class="session-section">
+                    <h4 class="session-heading">🌅 Morning</h4>
+                    <div class="program-item">
+                        <span class="program-name">अभिषेक एवं शांतिधारा:</span>
+                        <span class="program-time">07:30 AM - 08:30 AM</span>
+                    </div>
                 </div>
-
-                <div class="info-section">
-                    <h3><i class="far fa-clock"></i> Timing</h3>
-                    <div class="schedule-container">
-                        <div class="session-section">
-                            <h4 class="session-heading"><span>🌅</span> Morning</h4>
-                            <ul class="program-list">
-                                <li class="program-item">
-                                    <span class="program-name">अभिषेक एवं शांतिधारा :</span>
-                                    <span class="program-time">07:30 AM से 08:30 AM</span>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="session-section" style="border-left-color: var(--primary-color);">
-                            <h4 class="session-heading"><span>🌆</span> Evening</h4>
-                            <ul class="program-list">
-                                <li class="program-item">
-                                    <span class="program-name">आरती :</span>
-                                    <span class="program-time">07:30 PM से 08:00 PM</span>
-                                </li>
-                                <li class="program-item" style="margin-top: 8px;">
-                                    <span class="program-name">स्वाध्याय :</span>
-                                    <span class="program-time">08:00 PM से 09:00 PM</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <p class="timing-text">
-                            भक्तों के लिए मंदिर पूरे दिन दर्शन, पूजन और ध्यान हेतु खुला रहता है।
-                        </p>
+                <div class="session-section" style="border-left-color: #4A154B;">
+                    <h4 class="session-heading">🌆 Evening</h4>
+                    <div class="program-item">
+                        <span class="program-name">आरती:</span>
+                        <span class="program-time">07:30 PM - 08:00 PM</span>
+                    </div>
+                    <div class="program-item" style="margin-top: 4px;">
+                        <span class="program-name">स्वाध्याय:</span>
+                        <span class="program-time">08:00 PM - 09:00 PM</span>
                     </div>
                 </div>
             </div>
         </div>
-
-        <h2>Visiting Information</h2>
-        <div class="visiting-box">
-            <p><b>How to Reach & Amenities:</b></p>
-            <ul>
-                <li>Located at Bhagawan Neminath Chowk in Sus, Pune</li>
-                <li>Easy accessibility via major roads in the Sus area</li>
-                <li>Parking facilities available on premises</li>
-                <li>Close to public transportation</li>
-                <li>Clean and well-maintained prayer halls</li>
-                <li>Meditation spaces</li>
-                <li>Community gathering areas</li>
-                <li>Facilities for religious ceremonies and functions</li>
-            </ul>
-            <p style="margin-bottom: 0; margin-top: 20px; font-style: italic; color: var(--text-muted);">The temple welcomes devotees and visitors throughout the year. For specific event timings and festival celebrations, please contact the temple directly.</p>
-        </div>
     </div>
+
+    <h2 class="section-title">Visiting Information & Amenities</h2>
+    <div class="info-card" style="background-color: #FFFDF9; border-top: 4px solid #E28743; margin-bottom: 30px;">
+        <ul class="visiting-list">
+            <li>Located at Bhagawan Neminath Chowk in Sus, Pune with easy accessibility via major roads.</li>
+            <li>Ample parking facilities available inside the premises for all devotees.</li>
+            <li>Close to public transportation connections.</li>
+            <li>Clean, well-maintained prayer halls and peaceful spaces designated for meditation.</li>
+            <li>Community gathering areas and full facilities to conduct religious ceremonies and functions.</li>
+        </ul>
+        <p style="margin: 12px 0 0 0; font-size: 13px; font-style: italic; color: #666;">
+            * The temple welcomes devotees and visitors throughout the year. For specific event timings and festival
+            celebrations, please contact the temple directly.
+        </p>
+    </div>
+
+    <div class="content-text"
+         style="margin-top: 35px; background-color: #F8F9FA; padding: 15px; border-radius: 8px; border: 1px dashed #611f69;">
+        <p style="text-align: center; font-style: italic; color: #611f69; font-weight: 600; font-size: 16px; margin: 0;">
+            "भक्तों के लिए मंदिर पूरे दिन दर्शन, पूजन और ध्यान हेतु खुला रहता है।"
+        </p>
+    </div>
+
 </main>
 
 <div id="footer-placeholder"></div>
-
-<script>
-    let slideIndex = 1;
-    let slides = document.querySelectorAll('.slide');
-    let totalSlides = slides.length;
-    let autoPlayInterval;
-    let isPaused = false;
-    document.getElementById('totalSlides').textContent = totalSlides;
-
-    function changeSlide(n) {
-        showSlide(slideIndex += n);
-    }
-
-    function currentSlide(n) {
-        showSlide(slideIndex = n);
-    }
-
-    function showSlide(n) {
-        let slides = document.querySelectorAll('.slide');
-        let dots = document.querySelectorAll('.dot');
-
-        if (n > slides.length) { slideIndex = 1; }
-        if (n < 1) { slideIndex = slides.length; }
-
-        slides.forEach(slide => { slide.classList.remove('active'); });
-        dots.forEach(dot => { dot.classList.remove('active'); });
-
-        if (slides.length > 0) { slides[slideIndex - 1].classList.add('active'); }
-        if (dots.length > 0 && slideIndex - 1 < dots.length) { dots[slideIndex - 1].classList.add('active'); }
-
-        document.getElementById('currentSlide').textContent = slideIndex;
-    }
-
-    function startAutoPlay() {
-        if (!isPaused) {
-            autoPlayInterval = setInterval(() => { changeSlide(1); }, 4000);
-        }
-    }
-
-    function stopAutoPlay() { clearInterval(autoPlayInterval); }
-    function pauseAutoPlay() { isPaused = true; stopAutoPlay(); }
-    function resumeAutoPlay() { isPaused = false; startAutoPlay(); }
-
-    document.querySelector('.slideshow-container').addEventListener('mouseenter', pauseAutoPlay);
-    document.querySelector('.slideshow-container').addEventListener('mouseleave', resumeAutoPlay);
-    document.addEventListener('DOMContentLoaded', startAutoPlay);
-</script>
-
 </body>
 </html>

@@ -4,19 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>जीर्णोद्धार - Jain Sangh Pune | JSP</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap"
+          rel="stylesheet">
     <style>
+        /* Exact Theme Variables extracted from mandir_nirman.html */
         :root {
-            --primary-color: #2a7d8c;
-            --primary-dark: #1e5e6a;
-            --primary-light: #e9f2f4;
-            --secondary-color: #f4b41a;
-            --text-dark: #2c3e50;
-            --text-muted: #5a6c7d;
-            --light-bg: #f8fafb;
+            --purple-primary: #4A154B;
+            --purple-dark: #611f69;
+            --orange-secondary: #E28743;
+            --teal-dark: #0F4C5C;
+            --teal-light: #F5FAFA;
+            --text-dark: #444444;
+            --light-bg: #F8F9FA;
             --border-color: #e2e8f0;
-            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            --transition: all 0.3s ease;
+            --card-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            --transition: all 0.2s ease;
         }
 
         body {
@@ -25,163 +27,152 @@
             padding: 0;
             color: var(--text-dark);
             background-color: #fff;
-            line-height: 1.8;
+            line-height: 1.6;
+            font-size: 14px;
         }
 
         header {
             background: #fff;
-            padding: 15px 5%;
+            padding: 10px 4%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.03);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
 
         nav a {
-            margin-left: 20px;
+            margin-left: 15px;
             text-decoration: none;
             color: var(--text-dark);
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
             transition: var(--transition);
         }
 
         nav a:hover {
-            color: var(--primary-color);
+            color: var(--purple-primary);
         }
 
         .donate-btn {
-            background: var(--primary-color);
+            background: var(--purple-primary);
             color: #fff;
-            padding: 10px 24px;
-            border-radius: 6px;
+            padding: 8px 18px;
+            border-radius: 4px;
             font-weight: 600;
+            font-size: 0.85rem;
             transition: var(--transition);
         }
 
         .donate-btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-1px);
+            background: var(--purple-dark);
         }
 
         .back-link {
             display: inline-flex;
             align-items: center;
-            margin: 30px 5% 10px;
-            color: var(--primary-color);
+            margin: 15px 4% 5px;
+            color: var(--purple-primary);
             text-decoration: none;
             font-weight: 600;
+            font-size: 0.9rem;
             transition: var(--transition);
         }
 
         .back-link:hover {
-            color: var(--primary-dark);
+            color: var(--purple-dark);
             transform: translateX(-3px);
         }
 
         .content {
-            padding: 20px 5% 60px;
-            max-width: 1000px;
+            padding: 10px 4% 40px;
+            max-width: 950px;
             margin: 0 auto;
         }
 
         h1 {
             font-family: 'Montserrat', sans-serif;
-            color: var(--primary-color);
-            font-size: 2.5rem;
-            position: relative;
-            padding-bottom: 15px;
-            margin-top: 10px;
-            margin-bottom: 40px;
+            color: var(--purple-dark);
+            font-size: 24px;
             font-weight: 700;
+            margin-top: 5px;
+            margin-bottom: 20px;
         }
 
-        h1::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 80px;
-            height: 4px;
-            background: var(--secondary-color);
-            border-radius: 2px;
-        }
-
-        h2 {
+        .section-title {
             font-family: 'Montserrat', sans-serif;
-            color: var(--primary-color);
-            font-size: 1.75rem;
-            margin-top: 50px;
-            margin-bottom: 25px;
-            font-weight: 600;
+            color: var(--teal-dark);
+            border-left: 5px solid var(--orange-secondary);
+            padding-left: 12px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 22px;
+            font-weight: 700;
         }
 
         h3 {
             font-family: 'Montserrat', sans-serif;
-            color: var(--primary-color);
-            font-size: 1.35rem;
-            margin-top: 35px;
-            margin-bottom: 15px;
-            font-weight: 600;
+            color: var(--teal-dark);
+            font-size: 16px;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-weight: 700;
         }
 
         .content-text {
-            font-size: 1.05rem;
-            color: var(--text-dark);
             text-align: justify;
+            font-size: 14px;
+            color: var(--text-dark);
         }
 
-        /* Hero / Quote Section Styles */
+        /* Hero / Quote Section Styles matching .compact-hero */
         .prashasti-section {
-            margin: 30px 0 40px;
-            background: var(--light-bg);
-            border: 1px solid var(--border-color);
+            background: linear-gradient(135deg, var(--purple-primary) 0%, var(--purple-dark) 100%);
+            color: #ffffff;
+            padding: 20px 25px;
             border-radius: 12px;
-            padding: 35px;
-            box-shadow: var(--card-shadow);
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
         .quote-container {
             position: relative;
-            background: #fff;
-            border-left: 5px solid var(--primary-color);
-            padding: 25px 30px;
-            margin-bottom: 30px;
-            border-radius: 0 8px 8px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.01);
+            background: rgba(255, 255, 255, 0.1);
+            border-left: 4px solid var(--orange-secondary);
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 0 6px 6px 0;
         }
 
         .quote-icon {
             position: absolute;
-            top: -5px;
-            left: 15px;
-            font-size: 4rem;
-            color: rgba(42, 125, 140, 0.08);
+            top: -10px;
+            left: 10px;
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.08);
             font-family: 'Montserrat', sans-serif;
-            line-height: 1;
         }
 
         .quote-text {
             margin: 0;
-            font-size: 1.15rem;
-            color: #1a2a3a;
-            line-height: 1.7;
+            font-size: 15px;
+            color: #ffffff;
+            line-height: 1.5;
         }
 
         .quote-text b {
-            color: var(--primary-color);
+            color: var(--orange-secondary);
             display: inline-block;
-            margin-top: 5px;
-            font-size: 1.2rem;
+            margin-top: 4px;
         }
 
         .reflection-text p {
-            margin: 0 0 15px 0;
-            color: var(--text-muted);
+            margin: 0 0 10px 0;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
         }
 
         .reflection-text p:last-child {
@@ -189,31 +180,33 @@
         }
 
         .reflection-text b {
-            color: #c0392b;
-            background: #fdf2f2;
-            padding: 2px 6px;
-            border-radius: 4px;
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 1px 5px;
+            border-radius: 3px;
         }
 
+        /* Intro Hindi Section matching .feature-card.color-3 style */
         .intro-hindi-section {
-            background: var(--primary-light);
-            padding: 20px 25px;
+            background-color: var(--teal-light);
+            border-top: 4px solid var(--teal-dark);
+            padding: 15px;
             border-radius: 8px;
-            border-right: 4px solid var(--primary-color);
-            margin-bottom: 40px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 25px;
         }
 
         .intro-hindi-text {
             margin: 0;
-            font-size: 1.1rem;
-            color: var(--primary-dark);
+            font-size: 14px;
+            color: var(--text-dark);
         }
 
-        /* Beautiful Responsive Table Styling */
+        /* Clean Table Styling aligning with the form layout */
         .table-responsive {
             width: 100%;
             overflow-x: auto;
-            margin-top: 20px;
+            margin-top: 15px;
             border-radius: 8px;
             box-shadow: var(--card-shadow);
             border: 1px solid var(--border-color);
@@ -222,22 +215,21 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 1rem;
+            font-size: 14px;
             background: #fff;
         }
 
         th, td {
-            padding: 16px 20px;
+            padding: 10px 14px;
             text-align: left;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid #f0f0f0;
         }
 
         th {
-            background-color: var(--primary-color);
+            background-color: var(--purple-primary);
             color: white;
             font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            letter-spacing: 0.5px;
+            font-weight: 700;
         }
 
         tr:last-child td {
@@ -245,23 +237,19 @@
         }
 
         tr:nth-child(even) {
-            background-color: #fdfefe;
+            background-color: var(--light-bg);
         }
 
-        tr:hover {
-            background-color: #f5f9fa;
-        }
-
-        /* Video Container Upgrade */
+        /* Video Container Upgrade matching aspect ratio controls */
         .video-container {
             position: relative;
             width: 100%;
             padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
-            border-radius: 12px;
-            margin: 25px 0 45px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-radius: 8px;
+            margin: 15px 0 25px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.06);
         }
 
         .video-container iframe {
@@ -273,38 +261,35 @@
             border: none;
         }
 
-        /* Modernized Image Grid and Cards */
+        /* Image Grid Container aligning with .img-container and .info-grid */
         .info-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin: 20px 0 40px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 15px;
+            margin: 15px 0 25px;
         }
 
         .info-card {
             background-color: #fff;
             border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 12px;
+            border-radius: 8px;
+            padding: 8px;
             box-shadow: var(--card-shadow);
             transition: var(--transition);
-            overflow: hidden;
         }
 
         .info-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
         }
 
         .info-card img {
             width: 100%;
-            height: 400px;
+            height: 260px;
             object-fit: cover;
             border-radius: 6px;
             display: block;
         }
 
-        /* Dynamic layout tweaks for varied specific grids */
         .info-grid-span-2 {
             grid-column: span 2;
         }
@@ -312,12 +297,12 @@
             .info-grid-span-2 { grid-column: span 1; }
         }
 
-        /* Future Goals Grid */
+        /* Future Goals Grid referencing .service-feature-grid & .emergency-grid */
         .grid-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            margin-top: 25px;
+            gap: 15px;
+            margin-top: 15px;
         }
 
         @media (max-width: 768px) {
@@ -327,22 +312,25 @@
         .card {
             background: #fff;
             border: 1px solid var(--border-color);
-            padding: 30px;
-            border-radius: 12px;
+            padding: 20px;
+            border-radius: 8px;
             box-shadow: var(--card-shadow);
-            border-top: 4px solid var(--secondary-color);
             transition: var(--transition);
         }
 
-        .card:hover {
-            transform: translateY(-3px);
+        .card.color-left {
+            border-top: 4px solid var(--purple-primary);
+            background-color: #FDFBFC;
+        }
+
+        .card.color-right {
+            border-top: 4px solid var(--teal-dark);
+            background-color: var(--teal-light);
         }
 
         .card h3 {
             margin-top: 0;
-            margin-bottom: 20px;
-            color: var(--primary-color);
-            font-size: 1.25rem;
+            margin-bottom: 12px;
         }
 
         ul.styled-list {
@@ -352,20 +340,19 @@
         }
 
         ul.styled-list li {
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             position: relative;
-            padding-left: 25px;
-            color: var(--text-muted);
-            font-size: 0.98rem;
+            padding-left: 20px;
+            color: var(--text-dark);
+            font-size: 13px;
         }
 
         ul.styled-list li::before {
-            content: '✓';
+            content: '🌸';
             position: absolute;
             left: 0;
-            top: 0;
-            color: var(--primary-color);
-            font-weight: bold;
+            top: -1px;
+            font-size: 12px;
         }
 
         ul.styled-list li:last-child {
@@ -373,28 +360,24 @@
         }
 
         ul.styled-list li b {
-            color: var(--text-dark);
+            color: #000000;
         }
 
-         /* Back Link Button */
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            color: var(--primary-color);
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            margin: 20px 0 0 20px;
-            padding: 10px 18px;
-            background: white;
-            border-radius: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            transition: var(--transition-smooth);
+        /* Visual separation block referencing bottom highlighted notice */
+        .bottom-notice-block {
+            margin-top: 35px;
+            background-color: var(--light-bg);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px dashed var(--purple-dark);
         }
-        .back-link:hover {
-            transform: translateX(-5px);
-            background: var(--primary-light);
+        .bottom-notice-text {
+            text-align: center;
+            font-style: italic;
+            color: var(--purple-dark);
+            font-weight: 600;
+            font-size: 15px;
+            margin: 0;
         }
 
     </style>
@@ -415,31 +398,35 @@
             <div class="quote-container">
                 <span class="quote-icon">“</span>
                 <p class="quote-text">
-                    खजुराहो स्तिथ एक प्राचीन जिनालय की प्रशस्ति में लिखा है—
+                    खजुराहो स्थित एक प्राचीन जिनालय की प्रशस्ति में लिखा है—
                     <br>
                     <b>"जो श्रावक इन प्राचीन जिनालयों का जीर्णोद्धार कराएगा, मैं उसका दासानुदास रहूँगा।"</b>
                 </p>
             </div>
 
             <div class="reflection-text">
-                <p>इस वाक्य से प्रतीत होता है कि हमारे पूर्वजों में अपने जिनालय के प्रति कितना बहुमान हुआ करता था। एक व्यक्तित्व जो एक बहुत बड़ा राजा था, वह भी जिनालय के रक्षण के लिए दासानुदास तक होने की बात कह रहा है।</p>
-                <p>इससे स्पष्ट है कि जिनालय हमारे जीवन में कितना महत्वपूर्ण स्थान रखते हैं। शास्त्रों में भी <b>जिन-बिम्ब दर्शन</b> को सम्यक दर्शन का कारण माना गया है।</p>
+                <p>इस वाक्य से प्रतीत होता है कि हमारे पूर्वजों में अपने जिनालय के प्रति कितना बहुमान हुआ करता था। एक
+                    व्यक्तित्व जो एक बहुत बड़ा राजा था, वह भी जिनालय के रक्षण के लिए दासानुदास तक होने की बात कह रहा
+                    है।</p>
+                <p>इससे स्पष्ट है कि जिनालय हमारे जीवन में कितना महत्वपूर्ण स्थान रखते हैं। शास्त्रों में भी <b>जिन-बिम्ब
+                    दर्शन</b> को सम्यक दर्शन का कारण माना गया है।</p>
             </div>
         </div>
 
         <div class="intro-hindi-section">
             <p class="intro-hindi-text">
-                <b>Jain Sangh Pune</b> प्राचीन जैन मंदिरों के रख-रखाव, जीर्णोद्धार एवं संरक्षण के लिए विगत कई वर्षों से तमिलनाडु, कर्नाटक, आंध्र प्रदेश और महाराष्ट्र के कई क्षेत्रों में निरंतर कार्य कर रहा है।
+                <b>Jain Sangh Pune</b> प्राचीन जैन मंदिरों के रख-रखाव, जीर्णोद्धार एवं संरक्षण के लिए विगत कई वर्षों से
+                तमिलनाडु, कर्नाटक, आंध्र प्रदेश और महाराष्ट्र के कई क्षेत्रों में निरंतर कार्य कर रहा है।
             </p>
         </div>
 
-        <h2>अभी तक के जीर्णोद्धार कार्य :</h2>
+        <h2 class="section-title">अभी तक के जीर्णोद्धार कार्य :</h2>
         <div class="table-responsive">
             <table>
                 <thead>
                 <tr>
-                    <th style="width: 10%;">क्र.सं.</th>
-                    <th style="width: 25%;">क्षेत्र / स्थान</th>
+                    <th style="width: 8%;">क्र.सं.</th>
+                    <th style="width: 22%;">क्षेत्र / स्थान</th>
                     <th>कार्य का विवरण एवं सहयोग</th>
                 </tr>
                 </thead>
@@ -457,12 +444,16 @@
                 <tr>
                     <td>3</td>
                     <td><b>कोनकोंडा (आंध्र प्रदेश)</b></td>
-                    <td>कुन्दकुन्द भगवान की जन्मभूमि क्षेत्र के प्रचार-प्रसार हेतु 'अहिंसा वाक' के लिए विशेष सहयोग एवं समर्थन (2015 का कार्य)</td>
+                    <td>कुन्दकुन्द भगवान की जन्मभूमि क्षेत्र के प्रचार-प्रसार हेतु 'अहिंसा वाक' के लिए विशेष सहयोग एवं
+                        समर्थन (2015 का कार्य)
+                    </td>
                 </tr>
                 <tr>
                     <td>4</td>
                     <td><b>अवलुरपेट (तमिलनाडु)</b></td>
-                    <td>क्षेत्र में प्रभावना एवं पूजन व्यवस्था सुचारू रूप से चलाने हेतु श्रीधरन जी को सहयोग (2015 का कार्य)</td>
+                    <td>क्षेत्र में प्रभावना एवं पूजन व्यवस्था सुचारू रूप से चलाने हेतु श्रीधरन जी को सहयोग (2015 का
+                        कार्य)
+                    </td>
                 </tr>
                 <tr>
                     <td>5</td>
@@ -477,12 +468,16 @@
                 <tr>
                     <td>7</td>
                     <td><b>कारंजा (महाराष्ट्र)</b></td>
-                    <td>श्री चन्द्रप्रभ दिगम्बर जैन मंदिर जी में प्राचीन शास्त्रों व सामग्री के लिए शस्त्रागार निर्माण(जनवरी 2017)</td>
+                    <td>श्री चन्द्रप्रभ दिगम्बर जैन मंदिर जी में प्राचीन शास्त्रों व सामग्री के लिए शस्त्रागार
+                        निर्माण(जनवरी 2017)
+                    </td>
                 </tr>
                 <tr>
                     <td>8</td>
                     <td><b>कलगी (Gulbarga)</b></td>
-                    <td>कलगी अहिंसा यात्रा का भव्य आयोजन एवं यहाँ के जिनालय की सुरक्षा हेतु जागरूकता अभियान (मार्च 2017)</td>
+                    <td>कलगी अहिंसा यात्रा का भव्य आयोजन एवं यहाँ के जिनालय की सुरक्षा हेतु जागरूकता अभियान (मार्च
+                        2017)
+                    </td>
                 </tr>
                 <tr>
                     <td>9</td>
@@ -492,13 +487,15 @@
                 <tr>
                     <td>10</td>
                     <td><b>भंडारकर Institute</b></td>
-                    <td>शास्त्र संरक्षण के अंतर्गत करीबन 2 महीने निरंतर काम करके प्राचीन ग्रंथों की एक विस्तृत सूची (Inventory) तैयार की गई</td>
+                    <td>शास्त्र संरक्षण के अंतर्गत करीबन 2 महीने निरंतर काम करके प्राचीन ग्रंथों की एक विस्तृत सूची
+                        (Inventory) तैयार की गई
+                    </td>
                 </tr>
                 </tbody>
             </table>
         </div>
 
-        <h3>Video showing the जीर्णोद्धार work</h3>
+        <h2 class="section-title">Video showing the जीर्णोद्धार work</h2>
         <div class="video-container">
             <iframe src="https://www.youtube.com/embed/8bJzGs7OhtQ?si=F0NtDFYGr_-NnADW"
                     title="YouTube video player" allow="accelerometer; autoplay;
@@ -508,10 +505,15 @@
         </div>
 
         <div>
-            <h3>Sign Board - दिशा सूचक</h3>
+            <h2 class="section-title">Sign Board - दिशा सूचक</h2>
             <div class="content-text">
-                तमिलनाडु प्रांत में लगभग हर एक गाँव में हजारों वर्ष प्राचीन जैन मंदिर एवं गुफाएं है| जैन धर्म के प्रति जागरूकता अभाव और भाषा की limitation(वहां के लोकल लोग हिंदी अथवा इंग्लिश नहीं समझते) की वजह से इन क्षेत्रों का रख रखाव तो दूर यहाँ तक पहुंच पाना भी लगभग असंभव होता है| वर्ष 14 में जैन संघ पुणे के युवा कार्यकर्ताओं की दूरगामी सोच के बल पर, ऐसे क्षेत्रों तक पहुंचने के लिए त्रिलोकाकार के sign board(milestone)/दिशा सूचक जगह-जगह पर लगाए जा रहे है|
-                इन sign boards की सहायता से आज कई यात्री सही क्षेत्र तक कम समय में पहुंच पा रहे है और हमारे ये प्राचीन धरोहर के संरक्षण की ओर कदम बढ़ाये जा रहे है|
+                तमिलनाडु प्रांत में लगभग हर एक गाँव में हजारों वर्ष प्राचीन जैन मंदिर एवं गुफाएं है| जैन धर्म के प्रति
+                जागरूकता अभाव और भाषा की limitation(वहां के लोकल लोग हिंदी अथवा इंग्लिश नहीं समझते) की वजह से इन
+                क्षेत्रों का रख रखाव तो दूर यहाँ तक पहुंच पाना भी लगभग असंभव होता है| वर्ष 14 में जैन संघ पुणे के युवा
+                कार्यकर्ताओं की दूरगामी सोच के बल पर, ऐसे क्षेत्रों तक पहुंचने के लिए त्रिलोकाकार के sign
+                board(milestone)/दिशा सूचक जगह-जगह पर लगाए जा रहे है|
+                इन sign boards की सहायता से आज कई यात्री सही क्षेत्र तक कम समय में पहुंच पा रहे है और हमारे ये प्राचीन
+                धरोहर के संरक्षण की ओर कदम बढ़ाये जा रहे है|
             </div>
 
             <div class="info-grid">
@@ -528,14 +530,17 @@
                     <img src="../images/jirnoddhar/Milestone_tamilnadu_2.jpg" alt="Tamil Nadu Sign Board">
                 </div>
                 <div class="info-card info-grid-span-2">
-                    <img src="../images/jirnoddhar/Milestone_tamilnadu_preparation.jpg" alt="Tamil Nadu Sign Board" style="height: 250px;">
+                    <img src="../images/jirnoddhar/Milestone_tamilnadu_preparation.jpg" alt="Tamil Nadu Sign Board"
+                         style="height: 180px;">
                 </div>
             </div>
 
             <div>
-                <h3>Grill work</h3>
+                <h2 class="section-title">Grill work</h2>
                 <div class="content-text">
-                    दक्षिण भारत के कई क्षेत्रों में काल के प्रभाव और जैन धर्म की विलोपन की वजह से हजारों मंदिर जीर्ण शीर्ण हो गए किन्तु कई मंदिरों के अवशेष अथवा प्रतिमाएं अभी भी खेतों, खुले मैदान, पहाड़ या जंगलों में प्राप्त होते रहते है|
+                    दक्षिण भारत के कई क्षेत्रों में काल के प्रभाव और जैन धर्म की विलोपन की वजह से हजारों मंदिर जीर्ण
+                    शीर्ण हो गए किन्तु कई मंदिरों के अवशेष अथवा प्रतिमाएं अभी भी खेतों, खुले मैदान, पहाड़ या जंगलों में
+                    प्राप्त होते रहते है|
                     ऐसे क्षेत्रों को आगामी काल में सुरक्षित रखने के लिए, इनके आस पास जाली(Grill work) कराया जा रहा है|
                 </div>
 
@@ -562,7 +567,7 @@
             </div>
 
             <div>
-                <h3>जीर्णोद्धार</h3>
+                <h2 class="section-title">जीर्णोद्धार Gallery</h2>
                 <div class="info-grid">
                     <div class="info-card">
                         <img src="../images/jirnoddhar/kalgi_3.jpg" alt="Kalgi 3">
@@ -584,7 +589,7 @@
             </div>
 
             <div>
-                <h3>पावागढ़ मंदिर सफाई एवं संरक्षण</h3>
+                <h2 class="section-title">पावागढ़ मंदिर सफाई एवं संरक्षण</h2>
                 <div class="info-grid">
                     <div class="info-card">
                         <img src="../images/jirnoddhar/pavagarh_1.jpg" alt="Pavagarh 1">
@@ -598,23 +603,40 @@
             </div>
         </div>
 
-        <h2>आगामी लक्ष्य एवं भविष्य की योजनाएं</h2>
+        <h2 class="section-title">आगामी लक्ष्य एवं भविष्य की योजनाएं</h2>
         <div class="grid-container">
-            <div class="card">
+            <div class="card color-left">
                 <h3>📚 शास्त्र एवं लिपि संरक्षण</h3>
                 <ul class="styled-list">
-                    <li><b>विदेशी शास्त्रों की वापसी:</b> देश और विदेशों में सुरक्षित रखे गए हमारे भिन्न-भिन्न शास्त्रों को किसी भी रूप में पुनः भारत लाने का निरंतर प्रयास करना।</li>
-                    <li><b>डिजिटलाइजेशन (Soft Copy):</b> हमारे शहरों में नष्ट हो रहे अति-प्राचीन ग्रंथों को बचाना, उनकी सॉफ्ट कॉपी बनाना तथा उनके भौतिक संरक्षण का ठोस प्रयास करना।</li>
-                    <li><b>विद्वान तैयार करना:</b> कर्नाटक की <em>'हाले कन्नड़'</em> और तमिलनाडु की <em>'ग्रन्थ लिपि'</em> को पढ़ने वाले विशेषज्ञ अब बहुत ही कम बचे हैं। इस अमूल्य धरोहर को बचाने के लिए नए विद्वान तैयार करना हमारी प्राथमिकता है।</li>
+                    <li><b>विदेशी शास्त्रों की वापसी:</b> देश और विदेशों में सुरक्षित रखे गए हमारे भिन्न-भिन्न शास्त्रों
+                        को किसी भी रूप में पुनः भारत लाने का निरंतर प्रयास करना।
+                    </li>
+                    <li><b>डिजिटलाइजेशन (Soft Copy):</b> हमारे शहरों में नष्ट हो रहे अति-प्राचीन ग्रंथों को बचाना, उनकी
+                        सॉफ्ट कॉपी बनाना तथा उनके भौतिक संरक्षण का ठोस प्रयास करना।
+                    </li>
+                    <li><b>विद्वान तैयार करना:</b> कर्नाटक की <em>'हाले कन्नड़'</em> और तमिलनाडु की <em>'ग्रन्थ
+                        लिपि'</em> को पढ़ने वाले विशेषज्ञ अब बहुत ही कम बचे हैं। इस अमूल्य धरोहर को बचाने के लिए नए
+                        विद्वान तैयार करना हमारी प्राथमिकता है।
+                    </li>
                 </ul>
             </div>
-            <div class="card">
+            <div class="card color-right">
                 <h3>🏗️ भौतिक जीर्णोद्धार एवं सुरक्षा</h3>
                 <ul class="styled-list">
-                    <li><b>तमिलनाडु:</b> राज्य के बचे हुए क्षेत्रों में नए साइन बोर्ड्स लगाना तथा जिन प्राचीन गुफाओं में पूजनीय मूर्तियाँ उकेरी गई हैं, वहाँ सुरक्षा के लिए जाली आदि लगवाना।</li>
-                    <li><b>आंध्र प्रदेश:</b> चिन्हित जैन धरोहर क्षेत्रों में दिशा-सूचक एवं जानकारी देने वाले बोर्ड्स लगाने का कार्य पूर्ण करना।</li>
+                    <li><b>तमिलनाडु:</b> राज्य के बचे हुए क्षेत्रों में नए साइन बोर्ड्स लगाना तथा जिन प्राचीन गुफाओं में
+                        पूजनीय मूर्तियाँ उकेरी गई हैं, वहाँ सुरक्षा के लिए जाली आदि लगवाना।
+                    </li>
+                    <li><b>आंध्र प्रदेश:</b> चिन्हित जैन धरोहर क्षेत्रों में दिशा-सूचक एवं जानकारी देने वाले बोर्ड्स
+                        लगाने का कार्य पूर्ण करना।
+                    </li>
                 </ul>
             </div>
+        </div>
+
+        <div class="bottom-notice-block">
+            <p class="bottom-notice-text">
+                "प्राचीन धरोहरों और जिन-बिम्बों का संरक्षण ही संस्कृति का वास्तविक रक्षण है।"
+            </p>
         </div>
     </div>
 </main>

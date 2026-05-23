@@ -4,9 +4,128 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>धर्मार्थ औषधालय - Jain Sangh Pune | JSP</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap"
           rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Care, Healing & Restorative Background Enhancements */
+        body {
+            font-family: 'Noto Sans Devanagari', 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #f4fbf7 0%, #f9fbf9 100%); /* Soft healing green splash */
+        }
+        .compact-hero {
+            background: linear-gradient(135deg, #0f9f68 0%, #0d8456 100%); /* Soothing therapeutic green gradient */
+            color: #ffffff;
+            padding: 25px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+            box-shadow: 0 6px 20px rgba(15, 159, 104, 0.15);
+        }
+        .section-title {
+            color: #1b4332;
+            border-left: 6px solid #52b788; /* Fresh clinical mint border */
+            padding-left: 12px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        .service-feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .feature-card {
+            padding: 18px;
+            border-radius: 12px;
+            background: #ffffff;
+            border-top: 5px solid #0f9f68;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .feature-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.07);
+        }
+
+        /* Vibrant Care Theme Backgrounds for Cards */
+        .feature-card.color-1 { border-top-color: #0f9f68; background: linear-gradient(135deg, #f2faf6 0%, #e6f5ee 100%); }
+        .feature-card.color-2 { border-top-color: #ffb703; background: linear-gradient(135deg, #fffdf2 0%, #fff9db 100%); }
+        .feature-card.color-3 { border-top-color: #4ea8de; background: linear-gradient(135deg, #f0f8ff 0%, #e0f2fe 100%); }
+
+        .covid-gap-box {
+            background: linear-gradient(135deg, #fdf4f4 0%, #fbf0f0 100%);
+            border: 1px dashed #feb2b2;
+            border-left: 5px solid #f56565;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        /* Non-trimming dynamic image wrappers to protect original aspect ratios */
+        .img-container {
+            width: 100%;
+            height: auto;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .full-visible-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 10px;
+        }
+
+        /* Compacted Image Grid Layout matching Anandshala */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        .info-card {
+            background: #ffffff;
+            padding: 6px;
+            border-radius: 12px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .bullets-heading {
+            font-weight: 700;
+            margin-top: 12px;
+            margin-bottom: 6px;
+            color: #1b4332;
+            font-size: 15px;
+        }
+        .year-section-list {
+            margin: 0;
+            padding-left: 18px;
+            font-size: 14px;
+            color: #2d6a4f;
+        }
+        .year-section-list li {
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+
+        .healing-quote {
+            background: #ffffff;
+            border-left: 5px solid #0f9f68;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 14px;
+            color: #333;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+    </style>
+</head>
 <body>
 <script src="header-loader.js"></script>
 <script src="footer-loader.js"></script>
@@ -16,91 +135,124 @@
 <a href="home.html" class="back-link">← Back to Home</a>
 
 <main class="content">
-    <h1>धर्मार्थ औषधालय, सुस (पुणे)</h1>
 
-    <div class="content-text">
-        <p>तीर्थंकर प्रभु द्वारा प्रतिपादित अहिंसक चिकित्सा पद्धति को बढ़ावा देने और समाज को एक स्वस्थ जीवन शैली प्रदान
-            करने के उद्देश्य से, <b>जैन संघ पुणे</b> द्वारा वर्ष 2017 में <b>ज्ञानोदय सोसाइटी, सुस (पुणे)</b> में 'जैन
-            चैरिटेबल औषधालय' की शुरुआत की गई थी।</p>
-        <p>दानदाताओं के उदार सहयोग से संचालित यह औषधालय पूरी तरह से सेवा भाव को समर्पित है, जहाँ बेहद कम खर्च पर मरीजों
-            का इलाज किया जाता है।</p>
+    <div class="compact-hero">
+        <h1 style="color: #fff; margin: 0 0 8px 0; font-size: 30px; text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">🌿
+            धर्मार्थ औषधालय, सुस (पुणे)</h1>
+        <p style="margin: 0; font-size: 16px; opacity: 0.95; line-height: 1.6;">
+            तीर्थंकर प्रभु द्वारा प्रतिपादित अहिंसक चिकित्सा पद्धति को बढ़ावा देने और समाज को एक स्वस्थ जीवन शैली प्रदान
+            करने के उद्देश्य से, <b>जैन संघ पुणे (JSP)</b> द्वारा वर्ष 2017 में <b>ज्ञानोदय सोसाइटी, सुस (पुणे)</b> में
+            'जैन चैरिटेबल औषधालय' की शुरुआत की गई थी। दानदाताओं के उदार सहयोग से संचालित यह औषधालय पूरी तरह से सेवा भाव
+            को समर्पित है, जहाँ बेहद कम खर्च पर मरीजों का इलाज किया जाता है।
+        </p>
+    </div>
 
-        <div class="info-grid">
-            <div class="info-card">
-                <img src="../images/aushdhalay/old_1.jpg" alt="Old Clinic Asset">
-            </div>
-        </div>
-
-        <h3>Blood Donation Camp</h3>
-        <div class="content-text">
-            <p>महावीर जयंती और ऐसे ही कई अवसरों पर धर्मार्थ औषधालय ने रक्त-दान शिविर का आयोजन किया, जिसमें लभगभ 50 लोगों
-                ने रक्त-दान कर पुण्यार्जन प्राप्त किया| ।</p>
-        </div>
-        <div class="info-grid">
-            <div class="info-card grid-span-2">
-                <img src="../images/aushdhalay/BDC_Main.jpeg" alt="Blood Donation Camp">
-            </div>
-        </div>
-
-        <h3>Consultation Camp</h3>
-        <div class="content-text">
-            <p>औषधालय द्वारा आयोजित कैंपों में समाज के लोगों का सक्रिय सहभागीता</p>
-        </div>
-        <div class="info-grid">
-            <div class="info-card grid-span-2">
-                <img src="../images/aushdhalay/Consultion_1.jpeg" alt="Consultation Camp">
-            </div>
-            <div class="info-card">
-                <img src="../images/aushdhalay/camp.jpeg" alt="Consultation Camp">
-            </div>
-        </div>
-        <div class="info-grid">
-            <div class="info-card grid-span-2">
-                <img src="../images/aushdhalay/Aushdhalaya_11.jpeg" alt="Consultation Camp">
-            </div>
-        </div>
-
-        <h2>🎯 हमारा उद्देश्य और प्रभाव</h2>
-        <ul>
-            <li><b>प्राचीन एवं अचूक चिकित्सा:</b> औषधालय के माध्यम से अनगिनत लोगों को पुरानी और जटिल बीमारियों (Chronic
-                Diseases) में प्राचीन आयुर्वेदिक पद्धति से अभूतपूर्व लाभ मिला है।
-            </li>
-            <li><b>अहिंसक चिकित्सा की ओर कदम:</b> आधुनिक एलोपैथी (अंग्रेजी दवाओं) में होने वाली हिंसक प्रक्रियाओं और
-                अनैतिक घटकों को छोड़कर, बड़े पैमाने पर लोगों ने शुद्ध एवं अहिंसक आयुर्वेद को अपनाया है।
-            </li>
-            <li><b>बच्चों के भविष्य की सुरक्षा:</b> आज के समय में बच्चों को सामान्य गले की खराश या बुखार होने पर भी भारी
-                मात्रा में एंटीबायोटिक्स दिए जाते हैं, जिसके दीर्घकालिक नुकसान (Side Effects) होते हैं। औषधालय की शुरुआत
-                के बाद से, कई परिवारों ने अपने बच्चों के लिए एंटीबायोटिक्स की जगह आयुर्वेद पर भरोसा जताना शुरू कर दिया
-                है।
-            </li>
-        </ul>
-
-        <h2>🛡️ कोरोना काल में अनुकरणीय सेवा</h2>
-        <p>वैश्विक महामारी कोरोना के कठिन समय में भी जैन संघ पुणे और इस औषधालय ने समाज की सुरक्षा में अग्रसर भूमिका
-            निभाई:</p>
-        <ul>
-            <li><b>रोग प्रतिरोधक क्षमता (Immunity) का विकास:</b> महामारी के दौरान समाज के लोगों को गिलोय जैसी दिव्य
-                जड़ी-बूटियाँ और आयुर्वेदिक दवाएं निशुल्क/सुलभ रूप से उपलब्ध कराई गईं।
-            </li>
-            <li><b>ऑनलाइन जागरूकता अभियान:</b> अनुभवी आयुर्वेदिक वैद्यों के माध्यम से ऑनलाइन कॉन्फ्रेंस का आयोजन किया
-                गया, जिसमें लोगों को घर बैठे कोरोना से लड़ने और अपनी इम्यूनिटी बढ़ाने के वैज्ञानिक तरीके सिखाए गए।
-            </li>
-        </ul>
-
-        <blockquote>
-            <b>पुनः शुरुआत:</b> कोरोना काल के अनिवार्य अंतराल (गैप) के बाद, <b>अगस्त 2022</b> से जैन संघ पुणे द्वारा इस
-            औषधालय को पूरी ऊर्जा के साथ पुनः शुरू किया गया है। आज यह औषधालय पहले की तरह ही जन-जन की सेवा में अग्रणी
-            भूमिका निभा रही है।
-        </blockquote>
-
-        <div class="highlight-box">
-            आइए, हम सब मिलकर तीर्थंकर प्रभु के अहिंसा के मार्ग पर चलें और शुद्ध, सात्विक एवं प्राचीन आयुर्वेद को अपने
-            जीवन का हिस्सा बनाएं।
+    <div class="info-grid" style="grid-template-columns: 1fr; max-width: 1000px; margin: 0 auto 25px auto;">
+        <div>
+            <img src="../images/aushdhalay/old_1.jpg" alt="Old Clinic Asset" class="full-visible-img">
         </div>
     </div>
+
+    <h2 class="section-title">🩺 शिविर और सेवा गतिविधियाँ (Medical Camps)</h2>
+
+    <h3 style="color: #1b4332; font-size: 18px; margin-bottom: 8px; font-weight: 600;">Blood Donation Camp</h3>
+    <p style="font-size: 14px; color: #444; margin-bottom: 12px; line-height: 1.5;">
+        महावीर जयंती और ऐसे ही कई अवसरों पर धर्मार्थ औषधालय ने रक्त-दान शिविर का आयोजन किया, जिसमें लगभग 50 लोगों ने
+        रक्त-दान कर पुण्यार्जन प्राप्त किया।
+    </p>
+    <div class="info-grid" style="margin-bottom: 25px;">
+        <div style="grid-column: span 2;">
+            <div>
+                <img src="../images/aushdhalay/BDC_Main.jpeg" alt="Blood Donation Camp" class="full-visible-img">
+            </div>
+        </div>
+    </div>
+
+    <h3 style="color: #1b4332; font-size: 18px; margin-bottom: 8px; font-weight: 600;">Consultation Camp</h3>
+    <p style="font-size: 14px; color: #444; margin-bottom: 12px; line-height: 1.5;">
+        औषधालय द्वारा आयोजित विभिन्न परामर्श एवं स्वास्थ्य जांच शिविरों में समाज के लोगों की हमेशा सक्रिय सहभागिता रही
+        है।
+    </p>
+    <div class="info-grid">
+        <div>
+            <img src="../images/aushdhalay/Consultion_1.jpeg" alt="Consultation Camp" class="full-visible-img">
+        </div>
+    </div>
+    <div>
+        <img src="../images/aushdhalay/camp.jpeg" alt="Consultation Camp" class="full-visible-img">
+    </div>
+    <div class="info-grid" style="margin-bottom: 35px;">
+        <div>
+            <img src="../images/aushdhalay/Aushdhalaya_11.jpeg" alt="Consultation Camp" class="full-visible-img">
+        </div>
+    </div>
+
+    <h2 class="section-title">🎯 हमारा उद्देश्य और प्रभाव (Our Mission & Impact)</h2>
+    <div class="service-feature-grid">
+        <div class="feature-card color-1">
+            <h3 style="color: #0f9f68; margin: 0 0 6px 0; font-size: 18px;">🌿 प्राचीन एवं अचूक चिकित्सा</h3>
+            <p style="font-size: 13px; color: #444; margin: 0; line-height: 1.5;">
+                औषधालय के माध्यम से अनगिनत लोगों को पुरानी और जटिल बीमारियों (Chronic Diseases) में प्राचीन आयुर्वेदिक
+                पद्धति से अभूतपूर्व लाभ मिला है।
+            </p>
+        </div>
+
+        <div class="feature-card color-2">
+            <h3 style="color: #d97706; margin: 0 0 6px 0; font-size: 18px;">🛡️ अहिंसक चिकित्सा की ओर कदम</h3>
+            <p style="font-size: 13px; color: #444; margin: 0; line-height: 1.5;">
+                आधुनिक एलोपैथी दवाओं में होने वाली हिंसक प्रक्रियाओं और अनैतिक घटकों को छोड़कर, बड़े पैमाने पर लोगों ने
+                शुद्ध एवं अहिंसक आयुर्वेद को अपनाया है।
+            </p>
+        </div>
+
+        <div class="feature-card color-3">
+            <h3 style="color: #0284C7; margin: 0 0 6px 0; font-size: 18px;">👶 बच्चों के भविष्य की सुरक्षा</h3>
+            <p style="font-size: 13px; color: #444; margin: 0; line-height: 1.5;">
+                सामान्य गले की खराश या बुखार होने पर भारी मात्रा में एंटीबायोटिक्स के दीर्घकालिक साइड इफेक्ट्स से बचाकर
+                बच्चों को सुरक्षित आयुर्वेद का भरोसा दिया है।
+            </p>
+        </div>
+    </div>
+
+    <h2 class="section-title">🛡️ कोरोना काल में अनुकरणीय सेवा (COVID-19 Resilience)</h2>
+    <div class="service-feature-grid">
+        <div class="feature-card color-1" style="grid-column: span 1;">
+            <div class="bullets-heading">✨ रोग प्रतिरोधक क्षमता (Immunity) का विकास:</div>
+            <ul class="year-section-list">
+                <li>महामारी के दौरान समाज के लोगों को गिलोय जैसी दिव्य जड़ी-बूटियाँ और आयुर्वेदिक दवाएं निशुल्क/सुलभ रूप
+                    से उपलब्ध कराई गईं।
+                </li>
+            </ul>
+        </div>
+        <div class="feature-card color-3" style="grid-column: span 2;">
+            <div class="bullets-heading">✨ ऑनलाइन जागरूकता अभियान:</div>
+            <ul class="year-section-list">
+                <li>अनुभवी आयुर्वेदिक वैद्यों के माध्यम से ऑनलाइन कॉन्फ्रेंस का आयोजन किया गया, जिसमें लोगों को घर बैठे
+                    कोरोना से लड़ने और अपनी इम्यूनिटी बढ़ाने के वैज्ञानिक तरीके सिखाए गए।
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="covid-gap-box">
+        <h4 style="margin: 0 0 6px 0; color: #0d8456; font-size: 16px; font-weight: 700;">🔄 पुनः शुरुआत (August 2022
+            Launch)</h4>
+        <p style="margin: 0; font-size: 13.5px; color: #1b4332; line-height: 1.5;">
+            कोरोना काल के अनिवार्य अंतराल (गैप) के बाद, <b>अगस्त 2022</b> से जैन संघ पुणे द्वारा इस औषधालय को पूरी ऊर्जा
+            के साथ पुनः शुरू किया गया है। आज यह औषधालय पहले की तरह ही जन-जन की सेवा में अग्रणी भूमिका निभा रही है।
+        </p>
+    </div>
+
+    <div class="content-text"
+         style="margin-top: 35px; background-color: #ffffff; padding: 15px; border-radius: 12px; border: 2px dashed #0f9f68; box-shadow: 0 4px 10px rgba(0,0,0,0.02);">
+        <p style="text-align: center; font-style: italic; color: #0f9f68; font-weight: 700; font-size: 16px; margin: 0;">
+            "आइए, हम सब मिलकर तीर्थंकर प्रभु के अहिंसा के मार्ग पर चलें और शुद्ध, सात्विक एवं प्राचीन आयुर्वेद को अपने
+            जीवन का हिस्सा बनाएं।"
+        </p>
+    </div>
+
 </main>
 
 <div id="footer-placeholder"></div>
-
 </body>
 </html>
