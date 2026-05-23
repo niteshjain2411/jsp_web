@@ -3,17 +3,15 @@ package org.jsp.config;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
-import org.springframework.context.annotation.Bean;
+import jakarta.annotation.PostConstruct;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.ByteArrayInputStream;
 
 @Configuration
 public class FirebaseConfig {
 
-    @Bean
+    /*@Bean
     public FirebaseApp initializeFirebase() throws IOException {
         // Read the service account JSON from resources folder
         FirebaseOptions options;
@@ -31,5 +29,25 @@ public class FirebaseConfig {
         }
 
         return FirebaseApp.getInstance();
+    }*/
+
+    @PostConstruct
+    public void init() {
+        try {
+            // Reads the raw JSON string directly from the Cloud Run environment variable
+            String jsonKey = System.getenv("FIREBASE_CONFIG_JSON");
+
+            if (jsonKey != null) {
+                FirebaseOptions options = FirebaseOptions.builder()
+                        .setCredentials(GoogleCredentials.fromStream(new ByteArrayInputStream(jsonKey.getBytes())))
+                        .build();
+
+                if (FirebaseApp.getApps().isEmpty()) {
+                    FirebaseApp.initializeApp(options);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

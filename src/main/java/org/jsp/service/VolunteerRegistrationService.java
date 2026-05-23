@@ -35,16 +35,12 @@ public class VolunteerRegistrationService {
                 return ResponseEntity.badRequest().body(createErrorResponse("Please enter a valid age (1-120)"));
             }
 
-            boolean saved = firestoreService.saveData("volunteer_data", "volunteer_data", registration);
+            final String documentId = firestoreService.addData("volunteer_data", registration);
 
-            if (saved) {
-                Map<String, Object> response = new HashMap<>();
-                response.put("success", true);
-                response.put("message", "Registration saved successfully");
-                return ResponseEntity.ok(response);
-            } else {
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(createErrorResponse("Failed to save registration"));
-            }
+            Map<String, Object> response = new HashMap<>();
+            response.put("success", true);
+            response.put("message", "Registration saved successfully");
+            return ResponseEntity.ok(response);
 
         } catch (Exception e) {
             System.err.println("Error in saveRegistration: " + e.getMessage());
