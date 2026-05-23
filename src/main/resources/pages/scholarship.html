@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>छात्रवृत्ति एवं प्रतिभा सम्मान - Jain Sangh Pune | JSP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Modern Design System Matches The AnandShala Theme */
+        :root {
+            --primary-color: #1e6b7a;
+            --primary-light: #f0f7f8;
+            --secondary-color: #e5a914;
+            --secondary-light: #fffbeb;
+            --text-dark: #2d3748;
+            --text-muted: #5a6a85;
+            --bg-light: #fcfbfa;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --border-radius: 16px;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Noto Sans Devanagari', 'Open Sans', sans-serif;
+            background-color: #f7f5f2;
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Noto Sans Devanagari', 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .content {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Back Link Button */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            margin: 20px 0 0 20px;
+            padding: 10px 18px;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: var(--transition-smooth);
+        }
+        .back-link:hover {
+            transform: translateX(-5px);
+            background: var(--primary-light);
+        }
+
+        /* Main Heading */
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            position: relative;
+            border-left: none;
+            padding-left: 0;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary-color);
+            margin: 12px auto 0;
+            border-radius: 2px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            border-left: 5px solid var(--primary-color);
+            padding-left: 15px;
+            margin-top: 50px;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+        }
+
+        /* Intro Info Box */
+        .info-box {
+            font-size: 1.1rem;
+            color: #4a5568;
+            text-align: justify;
+            background: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            border-top: 4px solid var(--primary-color);
+            margin: 25px 0;
+        }
+        .info-box p {
+            margin-bottom: 15px;
+            color: #4a5568;
+        }
+        .info-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Dashboard Stats Grid Layout */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        @media (max-width: 850px) {
+            .stats-grid { grid-template-columns: 1fr; }
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            border-bottom: 4px solid var(--primary-light);
+            transition: var(--transition-smooth);
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-bottom-color: var(--primary-color);
+        }
+        .stat-card i {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            display: block;
+        }
+        .stat-number {
+            font-size: 2.3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* Special Features Callout Block (Key Features) */
+        .special-box {
+            background: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            border-left: 5px solid var(--secondary-color);
+            margin: 40px 0;
+        }
+        .special-box h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+        }
+
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .feature-item {
+            background: var(--bg-light);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+        .feature-item h4 {
+            margin: 0 0 8px 0;
+            color: var(--primary-color);
+            font-size: 1.15rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .feature-item p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #5a6a85;
+        }
+
+        /* Year/Courses Block Restyled */
+        .year-section {
+            background: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            margin-bottom: 30px;
+        }
+        .year-section h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        .year-section ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+            margin-top: 15px;
+        }
+        .year-section li {
+            position: relative;
+            padding-left: 30px;
+            font-size: 1.05rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+        .year-section li::before {
+            content: '🎓';
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        /* Custom States Info Callout */
+        .states-box {
+            background: linear-gradient(135deg, var(--primary-light) 0%, #e2eff2 100%);
+            border: 1px dashed var(--primary-color);
+            border-left: 5px solid var(--primary-color);
+            padding: 20px 25px;
+            margin: 35px 0;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.1rem;
+        }
+        .states-box i {
+            font-size: 1.6rem;
+            color: #e74c3c;
+        }
+
+        /* Student Database Table Container */
+        .table-section {
+            background: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            margin-top: 40px;
+        }
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        .student-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            min-width: 800px;
+        }
+        .student-table th {
+            background-color: var(--primary-color);
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 16px 20px;
+        }
+        .student-table td {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-color);
+            color: #4a5568;
+            font-size: 0.95rem;
+        }
+        .student-table tr:last-child td {
+            border-bottom: none;
+        }
+        .student-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+        .student-table tr:hover {
+            background-color: #f1f5f9;
+            transition: background 0.2s ease;
+        }
+        .student-name {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        .table-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .badge-10th { background-color: #e0f2fe; color: #0369a1; }
+        .badge-12th { background-color: #fef3c7; color: #b45309; }
+        .badge-comp { background-color: #dcfce7; color: #15803d; }
+    </style>
+</head>
+<body>
+
+<script src="header-loader.js"></script>
+<script src="footer-loader.js"></script>
+
+<div id="header-placeholder"></div>
+<a href="home.html" class="back-link"><i class="fas fa-arrow-left"></i>Back to Home</a>
+
+<main class="content">
+    <h1>छात्रवृत्ति एवं प्रतिभा सम्मान (Scholarships & Recognition)</h1>
+
+    <div class="content-text">
+        <div class="info-box">
+            <p>हमारे देश में कई बच्चे ऐसे हैं, जो बहुत ही प्रतिभावान और मेधावी हैं किन्तु परिवार की आर्थिक स्थिति कमजोर होने की वजह से बड़े कॉलेज और बड़े professional courses की fees नहीं दे पाते और उच्च शिक्षा से वंचित रह जाते हैं।</p>
+            <p><b>ऐसा कोई भी बच्चा अपने सपनों से वंचित न रहे</b>, इसलिए जैन संघ पुणे Scholarship योजना के तहत प्रति वर्ष कई मेधावी छात्रों की मदद कर रहा है।</p>
+        </div>
+
+        <h2 class="section-title"><i class="fa-solid fa-chart-line"></i> हमारा प्रभाव (Our Impact)</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <i class="fa-solid fa-calendar-check"></i>
+                <div class="stat-number">2014</div>
+                <div class="stat-label">से निरंतर सेवा (Since 2014)</div>
+            </div>
+            <div class="stat-card">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <div class="stat-number">100+</div>
+                <div class="stat-label">लाभान्वित छात्र (Students Benefited)</div>
+            </div>
+            <div class="stat-card">
+                <i class="fa-solid fa-map-location-dot"></i>
+                <div class="stat-number">7+ प्रान्त</div>
+                <div class="stat-label">विभिन्न प्रांत/राज्य (States Covered)</div>
+            </div>
+        </div>
+
+        <div class="states-box">
+            <i class="fa-solid fa-location-dot"></i>
+            <div>
+                <b>प्रांत / क्षेत्र:</b> महाराष्ट्र, कर्नाटक, तमिलनाडु, आंध्र प्रदेश, मध्य प्रदेश, पश्चिम बंगाल, बिहार आदि।
+            </div>
+        </div>
+
+        <div class="year-section">
+            <h3><i class="fa-solid fa-bookmark"></i> उच्च शिक्षण कोर्सेज हेतु विशेष सहयोग (Supported Courses)</h3>
+            <p>विशेष रूप से उच्च शिक्षण और तकनीकी कोर्सेज के लिए योग्य छात्र-छात्राओं को यह वित्तीय सहायता प्रदान की जाती है:</p>
+            <ul>
+                <li>Engineering</li>
+                <li>MBA</li>
+                <li>Science</li>
+                <li>MBBS</li>
+                <li>Graduate Courses</li>
+                <li>Post-Graduate Courses</li>
+            </ul>
+        </div>
+
+        <h2 class="section-title"><i class="fa-solid fa-star"></i> योजना की मुख्य विशेषताएं (Key Features)</h2>
+        <div class="special-box">
+            <div class="features-list">
+                <div class="feature-item">
+                    <h4><i class="fa-solid fa-hand-holding-dollar"></i> वित्तीय सहायता</h4>
+                    <p>कमजोर आर्थिक पृष्ठभूमि वाले मेधावी छात्रों की कॉलेज फीस का सीधा भुगतान किया जाता है।</p>
+                </div>
+                <div class="feature-item">
+                    <h4><i class="fa-solid fa-award"></i> प्रतिभा सम्मान</h4>
+                    <p>शैक्षणिक रूप से उत्कृष्ट प्रदर्शन करने वाले छात्रों को वार्षिक समारोह में सम्मानित किया जाता है।</p>
+                </div>
+                <div class="feature-item">
+                    <h4><i class="fa-solid fa-user-astronaut"></i> करियर गाइडेंस</h4>
+                    <p>स्कॉलरशिप के साथ-साथ छात्रों को सही करियर चुनने के लिए विशेषज्ञों द्वारा मेंटरशिप दी जाती है।</p>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title"><i class="fa-solid fa-users"></i> लाभान्वित छात्र (Students Facilitated in 2025)</h2>
+        <div class="table-section">
+            <div class="table-responsive">
+                <table class="student-table">
+                    <thead>
+                    <tr>
+                        <th><i class="fa-solid fa-user"></i> छात्र का नाम</th>
+                        <th><i class="fa-solid fa-user-friends"></i> पिता का नाम</th>
+                        <th><i class="fa-solid fa-award"></i> उपलब्धि / श्रेणी</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="student-name">Saurav</td>
+                        <td>Mr. R. K Jain</td>
+                        <td><span class="table-badge badge-10th">Scored above 85% in 10th Grade</span></td>
+                    </tr>
+                    <tr>
+                        <td class="student-name">Bhavya Saurabh Jain</td>
+                        <td>Saurabh Sudhir Jain</td>
+                        <td><span class="table-badge badge-10th">Scored above 85% in 10th Grade</span></td>
+                    </tr>
+                    <tr>
+                        <td class="student-name">Niral Bakliwal</td>
+                        <td>Vikas Bakliwal</td>
+                        <td><span class="table-badge badge-10th">Scored above 85% in 10th Grade</span></td>
+                    </tr>
+                    <tr>
+                        <td class="student-name">Visheshta jain</td>
+                        <td>Rohit jain</td>
+                        <td><span class="table-badge badge-10th">Scored above 85% in 10th Grade</span></td>
+                    </tr>
+                    <tr>
+                        <td class="student-name">Samyak jain</td>
+                        <td>Pradeep Kumar jain</td>
+                        <td><span class="table-badge badge-10th">Scored above 85% in 10th Grade</span></td>
+                    </tr>
+                    <tr>
+                        <td class="student-name">Samridhi Jain</td>
+                        <td>Dr Mukesh Jain</td>
+                        <td><span class="table-badge badge-12th">Scored above 85% in 12th Grade</span></td>
+                    </tr>
+                    <tr>
+                        <td class="student-name">Ishika jain</td>
+                        <td>Abhishek jain</td>
+                        <td><span class="table-badge badge-10th">Scored above 85% in 10th Grade</span></td>
+                    </tr>
+                    <tr>
+                        <td class="student-name">Anusha jain</td>
+                        <td>Saurabh jain</td>
+                        <td><span class="table-badge badge-comp">Cleared Competitive Exam</span></td>
+                    </tr>
+                    <tr>
+                        <td class="student-name">Vidit Vidyasagar Galatage</td>
+                        <td>Vidyasagar Galatagi</td>
+                        <td><span class="table-badge badge-12th">Scored above 85% in 12th Grade</span></td>
+                    </tr>
+                    <tr>
+                        <td class="student-name">Srishti jain</td>
+                        <td>Shubham jain</td>
+                        <td><span class="table-badge badge-10th">Scored above 85% in 10th Grade</span></td>
+                    </tr>
+                    <tr>
+                        <td class="student-name">Adi Barjatya</td>
+                        <td>Anand Barjatya</td>
+                        <td><span class="table-badge badge-10th">Scored above 85% in 10th Grade</span></td>
+                    </tr>
+                    <tr>
+                        <td class="student-name">Akshat jain</td>
+                        <td>Devender jain</td>
+                        <td><span class="table-badge badge-comp">Cleared Competitive Exam</span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div id="footer-placeholder"></div>
+
+</body>
+</html>

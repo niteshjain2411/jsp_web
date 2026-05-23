@@ -11,6 +11,7 @@
         :root {
             --primary-color: #2a7d8c;
             --secondary-color: #f4b41a;
+            --logo-text-color: #c62817; /* Matches the vibrant red from the logo image */
             --text-dark: #333;
             --light-bg: #fdfdfd;
             --border-color: #e0e0e0;
@@ -19,10 +20,10 @@
         /* Header Layout */
         header {
             background: linear-gradient(to bottom, var(--secondary-color) 0 6px, #ffffff 6px 100%);
-            padding: 30px 5%;
+            padding: 20px 5% 15px 2%;
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-end;
             box-shadow: 0 2px 10px rgba(0,0,0,0.06);
             position: sticky;
             top: 0;
@@ -31,60 +32,112 @@
 
         .logo-container {
             display: flex;
-            align-items: center;
-            gap: 18px;
+            align-items: flex-end;
+            padding-bottom: 10px;
+            gap: 14px;
+            line-height: 1;
         }
 
         .logo-img {
-            height: 60px;
+            height: 100px;
             width: auto;
+            display: block;
         }
 
         .logo {
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
-            color: var(--primary-color);
+            color: var(--logo-text-color);
             font-size: 2rem;
             text-decoration: none;
         }
 
-        nav {
+        /* Nav Right Container */
+        .nav-container {
             display: flex;
-            align-items: center;
+            flex-direction: column;
+            align-items: flex-end; /* Aligns tagline and nav links to the right */
+            gap: 8px; /* Space between tagline and navigation links */
         }
 
-        nav a {
+        /* Tagline Styling */
+        .header-tagline {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: orange;
+            font-style: italic;
+            margin: 0;
+            padding-bottom: 2rem;
+            padding-right: 20px; /* Aligns with the inner padding of nav links */
+        }
+
+        nav {
+            display: flex;
+            align-items: flex-end;
+            padding-bottom: 10px;
+            line-height: 1;
+        }
+
+        /* Base Navigation Links (Excluding dropdown items and donate button) */
+        nav > a:not(.donate-btn),
+        .nav-item > a {
             margin-left: 20px;
             text-decoration: none;
-            color: var(--text-dark);
+            color: var(--logo-text-color);
             font-weight: 600;
             font-size: 0.9rem;
             text-transform: uppercase;
+            padding-bottom: 10px;
+            position: relative;
+            transition: color 0.2s ease;
+        }
+
+        /* Animated Underline Effect on Hover */
+        nav > a:not(.donate-btn)::after,
+        .nav-item > a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: var(--logo-text-color);
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+
+        nav > a:not(.donate-btn):hover::after,
+        .nav-item:hover > a::after {
+            width: 100%;
+            left: 0;
         }
 
         .nav-item {
             position: relative;
         }
 
-        /* Caret for Dropdowns */
+        /* Caret Dropdown Setup */
         .nav-item > a {
-            position: relative;
             display: inline-flex;
             align-items: center;
         }
 
-        .nav-item > a::after {
-            content: '▾';
-            margin-left: 8px;
+        .nav-item > a .caret {
+            margin-left: 6px;
             font-size: 0.7rem;
-            color: var(--text-dark);
+            color: var(--logo-text-color);
             transition: transform 0.2s ease;
+            display: inline-block;
+        }
+
+        .nav-item:hover > a .caret {
+            transform: rotate(180deg);
         }
 
         /* Dropdown Menu */
         .nav-dropdown {
             position: absolute;
-            top: calc(100% + 8px);
+            top: calc(100% + 5px);
             left: 0;
             background: #fff;
             border: 1px solid var(--border-color);
@@ -101,10 +154,6 @@
             pointer-events: none;
         }
 
-        .nav-item:hover > a::after {
-            transform: rotate(180deg);
-        }
-
         .nav-item:hover .nav-dropdown {
             transform: translateY(0);
             opacity: 1;
@@ -112,14 +161,21 @@
             pointer-events: auto;
         }
 
+        /* Isolated dropdown links */
         .nav-dropdown a {
             display: block;
             padding: 14px 24px;
             margin: 0;
             color: var(--text-dark);
             font-size: 1rem;
+            text-transform: none;
+            text-decoration: none; /* Explicitly removes default browser underlines */
             border-bottom: 1px solid var(--border-color);
-            transition: background 0.18s, padding-left 0.18s;
+            transition: background 0.18s, padding-left 0.18s, color 0.18s;
+        }
+
+        .nav-dropdown a::after {
+            display: none !important;
         }
 
         .nav-dropdown a:last-child {
@@ -129,12 +185,14 @@
         .nav-dropdown a:hover {
             background: var(--light-bg);
             padding-left: 25px;
+            color: var(--logo-text-color);
+            text-decoration: none; /* Ensures no hover underline gets added */
         }
 
         /* Primary Button Style (Donate) */
         .donate-btn {
             background: var(--primary-color);
-            color: #fff;
+            color: #fff !important;
             padding: 10px 22px;
             border-radius: 5px;
             transition: background 0.3s ease;
@@ -151,23 +209,17 @@
         .join-us-link {
             display: inline-flex;
             align-items: center;
-            gap: 8px; /* Perfect spacing between icon and text */
-            color: var(--text-dark);
-            transition: color 0.2s ease;
+            gap: 8px;
         }
 
         .join-us-link i {
             font-size: 1.05rem;
-            color: var(--primary-color); /* Ties it beautifully to your brand color */
+            color: var(--primary-color);
             transition: transform 0.2s ease;
         }
 
-        .join-us-link:hover {
-            color: var(--primary-color);
-        }
-
         .join-us-link:hover i {
-            transform: scale(1.15) translateY(-1px); /* Playful nudge on hover */
+            transform: scale(1.15) translateY(-1px);
         }
     </style>
 </head>
@@ -178,30 +230,34 @@
         <img src="../images/JSP_logo.jpeg" alt="JSP Logo" class="logo-img">
         <a href="home.html" class="logo">JAIN SANGH PUNE</a>
     </div>
-    <nav>
-        <a href="home.html">Home</a>
-        <a href="jsp_foundation.html">JSP foundation</a>
 
-        <div class="nav-item">
-            <a href="#">Activities</a>
-            <div class="nav-dropdown">
-                <a href="mandirNirman.html">🛕 मंदिर निर्माण</a>
-                <a href="anandShala.html">🎮 आनंदशाला - खेल खेल में सीखे जैन धर्म</a>
-                <a href="sarakUtthan.html">🤝 सराक उत्थान</a>
-                <a href="tirthYatra.html">👣 तीर्थ यात्रा</a>
-                <a href="dharmarthAushadhlay.html">⚕️ धर्मार्थ औषधालय</a>
-                <a href="jirnodhar.html"> 🛠️ जीर्णोद्धार</a>
-                <a href="chhatravrittiAvamPratibbaSamman.html">🎓 छात्रवृत्ति एवं प्रतिभा सम्मान</a>
-                <a href="samajikKarya.html"> 🌍 सामाजिक कार्य</a>
+    <div class="nav-container">
+        <div class="header-tagline">जुड़ देखो, अच्छा लगता है</div>
+        <nav>
+            <a href="home.html">Home</a>
+            <a href="jsp_foundation.html">JSP foundation</a>
+
+            <div class="nav-item">
+                <a href="#">Activities <span class="caret">▾</span></a>
+                <div class="nav-dropdown">
+                    <a href="mandir_nirman.html">🛕 मंदिर निर्माण</a>
+                    <a href="anandshala.html">🎮 आनंदशाला - खेल खेल में सीखे जैन धर्म</a>
+                    <a href="saraak.html">🤝 सराक उत्थान</a>
+                    <a href="tirthYatra.html">👣 तीर्थ यात्रा</a>
+                    <a href="ausdhalaya.html">⚕️ धर्मार्थ औषधालय</a>
+                    <a href="jirnodhar.html"> 🛠️ जीर्णोद्धार</a>
+                    <a href="scholarship.html">🎓 छात्रवृत्ति एवं प्रतिभा सम्मान</a>
+                    <a href="samajik_karya.html"> 🌍 सामाजिक कार्य</a>
+                </div>
             </div>
-        </div>
 
-        <a href="donate-now.html" class="donate-btn">Donate Now</a>
+            <a href="donate-now.html" class="donate-btn">Donate Now</a>
 
-        <a href="volunteer-registration.html" class="join-us-link">
-            <i class="fas fa-user-plus"></i> Join Us
-        </a>
-    </nav>
+            <a href="volunteer-registration.html" class="join-us-link">
+                <i class="fas fa-user-plus"></i> Join Us
+            </a>
+        </nav>
+    </div>
 </header>
 
 </body>

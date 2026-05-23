@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>सामाजिक कार्य - Jain Sangh Pune | JSP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Compact & Color Enhancements */
+        .compact-hero {
+            background: linear-gradient(135deg, #4A154B 0%, #611f69 100%);
+            color: #ffffff;
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .section-title {
+            color: #0F4C5C;
+            border-left: 5px solid #E28743;
+            padding-left: 12px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        .service-feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .feature-card {
+            padding: 15px;
+            border-radius: 8px;
+            background: #ffffff;
+            border-top: 4px solid #4A154B;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: transform 0.2s;
+        }
+        .feature-card:hover { transform: translateY(-2px); }
+        .feature-card.color-1 { border-top-color: #4A154B; background-color: #FDFBFC; }
+        .feature-card.color-2 { border-top-color: #E28743; background-color: #FFFDF9; }
+        .feature-card.color-3 { border-top-color: #0F4C5C; background-color: #F5FAFA; }
+
+        .emergency-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .emergency-card {
+            padding: 15px;
+            border-radius: 8px;
+            color: white;
+        }
+        .covid-bg { background: linear-gradient(135deg, #1D3557 0%, #457B9D 100%); }
+        .flood-bg { background: linear-gradient(135deg, #5E503F 0%, #A9927D 100%); }
+
+        /* Dynamic wrapper adjusting height to prevent trimming */
+        .img-container {
+            width: 100%;
+            height: auto;
+            background: #fdfdfd;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .full-visible-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+<script src="header-loader.js"></script>
+<script src="footer-loader.js"></script>
+
+<div id="header-placeholder"></div>
+
+<a href="home.html" class="back-link">← Back to Home</a>
+
+<main class="content">
+
+    <div class="compact-hero">
+        <h1 style="color: #fff; margin: 0 0 8px 0; font-size: 28px;">सामाजिक कार्य (Social Service)</h1>
+        <p style="margin: 0; font-size: 15px; opacity: 0.95; line-height: 1.5;">
+            <b>Jain Sangh Pune</b> द्वारा वर्ष 2012 से निरंतर सामाजिक सेवा एवं जनकल्याण के कार्य किए जा रहे हैं। संगठन का उद्देश्य समाज के आर्थिक रूप से कमजोर, जरूरतमंद एवं प्रतिभाशाली लोगों को सहयोग प्रदान कर उन्हें आत्मनिर्भर एवं सशक्त बनाना है।
+        </p>
+    </div>
+
+    <h2 class="section-title">मुख्य सेवा गतिविधियाँ और पहल</h2>
+    <div class="service-feature-grid">
+        <div class="feature-card color-1">
+            <strong style="color: #4A154B; font-size: 16px; display: block; margin-bottom: 6px;">✨ शिक्षा में सहायता</strong>
+            <span style="font-size: 14px; color: #444;">आर्थिक रूप से कमजोर बच्चों की शिक्षा में सहायता प्रदान की जाती है, ताकि वे बेहतर भविष्य की ओर अग्रसर हो सकें।</span>
+        </div>
+        <div class="feature-card color-2">
+            <strong style="color: #E28743; font-size: 16px; display: block; margin-bottom: 6px;">✨ चिकित्सा सहयोग</strong>
+            <span style="font-size: 14px; color: #444;">जरूरतमंद परिवारों को चिकित्सा एवं स्वास्थ्य संबंधी आपात परिस्थितियों में आर्थिक सहयोग उपलब्ध कराया जाता है।</span>
+        </div>
+        <div class="feature-card color-3">
+            <strong style="color: #0F4C5C; font-size: 16px; display: block; margin-bottom: 6px;">✨ रोजगार मार्गदर्शन</strong>
+            <span style="font-size: 14px; color: #444;">युवाओं को रोजगार सहायता हेतु विभिन्न क्षेत्रों में रेफरेंस एवं मार्गदर्शन प्रदान किया जाता है, जिससे उन्हें बेहतर अवसर मिल सकें।</span>
+        </div>
+        <div class="feature-card color-1">
+            <strong style="color: #4A154B; font-size: 16px; display: block; margin-bottom: 6px;">✨ छात्र आवास व्यवस्था</strong>
+            <span style="font-size: 14px; color: #444;">विद्यार्थियों की सुविधा एवं सुरक्षित आवास व्यवस्था हेतु <b>Jain Sangh Pune Boys Hostel</b> का सफल संचालन भी किया गया।</span>
+        </div>
+        <div class="feature-card color-2" style="grid-column: span 2;">
+            <strong style="color: #E28743; font-size: 16px; display: block; margin-bottom: 6px;">✨ स्वरोजगार प्रोत्साहन</strong>
+            <span style="font-size: 14px; color: #444;">स्वरोजगार को बढ़ावा देने हेतु आटा चक्की, ऑयल मशीन आदि उपकरणों का वितरण किया गया, ताकि जरूरतमंद परिवार स्वयं का रोजगार प्रारंभ कर सम्मानपूर्वक जीवनयापन कर सकें।</span>
+        </div>
+    </div>
+
+    <div class="info-grid" style="margin-bottom: 30px;">
+        <div>
+            <div class="img-container">
+                <img src="../images/social_service/Social_service_1.jpg" alt="Social Service Work" class="full-visible-img">
+            </div>
+        </div>
+        <div class="info-card">
+            <div class="img-container">
+                <img src="../images/social_service/Social_service_2.jpg" alt="Social Service Material Distribution" class="full-visible-img">
+            </div>
+            <div class="img-container" style="margin-top: 10px;">
+                <img src="../images/social_service/oil_machine.jpg" alt="Social Service Material Distribution" class="full-visible-img">
+            </div>
+        </div>
+    </div>
+
+    <h2 class="section-title">आपातकालीन राहत और आपदा प्रबंधन</h2>
+    <div class="emergency-grid">
+        <div class="emergency-card covid-bg">
+            <h3 style="color: #fff; margin-top: 0; margin-bottom: 8px; font-size: 18px;">कोविड-19 संकट राहत</h3>
+            <p style="margin: 0; font-size: 14px; opacity: 0.9; line-height: 1.5;">लॉकडाउन के कठिन समय में Tamil Nadu, Karnataka एवं Maharashtra के अनेक गरीब एवं जरूरतमंद परिवारों को प्रतिमाह ₹1500–₹2000 तक की आर्थिक सहायता प्रदान की गई।</p>
+        </div>
+        <div class="emergency-card flood-bg">
+            <h3 style="color: #fff; margin-top: 0; margin-bottom: 8px; font-size: 18px;">2021 महाराष्ट्र बाढ़ राहत</h3>
+            <p style="margin: 0; font-size: 14px; opacity: 0.9; line-height: 1.5;">Maharashtra floods के दौरान Kolhapur एवं Sangli क्षेत्रों में प्रभावित परिवारों तक आवश्यक सामग्री पहुँचाई गई। इसके तहत लगभग 1000 राहत किटों का वितरण किया गया।</p>
+        </div>
+    </div>
+
+    <div class="info-grid" style="margin-bottom: 25px;">
+        <div class="info-card">
+            <h4 style="color: #1D3557; margin-bottom: 12px; margin-top: 5px;">📸 कोविड-19 सहायता गतिविधियाँ</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <div class="img-container"><img src="../images/social_service/Cov19_help_1.jpeg" alt="Covid-19 Relief Center" class="full-visible-img"></div>
+                <div class="img-container"><img src="../images/social_service/covid_help_11.jpeg" alt="Covid-19 Kit Distribution" class="full-visible-img"></div>
+            </div>
+        </div>
+        <div class="info-card">
+            <h4 style="color: #5E503F; margin-bottom: 12px; margin-top: 5px;">📸 जमीनी बाढ़ राहत अभियान</h4>
+            <div class="img-container">
+                <img src="../images/social_service/flood_relief.jpeg" alt="Ground Flood Relief Operations" class="full-visible-img">
+            </div>
+        </div>
+    </div>
+
+    <h3 style="color: #0F4C5C; font-size: 18px; margin-bottom: 12px;">बाढ़ राहत वितरण एवं जमीनी दौरे</h3>
+    <div class="info-grid" style="margin-bottom: 15px;">
+        <div style="grid-column: span 2;">
+            <div class="img-container">
+                <img src="../images/social_service/house_3.jpeg" alt="Affected Area Surveys" class="full-visible-img">
+            </div>
+        </div>
+    </div>
+
+    <div class="info-grid">
+        <div class="info-card">
+            <div class="img-container">
+                <img src="../images/social_service/Flood_relief_11.jpeg" alt="Flood Aid Materials Pack" class="full-visible-img">
+            </div>
+        </div>
+        <div class="info-card">
+            <div class="img-container">
+                <img src="../images/social_service/baadh_sangli_1.jpg" alt="Sangli Rescue Distribution" class="full-visible-img">
+            </div>
+        </div>
+        <div class="info-card">
+            <div class="img-container">
+                <img src="../images/social_service/Flood_relief_3.jpeg" alt="Flood Ground Logistics" class="full-visible-img">
+            </div>
+        </div>
+    </div>
+
+    <div class="content-text" style="margin-top: 35px; background-color: #F8F9FA; padding: 15px; border-radius: 8px; border: 1px dashed #611f69;">
+        <p style="text-align: center; font-style: italic; color: #611f69; font-weight: 600; font-size: 16px; margin: 0;">
+            "इन सभी सेवा कार्यों के माध्यम से संगठन निरंतर मानवता, सहयोग एवं सामाजिक उत्थान के मूल्यों को आगे बढ़ाने हेतु समर्पित है।"
+        </p>
+    </div>
+
+</main>
+
+<div id="footer-placeholder"></div>
+</body>
+</html>

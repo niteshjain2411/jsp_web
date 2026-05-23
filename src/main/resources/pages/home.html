@@ -195,7 +195,7 @@
             margin-bottom: 6px;
             letter-spacing: 0.3px;
         }
-        .event-main-title {
+        .event-banner-title {
             margin: 2px 0;
             font-size: 1.15rem;
             color: var(--primary-dark);
@@ -310,47 +310,58 @@
             text-decoration: underline;
         }
 
-        /* Aggregated Impact/Stats Matrix styling */
+        /* Aggregated Impact/Stats Matrix styling - Smaller size & added backgrounds */
         .stats-section {
             padding: 30px 0 10px 0;
         }
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); /* Reduced min size from 200px to 160px */
+            gap: 15px; /* Tighter spacing */
             margin-top: 20px;
         }
         .stat-card {
-            background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
-            padding: 20px 15px;
+            padding: 14px 10px; /* Reduced internal padding */
             text-align: center;
-            box-shadow: var(--shadow-md);
+            box-shadow: var(--shadow-sm);
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
+
+        /* Individual grid item color assignments */
+        .stat-card:nth-child(1) { background-color: #f0f7f8; } /* Soft Teal */
+        .stat-card:nth-child(2) { background-color: #fdf8eb; } /* Soft Yellow */
+        .stat-card:nth-child(3) { background-color: #fff4f2; } /* Soft Red/Pink */
+        .stat-card:nth-child(4) { background-color: #f3f0fa; } /* Soft Purple */
+        .stat-card:nth-child(5) { background-color: #ebf6ff; } /* Soft Blue */
+        .stat-card:nth-child(6) { background-color: #f0fbf4; } /* Soft Green */
+        .stat-card:nth-child(7) { background-color: #fbf2ff; } /* Soft Lavender */
+        .stat-card:nth-child(8) { background-color: #fffaf0; } /* Soft Orange */
+
         .stat-card:hover {
             transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
+            box-shadow: var(--shadow-md);
             border-color: var(--primary-color);
         }
         .stat-icon {
-            font-size: 2rem;
-            margin-bottom: 10px;
+            font-size: 1.6rem; /* Slightly reduced icon size */
+            margin-bottom: 6px;
             display: inline-block;
         }
         .stat-number {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.5rem;
+            font-size: 1.25rem; /* Reduced font size from 1.5rem to 1.25rem */
             font-weight: 700;
             color: var(--primary-color);
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             letter-spacing: -0.5px;
         }
         .stat-label {
-            font-size: 0.9rem;
+            font-size: 0.8rem; /* Reduced label text size from 0.9rem to 0.8rem */
             color: #475569;
             font-weight: 600;
+            line-height: 1.3;
         }
 
         /* Adaptive Responsive Breakpoints */
@@ -367,8 +378,6 @@
 <div id="header-placeholder"></div>
 
 <section class="hero-slideshow">
-    <!-- Add all images from your images/home folder here -->
-    <!-- Ensure the first image has the 'active' class -->
     <img src="../images/home/sus_jain_mandir.jpeg" alt="Sus Digambar Jain Mandir" class="active">
     <img src="../images/home/Kalgi_1.jpg" alt="Ahimsa rally">
     <img src="../images/home/kalgi_3.jpg" alt="Kalgi">
@@ -407,7 +416,7 @@
             <h2>Our Impact | हमारी उपलब्धियां</h2>
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-icon"><img src="../images/JSP_sign_board.png" alt="Sign Board" style="width: 45%; height: auto;"></div>
+                    <div class="stat-icon"><img src="../images/JSP_sign_board.png" alt="Sign Board" style="width: 40px; height: auto;"></div>
                     <div class="stat-number">800+</div>
                     <div class="stat-label">Sign Boards Installed</div>
                 </div>
@@ -460,7 +469,7 @@
         <div style="height:500px; overflow:auto">
             <div class="event-header">
                 <span class="event-badge">प्रथम अधिवेशन एवं जन संवाद</span>
-                <h4 class="event-main-title">🌈 जैन संघ पुणे आयोजित 🌈</h4>
+                <h4 class="event-banner-title">🌈 जैन संघ पुणे आयोजित 🌈</h4>
                 <div class="event-date">🗓️ 31 May - रविवार (द्वितीय दिवस)</div>
             </div>
 
@@ -522,7 +531,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         const slides = document.querySelectorAll('.hero-slideshow img');
         let currentSlide = 0;
-        const slideInterval = 5000; // Change image every 5 seconds (5000ms)
+        const slideInterval = 5000;
 
         function nextSlide() {
             slides[currentSlide].classList.remove('active');
