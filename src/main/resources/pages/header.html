@@ -1,260 +1,470 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JSP Header Component</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <title>JSP Header Component - Premium Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --primary-color: #2a7d8c;
-            --secondary-color: #f4b41a;
-            --logo-text-color: #c62817; /* Matches the vibrant red from the logo image */
-            --text-dark: #333;
-            --light-bg: #fdfdfd;
-            --border-color: #e0e0e0;
+            --primary-teal: #1d6473;
+            --primary-glow: #2a7d8c;
+            --accent-gold: #f4b41a;
+            --logo-red: #c62817;
+            --text-dark: #222222;
+            --text-muted: #666666;
+            --light-bg: #f9fbfb;
+            --border-color: #eef2f3;
+            --shadow-premium: 0 10px 30px rgba(0, 0, 0, 0.06);
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Header Layout */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        /* Increased Height Header Base via padding adjustments */
         header {
-            background: linear-gradient(to bottom, var(--secondary-color) 0 6px, #ffffff 6px 100%);
-            padding: 20px 5% 15px 2%;
+            background: linear-gradient(to right, var(--accent-gold) 0, var(--accent-gold) 100%) top/100% 6px no-repeat,
+                        rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 22px 5%; /* Increased vertical padding for taller header */
             display: flex;
             justify-content: space-between;
-            align-items: flex-end;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+            align-items: center;
+            box-shadow: var(--shadow-premium);
             position: sticky;
             top: 0;
             z-index: 1000;
+            box-sizing: border-box;
         }
 
+        /* Branding/Logo System Layout */
         .logo-container {
             display: flex;
-            align-items: flex-end;
-            padding-bottom: 10px;
-            gap: 14px;
-            line-height: 1;
+            align-items: center; /* Centered alignment for taller layout structure */
+            gap: 15px;
+            text-decoration: none;
         }
 
+        /* Logo Size increased to 125% (65px -> 82px) */
         .logo-img {
-            height: 100px;
+            height: 82px;
             width: auto;
             display: block;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05));
+            transition: var(--transition-smooth);
         }
 
-        .logo {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            color: var(--logo-text-color);
-            font-size: 2rem;
-            text-decoration: none;
+        .logo-container:hover .logo-img {
+            transform: scale(1.03) rotate(1deg);
         }
 
-        /* Nav Right Container */
-        .nav-container {
+        .logo-text-block {
             display: flex;
             flex-direction: column;
-            align-items: flex-end; /* Aligns tagline and nav links to the right */
-            gap: 8px; /* Space between tagline and navigation links */
+            line-height: 1.2;
         }
 
-        /* Tagline Styling */
-        .header-tagline {
-            font-family: 'Open Sans', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            color: orange;
-            font-style: italic;
-            margin: 0;
-            padding-bottom: 2rem;
-            padding-right: 20px; /* Aligns with the inner padding of nav links */
-        }
-
-        nav {
-            display: flex;
-            align-items: flex-end;
-            padding-bottom: 10px;
+        .logo-main-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            color: var(--logo-red);
+            font-size: 1.9rem;
+            letter-spacing: -0.5px;
             line-height: 1;
         }
 
-        /* Base Navigation Links (Excluding dropdown items and donate button) */
-        nav > a:not(.donate-btn),
+        /* Spiritual Tagline beautifully integrated below the Logo Title */
+        .header-tagline {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #e67e22;
+            font-style: italic;
+            margin: 6px 0 0 2px;
+            letter-spacing: 0.5px;
+            display: block;
+            animation: softGlow 3s infinite alternate;
+            text-align: left;
+        }
+
+        @keyframes softGlow {
+            0% { opacity: 0.85; text-shadow: 0 0 0px rgba(230,126,34,0); }
+            100% { opacity: 1; text-shadow: 0 0 8px rgba(230,126,34,0.15); }
+        }
+
+        /* Nav Right Alignment Container */
+        .nav-container {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Main Navigation Links */
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav > a:not(.donate-btn):not(.join-us-btn),
         .nav-item > a {
-            margin-left: 20px;
+            margin-left: 24px;
             text-decoration: none;
-            color: var(--logo-text-color);
-            font-weight: 600;
+            color: var(--primary-teal);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
             font-size: 0.9rem;
-            text-transform: uppercase;
-            padding-bottom: 10px;
+            letter-spacing: 0.3px;
+            padding: 10px 0;
             position: relative;
-            transition: color 0.2s ease;
-        }
-
-        /* Animated Underline Effect on Hover */
-        nav > a:not(.donate-btn)::after,
-        .nav-item > a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background-color: var(--logo-text-color);
-            transition: width 0.3s ease, left 0.3s ease;
-        }
-
-        nav > a:not(.donate-btn):hover::after,
-        .nav-item:hover > a::after {
-            width: 100%;
-            left: 0;
-        }
-
-        .nav-item {
-            position: relative;
-        }
-
-        /* Caret Dropdown Setup */
-        .nav-item > a {
+            transition: var(--transition-smooth);
             display: inline-flex;
             align-items: center;
         }
 
+        nav > a:not(.donate-btn):not(.join-us-btn):hover,
+        .nav-item:hover > a {
+            color: var(--logo-red);
+        }
+
+        /* Advanced Underline Animation */
+        nav > a:not(.donate-btn):not(.join-us-btn)::after,
+        .nav-item > a::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: var(--logo-red);
+            border-radius: 4px;
+            transition: var(--transition-smooth);
+        }
+
+        nav > a:not(.donate-btn):not(.join-us-btn):hover::after,
+        .nav-item:hover > a::after {
+            width: 100%;
+        }
+
+        /* Dropdown Setup & Caret Interaction */
+        .nav-item {
+            position: relative;
+        }
+
         .nav-item > a .caret {
             margin-left: 6px;
-            font-size: 0.7rem;
-            color: var(--logo-text-color);
-            transition: transform 0.2s ease;
-            display: inline-block;
+            font-size: 0.75rem;
+            transition: transform 0.25s ease;
         }
 
         .nav-item:hover > a .caret {
             transform: rotate(180deg);
+            color: var(--logo-red);
         }
 
-        /* Dropdown Menu */
+        /* Modern Dropdown Menu Grid Design */
         .nav-dropdown {
             position: absolute;
-            top: calc(100% + 5px);
-            left: 0;
-            background: #fff;
+            top: 100%;
+            right: -50px;
+            background: #ffffff;
+            border-radius: 12px;
+            min-width: 380px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
-            min-width: 340px;
-            max-width: 480px;
-            box-shadow: 0 10px 24px rgba(0,0,0,0.14);
-            z-index: 999;
-            padding: 10px 0;
-            transform: translateY(-8px);
+            z-index: 1010;
+            padding: 12px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4px;
+            transform: translateY(15px);
             opacity: 0;
             visibility: hidden;
-            transition: transform 220ms ease, opacity 220ms ease, visibility 220ms;
+            transition: var(--transition-smooth);
             pointer-events: none;
         }
 
         .nav-item:hover .nav-dropdown {
-            transform: translateY(0);
+            transform: translateY(4px);
             opacity: 1;
             visibility: visible;
             pointer-events: auto;
         }
 
-        /* Isolated dropdown links */
+        /* Dropdown Option Items */
         .nav-dropdown a {
-            display: block;
-            padding: 14px 24px;
-            margin: 0;
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
             color: var(--text-dark);
-            font-size: 1rem;
-            text-transform: none;
-            text-decoration: none; /* Explicitly removes default browser underlines */
-            border-bottom: 1px solid var(--border-color);
-            transition: background 0.18s, padding-left 0.18s, color 0.18s;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: var(--transition-smooth);
         }
 
-        .nav-dropdown a::after {
-            display: none !important;
-        }
+        .nav-dropdown a::after { display: none !important; }
 
-        .nav-dropdown a:last-child {
-            border-bottom: none;
+        .nav-dropdown a .dropdown-icon {
+            margin-right: 14px;
+            font-size: 1.2rem;
+            width: 24px;
+            text-align: center;
         }
 
         .nav-dropdown a:hover {
             background: var(--light-bg);
-            padding-left: 25px;
-            color: var(--logo-text-color);
-            text-decoration: none; /* Ensures no hover underline gets added */
+            color: var(--primary-glow);
+            padding-left: 22px;
         }
 
-        /* Primary Button Style (Donate) */
+        /* Action Buttons */
         .donate-btn {
-            background: var(--primary-color);
-            color: #fff !important;
-            padding: 10px 22px;
-            border-radius: 5px;
-            transition: background 0.3s ease;
-            margin-left: 20px;
+            background: linear-gradient(135deg, var(--logo-red) 0%, #a3190c 100%);
+            color: #ffffff !important;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.88rem;
+            letter-spacing: 0.5px;
+            padding: 11px 24px;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(198, 40, 23, 0.25);
+            margin-left: 25px;
             text-decoration: none;
-            display: inline-block;
+            transition: var(--transition-smooth);
         }
 
         .donate-btn:hover {
-            background: #1e5e6a;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(198, 40, 23, 0.35);
+            background: linear-gradient(135deg, #a3190c 0%, #821005 100%);
         }
 
-        /* Enhanced Join Us Link Style */
-        .join-us-link {
+        /* Beautified Join Us Link Button */
+        .join-us-btn {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            background-color: transparent;
+            color: var(--primary-teal) !important;
+            border: 2px solid var(--primary-teal);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.88rem;
+            letter-spacing: 0.5px;
+            padding: 9px 22px;
+            border-radius: 30px;
+            margin-left: 15px;
+            text-decoration: none;
+            height: 40px;
+            box-sizing: border-box;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
         }
 
-        .join-us-link i {
-            font-size: 1.05rem;
-            color: var(--primary-color);
-            transition: transform 0.2s ease;
+        .join-us-btn i {
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
         }
 
-        .join-us-link:hover i {
-            transform: scale(1.15) translateY(-1px);
+        .join-us-btn:hover {
+            color: #ffffff !important;
+            background-color: var(--primary-teal);
+            box-shadow: 0 4px 15px rgba(29, 100, 115, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .join-us-btn:hover i {
+            transform: translateX(3px) scale(1.1);
+        }
+
+        /* Hidden Checkbox & Burger Trigger for Mobile Viewports */
+        .mobile-menu-checkbox {
+            display: none;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 6px;
+            padding: 10px;
+            z-index: 1050;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 26px;
+            height: 3px;
+            background-color: var(--primary-teal);
+            border-radius: 2px;
+            transition: var(--transition-smooth);
+        }
+
+        /* -----------------------------------------------------------
+           RESPONSIVE DESIGN (TABLETS & SMARTPHONES)
+        ----------------------------------------------------------- */
+        @media (max-width: 1024px) {
+            header {
+                padding: 15px 4%;
+            }
+            .logo-main-title { font-size: 1.6rem; }
+            .logo-img { height: 72px; }
+            .header-tagline { font-size: 0.85rem; }
+            nav > a:not(.donate-btn):not(.join-us-btn), .nav-item > a { margin-left: 14px; font-size: 0.85rem; }
+            .donate-btn { margin-left: 15px; padding: 10px 18px; }
+            .join-us-btn { margin-left: 10px; padding: 8px 18px; }
+        }
+
+        @media (max-width: 868px) {
+            header {
+                padding: 12px 4%;
+            }
+            .logo-img { height: 65px; } /* Slightly scaled down on tiny devices to prevent crowding */
+            .logo-main-title { font-size: 1.4rem; }
+            .header-tagline { font-size: 0.8rem; margin-top: 3px; }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            /* Main navigation transformed into sidebar panel */
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 290px;
+                height: 100vh;
+                background: #ffffff;
+                box-shadow: -10px 0 30px rgba(0,0,0,0.08);
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 100px 30px 40px 30px;
+                box-sizing: border-box;
+                transition: var(--transition-smooth);
+                overflow-y: auto;
+                z-index: 1040;
+            }
+
+            nav > a:not(.donate-btn):not(.join-us-btn), .nav-item {
+                width: 100%;
+                margin-left: 0;
+                margin-bottom: 15px;
+            }
+
+            nav > a:not(.donate-btn):not(.join-us-btn), .nav-item > a {
+                font-size: 1.05rem;
+                width: 100%;
+                padding: 12px 0;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            nav > a:not(.donate-btn):not(.join-us-btn)::after, .nav-item > a::after {
+                display: none;
+            }
+
+            /* Dropdown mobile adjustments */
+            .nav-item:hover .nav-dropdown {
+                position: relative;
+                top: 0;
+                right: 0;
+                transform: none;
+                opacity: 1;
+                visibility: visible;
+                pointer-events: auto;
+                box-shadow: none;
+                border: none;
+                min-width: 100%;
+                padding-left: 15px;
+                background-color: var(--light-bg);
+            }
+
+            .donate-btn {
+                margin-left: 0;
+                margin-top: 15px;
+                width: 100%;
+                text-align: center;
+                box-sizing: border-box;
+            }
+
+            .join-us-btn {
+                margin-left: 0;
+                margin-top: 15px;
+                width: 100%;
+                justify-content: center;
+            }
+
+            /* Mobile opening trigger logic */
+            .mobile-menu-checkbox:checked ~ nav {
+                right: 0;
+            }
+
+            .mobile-menu-checkbox:checked ~ .mobile-menu-btn span:nth-child(1) {
+                transform: translateY(9px) rotate(45deg);
+            }
+
+            .mobile-menu-checkbox:checked ~ .mobile-menu-btn span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .mobile-menu-checkbox:checked ~ .mobile-menu-btn span:nth-child(3) {
+                transform: translateY(-9px) rotate(-45deg);
+            }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo-container">
+    <a href="home.html" class="logo-container">
         <img src="../images/JSP_logo.jpeg" alt="JSP Logo" class="logo-img">
-        <a href="home.html" class="logo">JAIN SANGH PUNE</a>
-    </div>
+        <div class="logo-text-block">
+            <span class="logo-main-title">JAIN SANGH PUNE</span>
+            <span class="header-tagline">जुड़ देखो, अच्छा लगता है</span>
+        </div>
+    </a>
 
     <div class="nav-container">
-        <div class="header-tagline">जुड़ देखो, अच्छा लगता है</div>
+
+        <input type="checkbox" id="menu-toggle" class="mobile-menu-checkbox">
+
+        <label for="menu-toggle" class="mobile-menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
         <nav>
             <a href="home.html">Home</a>
             <a href="jsp_foundation.html">JSP foundation</a>
 
             <div class="nav-item">
-                <a href="#">Activities <span class="caret">▾</span></a>
+                <a href="#">Activities <span class="caret">▼</span></a>
                 <div class="nav-dropdown">
-                    <a href="mandir_nirman.html">🛕 मंदिर निर्माण</a>
-                    <a href="anandshala.html">🎮 आनंदशाला - खेल खेल में सीखे जैन धर्म</a>
-                    <a href="saraak.html">🤝 सराक उत्थान</a>
-                    <a href="tirthYatra.html">👣 तीर्थ यात्रा</a>
-                    <a href="ausdhalaya.html">⚕️ धर्मार्थ औषधालय</a>
-                    <a href="jirnodhar.html"> 🛠️ जीर्णोद्धार</a>
-                    <a href="scholarship.html">🎓 छात्रवृत्ति एवं प्रतिभा सम्मान</a>
-                    <a href="samajik_karya.html"> 🌍 सामाजिक कार्य</a>
+                    <a href="mandir_nirman.html"><span class="dropdown-icon">🛕</span> मंदिर निर्माण</a>
+                    <a href="anandshala.html"><span class="dropdown-icon">🎮</span> आनंदशाला (पाठशाला)</a>
+                    <a href="saraak.html"><span class="dropdown-icon">🤝</span> सराक उत्थान</a>
+                    <a href="tirthYatra.html"><span class="dropdown-icon">👣</span> तीर्थ यात्रा</a>
+                    <a href="ausdhalaya.html"><span class="dropdown-icon">⚕️</span> धर्मार्थ औषधालय</a>
+                    <a href="jirnodhar.html"><span class="dropdown-icon">🛠️</span> प्राचीन जीर्णोद्धार</a>
+                    <a href="scholarship.html"><span class="dropdown-icon">🎓</span> छात्रवृत्ति सम्मान</a>
+                    <a href="samajik_karya.html"><span class="dropdown-icon">🌍</span> सामाजिक कार्य</a>
                 </div>
             </div>
 
             <a href="donate-now.html" class="donate-btn">Donate Now</a>
 
-            <a href="volunteer-registration.html" class="join-us-link">
-                <i class="fas fa-user-plus"></i> Join Us
+            <a href="volunteer-registration.html" class="join-us-btn">
+                Join Us <i class="fas fa-arrow-right"></i>
             </a>
         </nav>
     </div>
