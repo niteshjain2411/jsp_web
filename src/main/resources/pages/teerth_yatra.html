@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>तीर्थ यात्रा - Jain Sangh Pune | JSP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Exact Theme Variables extracted from scholarship.html / mandir_nirman.html */
+        :root {
+            --purple-primary: #4A154B;
+            --purple-dark: #611f69;
+            --orange-secondary: #E28743;
+            --teal-dark: #0F4C5C;
+            --teal-light: #F5FAFA;
+            --text-dark: #444444;
+            --light-bg: #F8F9FA;
+            --border-color: #e2e8f0;
+            --card-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            --transition: all 0.2s ease;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-dark);
+            background-color: #fff;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .content {
+            padding: 10px 4% 40px;
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        /* Compact Hero Styling matching scholarship.html */
+        .compact-hero {
+            background: yellowgreen url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+            color: #ffffff;
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--teal-dark);
+            border-left: 5px solid var(--orange-secondary);
+            padding-left: 12px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        /* Intro Info Box matching scholarship.html */
+        .info-box {
+            background-color: var(--teal-light);
+            border-top: 4px solid var(--teal-dark);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 25px;
+        }
+        .info-box p {
+            margin: 0 0 10px 0;
+            font-size: 14px;
+            color: var(--text-dark);
+        }
+        .info-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Stats Grid Layout */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            padding: 15px;
+            border-radius: 8px;
+            color: white;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .stat-card.color-purple { background: linear-gradient(135deg, var(--purple-primary) 0%, var(--purple-dark) 100%); }
+        .stat-card.color-orange { background: linear-gradient(135deg, var(--orange-secondary) 0%, #f4a261 100%); }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .stat-label {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        /* States Box Callout */
+        .states-box {
+            background-color: #FFFDF9;
+            border-top: 4px solid var(--orange-secondary);
+            padding: 12px 15px;
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        /* Service Feature Grid matching scholarship.html */
+        .service-feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .feature-card {
+            padding: 15px;
+            border-radius: 8px;
+            background: #ffffff;
+            border-top: 4px solid var(--purple-primary);
+            box-shadow: var(--card-shadow);
+            transition: transform 0.2s;
+        }
+        .feature-card:hover { transform: translateY(-2px); }
+        .feature-card.color-1 { border-top-color: var(--purple-primary); background-color: #FDFBFC; }
+        .feature-card.color-2 { border-top-color: var(--orange-secondary); background-color: #FFFDF9; }
+        .feature-card.color-3 { border-top-color: var(--teal-dark); background-color: var(--teal-light); }
+
+        .feature-card b {
+            font-size: 16px;
+            display: block;
+            margin-bottom: 6px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .feature-card span {
+            font-size: 14px;
+            color: var(--text-dark);
+        }
+
+        /* --- UPDATED UNIFORM 2-COLUMN IMAGE GALLERY --- */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Strict 2 images per row */
+            gap: 10px; /* Reduced gaps between frames */
+            margin-bottom: 25px;
+        }
+
+        .gallery-card {
+            width: 100%;
+            height: 280px; /* Uniform frame size for all photos */
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Fits perfectly, completely removing white spaces */
+            display: block;
+        }
+
+        /* Responsive check: Stack 1 column only on very small mobile screens */
+        @media (max-width: 500px) {
+            .image-gallery {
+                grid-template-columns: 1fr;
+            }
+            .gallery-card {
+                height: 220px;
+            }
+        }
+
+        /* Year Section Unordered List formatting - VERTICAL LAYOUT */
+        .year-section-list {
+            padding-left: 20px;
+            margin: 0;
+            font-size: 14px;
+            color: var(--text-dark);
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+        .year-section-list li {
+            position: relative;
+            list-style: none;
+            padding-left: 25px;
+        }
+        .year-section-list li::before {
+            content: '🚩';
+            position: absolute;
+            left: 0;
+            top: -1px;
+        }
+
+        /* Bottom dashed notice matching original styling */
+        .bottom-notice-block {
+            margin-top: 35px;
+            background-color: var(--light-bg);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px dashed var(--purple-dark);
+        }
+        .bottom-notice-text {
+            text-align: center;
+            font-style: italic;
+            color: var(--purple-dark);
+            font-weight: 600;
+            font-size: 15px;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<script src="header-loader.js"></script>
+<script src="footer-loader.js"></script>
+
+<div id="header-placeholder"></div>
+
+<a href="home.html" class="back-link">← Back to Home</a>
+
+<main class="content">
+
+    <div class="compact-hero">
+        <h1 style="color: #fff; margin: 0 0 8px 0; font-size: 28px; font-family: 'Montserrat', sans-serif; font-weight: 700;">
+            तीर्थ यात्रा</h1>
+    </div>
+
+    <div class="content-text">
+        <div class="info-box">
+            <p>जैन संघ पुणे गत कई वर्षों से सामूहिक तीर्थ यात्राओं का सफल आयोजन कर रहा है। इन यात्राओं का मुख्य उद्देश्य जिन धर्म प्रभावना, जैन तीर्थों के प्रति जागरूकता का विकास, मुनि दर्शन एवं आहार-विहार लाभ और सामूहिक पुण्य अर्जन करना है।</p>
+            <p>इन पवित्र यात्राओं के माध्यम से, श्रावक अपनी आस्था को सुदृढ़ करते हैं, धर्म के प्रति जुड़ाव महसूस करते हैं और साथ ही समाज में पारस्परिक वात्सल्य भाव और संगठन को बढ़ावा मिलता है।</p>
+        </div>
+
+        <h2 class="section-title">हमारा प्रभाव (Our Impact)</h2>
+        <div class="stats-grid">
+            <div class="stat-card color-purple">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">तीर्थ यात्राओं का सफल आयोजन (Pilgrimages Organized)</div>
+            </div>
+            <div class="stat-card color-orange">
+                <div class="stat-number">250+</div>
+                <div class="stat-label">प्रति वर्ष जुड़ने वाले यात्री (Annual Yatris from MH)</div>
+            </div>
+        </div>
+
+        <h2 class="section-title">योजना की मुख्य विशेषताएं (Key Features)</h2>
+        <div class="service-feature-grid">
+            <div class="feature-card color-1">
+                <b>🌸 सुव्यवस्थित प्रबंधन</b>
+                <span>सभी तीर्थ यात्रियों के लिए सुरक्षित, सुलभ and आरामदायक यात्रा की संपूर्ण व्यवस्था की जाती है।</span>
+            </div>
+            <div class="feature-card color-2">
+                <b>🌸 धार्मिक एवं आध्यात्मिक लाभ</b>
+                <span>यात्रा के दौरान मुनि दर्शन, आहार-विहार लाभ, सामूहिक भक्ति-आरती और धर्म चर्चा का लाभ मिलता है।</span>
+            </div>
+            <div class="feature-card color-3">
+                <b>🌸 धरोहर के प्रति जागरूकता</b>
+                <span>प्राचीन और सुदूर क्षेत्रों में स्थित जैन तीर्थों के इतिहास और उनके संरक्षण के प्रति समाज को जागरूक किया जाता है।</span>
+            </div>
+        </div>
+
+        <div class="video-container" style="margin-bottom: 25px;">
+            <iframe width="100%" height="400" src="https://www.youtube.com/embed/ELu3Dp0Rgxo?si=xfJsyBdHDenVmX9O" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius: 8px;"></iframe>
+        </div>
+
+        <div class="image-gallery">
+            <div class="gallery-card">
+                <img src="../images/teerth_yatra/teerth_yatra_jintoor_2.jpeg" alt="Teerth Yatra Jintoor">
+            </div>
+            <div class="gallery-card">
+                <img src="../images/teerth_yatra/teerth_yatra_jintoor_1.jpeg" alt="Teerth Yatra Jintoor">
+            </div>
+            <div class="gallery-card">
+                <img src="../images/teerth_yatra/teerth_yatra_3.jpg" alt="Teerth Yatra Jintoor">
+            </div>
+            <div class="gallery-card">
+                <img src="../images/teerth_yatra/teerth_yatra_1.jpeg" alt="Teerth Yatra Jintoor">
+            </div>
+            <div class="gallery-card">
+                <img src="../images/teerth_yatra/sravanbelgola_pujan.jpg" alt="Sravanbelgola Pujan">
+            </div>
+            <div class="gallery-card">
+                <img src="../images/teerth_yatra/teerth_yatra_1.jpg" alt="Abhishek Pojan vyavastha">
+            </div>
+            <div class="gallery-card">
+                <img src="../images/teerth_yatra/teerth_yatra_2.jpg" alt="Shikhar ji">
+            </div>
+            <div class="gallery-card">
+                <img src="../images/teerth_yatra/teerth_yatra_shikhar_ji_old.jpeg" alt="Shikhar ji">
+            </div>
+        </div>
+        <div class="gallery-card">
+            <img src="../images/teerth_yatra/Shikhar_ji_2025.jpeg" alt="Shikhar Ji">
+        </div>
+
+        <h2 class="section-title">आयोजित की गई प्रमुख यात्राएं (Major Pilgrimages Completed)</h2>
+        <div class="info-card" style="background-color: #FFFDF9; border-top: 4px solid var(--orange-secondary); margin-bottom: 25px; padding: 15px; border-radius: 8px; box-shadow: var(--card-shadow);">
+            <p style="margin: 0 0 12px 0; font-size: 14px; color: var(--text-dark); font-weight: 600;">जैन संघ पुणे द्वारा अब तक देश के कोने-कोने में स्थित पवित्र जैन सिद्धक्षेत्रों एवं अतिशय क्षेत्रों की यात्राएं आयोजित की जा चुकी हैं:</p>
+            <ul class="year-section-list">
+                <li><b>तीर्थराज सम्मेद शिखर जी:</b> 7 भव्य यात्राएं (जिसमें गत 3 वर्षों से प्रति वर्ष महाराष्ट्र के 250 तीर्थ यात्री सम्मिलित हो रहे हैं)</li>
+                <li><b>अष्टापद तीर्थ क्षेत्र:</b> 108 यात्रियों का दल</li>
+                <li><b>श्री गिरनार जी (नेमिनाथ भगवान मोक्षस्थली):</b> 3 सफल यात्राएं</li>
+                <li><b>अंतरिक्ष पार्श्वनाथ:</b> 10 से अधिक यात्राएं</li>
+                <li><b>तमिलनाडु क्षेत्र:</b> 2 विशेष यात्राएं</li>
+                <li><b>कर्नाटक क्षेत्र:</b> 3 विशेष यात्राएं</li>
+            </ul>
+        </div>
+
+        <div class="states-box">
+            <b>📍 महाराष्ट्र के स्थानीय तीर्थ क्षेत्र:</b> दहिगांव, कलिकुण्ड, फलटण, जिन्तूर, कुंथलगिरि, कुम्भोज बाहुबली आदि क्षेत्रों की अनेक लघु एवं दीर्घ यात्राओं का पुण्य अर्जन किया जा चुका है।
+        </div>
+
+        <div class="bottom-notice-block">
+            <p class="bottom-notice-text">
+                "तीर्थ वंदना से आत्मा निर्मल होती है और धर्म के प्रति अनुराग प्रगाढ़ होता है।"
+            </p>
+        </div>
+
+    </div>
+</main>
+
+<div id="footer-placeholder"></div>
+
+</body>
+</html>

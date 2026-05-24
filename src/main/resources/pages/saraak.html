@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>सराक उत्थान - Jain Sangh Pune | JSP</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
         /* Compact & Color Enhancements matching Samajik Karya */
@@ -43,7 +43,7 @@
         .feature-card.color-2 { border-top-color: #E28743; background-color: #FFFDF9; }
         .feature-card.color-3 { border-top-color: #0F4C5C; background-color: #F5FAFA; }
 
-        /* Sarak Diaspora Cards - Updated to high-contrast light backgrounds */
+        /* Sarak Diaspora Cards */
         .diaspora-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -105,6 +105,80 @@
         .video-container iframe {
             width: 100%;
             display: block;
+        }
+
+        /* कस्टमाइज्ड इन्फो-ग्रिड रूप (JSP Contribution Stats Info-Grid Form) */
+        .stats-info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 Columns Grid like image grids */
+            gap: 15px;
+            margin: 20px 0 30px 0;
+        }
+        .stats-info-box {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .stats-info-box:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(15, 76, 92, 0.08);
+        }
+
+        /* लेफ्ट थिक बॉर्डर वेरिएशन्स */
+        .border-blue   { border-left: 5px solid #2B6CB0; background: #FAFDFE; }
+        .border-teal   { border-left: 5px solid #319795; background: #FAFEFD; }
+        .border-amber  { border-left: 5px solid #D97706; background: #FFFDF9; }
+        .border-slate  { border-left: 5px solid #475569; background: #FBFBFC; }
+        .border-pink   { border-left: 5px solid #D017A0; background: #FCFAF6; }
+        .border-purple { border-left: 5px solid #6D28D9; background: #FAF9FE; }
+        .border-red    { border-left: 5px solid #E53E3E; background: #FFF9F9; }
+        .border-green  { border-left: 5px solid #16A34A; background: #F9FCFA; }
+
+        .info-grid-icon {
+            font-size: 1.5rem;
+            line-height: 1;
+            padding-top: 2px;
+        }
+        .info-grid-details {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .info-grid-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+        /* टाइटल कलर्स मैचिंग बॉर्डर */
+        .border-blue .info-grid-title   { color: #2B6CB0; }
+        .border-teal .info-grid-title   { color: #319795; }
+        .border-amber .info-grid-title  { color: #D97706; }
+        .border-slate .info-grid-title  { color: #475569; }
+        .border-pink .info-grid-title   { color: #D017A0; }
+        .border-purple .info-grid-title { color: #6D28D9; }
+        .border-red .info-grid-title    { color: #E53E3E; }
+        .border-green .info-grid-title  { color: #16A34A; }
+
+        .info-grid-desc {
+            font-size: 14px;
+            color: #334155;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 768px) {
+            .diaspora-grid { grid-template-columns: 1fr; }
+            .stats-info-grid { grid-template-columns: 1fr; } /* Mobile folds into 1 column */
+            .stats-info-box { padding: 14px 16px; }
+            .info-grid-title { font-size: 1.2rem; }
         }
     </style>
 </head>
@@ -178,6 +252,75 @@
             <strong style="color: #4A154B; font-size: 16px; display: block; margin-bottom: 6px;">✨ Holistic Development</strong>
             <span style="font-size: 14px; color: #444;">Sowing the seeds of moral virtues and ethical values for a meaningful human life.</span>
         </div>
+    </div>
+
+    <h3 style="color: #0F4C5C; font-size: 18px; margin-bottom: 4px; margin-top: 30px;">सराक उत्थान प्रमुख कार्य एवं उपलब्धियां | Key Metrics</h3>
+    <div class="stats-info-grid">
+
+        <div class="stats-info-box border-blue">
+            <div class="info-grid-icon">🗓️</div>
+            <div class="info-grid-details">
+                <div class="info-grid-title">प्रारंभ वर्ष 2022</div>
+                <div class="info-grid-desc">कल्याणकारी प्रोजेक्ट्स एवं सामाजिक उत्थान के कार्यों का नियमित संचालन।</div>
+            </div>
+        </div>
+
+        <div class="stats-info-box border-teal">
+            <div class="info-grid-icon">📍</div>
+            <div class="info-grid-details">
+                <div class="info-grid-title">कार्य क्षेत्र: 4 राज्य</div>
+                <div class="info-grid-desc">पश्चिम बंगाल, झारखंड, ओडिशा और बिहार के सुदूर अंचलों में विस्तृत सेवा।</div>
+            </div>
+        </div>
+
+        <div class="stats-info-box border-amber">
+            <div class="info-grid-icon">🤝</div>
+            <div class="info-grid-details">
+                <div class="info-grid-title">25,000+ कुल पहुँच</div>
+                <div class="info-grid-desc">स्थानीय सराक भाई-बहनों तक सीधी सामाजिक, शैक्षिक व सांस्कृतिक मदद।</div>
+            </div>
+        </div>
+
+        <div class="stats-info-box border-slate">
+            <div class="info-grid-icon">🏡</div>
+            <div class="info-grid-details">
+                <div class="info-grid-title">50+ सक्रिय गाँव</div>
+                <div class="info-grid-desc">जहाँ संगठन के कार्यकर्ता सीधे रूप से जमीनी स्तर पर जुड़कर कार्य कर रहे हैं।</div>
+            </div>
+        </div>
+
+        <div class="stats-info-box border-pink">
+            <div class="info-grid-icon">📖</div>
+            <div class="info-grid-details">
+                <div class="info-grid-title">30+ पाठशालाएँ</div>
+                <div class="info-grid-desc">गाँवों में बच्चों के नैतिक व धार्मिक विकास हेतु नित्य पाठशालाओं का संचालन।</div>
+            </div>
+        </div>
+
+        <div class="stats-info-box border-purple">
+            <div class="info-grid-icon">💪</div>
+            <div class="info-grid-details">
+                <div class="info-grid-title">125+ कार्यकर्ता</div>
+                <div class="info-grid-desc">समर्पित भैया-दीदी जो क्षेत्र में निरंतर निःस्वार्थ सेवा भाव से जुटे हुए हैं।</div>
+            </div>
+        </div>
+
+        <div class="stats-info-box border-red">
+            <div class="info-grid-icon">🚌</div>
+            <div class="info-grid-details">
+                <div class="info-grid-title">1000+ लाभार्थी</div>
+                <div class="info-grid-desc">श्रावकों को पावन सम्मेद शिखरजी सिद्धक्षेत्र की मंगल तीर्थ वंदना का लाभ।</div>
+            </div>
+        </div>
+
+        <div class="stats-info-box border-green">
+            <div class="info-grid-icon">🎓</div>
+            <div class="info-grid-details">
+                <div class="info-grid-title">200 सम्मानित छात्र</div>
+                <div class="info-grid-desc">मेधावी छात्र-छात्राओं को उच्च शिक्षा व प्रोत्साहन के लिए विशेष सम्मान।</div>
+            </div>
+        </div>
+
     </div>
 
     <div class="info-grid" style="margin-bottom: 25px;">

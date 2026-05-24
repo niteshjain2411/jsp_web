@@ -28,13 +28,12 @@
             background-color: #f5f5f5;
         }
 
-        /* Increased Height Header Base via padding adjustments */
         header {
             background: linear-gradient(to right, var(--accent-gold) 0, var(--accent-gold) 100%) top/100% 6px no-repeat,
                         rgba(255, 255, 255, 0.96);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
-            padding: 22px 5%; /* Increased vertical padding for taller header */
+            padding: 22px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -45,15 +44,13 @@
             box-sizing: border-box;
         }
 
-        /* Branding/Logo System Layout */
         .logo-container {
             display: flex;
-            align-items: center; /* Centered alignment for taller layout structure */
+            align-items: center;
             gap: 15px;
             text-decoration: none;
         }
 
-        /* Logo Size increased to 125% (65px -> 82px) */
         .logo-img {
             height: 82px;
             width: auto;
@@ -81,7 +78,6 @@
             line-height: 1;
         }
 
-        /* Spiritual Tagline beautifully integrated below the Logo Title */
         .header-tagline {
             font-family: 'Montserrat', sans-serif;
             font-size: 0.85rem;
@@ -100,13 +96,11 @@
             100% { opacity: 1; text-shadow: 0 0 8px rgba(230,126,34,0.15); }
         }
 
-        /* Nav Right Alignment Container */
         .nav-container {
             display: flex;
             align-items: center;
         }
 
-        /* Main Navigation Links */
         nav {
             display: flex;
             align-items: center;
@@ -133,7 +127,6 @@
             color: var(--logo-red);
         }
 
-        /* Advanced Underline Animation */
         nav > a:not(.donate-btn):not(.join-us-btn)::after,
         .nav-item > a::after {
             content: '';
@@ -152,7 +145,6 @@
             width: 100%;
         }
 
-        /* Dropdown Setup & Caret Interaction */
         .nav-item {
             position: relative;
         }
@@ -168,14 +160,14 @@
             color: var(--logo-red);
         }
 
-        /* Modern Dropdown Menu Grid Design */
+        /* Modern Dropdown Menu Grid Design - UPDATED FOR REDUCED WIDTH */
         .nav-dropdown {
             position: absolute;
             top: 100%;
-            right: -50px;
+            right: 0;
             background: #ffffff;
             border-radius: 12px;
-            min-width: 380px;
+            min-width: 240px;
             box-shadow: 0 15px 40px rgba(0,0,0,0.12);
             border: 1px solid var(--border-color);
             z-index: 1010;
@@ -197,13 +189,12 @@
             pointer-events: auto;
         }
 
-        /* Dropdown Option Items */
         .nav-dropdown a {
             display: flex;
             align-items: center;
-            padding: 12px 16px;
+            padding: 10px 14px;
             color: var(--text-dark);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 600;
             text-decoration: none;
             border-radius: 8px;
@@ -213,19 +204,18 @@
         .nav-dropdown a::after { display: none !important; }
 
         .nav-dropdown a .dropdown-icon {
-            margin-right: 14px;
-            font-size: 1.2rem;
-            width: 24px;
+            margin-right: 12px;
+            font-size: 1.1rem;
+            width: 20px;
             text-align: center;
         }
 
         .nav-dropdown a:hover {
             background: var(--light-bg);
             color: var(--primary-glow);
-            padding-left: 22px;
+            padding-left: 18px;
         }
 
-        /* Action Buttons */
         .donate-btn {
             background: linear-gradient(135deg, var(--logo-red) 0%, #a3190c 100%);
             color: #ffffff !important;
@@ -247,7 +237,6 @@
             background: linear-gradient(135deg, #a3190c 0%, #821005 100%);
         }
 
-        /* Beautified Join Us Link Button */
         .join-us-btn {
             display: inline-flex;
             align-items: center;
@@ -287,7 +276,6 @@
             transform: translateX(3px) scale(1.1);
         }
 
-        /* Hidden Checkbox & Burger Trigger for Mobile Viewports */
         .mobile-menu-checkbox {
             display: none;
         }
@@ -310,13 +298,8 @@
             transition: var(--transition-smooth);
         }
 
-        /* -----------------------------------------------------------
-           RESPONSIVE DESIGN (TABLETS & SMARTPHONES)
-        ----------------------------------------------------------- */
         @media (max-width: 1024px) {
-            header {
-                padding: 15px 4%;
-            }
+            header { padding: 15px 4%; }
             .logo-main-title { font-size: 1.6rem; }
             .logo-img { height: 72px; }
             .header-tagline { font-size: 0.85rem; }
@@ -326,18 +309,12 @@
         }
 
         @media (max-width: 868px) {
-            header {
-                padding: 12px 4%;
-            }
-            .logo-img { height: 65px; } /* Slightly scaled down on tiny devices to prevent crowding */
+            header { padding: 12px 4%; }
+            .logo-img { height: 65px; }
             .logo-main-title { font-size: 1.4rem; }
             .header-tagline { font-size: 0.8rem; margin-top: 3px; }
+            .mobile-menu-btn { display: flex; }
 
-            .mobile-menu-btn {
-                display: flex;
-            }
-
-            /* Main navigation transformed into sidebar panel */
             nav {
                 position: fixed;
                 top: 0;
@@ -372,7 +349,6 @@
                 display: none;
             }
 
-            /* Dropdown mobile adjustments */
             .nav-item:hover .nav-dropdown {
                 position: relative;
                 top: 0;
@@ -388,37 +364,12 @@
                 background-color: var(--light-bg);
             }
 
-            .donate-btn {
-                margin-left: 0;
-                margin-top: 15px;
-                width: 100%;
-                text-align: center;
-                box-sizing: border-box;
-            }
-
-            .join-us-btn {
-                margin-left: 0;
-                margin-top: 15px;
-                width: 100%;
-                justify-content: center;
-            }
-
-            /* Mobile opening trigger logic */
-            .mobile-menu-checkbox:checked ~ nav {
-                right: 0;
-            }
-
-            .mobile-menu-checkbox:checked ~ .mobile-menu-btn span:nth-child(1) {
-                transform: translateY(9px) rotate(45deg);
-            }
-
-            .mobile-menu-checkbox:checked ~ .mobile-menu-btn span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .mobile-menu-checkbox:checked ~ .mobile-menu-btn span:nth-child(3) {
-                transform: translateY(-9px) rotate(-45deg);
-            }
+            .donate-btn { margin-left: 0; margin-top: 15px; width: 100%; text-align: center; box-sizing: border-box; }
+            .join-us-btn { margin-left: 0; margin-top: 15px; width: 100%; justify-content: center; }
+            .mobile-menu-checkbox:checked ~ nav { right: 0; }
+            .mobile-menu-checkbox:checked ~ .mobile-menu-btn span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+            .mobile-menu-checkbox:checked ~ .mobile-menu-btn span:nth-child(2) { opacity: 0; }
+            .mobile-menu-checkbox:checked ~ .mobile-menu-btn span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
         }
     </style>
 </head>
@@ -429,14 +380,12 @@
         <img src="../images/JSP_logo.jpeg" alt="JSP Logo" class="logo-img">
         <div class="logo-text-block">
             <span class="logo-main-title">JAIN SANGH PUNE</span>
-            <span class="header-tagline">जुड़ देखो, अच्छा लगता है</span>
+            <span class="header-tagline">जुड़ कर देखो, अच्छा लगता है </span>
         </div>
     </a>
 
     <div class="nav-container">
-
         <input type="checkbox" id="menu-toggle" class="mobile-menu-checkbox">
-
         <label for="menu-toggle" class="mobile-menu-btn">
             <span></span>
             <span></span>
@@ -453,7 +402,7 @@
                     <a href="mandir_nirman.html"><span class="dropdown-icon">🛕</span> मंदिर निर्माण</a>
                     <a href="anandshala.html"><span class="dropdown-icon">🎮</span> आनंदशाला (पाठशाला)</a>
                     <a href="saraak.html"><span class="dropdown-icon">🤝</span> सराक उत्थान</a>
-                    <a href="tirthYatra.html"><span class="dropdown-icon">👣</span> तीर्थ यात्रा</a>
+                    <a href="teerth_yatra.html"><span class="dropdown-icon">👣</span> तीर्थ यात्रा</a>
                     <a href="ausdhalaya.html"><span class="dropdown-icon">⚕️</span> धर्मार्थ औषधालय</a>
                     <a href="jirnodhar.html"><span class="dropdown-icon">🛠️</span> प्राचीन जीर्णोद्धार</a>
                     <a href="scholarship.html"><span class="dropdown-icon">🎓</span> छात्रवृत्ति सम्मान</a>
@@ -462,7 +411,6 @@
             </div>
 
             <a href="donate-now.html" class="donate-btn">Donate Now</a>
-
             <a href="volunteer-registration.html" class="join-us-btn">
                 Join Us <i class="fas fa-arrow-right"></i>
             </a>
