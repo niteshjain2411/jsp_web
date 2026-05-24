@@ -14,12 +14,17 @@
             background: linear-gradient(135deg, #f4fbf7 0%, #f9fbf9 100%); /* Soft healing green splash */
         }
         .compact-hero {
-            background: linear-gradient(135deg, #0f9f68 0%, #0d8456 100%); /* Soothing therapeutic green gradient */
+            /* गहरे हरे और सुनहरे रंग का ग्रेडिएंट ओवरले ताकि सफेद टेक्स्ट एकदम साफ दिखे */
+            background: linear-gradient(135deg, rgba(20, 52, 43, 0.9) 0%, rgba(40, 94, 77, 0.88) 100%),
+                        url('https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?q=80&w=1200&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             color: #ffffff;
-            padding: 25px;
-            border-radius: 16px;
+            padding: 30px 25px;
+            border-radius: 12px;
             margin-bottom: 25px;
-            box-shadow: 0 6px 20px rgba(15, 159, 104, 0.15);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
         .section-title {
             color: #1b4332;

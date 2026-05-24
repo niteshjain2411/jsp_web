@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 550" width="100%" height="100%">
+  <defs>
+    <style>
+      .bg { fill: #FFD41D; stroke: #333333; stroke-width: 4; stroke-linejoin: round; }
+      .text-tamil { font-family: 'Arial', 'Helvetica', sans-serif; font-weight: bold; fill: #000000; text-anchor: middle; }
+      .text-eng { font-family: 'Impact', 'Arial Black', sans-serif; fill: #000000; text-anchor: middle; letter-spacing: 0.5px; }
+      .text-light { font-family: 'Arial', sans-serif; font-weight: bold; fill: #000000; text-anchor: middle; }
+      .arrow { fill: #000000; }
+    </style>
+  </defs>
+
+  <polygon points="120,40 280,40 360,180 290,320 320,470 80,470 110,320 40,180" class="bg" />
+
+  <text x="200" y="75" font-size="16" class="text-tamil">சமணச் சின்னம்</text>
+  <text x="200" y="125" font-size="34" class="text-tamil">சிறுமதுரை</text>
+  <text x="200" y="155" font-size="16" class="text-tamil">பகவான் மகாவீரர்</text>
+
+  <g transform="translate(100, 165)">
+    <path d="M 50,15 L 50,5 L 20,20 L 50,35 L 50,25 L 100,25 L 100,15 Z" class="arrow" />
+    <text x="145" y="28" font-size="32" class="text-eng">1 KM</text>
+  </g>
+
+  <text x="200" y="222" font-size="20" class="text-eng">JAIN MONUMENT</text>
+  <text x="200" y="258" font-size="32" class="text-eng" letter-spacing="1">SIRUMADURAI</text>
+  <text x="200" y="282" font-size="15" class="text-light">LORD MAHAVEERAR</text>
+
+  <text x="200" y="335" font-size="24" class="text-eng">JAIN SANGH, PUNE</text>
+  <text x="200" y="360" font-size="22" class="text-eng">(JSP)</text>
+
+  <text x="200" y="415" font-size="21" class="text-eng">MADURAI JAIN</text>
+  <text x="200" y="440" font-size="21" class="text-eng">HERITAGE CENTRE</text>
+</svg>

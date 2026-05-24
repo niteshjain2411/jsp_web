@@ -9,17 +9,17 @@
 
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Exact Theme Variables extracted from mandir_nirman.html */
+        /* Re-themed to Light Yellow Green Palette */
         :root {
-            --purple-primary: #4A154B;
-            --purple-dark: #611f69;
-            --orange-secondary: #E28743;
-            --teal-dark: #0F4C5C;
-            --teal-light: #F5FAFA;
-            --text-dark: #444444;
-            --light-bg: #F8F9FA;
-            --border-color: #e2e8f0;
-            --card-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            --purple-primary: #6B8E23; /* Olive Drab / Deep Yellow-Green */
+            --purple-dark: #4B6611;    /* Darker Moss Green for hover/accent */
+            --orange-secondary: #E28743; /* Preserved warm contrast accent */
+            --teal-dark: #2E5A1C;      /* Deep Forest Green for headings */
+            --teal-light: #F4F9F1;     /* Ultra-light yellow-green tint for cards */
+            --text-dark: #2D3724;      /* Deep charcoal-olive for crisp readability */
+            --light-bg: #F7FAF4;       /* Soft light green tinted background */
+            --border-color: #cbd5e1;
+            --card-shadow: 0 2px 8px rgba(46, 90, 28, 0.05);
             --transition: all 0.2s ease;
         }
 
@@ -109,8 +109,8 @@
             color: var(--teal-dark);
             border-left: 5px solid var(--orange-secondary);
             padding-left: 12px;
-            margin-top: 30px;
-            margin-bottom: 15px;
+            margin-top: 5px;
+            margin-bottom: 5px;
             font-size: 22px;
             font-weight: 700;
         }
@@ -130,10 +130,12 @@
             color: var(--text-dark);
         }
 
-        /* Hero / Quote Section Styles matching .compact-hero */
+        /* Hero / Quote Section Styles transformed to Yellow Green with high-contrast text */
         .prashasti-section {
-            background: linear-gradient(135deg, var(--purple-primary) 0%, var(--purple-dark) 100%);
-            color: #ffffff;
+            background: linear-gradient(135deg, rgba(154, 205, 50, 0.9) 0%, rgba(107, 142, 35, 0.9) 100%),
+                        url('../images/jirnoddhar/sign_boards.jpg') no-repeat center center;
+            background-size: cover;
+            color: #1c2807;
             padding: 20px 25px;
             border-radius: 12px;
             margin-bottom: 25px;
@@ -142,7 +144,7 @@
 
         .quote-container {
             position: relative;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.35);
             border-left: 4px solid var(--orange-secondary);
             padding: 15px 20px;
             margin-bottom: 15px;
@@ -154,26 +156,26 @@
             top: -10px;
             left: 10px;
             font-size: 3rem;
-            color: rgba(255, 255, 255, 0.08);
+            color: rgba(0, 0, 0, 0.05);
             font-family: 'Montserrat', sans-serif;
         }
 
         .quote-text {
             margin: 0;
             font-size: 15px;
-            color: #ffffff;
+            color: #1c2807;
             line-height: 1.5;
         }
 
         .quote-text b {
-            color: var(--orange-secondary);
+            color: #b55309;
             display: inline-block;
             margin-top: 4px;
         }
 
         .reflection-text p {
             margin: 0 0 10px 0;
-            color: rgba(255, 255, 255, 0.9);
+            color: #24330a;
             font-size: 14px;
         }
 
@@ -182,16 +184,16 @@
         }
 
         .reflection-text b {
-            color: #ffffff;
-            background: rgba(255, 255, 255, 0.15);
+            color: #1c2807;
+            background: rgba(255, 255, 255, 0.4);
             padding: 1px 5px;
             border-radius: 3px;
         }
 
-        /* Intro Hindi Section matching .feature-card.color-3 style */
+        /* Intro Hindi Section matching light green layout */
         .intro-hindi-section {
             background-color: var(--teal-light);
-            border-top: 4px solid var(--teal-dark);
+            border-top: 4px solid var(--purple-primary);
             padding: 15px;
             border-radius: 8px;
             box-shadow: var(--card-shadow);
@@ -263,12 +265,27 @@
             border: none;
         }
 
-        /* Image Grid Container aligning with .img-container and .info-grid */
         .info-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 15px;
-            margin: 15px 0 25px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+
+        .img-container {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            background-color: #ffffff;
+        }
+
+        .full-visible-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
         }
 
         .info-card {
@@ -299,7 +316,7 @@
             .info-grid-span-2 { grid-column: span 1; }
         }
 
-        /* Future Goals Grid referencing .service-feature-grid & .emergency-grid */
+        /* Future Goals Grid */
         .grid-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -322,7 +339,7 @@
 
         .card.color-left {
             border-top: 4px solid var(--purple-primary);
-            background-color: #FDFBFC;
+            background-color: var(--light-bg);
         }
 
         .card.color-right {
@@ -529,11 +546,11 @@
                     <img src="../images/jirnoddhar/Milestone_tamilnadu_1.jpg" alt="Tamil Nadu Sign Board">
                 </div>
                 <div class="info-card">
-                    <img src="../images/jirnoddhar/Milestone_tamilnadu_2.jpg" alt="Tamil Nadu Sign Board">
+                    <img src="../images/jirnoddhar/Milestone_tamilnadu_2.jpg" alt="Tamil Nadu Sign Board" style="height: 300px;">
                 </div>
                 <div class="info-card info-grid-span-2">
-                    <img src="../images/jirnoddhar/Milestone_tamilnadu_preparation.jpg" alt="Tamil Nadu Sign Board"
-                         style="height: 180px;">
+                    <img src="../images/jirnoddhar/sign_boards.jpg" alt="Tamil Nadu Sign Board"
+                         style="height: 300px;">
                 </div>
             </div>
 
@@ -548,22 +565,22 @@
 
                 <div class="info-grid">
                     <div class="info-card">
-                        <img src="../images/jirnoddhar/Gril work.jpg" alt="Grill work">
+                        <img src="../images/jirnoddhar/Gril work.jpg" alt="Grill work" style="height: 500px;">
                     </div>
                 </div>
 
                 <div class="info-grid">
                     <div class="info-card">
-                        <img src="../images/jirnoddhar/Grill_work.jpeg" alt="Grill work">
+                        <img src="../images/jirnoddhar/Grill_work.jpeg" alt="Grill work" style="height: 500px;">
                     </div>
                     <div class="info-card">
-                        <img src="../images/jirnoddhar/Railing_gril_work_1.jpg" alt="Railing grill work">
+                        <img src="../images/jirnoddhar/Railing_gril_work_1.jpg" alt="Railing grill work" style="height: 500px;">
                     </div>
                 </div>
 
                 <div class="info-grid">
                     <div class="info-card">
-                        <img src="../images/jirnoddhar/Grill_work_full.jpeg" alt="Grill work full">
+                        <img src="../images/jirnoddhar/Grill_work_full.jpeg" alt="Grill work full" style="height: 600px;">
                     </div>
                 </div>
             </div>
@@ -572,20 +589,20 @@
                 <h2 class="section-title">जीर्णोद्धार Gallery</h2>
                 <div class="info-grid">
                     <div class="info-card">
-                        <img src="../images/jirnoddhar/kalgi_3.jpg" alt="Kalgi 3">
+                        <img src="../images/jirnoddhar/kalgi_3.jpg" alt="Kalgi 3" style="height: 500px;">
                     </div>
                 </div>
                 <div class="info-grid">
                     <div class="info-card">
-                        <img src="../images/jirnoddhar/Mandir_1.jpg" alt="Mandir 1">
+                        <img src="../images/jirnoddhar/Mandir_1.jpg" alt="Mandir 1" style="height: 500px;">
                     </div>
                     <div class="info-card">
-                        <img src="../images/jirnoddhar/kalgi_2.jpg" alt="Kalgi 2">
+                        <img src="../images/jirnoddhar/kalgi_2.jpg" alt="Kalgi 2" style="height: 500px;">
                     </div>
                 </div>
                 <div class="info-grid">
                     <div class="info-card">
-                        <img src="../images/jirnoddhar/Kalgi_1.jpg" alt="Kalgi 1">
+                        <img src="../images/jirnoddhar/Kalgi_1.jpg" alt="Kalgi 1" style="height: 500px;">
                     </div>
                 </div>
             </div>
@@ -594,12 +611,12 @@
                 <h2 class="section-title">पावागढ़ मंदिर सफाई एवं संरक्षण</h2>
                 <div class="info-grid">
                     <div class="info-card">
-                        <img src="../images/jirnoddhar/pavagarh_1.jpg" alt="Pavagarh 1">
+                        <img src="../images/jirnoddhar/pavagarh_1.jpg" alt="Pavagarh 1" style="height: 500px;">
                     </div>
                 </div>
                 <div class="info-grid">
                     <div class="info-card">
-                        <img src="../images/jirnoddhar/pavagarh_2.jpg" alt="Pavagarh 2">
+                        <img src="../images/jirnoddhar/pavagarh_2.jpg" alt="Pavagarh 2" style="height: 500px;">
                     </div>
                 </div>
             </div>

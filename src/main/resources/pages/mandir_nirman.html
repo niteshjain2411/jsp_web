@@ -10,9 +10,14 @@
     <style>
         /* Compact & Color Enhancements matching samajik_karya */
         .compact-hero {
-            background: linear-gradient(135deg, #4A154B 0%, #611f69 100%);
+            /* Replace 'your-image-path.jpg' with your actual image URL or local path */
+            background: linear-gradient(135deg, rgba(74, 21, 75, 0.85) 0%, rgba(97, 31, 105, 0.85) 100%),
+                        url('../images/sdjm/sus_jain_mandir.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             color: #ffffff;
-            padding: 20px 25px;
+            padding: 35px 25px; /* Slightly increased padding for a better hero feel */
             border-radius: 12px;
             margin-bottom: 25px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
@@ -179,17 +184,17 @@
     </div>
     <div class="info-grid">
         <div>
-            <img src="../images/sdjm/Guru-ji.jpeg" alt="Guru Ji - Spiritual Guide" class="full-visible-img">
+            <img src="../images/sdjm/Guru-ji.jpeg" alt="Guru Ji - Spiritual Guide" class="full-visible-img" style="height: 320px; object-fit: cover;">
         </div>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
             <img src="../images/sdjm/muni shree Akshay Sagar ji.jpeg" alt="Muni Shree Akshay Sagar Ji"
-                 class="full-visible-img">
+                 class="full-visible-img" style="height: 320px; object-fit: cover;">
             <img src="../images/sdjm/images.jpg" alt="Vedi - Sacred Space" class="full-visible-img">
         </div>
     </div>
 
     <h2 class="section-title">About the Temple</h2>
-    <div class="info-grid" style="grid-template-columns: 1fr 1fr;">
+    <div class="info-grid" style="grid-template-columns: 1fr; gap: 20px;">
         <div class="info-card" style="background-color: #F5FAFA; border-top: 4px solid #0F4C5C;">
             <p style="margin: 0; font-size: 14px; color: #444; line-height: 1.6;">
                 The temple is architecturally designed following traditional Jain principles and serves as a peaceful
@@ -206,7 +211,6 @@
             </div>
         </div>
     </div>
-
     <h2 class="section-title">संत निवास - विद्या शान्ति निलय</h2>
     <div class="emergency-grid">
         <div class="emergency-card covid-bg" style="background: linear-gradient(135deg, #4A154B 0%, #611f69 100%);">
