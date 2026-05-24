@@ -3,10 +3,10 @@ package org.jsp.config;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
-import javax.annotation.PostConstruct;
 import java.io.IOException;
 
 @Configuration
@@ -16,6 +16,21 @@ public class FirebaseConfig {
     private String firebaseProjectId;
 
     @PostConstruct
+    public void initialize() {
+        try {
+            FirebaseOptions options = FirebaseOptions.builder()
+                    .setCredentials(GoogleCredentials.getApplicationDefault()) // No JSON path needed!
+                    .build();
+
+            if (FirebaseApp.getApps().isEmpty()) {
+                FirebaseApp.initializeApp(options);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*@PostConstruct
     public void initializeFirebase() {
         try {
             // Check if already initialized to prevent duplicate initialization exceptions during hot-reloads
@@ -50,9 +65,9 @@ public class FirebaseConfig {
             System.err.println("Failed to initialize Firebase: " + e.getMessage());
             throw new RuntimeException("Firebase initialization failed", e);
         }
-    }
-/*
-    @Bean
+    }*/
+
+    /*@Bean
     public FirebaseApp initializeFirebase() throws IOException {
         // Read the service account JSON from resources folder
         FirebaseOptions options;
