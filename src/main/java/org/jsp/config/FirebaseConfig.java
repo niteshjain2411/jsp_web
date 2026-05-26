@@ -5,12 +5,9 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 @Configuration
 public class FirebaseConfig {
@@ -18,7 +15,7 @@ public class FirebaseConfig {
     @Value("${firebase.project-id:}")
     private String firebaseProjectId;
 
-    /*@PostConstruct
+    @PostConstruct
     public void initialize() {
         try {
             FirebaseOptions options = FirebaseOptions.builder()
@@ -31,9 +28,9 @@ public class FirebaseConfig {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }*/
+    }
 
-    @Bean
+    /*@Bean
     public FirebaseApp initializeFirebase() throws IOException {
         // Read the service account JSON from resources folder
         FirebaseOptions options;
@@ -51,5 +48,5 @@ public class FirebaseConfig {
         }
 
         return FirebaseApp.getInstance();
-    }
+    }*/
 }
