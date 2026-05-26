@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comprehensive List of Jain Temples & Dharamshalas in Pune | Jain Sangh Pune</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body {
@@ -39,11 +42,11 @@
         .compact-hero {
             position: relative;
             background: linear-gradient(135deg,
-                            rgba(255, 56, 56, 0.85) 0%,
-                            rgba(255, 179, 0, 0.85) 25%,
-                            rgba(26, 188, 156, 0.85) 50%,
-                            rgba(46, 213, 115, 0.85) 75%,
-                            rgba(30, 144, 255, 0.85) 100%);
+                    rgba(255, 56, 56, 0.85) 0%,
+                    rgba(255, 179, 0, 0.85) 25%,
+                    rgba(26, 188, 156, 0.85) 50%,
+                    rgba(46, 213, 115, 0.85) 75%,
+                    rgba(30, 144, 255, 0.85) 100%);
             background-size: 300% 300%;
             animation: gradientShift 10s ease infinite;
             color: #ffffff;
@@ -56,16 +59,24 @@
         }
 
         @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         .compact-hero h1 {
             font-family: 'Montserrat', sans-serif;
             margin: 0 0 8px 0;
             font-size: 28px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             font-weight: 700;
         }
 
@@ -73,7 +84,7 @@
             margin: 0 0 15px 0;
             font-size: 14px;
             opacity: 0.95;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
@@ -89,7 +100,7 @@
             font-weight: 700;
             font-size: 13.5px;
             text-decoration: none;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
             transition: all 0.2s ease;
         }
 
@@ -140,7 +151,8 @@
 
         .split-column {
             flex: 1;
-            min-width: 0; /* Prevents flex items from breaking layout */
+            min-width: 0;
+            /* Prevents flex items from breaking layout */
         }
 
         /* Headings */
@@ -174,7 +186,7 @@
             background: #ffffff;
             border-radius: 12px;
             padding: 16px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -199,8 +211,13 @@
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
         }
 
-        .temple-grid .info-card:hover { border-color: #e67e22; }
-        .dharmshala-grid .info-card:hover { border-color: #16a085; }
+        .temple-grid .info-card:hover {
+            border-color: #e67e22;
+        }
+
+        .dharmshala-grid .info-card:hover {
+            border-color: #16a085;
+        }
 
         .card-name {
             font-size: 15px;
@@ -208,7 +225,7 @@
             color: #1a252f;
             margin-bottom: 10px;
             line-height: 1.35;
-            border-bottom: 1px dashed rgba(0,0,0,0.08);
+            border-bottom: 1px dashed rgba(0, 0, 0, 0.08);
             padding-bottom: 6px;
             font-family: 'Montserrat', sans-serif;
         }
@@ -229,8 +246,13 @@
             margin-top: 1px;
         }
 
-        .temple-grid .card-detail span.icon { color: #e67e22; }
-        .dharmshala-grid .card-detail span.icon { color: #16a085; }
+        .temple-grid .card-detail span.icon {
+            color: #e67e22;
+        }
+
+        .dharmshala-grid .card-detail span.icon {
+            color: #16a085;
+        }
 
         .card-detail strong {
             color: #2c3e50;
@@ -242,6 +264,7 @@
             text-decoration: none;
             font-weight: 600;
         }
+
         .contact-link:hover {
             text-decoration: underline;
         }
@@ -250,7 +273,7 @@
         .card-footer {
             margin-top: 10px;
             padding-top: 8px;
-            border-top: 1px solid rgba(0,0,0,0.04);
+            border-top: 1px solid rgba(0, 0, 0, 0.04);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -306,280 +329,209 @@
         }
 
         @media screen and (max-width: 768px) {
-            main { padding: 10px 5px; }
-            .container { padding: 15px; }
-            .compact-hero { padding: 18px 10px; margin-bottom: 15px; }
-            .compact-hero h1 { font-size: 22px; }
-            .compact-hero p { font-size: 12.5px; }
-            .section-title { font-size: 16px; padding: 6px 12px; }
+            main {
+                padding: 10px 5px;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .compact-hero {
+                padding: 18px 10px;
+                margin-bottom: 15px;
+            }
+
+            .compact-hero h1 {
+                font-size: 22px;
+            }
+
+            .compact-hero p {
+                font-size: 12.5px;
+            }
+
+            .section-title {
+                font-size: 16px;
+                padding: 6px 12px;
+            }
         }
     </style>
 </head>
+
 <body>
 
-<div id="header-placeholder"></div>
+    <div id="header-placeholder"></div>
 
-<main>
-    <div class="container">
+    <main>
+        <div class="container">
 
-        <div class="compact-hero">
-            <h1>Detailed List of Jain Temples & Dharamshalas in Pune</h1>
-            <p>A modern and colorful directory compiled for the convenience of devotees, courtesy of Jain Sangh Pune (JSP)</p>
-            <a href="home.html" class="back-home-btn">🏠 Back to Home</a>
-        </div>
-
-        <div class="search-box-container">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="liveSearch" class="search-input" placeholder="Search by Temple, Dharamshala, or Area...">
-        </div>
-
-        <div class="split-layout">
-
-            <div class="split-column">
-                <h2 class="section-title">✨ Digambar Jain Temples List (Address & Contact)</h2>
-                <div class="info-grid temple-grid" id="templeList">
-
-                    <div class="info-card">
-                        <div>
-                            <div class="card-name">Shri 1008 Neminath Digambar Jain Temple</div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-location-dot"></i></span><span><strong>Address:</strong> Gyanodaya Digambar Jain Society, Sus Village, Pune - 411021</span></div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-phone"></i></span><span><strong>Contact:</strong> <a href="tel:+918888832198" class="contact-link">+91 8888832198</a></span></div>
-                        </div>
-                        <div class="card-footer"><span class="tag">Sus</span><button class="btn-copy-address" title="Copy Info" onclick="copyCardText(this)"><i class="fa-regular fa-copy"></i></button></div>
-                    </div>
-
-                    <div class="info-card">
-                        <div>
-                            <div class="card-name">Shri 1008 Mahavir Digambar Jain Temple (Bawdhan)</div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-location-dot"></i></span><span><strong>Address:</strong> Sanmati Housing Society, Chandani Chowk, Bawdhan, Pune - 411021</span></div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-phone"></i></span><span><strong>Contact:</strong> <a href="tel:+919422089813" class="contact-link">+91 9422089813</a></span></div>
-                        </div>
-                        <div class="card-footer"><span class="tag">Bawdhan</span><button class="btn-copy-address" title="Copy Info" onclick="copyCardText(this)"><i class="fa-regular fa-copy"></i></button></div>
-                    </div>
-
-                    <div class="info-card">
-                        <div>
-                            <div class="card-name">Shri 1008 Chandraprabhu Digambar Jain Temple</div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-location-dot"></i></span><span><strong>Address:</strong> 120 A, Opposite Naik Hospital, Guruwar Peth, Pune - 411042</span></div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-phone"></i></span><span><strong>Contact:</strong> <a href="tel:+919767429033" class="contact-link">+91 9767429033</a></span></div>
-                        </div>
-                        <div class="card-footer"><span class="tag">Guruwar Peth</span><button class="btn-copy-address" title="Copy Info" onclick="copyCardText(this)"><i class="fa-regular fa-copy"></i></button></div>
-                    </div>
-
-                    <div class="info-card">
-                        <div>
-                            <div class="card-name">Shri 1008 Bhagwan Mahavir Digambar Jain Temple</div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-location-dot"></i></span><span><strong>Address:</strong> Sector No. 25, Near Ayurvedic College, Nigdi, Pune - 411044</span></div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-phone"></i></span><span><strong>Contact:</strong> <a href="tel:+919922439251" class="contact-link">+91 9922439251</a></span></div>
-                        </div>
-                        <div class="card-footer"><span class="tag">Nigdi</span><button class="btn-copy-address" title="Copy Info" onclick="copyCardText(this)"><i class="fa-regular fa-copy"></i></button></div>
-                    </div>
-
-                    <div class="info-card">
-                        <div>
-                            <div class="card-name">Shri 1008 Adinath Digambar Jain Temple</div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-location-dot"></i></span><span><strong>Address:</strong> Sector No. 20, Telco Road, Yamunanagar, Nigdi, Pune - 411044</span></div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-phone"></i></span><span><strong>Contact:</strong> <a href="tel:+919922439251" class="contact-link">+91 9922439251</a></span></div>
-                        </div>
-                        <div class="card-footer"><span class="tag">Yamunanagar</span><button class="btn-copy-address" title="Copy Info" onclick="copyCardText(this)"><i class="fa-regular fa-copy"></i></button></div>
-                    </div>
-
-                    <div class="info-card">
-                        <div>
-                            <div class="card-name">Shri 1008 Munisuvratnath Digambar Jain Temple</div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-location-dot"></i></span><span><strong>Address:</strong> Sudarshan Nagar, Near Bindu Nursing Home, Chinchwad, Pune - 411033</span></div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-phone"></i></span><span><strong>Contact:</strong> <a href="tel:+917588286077" class="contact-link">+91 7588286077</a></span></div>
-                        </div>
-                        <div class="card-footer"><span class="tag">Chinchwad</span><button class="btn-copy-address" title="Copy Info" onclick="copyCardText(this)"><i class="fa-regular fa-copy"></i></button></div>
-                    </div>
-
-                    <div class="info-card">
-                        <div>
-                            <div class="card-name">Shri Shantinath Saitwal Digambar Jain Temple</div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-location-dot"></i></span><span><strong>Address:</strong> 846, Lonar Gali, Raviwar Peth, Pune - 411002</span></div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-phone"></i></span><span><strong>Contact:</strong> <a href="tel:+919881309898" class="contact-link">+91 9881309898</a></span></div>
-                        </div>
-                        <div class="card-footer"><span class="tag">Raviwar Peth</span><button class="btn-copy-address" title="Copy Info" onclick="copyCardText(this)"><i class="fa-regular fa-copy"></i></button></div>
-                    </div>
-
-                    <div class="info-card">
-                        <div>
-                            <div class="card-name">Shri Shantinath Khandelwal Digambar Jain Temple</div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-location-dot"></i></span><span><strong>Address:</strong> 520, Moti Chowk, Raviwar Peth, Pune - 411002</span></div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-phone"></i></span><span><strong>Contact:</strong> <a href="tel:+919372576967" class="contact-link">+91 9372576967</a></span></div>
-                        </div>
-                        <div class="card-footer"><span class="tag">Raviwar Peth</span><button class="btn-copy-address" title="Copy Info" onclick="copyCardText(this)"><i class="fa-regular fa-copy"></i></button></div>
-                    </div>
-
-                    <div class="info-card">
-                        <div>
-                            <div class="card-name">Shri 1008 Parshwanath Digambar Jain Temple</div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-location-dot"></i></span><span><strong>Address:</strong> Near Police Chowki, Ganj Peth, Pune - 411042</span></div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-phone"></i></span><span><strong>Contact:</strong> <a href="tel:+919850311218" class="contact-link">+91 9850311218</a></span></div>
-                        </div>
-                        <div class="card-footer"><span class="tag">Ganj Peth</span><button class="btn-copy-address" title="Copy Info" onclick="copyCardText(this)"><i class="fa-regular fa-copy"></i></button></div>
-                    </div>
-
-                    <div class="info-card">
-                        <div>
-                            <div class="card-name">Shri 1008 Padmaprabhu Digambar Jain Temple</div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-location-dot"></i></span><span><strong>Address:</strong> Sasanenagar Road, Hadapsar, Pune - 411028</span></div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-phone"></i></span><span><strong>Contact:</strong> <a href="tel:+919422314763" class="contact-link">+91 9422314763</a></span></div>
-                        </div>
-                        <div class="card-footer"><span class="tag">Hadapsar</span><button class="btn-copy-address" title="Copy Info" onclick="copyCardText(this)"><i class="fa-regular fa-copy"></i></button></div>
-                    </div>
-
-                    <div class="info-card">
-                        <div>
-                            <div class="card-name">Shri Chandraprabhu Digambar Jain Chaityalaya</div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-location-dot"></i></span><span><strong>Address:</strong> Magarpatta City, Hadapsar, Pune - 411028</span></div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-phone"></i></span><span><strong>Contact:</strong> <a href="tel:+919970790398" class="contact-link">+91 9970790398</a></span></div>
-                        </div>
-                        <div class="card-footer"><span class="tag">Magarpatta</span><button class="btn-copy-address" title="Copy Info" onclick="copyCardText(this)"><i class="fa-regular fa-copy"></i></button></div>
-                    </div>
-
-                    <div class="info-card">
-                        <div>
-                            <div class="card-name">Shri 1008 Adinath Digambar Jain Temple</div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-location-dot"></i></span><span><strong>Address:</strong> EON IT Park Road, Kharadi, Pune - 411014</span></div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-phone"></i></span><span><strong>Contact:</strong> <a href="tel:+918308819368" class="contact-link">+91 8308819368</a></span></div>
-                        </div>
-                        <div class="card-footer"><span class="tag">Kharadi</span><button class="btn-copy-address" title="Copy Info" onclick="copyCardText(this)"><i class="fa-regular fa-copy"></i></button></div>
-                    </div>
-
-                    <div class="info-card">
-                        <div>
-                            <div class="card-name">Shri 1008 Chandraprabhu Digambar Jain Temple</div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-location-dot"></i></span><span><strong>Address:</strong> Kaspat Vasti, Wakad Road, Wakad, Pune - 411057</span></div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-phone"></i></span><span><strong>Contact:</strong> <a href="tel:+919422003460" class="contact-link">94220 03460</a></span></div>
-                        </div>
-                        <div class="card-footer"><span class="tag">Wakad</span><button class="btn-copy-address" title="Copy Info" onclick="copyCardText(this)"><i class="fa-regular fa-copy"></i></button></div>
-                    </div>
-
-                    <div class="info-card">
-                        <div>
-                            <div class="card-name">Shri 1008 Parshwanath Digambar Jain Temple</div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-location-dot"></i></span><span><strong>Address:</strong> Near Phoenix Mall, Viman Nagar, Pune - 411014</span></div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-phone"></i></span><span><strong>Contact:</strong> Viman Nagar Helpdesk</span></div>
-                        </div>
-                        <div class="card-footer"><span class="tag">Viman Nagar</span><button class="btn-copy-address" title="Copy Info" onclick="copyCardText(this)"><i class="fa-regular fa-copy"></i></button></div>
-                    </div>
-
-                    <div class="info-card">
-                        <div>
-                            <div class="card-name">Shri Mahavir Digambar Jain Temple (Manikbaug)</div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-location-dot"></i></span><span><strong>Address:</strong> Sinhagad Road, Manikbaug, Pune - 411051</span></div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-phone"></i></span><span><strong>Contact:</strong> <a href="tel:+919422343912" class="contact-link">+91 9422343912</a></span></div>
-                        </div>
-                        <div class="card-footer"><span class="tag">Manikbaug</span><button class="btn-copy-address" title="Copy Info" onclick="copyCardText(this)"><i class="fa-regular fa-copy"></i></button></div>
-                    </div>
-                </div>
+            <div class="compact-hero">
+                <h1>Detailed List of Jain Temples & Dharamshalas in Pune</h1>
+                <p>A modern and colorful directory compiled for the convenience of devotees, courtesy of Jain Sangh Pune</p>
+                <a href="home.html" class="back-home-btn">🏠 Back to Home</a>
             </div>
 
-            <div class="split-column">
-                <h2 class="section-title color-alt">🏢 Jain Temples & Dharamshala List (Official Phone Numbers)</h2>
-                <div class="info-grid dharmshala-grid" id="dharmshalaList">
-
-                    <div class="info-card">
-                        <div>
-                            <div class="card-name">Shvetambar Jain Temple - Dadawadi Dharamshala</div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-location-dot"></i></span><span><strong>Address:</strong> Saras Baug Road, Swargate, Shukrawar Peth, Pune - 411002</span></div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-phone"></i></span><span><strong>Contact:</strong> <a href="tel:02024449902" class="contact-link">020-24449902</a></span></div>
-                        </div>
-                        <div class="card-footer"><span class="tag region-tag">Central Pune</span><button class="btn-copy-address" title="Copy Info" onclick="copyCardText(this)"><i class="fa-regular fa-copy"></i></button></div>
-                    </div>
-
-                    <div class="info-card">
-                        <div>
-                            <div class="card-name">Katraj Jain Temple (Agam Teerth Dharamshala)</div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-location-dot"></i></span><span><strong>Address:</strong> Vardhaman Nagar, Near Katraj Bus Depot, Katraj, Pune - 411046</span></div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-phone"></i></span><span><strong>Contact:</strong> <a href="tel:02024318654" class="contact-link">020-24318654</a></span></div>
-                        </div>
-                        <div class="card-footer"><span class="tag region-tag">South Pune</span><button class="btn-copy-address" title="Copy Info" onclick="copyCardText(this)"><i class="fa-regular fa-copy"></i></button></div>
-                    </div>
-
-                    <div class="info-card">
-                        <div>
-                            <div class="card-name">Nakoda Bhairav Dharamshala (Nakoda Bhavan)</div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-location-dot"></i></span><span><strong>Address:</strong> Near Ganj Peth Police Chowki, Guruwar Peth, Pune - 411042</span></div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-phone"></i></span><span><strong>Contact:</strong> <a href="tel:02024491878" class="contact-link">020-24491878</a></span></div>
-                        </div>
-                        <div class="card-footer"><span class="tag region-tag">Central Pune</span><button class="btn-copy-address" title="Copy Info" onclick="copyCardText(this)"><i class="fa-regular fa-copy"></i></button></div>
-                    </div>
-
-                    <div class="info-card">
-                        <div>
-                            <div class="card-name">Shri Shatrunjay Bhaktamar Jain Temple Trust Dharamshala</div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-location-dot"></i></span><span><strong>Address:</strong> Katraj - Kondhwa Road, Kondhwa Budruk, Pune - 411048</span></div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-phone"></i></span><span><strong>Contact:</strong> <a href="tel:02026960105" class="contact-link">020-26960105</a></span></div>
-                        </div>
-                        <div class="card-footer"><span class="tag region-tag">South-East</span><button class="btn-copy-address" title="Copy Info" onclick="copyCardText(this)"><i class="fa-regular fa-copy"></i></button></div>
-                    </div>
-
-                    <div class="info-card">
-                        <div>
-                            <div class="card-name">Shri Parshva Pragyalaya Jain Teerth Dharamshala</div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-location-dot"></i></span><span><strong>Address:</strong> Near CRPF, Talegaon Dabhade, Pune - 411506</span></div>
-                            <div class="card-detail"><span class="icon"><i class="fa-solid fa-phone"></i></span><span><strong>Contact:</strong> <a href="tel:02114216032" class="contact-link">02114-216032</a></span></div>
-                        </div>
-                        <div class="card-footer"><span class="tag region-tag">Pune Outskirts</span><button class="btn-copy-address" title="Copy Info" onclick="copyCardText(this)"><i class="fa-regular fa-copy"></i></button></div>
-                    </div>
-                </div>
+            <div class="search-box-container">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="liveSearch" class="search-input"
+                    placeholder="Search by Temple, Dharamshala, or Area...">
             </div>
 
+            <div class="split-layout">
+
+                <div class="split-column">
+                    <h2 class="section-title">✨ Digambar Jain Temples List (Address & Contact)</h2>
+                    <div class="info-grid temple-grid" id="templeList">
+                        <div style="text-align: center; color: #e67e22; padding: 20px;"><i
+                                class="fa-solid fa-spinner fa-spin"></i> Loading temples...</div>
+                    </div>
+                </div>
+
+                <div class="split-column">
+                    <h2 class="section-title color-alt">🏢 Jain Temples & Dharamshala List (Official Phone Numbers)</h2>
+                    <div class="info-grid dharmshala-grid" id="dharmshalaList">
+                        <div style="text-align: center; color: #16a085; padding: 20px;"><i
+                                class="fa-solid fa-spinner fa-spin"></i> Loading dharamshalas...</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="footer-note">
+                "परस्परोपग्रहो जीवानाम् - तीर्थयात्रियों और जैन समुदाय की निरंतर सेवा के लिए समर्पित।"
+            </div>
+            <div>
+                <br>
+                <i>NOTE: This page is a dynamic directory of Jain temples and dharamshalas in Pune, created by Jain Sangh Pune. Please contact <b>+91-9989394510</b> for any updates or corrections to the information listed here.</i>
+            </div>
         </div>
+    </main>
 
-        <div class="footer-note">
-            "Parasparopagraho Jivanand - Dedicated to the continuous service of pilgrims and the Jain community."
-        </div>
+    <div id="footer-placeholder"></div>
 
-    </div>
-</main>
+    <script src="header-loader.js"></script>
+    <script src="footer-loader.js"></script>
 
-<div id="footer-placeholder"></div>
+    <script>
+        // Fetch temples and dharamshalas from API
+        async function loadData() {
+            try {
+                // Fetch temples
+                const templeResponse = await fetch('/api/temple/all');
+                const temples = await templeResponse.json();
+                renderTemples(temples.data);
 
-<script src="header-loader.js"></script>
-<script src="footer-loader.js"></script>
-<script src="news-loader.js"></script>
-
-<script>
-    // Live Search Functionality
-    document.getElementById('liveSearch').addEventListener('input', function(e) {
-        let filter = e.target.value.toLowerCase();
-        let cards = document.querySelectorAll('.info-card');
-
-        cards.forEach(function(card) {
-            let text = card.textContent.toLowerCase();
-            if(text.includes(filter)) {
-                card.style.display = "flex";
-            } else {
-                card.style.display = "none";
+                // Fetch dharamshalas
+                const dharamshalaResponse = await fetch('/api/dharamshala/all');
+                const dharamshalas = await dharamshalaResponse.json();
+                renderDharamshalas(dharamshalas.data);
+            } catch (error) {
+                console.error('Error loading data:', error);
+                document.getElementById('templeList').innerHTML = '<div style="text-align: center; color: #e67e22; padding: 20px;">Error loading temple data. Please try refreshing.</div>';
+                document.getElementById('dharmshalaList').innerHTML = '<div style="text-align: center; color: #16a085; padding: 20px;">Error loading dharamshala data. Please try refreshing.</div>';
             }
-        });
-    });
+        }
 
-    // Copy Address Function
-    function copyCardText(button) {
-        let card = button.closest('.info-card');
-        let name = card.querySelector('.card-name').innerText;
-        let details = card.querySelectorAll('.card-detail');
-        let copyString = name + "\n";
+        // Render temples
+        function renderTemples(temples) {
+            console.log('Temples data:', temples);
+            let templeList = document.getElementById('templeList');
+            if (!temples || temples.length === 0) {
+                templeList.innerHTML = '<div style="text-align: center; color: #666; padding: 20px;">No temples found.</div>';
+                return;
+            }
 
-        details.forEach(detail => {
-            copyString += detail.innerText + "\n";
+            let html = '';
+            temples.forEach(temple => {
+                const phoneLink = temple.contact ? `<a href="tel:${temple.contact}" class="contact-link">${temple.contact}</a>` : 'N/A';
+                const location = temple.area || 'N/A';
+
+                html += `
+                <div class="info-card">
+                    <div>
+                        <div class="card-name">${temple.name || 'N/A'}</div>
+                        <div class="card-detail"><span class="icon"><i class="fa-solid fa-location-dot"></i></span><span><strong>Address:</strong> ${temple.address || 'N/A'}</span></div>
+                        <div class="card-detail"><span class="icon"><i class="fa-solid fa-phone"></i></span><span><strong>Contact:</strong> ${phoneLink}</span></div>
+                    </div>
+                    <div class="card-footer"><span class="tag">${location}</span><button class="btn-copy-address" title="Copy Info" onclick="copyCardText(this)"><i class="fa-regular fa-copy"></i></button></div>
+                </div>
+            `;
+            });
+
+            templeList.innerHTML = html;
+        }
+
+        // Render dharamshalas
+        function renderDharamshalas(dharamshalas) {
+            console.log('Dharamshalas data:', dharamshalas);
+            let dharamshalaList = document.getElementById('dharmshalaList');
+
+            if (!dharamshalas || dharamshalas.length === 0) {
+                dharamshalaList.innerHTML = '<div style="text-align: center; color: #666; padding: 20px;">No dharamshalas found.</div>';
+                return;
+            }
+
+            let html = '';
+            dharamshalas.forEach(dharamshala => {
+                const phoneLink = dharamshala.contact ? `<a href="tel:${dharamshala.contact}" class="contact-link">${dharamshala.contact}</a>` : 'N/A';
+                const region = dharamshala.area || 'Other';
+
+                html += `
+                <div class="info-card">
+                    <div>
+                        <div class="card-name">${dharamshala.name || 'N/A'}</div>
+                        <div class="card-detail"><span class="icon"><i class="fa-solid fa-location-dot"></i></span><span><strong>Address:</strong> ${dharamshala.address || 'N/A'}</span></div>
+                        <div class="card-detail"><span class="icon"><i class="fa-solid fa-phone"></i></span><span><strong>Contact:</strong> ${phoneLink}</span></div>
+                    </div>
+                    <div class="card-footer"><span class="tag region-tag">${region}</span><button class="btn-copy-address" title="Copy Info" onclick="copyCardText(this)"><i class="fa-regular fa-copy"></i></button></div>
+                </div>
+            `;
+            });
+
+            dharamshalaList.innerHTML = html;
+        }
+
+        // Live Search Functionality
+        document.getElementById('liveSearch').addEventListener('input', function (e) {
+            let filter = e.target.value.toLowerCase();
+            let cards = document.querySelectorAll('.info-card');
+
+            cards.forEach(function (card) {
+                let text = card.textContent.toLowerCase();
+                if (text.includes(filter)) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
+            });
         });
 
-        navigator.clipboard.writeText(copyString).then(() => {
-            let icon = button.querySelector('i');
-            icon.className = "fa-solid fa-check";
-            icon.style.color = "#2ed573";
-            setTimeout(() => {
-                icon.className = "fa-regular fa-copy";
-                icon.style.color = "";
-            }, 2000);
-        });
-    }
-</script>
+        // Copy Address Function
+        function copyCardText(button) {
+            let card = button.closest('.info-card');
+            let name = card.querySelector('.card-name').innerText;
+            let details = card.querySelectorAll('.card-detail');
+            let copyString = name + "\n";
+
+            details.forEach(detail => {
+                copyString += detail.innerText + "\n";
+            });
+
+            navigator.clipboard.writeText(copyString).then(() => {
+                let icon = button.querySelector('i');
+                icon.className = "fa-solid fa-check";
+                icon.style.color = "#2ed573";
+                setTimeout(() => {
+                    icon.className = "fa-regular fa-copy";
+                    icon.style.color = "";
+                }, 2000);
+            });
+        }
+
+        // Load data when page loads
+        document.addEventListener('DOMContentLoaded', loadData);
+    </script>
 
 </body>
+
 </html>
