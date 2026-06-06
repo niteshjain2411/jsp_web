@@ -6,7 +6,7 @@
     <title>JSP Foundation - Jain Sangh Pune | JSP</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap"
           rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     <style>
         /* Shared Design System & Colors from Mandir Nirman */
         body {
@@ -275,6 +275,28 @@
             display: block;
         }
 
+        /* Responsive Video Container */
+        .video-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 15px auto 0 auto;
+            background: #fdfdfd;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+            overflow: hidden;
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
         .footer-note {
             text-align: center;
             font-style: italic;
@@ -293,18 +315,18 @@
 </head>
 <body>
 
-<script src="header-loader.js"></script>
-<script src="footer-loader.js"></script>
+<script src="../header-loader.js"></script>
+<script src="../footer-loader.js"></script>
 <div id="header-placeholder"></div>
 
-<a href="home.html" class="back-link">← Back to Home</a>
+<a href="../home.html" class="back-link">← Back to Home</a>
 
 <div class="container">
     <main style="padding: 15px 0;">
 
         <div class="compact-hero">
             <h1 style="color: #fff; margin: 0 0 4px 0; font-size: 24px;">श्री महावीराय नमः</h1>
-            <img src="../images/jsp_foundation/Bhagwaan Mahaveer.png" alt="भगवान महावीर" class="main-deity-img">
+            <img src="../../images/jsp_foundation/Bhagwaan%20Mahaveer.png" alt="भगवान महावीर" class="main-deity-img">
         </div>
 
         <h2 class="section-title">मंगल आशीर्वाद एवं मार्गदर्शक</h2>
@@ -314,14 +336,14 @@
                 <div class="tree-row">
                     <div class="guru-card">
                         <div class="guru-img-wrapper">
-                            <img src="../images/jsp_foundation/Vidyasagar_ji.png"
+                            <img src="../../images/jsp_foundation/Vidyasagar_ji.png"
                                  alt="संत शिरोमणि आचार्य श्री 108 विद्यासागर जी महाराज">
                         </div>
                         <div class="guru-name">संत शिरोमणि आचार्य श्री 108 विद्यासागर जी महाराज</div>
                     </div>
                     <div class="guru-card">
                         <div class="guru-img-wrapper">
-                            <img src="../images/jsp_foundation/samaysagar_ji.png"
+                            <img src="../../images/jsp_foundation/samaysagar_ji.png"
                                  alt="आचार्य प्रवर श्री समय सागर जी महाराज">
                         </div>
                         <div class="guru-name">आचार्य प्रवर श्री 108 समय सागर जी महाराज</div>
@@ -334,27 +356,28 @@
                 <div class="tree-row">
                     <div class="guru-card">
                         <div class="guru-img-wrapper">
-                            <img src="../images/jsp_foundation/niyamsagar_ji.png" alt="मुनि श्री नियम सागर जी महाराज">
+                            <img src="../../images/jsp_foundation/niyamsagar_ji.png" alt="मुनि श्री नियम सागर जी महाराज">
                         </div>
                         <div class="guru-name">मुनि श्री 108 नियम सागर जी महाराज</div>
                     </div>
                     <div class="guru-card">
                         <div class="guru-img-wrapper">
-                            <img src="../images/jsp_foundation/vineet_sagar_ji.png"
+                            <img src="../../images/jsp_foundation/vineet_sagar_ji.png"
                                  alt="मुनि श्री विनीत सागर जी महाराज">
                         </div>
                         <div class="guru-name">मुनि श्री 108 विनीत सागर जी महाराज</div>
                     </div>
                     <div class="guru-card">
                         <div class="guru-img-wrapper">
-                            <img src="../images/jsp_foundation/akshay_sagar_ji.png" style="height: 120%; object-fit: contain;"
+                            <img src="../../images/jsp_foundation/akshay_sagar_ji.png"
+                                 style="height: 120%; object-fit: contain;"
                                  alt="मुनि श्री अक्षय सागर जी महाराज">
                         </div>
                         <div class="guru-name">मुनि श्री 108 अक्षय सागर जी महाराज</div>
                     </div>
                     <div class="guru-card">
                         <div class="guru-img-wrapper">
-                            <img src="../images/jsp_foundation/chandra_prabh_sagar_ji.png"
+                            <img src="../../images/jsp_foundation/chandra_prabh_sagar_ji.png"
                                  alt="मुनि श्री चंद्रप्रभ सागर जी महाराज">
                         </div>
                         <div class="guru-name">मुनि श्री 108 चंद्रप्रभ सागर जी महाराज</div>
@@ -367,7 +390,7 @@
                 <div class="tree-row">
                     <div class="guru-card">
                         <div class="guru-img-wrapper">
-                            <img src="../images/jsp_foundation/savinay_sagar_ji.png"
+                            <img src="../../images/jsp_foundation/savinay_sagar_ji.png"
                                  alt="मुनि श्री सविनय सागर जी महाराज">
                         </div>
                         <div class="guru-name">मुनि श्री 108 सविनय सागर महाराज</div>
@@ -375,14 +398,14 @@
                     </div>
                     <div class="guru-card">
                         <div class="guru-img-wrapper">
-                            <img src="../images/jsp_foundation/manan_sagar_ji.png" alt="मुनि श्री मनन सागर जी महाराज">
+                            <img src="../../images/jsp_foundation/manan_sagar_ji.png" alt="मुनि श्री मनन सागर जी महाराज">
                         </div>
                         <div class="guru-name">मुनि श्री 108 मनन सागर महाराज</div>
                         <small>(पूर्व में सचिन भैया)</small>
                     </div>
                     <div class="guru-card">
                         <div class="guru-img-wrapper">
-                            <img src="../images/jsp_foundation/anunay_sagar_ji.png"
+                            <img src="../../images/jsp_foundation/anunay_sagar_ji.png"
                                  alt="ऐलक श्री अनुनय  सागर जी महाराज">
                         </div>
                         <div class="guru-name">ऐलक श्री 105 अनुनय सागर महाराज</div>
@@ -396,38 +419,38 @@
                 <div class="tree-row">
                     <div class="guru-card">
                         <div class="guru-img-wrapper">
-                            <img src="../images/jsp_foundation/Br_Saket.png" alt="ब्रह्मचारी साकेत भैया">
+                            <img src="../../images/jsp_foundation/Br_Saket.png" alt="ब्रह्मचारी साकेत भैया">
                         </div>
                         <div class="guru-name">ब्रह्मचारी साकेत भैया</div>
                     </div>
                     <div class="guru-card">
                         <div class="guru-img-wrapper">
-                            <img src="../images/jsp_foundation/Br_Apurva.jpeg" alt="ब्रह्मचारी अपूर्व भैया">
+                            <img src="../../images/jsp_foundation/Br_Apurva.jpeg" alt="ब्रह्मचारी अपूर्व भैया">
                         </div>
                         <div class="guru-name">ब्रह्मचारी अपूर्व भैया</div>
                     </div>
                     <div class="guru-card">
                         <div class="guru-img-wrapper">
-                            <img src="../images/jsp_foundation/Br_Himanshu.png" alt="ब्रह्मचारी हिमांशु भैया">
+                            <img src="../../images/jsp_foundation/Br_Himanshu.png" alt="ब्रह्मचारी हिमांशु भैया">
                         </div>
                         <div class="guru-name">ब्रह्मचारी हिमांशु भैया</div>
                     </div>
                     <div class="guru-card">
                         <div class="guru-img-wrapper">
-                            <img src="../images/jsp_foundation/Br_Rahul.png" alt="ब्रह्मचारी राहुल भैया">
+                            <img src="../../images/jsp_foundation/Br_Rahul.png" alt="ब्रह्मचारी राहुल भैया">
                         </div>
                         <div class="guru-name">ब्रह्मचारी राहुल भैया</div>
                     </div>
 
                     <div class="guru-card space-divider">
                         <div class="guru-img-wrapper">
-                            <img src="../images/jsp_foundation/Gayatri_didi.png" alt="ब्रह्मचारिणी गायत्री दीदी">
+                            <img src="../../images/jsp_foundation/Gayatri_didi.png" alt="ब्रह्मचारिणी गायत्री दीदी">
                         </div>
                         <div class="guru-name">ब्रह्मचारिणी गायत्री दीदी</div>
                     </div>
                     <div class="guru-card">
                         <div class="guru-img-wrapper">
-                            <img src="../images/jsp_foundation/Pranya_didi.png" alt="ब्रह्मचारिणी प्रण्या दीदी">
+                            <img src="../../images/jsp_foundation/Pranya_didi.png" alt="ब्रह्मचारिणी प्रण्या दीदी">
                         </div>
                         <div class="guru-name">ब्रह्मचारिणी प्रण्या दीदी</div>
                     </div>
@@ -448,7 +471,7 @@
                 <p class="timeline-text">कुछ धर्म प्रेमी नवयुवकों के मन के अंदर जैन धर्म प्रभावना का दृढ़ संकल्प और
                     सम्पूर्ण जैन समाज पुणे को एक साथ जोड़ने का जुनून जागा। इन युवाओं ने <b>श्री चन्द्रप्रभु जिनालय,
                         गुरुवार पेठ</b> में नियमित स्वाध्याय करना प्रारम्भ किया और वहीं से एक विशाल संघ की नींव रखी जाने
-                    लगी।</p>
+                    लगने लगी।</p>
             </div>
 
             <div class="timeline-item">
@@ -531,8 +554,9 @@
 
             <div class="timeline-item">
                 <div class="timeline-year">वर्ष 2023</div>
-                <p class="timeline-text">सुस दिगंबर जैन मंदिर का निर्माण कार्य पूर्ण और निर्यापक श्रमण श्री 108 वीर सागर
-                    जी महराज के मंगल सानिध्य में भव्य ऐतिहासिक पञ्च-कल्याणक सम्पन्न हुआ|</p>
+                <p class="timeline-text">सुस दिगंबर जैन मंदिर का निर्माण कार्य पूर्ण और <b>निर्यापक श्रमण श्री 108 वीर
+                    सागर
+                    जी महराज</b> के मंगल सानिध्य में भव्य ऐतिहासिक पञ्च-कल्याणक सम्पन्न हुआ|</p>
             </div>
 
             <div class="timeline-item">
@@ -544,7 +568,7 @@
 
         <h2 class="section-title">JSP Founders</h2>
         <div class="img-container">
-            <img src="../images/jsp_foundation/JSP_founders.jpg" alt="JSP Founders" class="full-visible-img">
+            <img src="../../images/jsp_foundation/JSP_founders.jpg" alt="JSP Founders" class="full-visible-img">
         </div>
 
         <div style="margin-top: 20px; background-color: #F8F9FA; padding: 12px; border-radius: 8px; border: 1px dashed #611f69;">

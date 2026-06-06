@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSP Website - Loader Test</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2a7d8c;
+            margin-bottom: 10px;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .status.pending {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+        }
+        .debug-log {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 10px;
+        }
+        .log-entry {
+            margin: 5px 0;
+            padding: 5px;
+        }
+        .log-entry.debug {
+            color: #6c757d;
+        }
+        .log-entry.error {
+            color: #dc3545;
+        }
+        .log-entry.success {
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+
+<div class="test-container">
+    <div class="test-section">
+        <div class="test-title">🧪 JSP Website - Loader & Style Test Suite</div>
+        <p>This page tests whether header, footer, and style loading are working correctly.</p>
+    </div>
+
+    <div class="test-section">
+        <div class="test-title">1️⃣ Header Component Test</div>
+        <div id="header-status" class="status pending">⏳ Testing header load...</div>
+        <div class="debug-log" id="header-log"></div>
+    </div>
+
+    <div class="test-section">
+        <div class="test-title">2️⃣ Styles Application Test</div>
+        <div id="styles-status" class="status pending">⏳ Testing styles...</div>
+        <div>
+            <p>Check that the test box below matches the JSP website theme:</p>
+            <div style="background: #2a7d8c; color: white; padding: 20px; border-radius: 8px; margin: 10px 0;">
+                🎨 This box should have teal background (#2a7d8c) with white text
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <div class="test-title">3️⃣ Footer Component Test</div>
+        <div id="footer-status" class="status pending">⏳ Testing footer load...</div>
+        <div class="debug-log" id="footer-log"></div>
+    </div>
+
+    <div class="test-section">
+        <div class="test-title">📋 Overall Status</div>
+        <div id="overall-status" class="status pending">⏳ Waiting for all tests to complete...</div>
+    </div>
+</div>
+
+<div id="footer-placeholder"></div>
+
+<script src="header-loader.js"></script>
+<script src="footer-loader.js"></script>
+
+<script>
+    // Override console.log and console.error to capture logs
+    const logs = {
+        header: [],
+        footer: []
+    };
+
+    const originalLog = console.log;
+    const originalError = console.error;
+    const originalDebug = console.debug;
+
+    console.log = function(...args) {
+        originalLog.apply(console, args);
+        const message = args.join(' ');
+        if (message.includes('Header')) {
+            logs.header.push({ type: 'log', message });
+        } else if (message.includes('Footer')) {
+            logs.footer.push({ type: 'log', message });
+        }
+    };
+
+    console.error = function(...args) {
+        originalError.apply(console, args);
+        const message = args.join(' ');
+        if (message.includes('Header')) {
+            logs.header.push({ type: 'error', message });
+        } else if (message.includes('Footer')) {
+            logs.footer.push({ type: 'error', message });
+        }
+    };
+
+    console.debug = function(...args) {
+        originalDebug.apply(console, args);
+        const message = args.join(' ');
+        if (message.includes('Header')) {
+            logs.header.push({ type: 'debug', message });
+        } else if (message.includes('Footer')) {
+            logs.footer.push({ type: 'debug', message });
+        }
+    };
+
+    // Test functions
+    function testHeader() {
+        const headerPlaceholder = document.getElementById('header-placeholder');
+        const statusDiv = document.getElementById('header-status');
+        const logDiv = document.getElementById('header-log');
+
+        // Wait a bit for header to load
+        setTimeout(() => {
+            const headerElement = headerPlaceholder?.querySelector('header');
+            const hasHeader = headerElement !== null && headerElement !== undefined;
+
+            let logHtml = logs.header.map(l =>
+                `<div class="log-entry ${l.type}">${escapeHtml(l.message)}</div>`
+            ).join('');
+
+            if (hasHeader) {
+                statusDiv.className = 'status success';
+                statusDiv.innerHTML = '✅ Header loaded successfully!';
+            } else {
+                statusDiv.className = 'status error';
+                statusDiv.innerHTML = '❌ Header failed to load';
+                logHtml += `<div class="log-entry error">Header element not found in placeholder</div>`;
+            }
+
+            logDiv.innerHTML = logHtml || '<div class="log-entry debug">No logs captured</div>';
+        }, 1500);
+    }
+
+    function testFooter() {
+        const footerPlaceholder = document.getElementById('footer-placeholder');
+        const statusDiv = document.getElementById('footer-status');
+        const logDiv = document.getElementById('footer-log');
+
+        // Wait a bit for footer to load
+        setTimeout(() => {
+            const footerElement = footerPlaceholder?.querySelector('footer');
+            const hasFooter = footerElement !== null && footerElement !== undefined;
+
+            let logHtml = logs.footer.map(l =>
+                `<div class="log-entry ${l.type}">${escapeHtml(l.message)}</div>`
+            ).join('');
+
+            if (hasFooter) {
+                statusDiv.className = 'status success';
+                statusDiv.innerHTML = '✅ Footer loaded successfully!';
+            } else {
+                statusDiv.className = 'status error';
+                statusDiv.innerHTML = '❌ Footer failed to load';
+                logHtml += `<div class="log-entry error">Footer element not found in placeholder</div>`;
+            }
+
+            logDiv.innerHTML = logHtml || '<div class="log-entry debug">No logs captured</div>';
+        }, 1500);
+    }
+
+    function testStyles() {
+        const statusDiv = document.getElementById('styles-status');
+        const styleSheets = document.styleSheets;
+        let styleLoaded = false;
+        let cssRules = [];
+
+        for (let sheet of styleSheets) {
+            try {
+                if (sheet.href && sheet.href.includes('style.css')) {
+                    styleLoaded = true;
+                    break;
+                }
+            } catch (e) {
+                // Cross-origin issue, but stylesheet is likely loaded
+                if (sheet.href && sheet.href.includes('style.css')) {
+                    styleLoaded = true;
+                }
+            }
+        }
+
+        if (styleLoaded) {
+            statusDiv.className = 'status success';
+            statusDiv.innerHTML = '✅ Global style.css is loaded!';
+        } else {
+            statusDiv.className = 'status error';
+            statusDiv.innerHTML = '❌ Global style.css not found';
+        }
+    }
+
+    function updateOverallStatus() {
+        setTimeout(() => {
+            const headerStatus = document.getElementById('header-status');
+            const footerStatus = document.getElementById('footer-status');
+            const stylesStatus = document.getElementById('styles-status');
+            const overallStatus = document.getElementById('overall-status');
+
+            const allSuccess =
+                headerStatus.classList.contains('success') &&
+                footerStatus.classList.contains('success') &&
+                stylesStatus.classList.contains('success');
+
+            if (allSuccess) {
+                overallStatus.className = 'status success';
+                overallStatus.innerHTML = '✅ All tests passed! Header, footer, and styles are loading correctly.';
+            } else {
+                const headerOk = headerStatus.classList.contains('success') ? '✅' : '❌';
+                const footerOk = footerStatus.classList.contains('success') ? '✅' : '❌';
+                const stylesOk = stylesStatus.classList.contains('success') ? '✅' : '❌';
+
+                overallStatus.className = 'status error';
+                overallStatus.innerHTML = `⚠️ Some tests failed: Header ${headerOk} | Footer ${footerOk} | Styles ${stylesOk}`;
+            }
+        }, 2000);
+    }
+
+    function escapeHtml(text) {
+        const map = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#039;'
+        };
+        return text.replace(/[&<>"']/g, m => map[m]);
+    }
+
+    // Run tests when document is fully loaded
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            testHeader();
+            testFooter();
+            testStyles();
+            updateOverallStatus();
+        });
+    } else {
+        testHeader();
+        testFooter();
+        testStyles();
+        updateOverallStatus();
+    }
+</script>
+
+</body>
+</html>
+

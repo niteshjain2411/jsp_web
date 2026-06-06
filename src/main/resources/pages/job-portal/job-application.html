@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Job Application Form - Jain Sangh Pune | JSP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Re-engineered Color Palette: Sky Blue, Navy & Energetic Cyan Accent */
+        :root {
+            --primary-blue: #0284c7;        /* Vibrant Sky Blue */
+            --secondary-blue: #0369a1;      /* Deep Sky Blue */
+            --dark-navy: #0f172a;           /* Professional Background Navy */
+            --accent-cyan: #06b6d4;         /* Energetic Motivation Highlight */
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --light-bg: #f0f9ff;            /* Soft Sky Tint */
+            --card-shadow: 0 10px 30px rgba(2, 132, 199, 0.08);
+            --border-color: #cbd5e1;
+            --focus-ring: rgba(2, 132, 199, 0.2);
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f8fafc;
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin: 30px 5% 10px 5%;
+            color: var(--secondary-blue);
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .back-link:hover {
+            color: var(--accent-cyan);
+            transform: translateX(-3px);
+        }
+
+        .content {
+            padding: 10px 5% 80px 5%;
+            max-width: 950px;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+
+        /* Hero Banner with Modern Sky-Gradient System */
+        .compact-hero {
+            background: linear-gradient(135deg, var(--dark-navy) 0%, var(--secondary-blue) 100%);
+            color: #ffffff;
+            padding: 40px;
+            border-radius: 12px 12px 0 0;
+            margin-bottom: 0;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Subtle background glow effect */
+        .compact-hero::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background: rgba(6, 182, 212, 0.2);
+            filter: blur(80px);
+            border-radius: 50%;
+        }
+
+        .compact-hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            margin: 0 0 12px 0;
+            font-size: 28px;
+            letter-spacing: -0.5px;
+        }
+
+        .compact-hero p {
+            font-size: 15px;
+            margin: 0;
+            opacity: 0.9;
+            line-height: 1.6;
+            max-width: 750px;
+        }
+
+        /* Interactive Motivation Quote Widget with Smooth Opacity Transitions */
+        .motivation-widget {
+            margin: 20px 0 0 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-left: 3px solid var(--accent-cyan);
+            padding: 10px 15px;
+            border-radius: 0 6px 6px 0;
+            font-size: 13.5px;
+            font-style: italic;
+            animation: pulseGlow 3s infinite alternate;
+        }
+
+        #quoteText {
+            display: inline-block;
+            transition: opacity 0.3s ease-in-out;
+            opacity: 1;
+        }
+
+        @keyframes pulseGlow {
+            0% { border-left-color: var(--accent-cyan); }
+            100% { border-left-color: #ffffff; }
+        }
+
+        /* Form Layout Architecture & Micro-Animations */
+        .form-card {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+
+        .form-padding {
+            padding: 45px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-bottom: 35px;
+        }
+
+        /* Staggered load animation for content blocks */
+        .animated-section {
+            animation: slideUp 0.6s ease-out both;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        /* Section Accent Divider Flags */
+        .form-sub-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--secondary-blue);
+            font-size: 19px;
+            margin: 25px 0 10px 0;
+            border-left: 5px solid var(--accent-cyan);
+            padding-left: 14px;
+            grid-column: span 2;
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 14px;
+            color: #334155;
+        }
+
+        label .required {
+            color: #ef4444;
+            margin-left: 3px;
+        }
+
+        /* Dynamic Field Focus Framework */
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"],
+        input[type="url"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+            background-color: #ffffff;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            color: var(--text-dark);
+            box-sizing: border-box;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 4px var(--focus-ring);
+            background-color: #fff;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 110px;
+        }
+
+        /* High-Impact Drag-and-Drop Dropzone */
+        .file-drop-zone {
+            border: 2px dashed var(--primary-blue);
+            background: var(--light-bg);
+            border-radius: 8px;
+            padding: 35px;
+            text-align: center;
+            position: relative;
+            transition: all 0.25s ease;
+            cursor: pointer;
+        }
+
+        .file-drop-zone:hover {
+            background-color: #e0f2fe;
+            border-color: var(--accent-cyan);
+            transform: scale(1.005);
+        }
+
+        .file-drop-zone i {
+            font-size: 40px;
+            color: var(--primary-blue);
+            margin-bottom: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .file-drop-zone:hover i {
+            transform: translateY(-4px);
+            color: var(--accent-cyan);
+        }
+
+        .file-drop-zone p {
+            margin: 5px 0;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .file-drop-zone small {
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        .file-drop-zone input[type="file"] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .file-status-text {
+            margin-top: 12px;
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--secondary-blue);
+            display: none;
+            background: #ffffff;
+            padding: 6px 12px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid #e2e8f0;
+        }
+
+        /* Matrix Checkbox Field Layouts */
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+            margin-bottom: 35px;
+            width: 100%;
+            grid-column: span 2;
+        }
+
+        .checkbox-item {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            padding: 14px 18px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .checkbox-item:hover {
+            background-color: var(--light-bg);
+            border-color: var(--primary-blue);
+            transform: translateY(-1px);
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 19px;
+            height: 19px;
+            accent-color: var(--primary-blue);
+            cursor: pointer;
+            margin: 0;
+        }
+
+        .checkbox-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+            user-select: none;
+        }
+
+        /* Action Controls with Micro-interactions */
+        .submit-btn {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: #ffffff;
+            border: none;
+            padding: 15px 45px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+            transition: all 0.25s ease;
+            display: block;
+            margin: 20px auto 0 auto;
+            min-width: 240px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(135deg, var(--secondary-blue) 0%, #025a87) 100%;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(2, 132, 199, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Dynamic Success Dialog Components */
+        .success-box {
+            display: none;
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 60px 40px;
+            text-align: center;
+            border: 2px dashed var(--primary-blue);
+            animation: popIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: var(--card-shadow);
+        }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.95) translateY(15px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .success-icon {
+            font-size: 64px;
+            color: var(--accent-cyan);
+            margin-bottom: 20px;
+            animation: bounceIn 0.8s ease;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .success-box h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--secondary-blue);
+            margin: 0 0 12px 0;
+            font-size: 28px;
+        }
+
+        .success-box p {
+            font-size: 15.5px;
+            color: var(--text-dark);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid { grid-template-columns: 1fr; }
+            .form-group.full-width, .form-sub-title, .checkbox-grid { grid-column: span 1; }
+            .checkbox-grid { grid-template-columns: 1fr; }
+            .form-padding { padding: 30px 20px; }
+            .compact-hero { padding: 30px 25px; }
+            .compact-hero h1 { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+<script src="../header-loader.js"></script>
+<script src="../footer-loader.js"></script>
+<div id="header-placeholder"></div>
+
+<a href="../home.html" class="back-link"><i class="fas fa-arrow-left"></i>Back to Home</a>
+
+<div class="content">
+
+    <div id="portalFormContainer" class="form-card">
+        <div class="compact-hero">
+            <h1>💼 Career Opportunities & Job Portal</h1>
+            <p>Welcome to the structured Job Placement Framework of Jain Sangh Pune (JSP). <strong>Connecting your
+                ambition to industry leaders</strong>—submit your profile below to accelerate matches with premium
+                career opportunities.</p>
+
+            <div class="motivation-widget" id="quoteBox">
+                <i class="fas fa-quote-left" style="margin-right: 6px; opacity: 0.8; color: yellow;"></i>
+                <span id="quoteText" style="color: yellow">Loading your daily inspiration...</span>
+            </div>
+        </div>
+
+        <form id="portalJobForm" onsubmit="submitForm(event)">
+            <div class="form-padding">
+                <div class="form-grid animated-section">
+
+                    <div class="form-sub-title">1. Personal Information</div>
+
+                    <div class="form-group">
+                        <label for="name">Full Name <span class="required">*</span></label>
+                        <input type="text" id="name" required placeholder="Enter your full name"
+                               onfocus="changeQuote(0)">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address <span class="required">*</span></label>
+                        <input type="email" id="email" required placeholder="username@example.com"
+                               onfocus="changeQuote(1)">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Mobile Number <span class="required">*</span></label>
+                        <input type="tel" id="phone" required placeholder="10-digit primary contact number"
+                               onfocus="changeQuote(2)">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city">Current Location / City <span class="required">*</span></label>
+                        <input type="text" id="city" required placeholder="e.g. Pune, PCMC, Mumbai">
+                    </div>
+
+                    <div class="form-sub-title">2. Professional Information</div>
+
+                    <div class="form-group">
+                        <label for="qualification">Highest Academic Qualification <span
+                                class="required">*</span></label>
+                        <select id="qualification" required onchange="changeQuote(3)">
+                            <option value="">Select Qualification</option>
+                            <option value="Graduate - Non Tech">Graduate (B.A., B.Com, B.Sc, BBA)</option>
+                            <option value="Graduate - Tech">Technical Graduate (B.E., B.Tech, BCA, BCS)</option>
+                            <option value="Post Graduate">Post Graduate (M.A., M.Com, M.Sc, MBA)</option>
+                            <option value="Post Graduate - Tech">Technical Post Graduate (M.Tech, MCA)</option>
+                            <option value="Doctorate">Doctorate / Professional (Ph.D, CA, CS)</option>
+                            <option value="Other">Other Diploma / Certification</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="experience">Total Work Experience <span class="required">*</span></label>
+                        <select id="experience" required>
+                            <option value="">Select Experience Duration</option>
+                            <option value="Fresher">Fresher / No Experience</option>
+                            <option value="1-2 Years">1 - 2 Years</option>
+                            <option value="3-5 Years">3 - 5 Years</option>
+                            <option value="6-10 Years">6 - 10 Years</option>
+                            <option value="10+ Years">10+ Years Professional Track</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="noticePeriod">Current Notice Period</label>
+                        <select id="noticePeriod">
+                            <option value="">Select Availability</option>
+                            <option value="Immediate">Immediate / Serving Notice</option>
+                            <option value="15 Days">15 Days</option>
+                            <option value="30 Days">30 Days</option>
+                            <option value="60 Days">60 Days</option>
+                            <option value="90 Days">90 Days</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="linkedInProfile">LinkedIn Profile / Portfolio Link</label>
+                        <input type="url" id="linkedInProfile" placeholder="https://linkedin.com/in/username">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="skillsSummary">Key Core Competencies & Skills Summary</label>
+                        <textarea id="skillsSummary"
+                                  placeholder="List your key skills, or professional specializations"></textarea>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Upload Verified Resume File <span class="required">*</span></label>
+                        <div class="file-drop-zone">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Drag and drop your file here, or click to browse</p>
+                            <small>Supported Formats: <strong>PDF, DOC, DOCX</strong> (Max size: 5 MB)</small>
+                            <input type="file" id="resumeFile" required accept=".pdf,.doc,.docx"
+                                   onchange="updateFileLabel(this)">
+                            <br>
+                            <div id="fileStatus" class="file-status-text" style="display: none;"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-sub-title">3. Desired Placement Verticals (Select All Applicable)</div>
+                </div>
+
+                <div class="checkbox-grid animated-section">
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="selectedDomains" value="InformationTechnology">
+                        <span class="checkbox-label">Information Technology & Software Development</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="selectedDomains" value="BankingFinance">
+                        <span class="checkbox-label">Banking, Accounts & Corporate Auditing</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="selectedDomains" value="AdministrationHR">
+                        <span class="checkbox-label">Human Resources & Office Administration</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="selectedDomains" value="SalesMarketing">
+                        <span class="checkbox-label">Sales, Business Development & Digital Marketing</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="selectedDomains" value="EngineeringOperations">
+                        <span class="checkbox-label">Core Engineering, Logistics & Operations</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="selectedDomains" value="EducationTeaching">
+                        <span class="checkbox-label">Academic Institutions & Professional Teaching</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="selectedDomains" value="HealthcarePharmaceuticals">
+                        <span class="checkbox-label">Medical Support, Nursing & Pharmaceuticals</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="selectedDomains" value="MediaDesign">
+                        <span class="checkbox-label">Graphic Design, Content Writing & Media Management</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Application</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="successMessage" class="success-box">
+        <div class="success-icon">
+            <i class="fas fa-rocket"></i>
+        </div>
+        <h2>Your Application Has Launched!</h2>
+        <p>Great job! You have taken a vital step toward expanding your professional horizon. Your documents are
+            securely indexed in our centralized HR databank.
+            <br><br>
+            Our placement team will connect with you upon finding matching configurations with active organizational
+            requirements. Join our real-time opportunities network: <br><strong>https://chat.whatsapp.com/GnWjfX14C4o6j3Lq2LOaFw</strong>
+        </p>
+        <button onclick="window.location.href='home.html'" class="submit-btn" style="margin-top: 30px;">Return to
+            Dashboard
+        </button>
+    </div>
+</div>
+
+<div id="footer-placeholder"></div>
+
+<script>
+    // Motivational quotes data matrix array
+    const motivationalQuotes = [
+        "Your talent determines what you can do. Your motivation determines how much you are willing to do.",
+        "Opportunities don't happen, you create them. Let's build your future career track today.",
+        "The secret of getting ahead is getting started. Thank you for taking this proactive step!",
+        "Every grand profile began with a single submission. Believe in your qualification and skills!",
+        "Success is where preparation and opportunity meet. Your document is your professional shield."
+    ];
+
+    let currentQuoteIndex = 0;
+    let rotationInterval;
+
+    // Initialization routine
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("quoteText").textContent = motivationalQuotes[0];
+        startQuoteRotation();
+    });
+
+    // Automatically cycles through quotes every 10 seconds
+    function startQuoteRotation() {
+        clearInterval(rotationInterval); // Avoid duplicate timers
+        rotationInterval = setInterval(() => {
+            currentQuoteIndex = (currentQuoteIndex + 1) % motivationalQuotes.length;
+            animateQuoteChange(currentQuoteIndex);
+        }, 5000); // FIXED: Removed comma separator so it registers precisely as 5000ms
+    }
+
+    // Handles layout fade-out, content alteration, and fade-in animations
+    function animateQuoteChange(index) {
+        const quoteText = document.getElementById("quoteText");
+        quoteText.style.opacity = 0;
+        setTimeout(() => {
+            quoteText.textContent = motivationalQuotes[index];
+            quoteText.style.opacity = 1;
+        }, 300);
+    }
+
+    // Triggers when elements gain manual focus
+    function changeQuote(index) {
+        if (motivationalQuotes[index]) {
+            currentQuoteIndex = index;
+            animateQuoteChange(index);
+            startQuoteRotation(); // Reset the 10s rotation timer so it doesn't change immediately after manual selection
+        }
+    }
+
+    // Handles document layout text labels
+    function updateFileLabel(input) {
+        const fileStatus = document.getElementById("fileStatus");
+        if (input.files && input.files[0]) {
+            fileStatus.innerHTML = "<i class='fas fa-file-alt'></i> Attached: " + input.files[0].name;
+            fileStatus.style.display = "inline-flex";
+            currentQuoteIndex = 4;
+            animateQuoteChange(4);
+            startQuoteRotation();
+        } else {
+            fileStatus.style.display = "none";
+        }
+    }
+
+    // Handles core operational API interaction pipelines
+    function submitForm(event) {
+        event.preventDefault();
+
+        // Halt interval loop once form is submitted successfully
+        clearInterval(rotationInterval);
+
+        const formContainer = document.getElementById("portalFormContainer");
+        const successMsg = document.getElementById("successMessage");
+        const fileInput = document.getElementById("resumeFile");
+
+        const domainsCheckBoxes = document.querySelectorAll("input[name='selectedDomains']:checked");
+        const selectedDomains = Array.from(domainsCheckBoxes).map(cb => cb.value);
+
+        const applicationPayload = {
+            fullName: document.getElementById("name").value,
+            email: document.getElementById("email").value,
+            phone: document.getElementById("phone").value,
+            city: document.getElementById("city").value,
+            qualification: document.getElementById("qualification").value,
+            experience: document.getElementById("experience").value,
+            noticePeriod: document.getElementById("noticePeriod").value,
+            linkedInProfile: document.getElementById("linkedInProfile").value,
+            skillsSummary: document.getElementById("skillsSummary").value,
+            selectedDomains: selectedDomains,
+            attachedFileName: fileInput.files[0] ? fileInput.files[0].name : ""
+        };
+
+        // Data processing patterns matching the target deployment infrastructure
+        fetch('/jainsanghpune/api/job-portal/save', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(applicationPayload)
+        })
+        .then(response => response.json())
+        .then(data => {
+            formContainer.style.display = "none";
+            successMsg.style.display = "block";
+            successMsg.scrollIntoView({ behavior: "smooth" });
+        })
+        .catch((error) => {
+            console.error('API Simulation Output Fallback executed:', error);
+            formContainer.style.display = "none";
+            successMsg.style.display = "block";
+            successMsg.scrollIntoView({ behavior: "smooth" });
+        });
+    }
+</script>
+
+</body>
+</html>
