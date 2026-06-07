@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Profile - Job Portal | JSP</title>
     <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat:wght=400;500;600;700&family=Open+Sans:wght=400;600&display=swap"
-            rel="stylesheet">
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght=400;500;600;700&family=Open+Sans:wght=400;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -295,7 +295,7 @@
         input.invalid-field {
             border-color: var(--danger-red) !important;
             box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15) !important;
-            background-color: #fff5f5;
+            background-color: #fff5f5 !important;
         }
 
         .field-error-msg {
@@ -588,7 +588,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(15, 23, 42, 0.7); /* Deep Navy matching portal palette with transparency */
+            background-color: rgba(15, 23, 42, 0.7);
+            /* Deep Navy matching portal palette with transparency */
             z-index: 9999;
             align-items: center;
             justify-content: center;
@@ -609,8 +610,13 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         @media (max-width: 768px) {
@@ -650,687 +656,685 @@
 
 <body>
 
-<script src="../header-loader.js"></script>
-<script src="../footer-loader.js"></script>
-<div id="header-placeholder"></div>
+    <script src="../header-loader.js"></script>
+    <script src="../footer-loader.js"></script>
+    <div id="header-placeholder"></div>
 
-<div id="loadingPageMask" class="loading-mask">
-    <div class="spinner"></div>
-    <h3 style="margin: 0; font-weight: 600; letter-spacing: 0.5px;">Saving Your Profile...</h3>
-    <p style="margin: 5px 0 0 0; font-size: 13px; opacity: 0.8;">Please do not close or refresh this tab.</p>
-</div>
+    <div id="loadingPageMask" class="loading-mask">
+        <div class="spinner"></div>
+        <h3 style="margin: 0; font-weight: 600; letter-spacing: 0.5px;">Saving Your Profile...</h3>
+        <p style="margin: 5px 0 0 0; font-size: 13px; opacity: 0.8;">Please do not close or refresh this tab.</p>
+    </div>
 
-<a href="job-portal.html" class="back-link"><i class="fas fa-arrow-left"></i>Back to Portal Dashboard</a>
+    <a href="../home.html" class="back-link"><i class="fas fa-arrow-left"></i>Back to Home</a>
 
-<div class="content">
+    <div class="content">
+        <div id="statusAlert" class="status-notification"></div>
+        <div id="portalFormContainer" class="form-card">
+            <div class="compact-hero">
+                <h1>👤 Your Job Profile</h1>
+                <p>Create a fresh engineering track profile, modify your updated work parameters, or remove your
+                    deployment
+                    records from the core active matching database.</p>
 
-    <div id="statusAlert" class="status-notification"></div>
-
-    <div id="portalFormContainer" class="form-card">
-        <div class="compact-hero">
-            <h1>👤 Your Job Profile</h1>
-            <p>Create a fresh engineering track profile, modify your updated work parameters, or remove your
-                deployment
-                records from the core active matching database.</p>
-
-            <div class="motivation-widget" id="quoteBox">
-                <i class="fas fa-quote-left" style="margin-right: 6px; opacity: 0.8; color: yellow;"></i>
-                <span id="quoteText" style="color: yellow">Loading your daily inspiration...</span>
-            </div>
-        </div>
-
-        <div class="action-tabs">
-            <button type="button" class="tab-btn active" onclick="switchMode('create')"><i
-                    class="fas fa-user-plus"></i>
-                Create Profile
-            </button>
-            <button type="button" class="tab-btn" onclick="switchMode('update')"><i class="fas fa-user-edit"></i>
-                Edit /
-                Update
-            </button>
-            <button type="button" class="tab-btn" onclick="switchMode('delete')"><i class="fas fa-user-minus"></i>
-                Delete Profile
-            </button>
-        </div>
-
-        <div class="form-padding">
-
-            <div id="searchSection" class="search-container" style="display: none;">
-                <div class="form-group" style="flex: 1; gap: 8px;">
-                    <label for="searchEmail">Enter Registered Profile Email Address <span
-                            class="required">*</span></label>
-                    <input type="email" id="searchEmail" placeholder="registered-user@example.com">
+                <div class="motivation-widget" id="quoteBox">
+                    <i class="fas fa-quote-left" style="margin-right: 6px; opacity: 0.8; color: yellow;"></i>
+                    <span id="quoteText" style="color: yellow">Loading your daily inspiration...</span>
                 </div>
-                <button type="button" class="search-btn" onclick="searchProfile()"><i class="fas fa-search"></i>
-                    Find
-                    Profile
+            </div>
+
+            <div class="action-tabs">
+                <button type="button" class="tab-btn active" onclick="switchMode('create')"><i
+                        class="fas fa-user-plus"></i>
+                    Create Profile
+                </button>
+                <button type="button" class="tab-btn" onclick="switchMode('update')"><i class="fas fa-user-edit"></i>
+                    Edit /
+                    Update
+                </button>
+                <button type="button" class="tab-btn" onclick="switchMode('delete')"><i class="fas fa-user-minus"></i>
+                    Delete Profile
                 </button>
             </div>
 
-            <div id="deleteConfirmationBox" class="delete-warning-box" style="display: none;">
-                <i class="fas fa-exclamation-triangle"></i>
-                <p>Do you really want to delete?</p>
-                <span>Deleting will permanently erase all data associated with your profile from the directory
-                        metrics ecosystem. This action cannot be undone.</span>
-            </div>
+            <div class="form-padding">
 
-            <form id="portalJobForm" onsubmit="submitForm(event)">
-                <div id="formFieldsWrapper" class="form-grid animated-section">
-
-                    <div class="form-sub-title" id="personalSecTitle">1. Personal Information</div>
-
-                    <div class="form-group class-personal-field">
-                        <label for="name">Full Name <span class="required">*</span></label>
-                        <input type="text" id="name" required placeholder="Enter your full name"
-                               onfocus="changeQuote(0)">
-                    </div>
-
-                    <div class="form-group class-personal-field">
-                        <label for="email">Email Address <span class="required">*</span></label>
-                        <input type="email" id="email" required placeholder="username@example.com"
-                               onfocus="changeQuote(1)" onblur="validateUniqueEmail(this.value)">
-                        <span id="emailError" class="field-error-msg" style="display: none;"></span>
-                    </div>
-
-                    <div class="form-group class-personal-field">
-                        <label for="phone">Mobile Number <span class="required">*</span></label>
-                        <input type="tel" id="phone" required placeholder="10-digit primary contact number"
-                               onfocus="changeQuote(2)" onblur="validateUniquePhone(this.value)">
-                        <span id="phoneError" class="field-error-msg" style="display: none;"></span>
-                    </div>
-
-                    <div class="form-group class-personal-field">
-                        <label for="city">Current Location / City <span class="required">*</span></label>
-                        <input type="text" id="city" required placeholder="e.g. Pune, PCMC, Mumbai">
-                    </div>
-
-                    <div class="form-sub-title">2. Professional Information</div>
-
-                    <div class="form-group">
-                        <label for="qualification">Highest Academic Qualification <span
+                <div id="searchSection" class="search-container" style="display: none;">
+                    <div class="form-group" style="flex: 1; gap: 8px;">
+                        <label for="searchEmail">Enter Registered Profile Email Address <span
                                 class="required">*</span></label>
-                        <select id="qualification" required onchange="changeQuote(3)">
-                            <option value="">Select Qualification</option>
-                            <option value="Graduate - Non Tech">Graduate (B.A., B.Com, B.Sc, BBA)</option>
-                            <option value="Graduate - Tech">Technical Graduate (B.E., B.Tech, BCA, BCS)</option>
-                            <option value="Post Graduate">Post Graduate (M.A., M.Com, M.Sc, MBA)</option>
-                            <option value="Post Graduate - Tech">Technical Post Graduate (M.Tech, MCA)</option>
-                            <option value="Doctorate">Doctorate / Professional (Ph.D, CA, CS)</option>
-                            <option value="Other">Other Diploma / Certification</option>
-                        </select>
+                        <input type="email" id="searchEmail" placeholder="registered-user@example.com">
                     </div>
+                    <button type="button" class="search-btn" onclick="searchProfile()"><i class="fas fa-search"></i>
+                        Find
+                        Profile
+                    </button>
+                </div>
 
-                    <div class="form-group">
-                        <label for="experience">Total Work Experience <span class="required">*</span></label>
-                        <select id="experience" required>
-                            <option value="">Select Experience Duration</option>
-                            <option value="Fresher">Fresher / No Experience</option>
-                            <option value="1-2 Years">1 - 2 Years</option>
-                            <option value="3-5 Years">3 - 5 Years</option>
-                            <option value="6-10 Years">6 - 10 Years</option>
-                            <option value="10+ Years">10+ Years Professional Track</option>
-                        </select>
-                    </div>
+                <div id="deleteConfirmationBox" class="delete-warning-box" style="display: none;">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p>Do you really want to delete?</p>
+                    <span>Deleting will permanently erase all data associated with your profile from the directory
+                        metrics ecosystem. This action cannot be undone.</span>
+                </div>
 
-                    <div class="form-group">
-                        <label for="noticePeriod">Current Notice Period</label>
-                        <select id="noticePeriod">
-                            <option value="">Select Availability</option>
-                            <option value="Immediate">Immediate / Serving Notice</option>
-                            <option value="15 Days">15 Days</option>
-                            <option value="30 Days">30 Days</option>
-                            <option value="60 Days">60 Days</option>
-                            <option value="90 Days">90 Days</option>
-                        </select>
-                    </div>
+                <form id="portalJobForm" onsubmit="submitForm(event)">
+                    <div id="formFieldsWrapper" class="form-grid animated-section">
 
-                    <div class="form-group">
-                        <label for="linkedInProfile">LinkedIn Profile / Portfolio Link</label>
-                        <input type="url" id="linkedInProfile" placeholder="https://linkedin.com/in/username">
-                    </div>
+                        <div class="form-sub-title" id="personalSecTitle">1. Personal Information</div>
 
-                    <div class="form-group full-width">
-                        <label for="skillsSummary">Key Core Competencies & Skills Summary</label>
-                        <textarea id="skillsSummary"
-                                  placeholder="List your key skills, or professional specializations"></textarea>
-                    </div>
+                        <div class="form-group class-personal-field">
+                            <label for="name">Full Name <span class="required">*</span></label>
+                            <input type="text" id="name" required placeholder="Enter your full name"
+                                onfocus="changeQuote(0)">
+                        </div>
 
-                    <div id="fileUploadGroup" class="form-group full-width">
-                        <label>Upload Verified Resume File <span class="required">*</span></label>
-                        <div class="file-drop-zone">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                            <p>Drag and drop your file here, or click to browse</p>
-                            <small>Supported Formats: <b>PDF, DOC, DOCX</b> (Max size: 5 MB)</small>
-                            <input type="file" id="resumeFile" required accept=".pdf,.doc,.docx"
-                                   onchange="updateFileLabel(this)">
-                            <br>
-                            <div id="fileStatus" class="file-status-text" style="display: none;"></div>
+                        <div class="form-group class-personal-field">
+                            <label for="email">Email Address <span class="required">*</span></label>
+                            <input type="email" id="email" required placeholder="username@example.com"
+                                onfocus="changeQuote(1)" onblur="validateUniqueEmail(this.value)">
+                            <span id="emailError" class="field-error-msg" style="display: none;"></span>
+                        </div>
+
+                        <div class="form-group class-personal-field">
+                            <label for="phone">Mobile Number <span class="required">*</span></label>
+                            <input type="tel" id="phone" required placeholder="10-digit primary contact number"
+                                onfocus="changeQuote(2)" onblur="validateUniquePhone(this.value)">
+                            <span id="phoneError" class="field-error-msg" style="display: none;"></span>
+                        </div>
+
+                        <div class="form-group class-personal-field">
+                            <label for="city">Current Location / City <span class="required">*</span></label>
+                            <input type="text" id="city" required placeholder="e.g. Pune, PCMC, Mumbai">
+                        </div>
+
+                        <div class="form-sub-title">2. Professional Information</div>
+
+                        <div class="form-group">
+                            <label for="qualification">Highest Academic Qualification <span
+                                    class="required">*</span></label>
+                            <select id="qualification" required onchange="changeQuote(3)">
+                                <option value="">Select Qualification</option>
+                                <option value="Graduate - Non Tech">Graduate (B.A., B.Com, B.Sc, BBA)</option>
+                                <option value="Graduate - Tech">Technical Graduate (B.E., B.Tech, BCA, BCS)</option>
+                                <option value="Post Graduate">Post Graduate (M.A., M.Com, M.Sc, MBA)</option>
+                                <option value="Post Graduate - Tech">Technical Post Graduate (M.Tech, MCA)</option>
+                                <option value="Doctorate">Doctorate / Professional (Ph.D, CA, CS)</option>
+                                <option value="Other">Other Diploma / Certification</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="experience">Total Work Experience <span class="required">*</span></label>
+                            <select id="experience" required>
+                                <option value="">Select Experience Duration</option>
+                                <option value="Fresher">Fresher / No Experience</option>
+                                <option value="1-2 Years">1 - 2 Years</option>
+                                <option value="3-5 Years">3 - 5 Years</option>
+                                <option value="6-10 Years">6 - 10 Years</option>
+                                <option value="10+ Years">10+ Years Professional Track</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="noticePeriod">Current Notice Period</label>
+                            <select id="noticePeriod">
+                                <option value="">Select Availability</option>
+                                <option value="Immediate">Immediate / Serving Notice</option>
+                                <option value="15 Days">15 Days</option>
+                                <option value="30 Days">30 Days</option>
+                                <option value="60 Days">60 Days</option>
+                                <option value="90 Days">90 Days</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="linkedInProfile">LinkedIn Profile / Portfolio Link</label>
+                            <input type="url" id="linkedInProfile" placeholder="https://linkedin.com/in/username">
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="skillsSummary">Key Core Competencies & Skills Summary</label>
+                            <textarea id="skillsSummary"
+                                placeholder="List your key skills, or professional specializations"></textarea>
+                        </div>
+
+                        <div id="fileUploadGroup" class="form-group full-width">
+                            <label>Upload Verified Resume File <span class="required">*</span></label>
+                            <div class="file-drop-zone">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Drag and drop your file here, or click to browse</p>
+                                <small>Supported Formats: <b>PDF, DOC, DOCX</b> (Max size: 5 MB)</small>
+                                <input type="file" id="resumeFile" required accept=".pdf,.doc,.docx"
+                                    onchange="updateFileLabel(this)">
+                                <br>
+                                <div id="fileStatus" class="file-status-text" style="display: none;"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-sub-title" id="domainSecTitle">3. Desired Placement Verticals (Select All
+                            Applicable)
                         </div>
                     </div>
 
-                    <div class="form-sub-title" id="domainSecTitle">3. Desired Placement Verticals (Select All
-                        Applicable)
+                    <div id="checkboxFieldsWrapper" class="checkbox-grid animated-section">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="selectedDomains" value="InformationTechnology">
+                            <span class="checkbox-label">Information Technology & Software Development</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="selectedDomains" value="BankingFinance">
+                            <span class="checkbox-label">Banking, Accounts & Corporate Auditing</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="selectedDomains" value="AdministrationHR">
+                            <span class="checkbox-label">Human Resources & Office Administration</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="selectedDomains" value="SalesMarketing">
+                            <span class="checkbox-label">Sales, Business Development & Digital Marketing</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="selectedDomains" value="EngineeringOperations">
+                            <span class="checkbox-label">Core Engineering, Logistics & Operations</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="selectedDomains" value="EducationTeaching">
+                            <span class="checkbox-label">Academic Institutions & Professional Teaching</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="selectedDomains" value="HealthcarePharmaceuticals">
+                            <span class="checkbox-label">Medical Support, Nursing & Pharmaceuticals</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="selectedDomains" value="MediaDesign">
+                            <span class="checkbox-label">Graphic Design, Content Writing & Media Management</span>
+                        </label>
                     </div>
-                </div>
 
-                <div id="checkboxFieldsWrapper" class="checkbox-grid animated-section">
-                    <label class="checkbox-item">
-                        <input type="checkbox" name="selectedDomains" value="InformationTechnology">
-                        <span class="checkbox-label">Information Technology & Software Development</span>
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="checkbox" name="selectedDomains" value="BankingFinance">
-                        <span class="checkbox-label">Banking, Accounts & Corporate Auditing</span>
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="checkbox" name="selectedDomains" value="AdministrationHR">
-                        <span class="checkbox-label">Human Resources & Office Administration</span>
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="checkbox" name="selectedDomains" value="SalesMarketing">
-                        <span class="checkbox-label">Sales, Business Development & Digital Marketing</span>
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="checkbox" name="selectedDomains" value="EngineeringOperations">
-                        <span class="checkbox-label">Core Engineering, Logistics & Operations</span>
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="checkbox" name="selectedDomains" value="EducationTeaching">
-                        <span class="checkbox-label">Academic Institutions & Professional Teaching</span>
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="checkbox" name="selectedDomains" value="HealthcarePharmaceuticals">
-                        <span class="checkbox-label">Medical Support, Nursing & Pharmaceuticals</span>
-                    </label>
-                    <label class="checkbox-item">
-                        <input type="checkbox" name="selectedDomains" value="MediaDesign">
-                        <span class="checkbox-label">Graphic Design, Content Writing & Media Management</span>
-                    </label>
-                </div>
+                    <button type="submit" id="submitActionBtn" class="submit-btn">Submit Application</button>
+                </form>
+            </div>
+        </div>
 
-                <button type="submit" id="submitActionBtn" class="submit-btn">Submit Application</button>
-            </form>
+        <div id="successMessage" class="success-box">
+            <div class="success-icon">
+                <i class="fas fa-rocket"></i>
+            </div>
+            <h2 id="successTitle">Your Application is submitted</h2>
+            <p id="successDesc">We'll share your profile with top recruiters and get back to you as soon as possible.
+                Thank
+                you for applying to join our talent pool!</p>
+            <button onclick="window.location.href='job-seeker.html'" class="submit-btn">Back to Portal
+                Dashboard
+            </button>
         </div>
     </div>
 
-    <div id="successMessage" class="success-box">
-        <div class="success-icon">
-            <i class="fas fa-rocket"></i>
-        </div>
-        <h2 id="successTitle">Your Application is submitted</h2>
-        <p id="successDesc">We'll share your profile with top recruiters and get back to you as soon as possible.
-            Thank
-            you for applying to join our talent pool!</p>
-        <button onclick="window.location.href='job-portal.html'" class="submit-btn">Back to Portal
-            Dashboard
-        </button>
-    </div>
-</div>
+    <div id="footer-placeholder"></div>
 
-<div id="footer-placeholder"></div>
+    <script>
+        const motivationalQuotes = [
+            "Your talent determines what you can do. Your motivation determines how much you are willing to do.",
+            "Opportunities don't happen, you create them. Let's build your future career track today.",
+            "The secret of getting ahead is getting started. Thank you for taking this proactive step!",
+            "Every grand profile began with a single submission. Believe in your qualification and skills!",
+            "Success is where preparation and opportunity meet. Your document is your professional shield."
+        ];
 
-<script>
-    const motivationalQuotes = [
-        "Your talent determines what you can do. Your motivation determines how much you are willing to do.",
-        "Opportunities don't happen, you create them. Let's build your future career track today.",
-        "The secret of getting ahead is getting started. Thank you for taking this proactive step!",
-        "Every grand profile began with a single submission. Believe in your qualification and skills!",
-        "Success is where preparation and opportunity meet. Your document is your professional shield."
-    ];
+        let currentQuoteIndex = 0;
+        let rotationInterval;
+        let currentMode = 'create';
 
-    let currentQuoteIndex = 0;
-    let rotationInterval;
-    let currentMode = 'create';
+        let isEmailValid = true;
+        let isPhoneValid = true;
 
-    let isEmailValid = true;
-    let isPhoneValid = true;
-
-    document.addEventListener("DOMContentLoaded", function () {
-        document.getElementById("quoteText").textContent = motivationalQuotes[0];
-        startQuoteRotation();
-    });
-
-    function startQuoteRotation() {
-        clearInterval(rotationInterval);
-        rotationInterval = setInterval(() => {
-            currentQuoteIndex = (currentQuoteIndex + 1) % motivationalQuotes.length;
-            animateQuoteChange(currentQuoteIndex);
-        }, 5000);
-    }
-
-    function animateQuoteChange(index) {
-        const quoteText = document.getElementById("quoteText");
-        if (quoteText) {
-            quoteText.style.opacity = 0;
-            setTimeout(() => {
-                quoteText.textContent = motivationalQuotes[index];
-                quoteText.style.opacity = 1;
-            }, 300);
-        }
-    }
-
-    function changeQuote(index) {
-        if (motivationalQuotes[index]) {
-            currentQuoteIndex = index;
-            animateQuoteChange(index);
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("quoteText").textContent = motivationalQuotes[0];
             startQuoteRotation();
-        }
-    }
+        });
 
-    // Loader helper functions
-    function showLoader() {
-        document.getElementById('loadingPageMask').style.display = 'flex';
-    }
-
-    function hideLoader() {
-        document.getElementById('loadingPageMask').style.display = 'none';
-    }
-
-    function updateFileLabel(input) {
-        const fileStatus = document.getElementById("fileStatus");
-        if (input.files && input.files[0]) {
-            fileStatus.innerHTML = "<i class='fas fa-file-alt'></i> Attached: " + input.files[0].name;
-            fileStatus.style.display = "inline-flex";
-            currentQuoteIndex = 4;
-            animateQuoteChange(4);
-            startQuoteRotation();
-        } else {
-            fileStatus.style.display = "none";
-        }
-    }
-
-    /* ==========================================
-       ASYNC ASYNCHRONOUS BACKEND VALIDATION METHODS
-       ========================================== */
-
-    function validateUniqueEmail(emailValue) {
-        if (currentMode === 'update' || currentMode === 'delete' || !emailValue.trim()) {
-            resetFieldError('email');
-            return;
+        function startQuoteRotation() {
+            clearInterval(rotationInterval);
+            rotationInterval = setInterval(() => {
+                currentQuoteIndex = (currentQuoteIndex + 1) % motivationalQuotes.length;
+                animateQuoteChange(currentQuoteIndex);
+            }, 5000);
         }
 
-        const emailInput = document.getElementById('email');
-        const emailError = document.getElementById('emailError');
-
-        fetch(`/jainsanghpune/api/job-portal/validate-email?email=${encodeURIComponent(emailValue)}`, {
-            method: 'GET'
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data && data.available === false) {
-                    isEmailValid = false;
-                    emailInput.classList.add('invalid-field');
-                    emailError.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${data.message || 'This email address is already linked to another profile.'}`;
-                    emailError.style.display = 'flex';
-                } else {
-                    resetFieldError('email');
-                }
-                toggleSubmitState();
-            })
-            .catch(err => {
-                console.warn('Fallback simulated verification metrics tracking pipeline:', err);
-                if (emailValue.toLowerCase() === 'taken@example.com') {
-                    isEmailValid = false;
-                    emailInput.classList.add('invalid-field');
-                    emailError.innerHTML = `<i class="fas fa-exclamation-circle"></i> This email address is already linked to another active profile.`;
-                    emailError.style.display = 'flex';
-                } else {
-                    resetFieldError('email');
-                }
-                toggleSubmitState();
-            });
-    }
-
-    function validateUniquePhone(phoneValue) {
-        if (currentMode === 'update' || currentMode === 'delete' || !phoneValue.trim()) {
-            resetFieldError('phone');
-            return;
-        }
-
-        const phoneInput = document.getElementById('phone');
-        const phoneError = document.getElementById('phoneError');
-
-        fetch(`/jainsanghpune/api/job-portal/validate-phone?phone=${encodeURIComponent(phoneValue)}`, {
-            method: 'GET'
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data && data.available === false) {
-                    isPhoneValid = false;
-                    phoneInput.classList.add('invalid-field');
-                    phoneError.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${data.message || 'This phone number is already used in another profile.'}`;
-                    phoneError.style.display = 'flex';
-                } else {
-                    resetFieldError('phone');
-                }
-                toggleSubmitState();
-            })
-            .catch(err => {
-                console.warn('Fallback simulated validation pipeline tracking execution log:', err);
-                if (phoneValue === '9999999999') {
-                    isPhoneValid = false;
-                    phoneInput.classList.add('invalid-field');
-                    phoneError.innerHTML = `<i class="fas fa-exclamation-circle"></i> This phone number is already linked to another active profile.`;
-                    phoneError.style.display = 'flex';
-                } else {
-                    resetFieldError('phone');
-                }
-                toggleSubmitState();
-            });
-    }
-
-    function resetFieldError(fieldId) {
-        if (fieldId === 'email') isEmailValid = true;
-        if (fieldId === 'phone') isPhoneValid = true;
-
-        const inputEl = document.getElementById(fieldId);
-        const errorEl = document.getElementById(`${fieldId}Error`);
-        if (inputEl) inputEl.classList.remove('invalid-field');
-        if (errorEl) {
-            errorEl.style.display = 'none';
-            errorEl.innerHTML = '';
-        }
-    }
-
-    function toggleSubmitState() {
-        const submitActionBtn = document.getElementById('submitActionBtn');
-        if (!isEmailValid || !isPhoneValid) {
-            submitActionBtn.disabled = true;
-        } else {
-            submitActionBtn.disabled = false;
-        }
-    }
-
-    // Handles layout operational switches smoothly
-    function switchMode(mode) {
-        currentMode = mode;
-        hideStatus();
-
-        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-        const indexMap = { 'create': 0, 'update': 1, 'delete': 2 };
-        document.querySelectorAll('.tab-btn')[indexMap[mode]].classList.add('active');
-
-        const searchSection = document.getElementById('searchSection');
-        const deleteConfirmationBox = document.getElementById('deleteConfirmationBox');
-        const formFieldsWrapper = document.getElementById('formFieldsWrapper');
-        const checkboxFieldsWrapper = document.getElementById('checkboxFieldsWrapper');
-        const submitActionBtn = document.getElementById('submitActionBtn');
-        const formInstance = document.getElementById('portalJobForm');
-        const fileUploadGroup = document.getElementById('fileUploadGroup');
-
-        formInstance.reset();
-        resetFieldError('email');
-        resetFieldError('phone');
-        toggleSubmitState();
-
-        document.getElementById("fileStatus").style.display = "none";
-        setPersonalFieldsReadOnly(false);
-        fileUploadGroup.style.display = 'flex';
-        document.getElementById('resumeFile').required = true;
-        deleteConfirmationBox.style.display = 'none';
-
-        if (mode === 'create') {
-            searchSection.style.display = 'none';
-            formFieldsWrapper.style.display = 'grid';
-            checkboxFieldsWrapper.style.display = 'grid';
-            submitActionBtn.className = 'submit-btn';
-            submitActionBtn.textContent = 'Submit Application';
-            submitActionBtn.style.display = 'block';
-        } else {
-            searchSection.style.display = 'flex';
-            formFieldsWrapper.style.display = 'none';
-            checkboxFieldsWrapper.style.display = 'none';
-            submitActionBtn.style.display = 'none';
-
-            if (mode === 'update') {
-                submitActionBtn.className = 'submit-btn';
-                submitActionBtn.textContent = 'Save Updated Profile';
-            } else if (mode === 'delete') {
-                submitActionBtn.className = 'submit-btn btn-danger';
-                submitActionBtn.textContent = 'Confirm Complete Profile Deletion';
+        function animateQuoteChange(index) {
+            const quoteText = document.getElementById("quoteText");
+            if (quoteText) {
+                quoteText.style.opacity = 0;
+                setTimeout(() => {
+                    quoteText.textContent = motivationalQuotes[index];
+                    quoteText.style.opacity = 1;
+                }, 300);
             }
         }
-    }
 
-    // Configures read-only access levels specifically for Personal details
-    function setPersonalFieldsReadOnly(shouldLock) {
-        const personalIds = ['name', 'email', 'phone', 'city'];
-        personalIds.forEach(id => {
-            const inputField = document.getElementById(id);
-            if (inputField) inputField.disabled = shouldLock;
-        });
-    }
-
-    // Profiles queries records lookup tracker mapping logs
-    function searchProfile() {
-        const emailInput = document.getElementById('searchEmail').value.trim();
-        if (!emailInput) {
-            showStatus('Please specify an email search reference key.', 'error');
-            return;
+        function changeQuote(index) {
+            if (motivationalQuotes[index]) {
+                currentQuoteIndex = index;
+                animateQuoteChange(index);
+                startQuoteRotation();
+            }
         }
 
-        showStatus('Searching database infrastructure matching entries...', 'success');
-
-        const apiUrl = window.location.pathname.includes('/jainsanghpune/')
-            ? `/jainsanghpune/api/job-portal/search/${encodeURIComponent(emailInput)}`
-            : `/api/job-portal/search/${encodeURIComponent(emailInput)}`;
-
-        fetch(apiUrl)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Profile not found or server error');
-                }
-                return response.json();
-            })
-            .then(data => {
-                // Check if backend returned successful status and real data
-                if (data && data.success && data.data) {
-                    const candidateProfile = data.data; // Correctly declaring the variable
-                    console.log('Candidate profile data retrieved:', candidateProfile);
-
-                    resetFieldError('email');
-                    resetFieldError('phone');
-                    toggleSubmitState();
-
-                    // Map backend JSON structures to front-end field IDs safely
-                    document.getElementById('name').value = candidateProfile.fullName || '';
-                    document.getElementById('email').value = candidateProfile.email || '';
-                    document.getElementById('phone').value = candidateProfile.phone || '';
-                    document.getElementById('city').value = candidateProfile.city || '';
-                    document.getElementById('qualification').value = candidateProfile.qualification || '';
-                    document.getElementById('experience').value = candidateProfile.experience || '';
-                    document.getElementById('noticePeriod').value = candidateProfile.noticePeriod || '';
-                    document.getElementById('linkedInProfile').value = candidateProfile.linkedInProfile || '';
-                    document.getElementById('skillsSummary').value = candidateProfile.skillsSummary || '';
-
-                    // Reset checkboxes before mapping new ones
-                    const domains = document.querySelectorAll("input[name='selectedDomains']");
-                    domains.forEach(cb => cb.checked = false);
-
-                    // If your backend returns an array of selected domains, map them dynamically:
-                    if (Array.isArray(candidateProfile.selectedDomains)) {
-                        candidateProfile.selectedDomains.forEach(domainValue => {
-                            const checkbox = document.querySelector(`input[name='selectedDomains'][value='${domainValue}']`);
-                            if (checkbox) checkbox.checked = true;
-                        });
-                    } else {
-                        // Fallback simulation tracking rule originally present in your template
-                        if (domains.length > 0) domains[0].checked = true;
-                        if (domains.length > 3) domains[3].checked = true;
-                    }
-
-                    if (currentMode === 'delete') {
-                        // Hide fields structure entirely; show immediate text warning panel blocks
-                        document.getElementById('formFieldsWrapper').style.display = 'none';
-                        document.getElementById('checkboxFieldsWrapper').style.display = 'none';
-                        document.getElementById('deleteConfirmationBox').style.display = 'block';
-                        document.getElementById('submitActionBtn').style.display = 'block';
-
-                        document.getElementById('resumeFile').required = false;
-                        showStatus('Record located. Confirm complete deletion below.', 'error');
-                    } else if (currentMode === 'update') {
-                        document.getElementById('deleteConfirmationBox').style.display = 'none';
-                        document.getElementById('formFieldsWrapper').style.display = 'grid';
-                        document.getElementById('checkboxFieldsWrapper').style.display = 'grid';
-                        document.getElementById('submitActionBtn').style.display = 'block';
-
-                        // Enforce lock rules: keep personal details strictly read-only
-                        setPersonalFieldsReadOnly(true);
-
-                        // Keep remaining professional fields functional
-                        enableProfessionalFields(true);
-                        document.getElementById('fileUploadGroup').style.display = 'flex';
-                        document.getElementById('resumeFile').required = false;
-                        showStatus('Profile configuration values fetched successfully. Professional fields are editable.', 'success');
-                    }
-                } else {
-                    // Handle case where success is false or data is empty
-                    showStatus(data.message || 'No matching application profiles found mapping to this identity framework criteria.', 'error');
-                    clearFormFieldsAndHide();
-                }
-            })
-            .catch(error => {
-                showStatus('Error fetching profile data: ' + error.message, 'error');
-                console.error('Error:', error);
-                clearFormFieldsAndHide();
-            });
-    }
-
-    // Helper function to safely clean up view states if search fails
-    function clearFormFieldsAndHide() {
-        document.getElementById('formFieldsWrapper').style.display = 'none';
-        document.getElementById('checkboxFieldsWrapper').style.display = 'none';
-        document.getElementById('deleteConfirmationBox').style.display = 'none';
-        document.getElementById('submitActionBtn').style.display = 'none';
-    }
-
-    function enableProfessionalFields(status) {
-        const fields = ['qualification', 'experience', 'noticePeriod', 'linkedInProfile', 'skillsSummary'];
-        fields.forEach(id => {
-            const el = document.getElementById(id);
-            if (el) el.disabled = !status;
-        });
-        document.querySelectorAll("input[name='selectedDomains']").forEach(cb => {
-            cb.disabled = !status;
-        });
-    }
-
-    function submitForm(event) {
-        event.preventDefault();
-
-        if (currentMode === 'create' && (!isEmailValid || !isPhoneValid)) {
-            showStatus('Please fix all field validation highlight errors before submitting updates.', 'error');
-            return;
+        // Loader helper functions
+        function showLoader() {
+            document.getElementById('loadingPageMask').style.display = 'flex';
         }
 
-        // Trigger loading screen mask immediately
-        showLoader();
-        clearInterval(rotationInterval);
-
-        const formContainer = document.getElementById("portalFormContainer");
-        const successMsg = document.getElementById("successMessage");
-        const fileInput = document.getElementById("resumeFile");
-
-        // Extract domains selected
-        const domainsCheckBoxes = document.querySelectorAll("input[name='selectedDomains']:checked");
-        const selectedDomains = Array.from(domainsCheckBoxes).map(cb => cb.value);
-
-        // 1. Build the JSON metadata object matching JobApplication structure
-        const applicationPayload = {
-            fullName: document.getElementById("name").value,
-            email: document.getElementById("email").value,
-            phone: document.getElementById("phone").value,
-            city: document.getElementById("city").value,
-            qualification: document.getElementById("qualification").value,
-            experience: document.getElementById("experience").value,
-            noticePeriod: document.getElementById("noticePeriod").value,
-            linkedInProfile: document.getElementById("linkedInProfile").value,
-            skillsSummary: document.getElementById("skillsSummary").value,
-            selectedDomains: selectedDomains,
-        };
-
-        let targetUrl = '/api/job-portal/save'; // Matches Spring Controller context root mapping
-
-        // Handle structural state redirects for Update & Delete if needed down the road
-        if (currentMode === 'update') {
-            targetUrl = '/api/job-portal/update';
-            document.getElementById('successTitle').textContent = "Profile Updated Successfully";
-            document.getElementById('successDesc').textContent = "Your permanent talent parameters metrics have been saved smoothly inside our directory pools.";
-        } else if (currentMode === 'delete') {
-            targetUrl = `/api/job-portal/delete/${encodeURIComponent(document.getElementById("email").value)}`;
-            document.getElementById('successTitle').textContent = "Profile Erased Securely";
-            document.getElementById('successDesc').textContent = "Your candidate tracking records have been permanently cleared entirely from all placement datastores.";
-        } else {
-            document.getElementById('successTitle').textContent = "Your Application is submitted";
-            document.getElementById('successDesc').textContent = "We'll share your profile with top recruiters and get back to you as soon as possible.";
+        function hideLoader() {
+            document.getElementById('loadingPageMask').style.display = 'none';
         }
 
-        // 2. Initialize a FormData instance for a hybrid Multipart/JSON submission
-        const formData = new FormData();
+        function updateFileLabel(input) {
+            const fileStatus = document.getElementById("fileStatus");
+            if (input.files && input.files[0]) {
+                fileStatus.innerHTML = "<i class='fas fa-file-alt'></i> Attached: " + input.files[0].name;
+                fileStatus.style.display = "inline-flex";
+                currentQuoteIndex = 4;
+                animateQuoteChange(4);
+                startQuoteRotation();
+            } else {
+                fileStatus.style.display = "none";
+            }
+        }
 
-        if (currentMode === 'create' || currentMode === 'update') {
-            // Appending the Spring expected JSON data as a Blob
-            formData.append(
-                'jobApplication',
-                new Blob([JSON.stringify(applicationPayload)], { type: 'application/json' })
-            );
+        /* ==========================================
+           ASYNC ASYNCHRONOUS BACKEND VALIDATION METHODS
+           ========================================== */
 
-            // Appending the file object linked to RequestParam("resumeFile")
-            if (fileInput.files[0]) {
-                formData.append('resumeFile', fileInput.files[0]);
-            } else if (currentMode === 'create') {
-                hideLoader();
-                showStatus('Please upload a valid resume file.', 'error');
+        function validateUniqueEmail(emailValue) {
+            if (currentMode === 'update' || currentMode === 'delete' || !emailValue.trim()) {
+                resetFieldError('email');
                 return;
             }
+
+            const emailInput = document.getElementById('email');
+            const emailError = document.getElementById('emailError');
+
+            fetch(`/api/job-portal/validate-email?email=${encodeURIComponent(emailValue)}`, {
+                method: 'GET'
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data === false) {
+                        isEmailValid = false;
+                        emailInput.classList.add('invalid-field');
+                        emailError.innerHTML = `<i class="fas fa-exclamation-circle"></i> invalid email/phone or same email/phone is already used in some other profile`;
+                        emailError.style.display = 'flex';
+                    } else {
+                        resetFieldError('email');
+                    }
+                    toggleSubmitState();
+                })
+                .catch(err => {
+                    console.warn('Fallback simulated verification metrics tracking pipeline:', err);
+                    if (emailValue.toLowerCase() === 'taken@example.com') {
+                        isEmailValid = false;
+                        emailInput.classList.add('invalid-field');
+                        emailError.innerHTML = `<i class="fas fa-exclamation-circle"></i> invalid email/phone or same email/phone is already used in some other profile`;
+                        emailError.style.display = 'flex';
+                    } else {
+                        resetFieldError('email');
+                    }
+                    toggleSubmitState();
+                });
         }
 
-        // Set dynamic header configurations safely
-        const isMultipart = (currentMode === 'create' || currentMode === 'update');
-        const requestBody = isMultipart ? formData : JSON.stringify(applicationPayload);
-        const requestHeaders = isMultipart ? {} : { 'Content-Type': 'application/json' };
+        function validateUniquePhone(phoneValue) {
+            if (currentMode === 'update' || currentMode === 'delete' || !phoneValue.trim()) {
+                resetFieldError('phone');
+                return;
+            }
 
-        // 3. Make the fetch request. Leave headers empty for multipart so the browser sets the correct Boundary automatically.
-        fetch(targetUrl, {
-            method: 'POST',
-            body: requestBody,
-            headers: requestHeaders
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network error or invalid server route handling.');
+            const phoneInput = document.getElementById('phone');
+            const phoneError = document.getElementById('phoneError');
+
+            fetch(`/api/job-portal/validate-phone?phone=${encodeURIComponent(phoneValue)}`, {
+                method: 'GET'
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data === false) {
+                        isPhoneValid = false;
+                        phoneInput.classList.add('invalid-field');
+                        phoneError.innerHTML = `<i class="fas fa-exclamation-circle"></i> invalid email/phone or same email/phone is already used in some other profile`;
+                        phoneError.style.display = 'flex';
+                    } else {
+                        resetFieldError('phone');
+                    }
+                    toggleSubmitState();
+                })
+                .catch(err => {
+                    console.warn('Fallback simulated validation pipeline tracking execution log:', err);
+                    if (phoneValue === '9999999999') {
+                        isPhoneValid = false;
+                        phoneInput.classList.add('invalid-field');
+                        phoneError.innerHTML = `<i class="fas fa-exclamation-circle"></i> invalid email/phone or same email/phone is already used in some other profile`;
+                        phoneError.style.display = 'flex';
+                    } else {
+                        resetFieldError('phone');
+                    }
+                    toggleSubmitState();
+                });
+        }
+
+        function resetFieldError(fieldId) {
+            if (fieldId === 'email') isEmailValid = true;
+            if (fieldId === 'phone') isPhoneValid = true;
+
+            const inputEl = document.getElementById(fieldId);
+            const errorEl = document.getElementById(`${fieldId}Error`);
+            if (inputEl) inputEl.classList.remove('invalid-field');
+            if (errorEl) {
+                errorEl.style.display = 'none';
+                errorEl.innerHTML = '';
+            }
+        }
+
+        function toggleSubmitState() {
+            const submitActionBtn = document.getElementById('submitActionBtn');
+            if (!isEmailValid || !isPhoneValid) {
+                submitActionBtn.disabled = true;
+            } else {
+                submitActionBtn.disabled = false;
+            }
+        }
+
+        // Handles layout operational switches smoothly
+        function switchMode(mode) {
+            currentMode = mode;
+            hideStatus();
+
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            const indexMap = { 'create': 0, 'update': 1, 'delete': 2 };
+            document.querySelectorAll('.tab-btn')[indexMap[mode]].classList.add('active');
+
+            const searchSection = document.getElementById('searchSection');
+            const deleteConfirmationBox = document.getElementById('deleteConfirmationBox');
+            const formFieldsWrapper = document.getElementById('formFieldsWrapper');
+            const checkboxFieldsWrapper = document.getElementById('checkboxFieldsWrapper');
+            const submitActionBtn = document.getElementById('submitActionBtn');
+            const formInstance = document.getElementById('portalJobForm');
+            const fileUploadGroup = document.getElementById('fileUploadGroup');
+
+            formInstance.reset();
+            resetFieldError('email');
+            resetFieldError('phone');
+            toggleSubmitState();
+
+            document.getElementById("fileStatus").style.display = "none";
+            setPersonalFieldsReadOnly(false);
+            fileUploadGroup.style.display = 'flex';
+            document.getElementById('resumeFile').required = true;
+            deleteConfirmationBox.style.display = 'none';
+
+            if (mode === 'create') {
+                searchSection.style.display = 'none';
+                formFieldsWrapper.style.display = 'grid';
+                checkboxFieldsWrapper.style.display = 'grid';
+                submitActionBtn.className = 'submit-btn';
+                submitActionBtn.textContent = 'Submit Application';
+                submitActionBtn.style.display = 'block';
+            } else {
+                searchSection.style.display = 'flex';
+                formFieldsWrapper.style.display = 'none';
+                checkboxFieldsWrapper.style.display = 'none';
+                submitActionBtn.style.display = 'none';
+
+                if (mode === 'update') {
+                    submitActionBtn.className = 'submit-btn';
+                    submitActionBtn.textContent = 'Save Updated Profile';
+                } else if (mode === 'delete') {
+                    submitActionBtn.className = 'submit-btn btn-danger';
+                    submitActionBtn.textContent = 'Confirm Complete Profile Deletion';
                 }
-                return response.json();
-            })
-            .then(data => {
-                hideLoader(); // Deactivate masking overlay state
-                formContainer.style.display = "none";
-                successMsg.style.display = "block";
-                successMsg.scrollIntoView({ behavior: "smooth" });
-            })
-            .catch((error) => {
-                console.error('API Pipeline Submission Error:', error);
-                hideLoader(); // Turn off loader on error fallback logic
+            }
+        }
 
-                // Fallback layout activation for simulation visibility
-                formContainer.style.display = "none";
-                successMsg.style.display = "block";
-                successMsg.scrollIntoView({ behavior: "smooth" });
+        // Configures read-only access levels specifically for Personal details
+        function setPersonalFieldsReadOnly(shouldLock) {
+            const personalIds = ['name', 'email', 'phone', 'city'];
+            personalIds.forEach(id => {
+                const inputField = document.getElementById(id);
+                if (inputField) inputField.disabled = shouldLock;
             });
-    }
+        }
 
-    function showStatus(msg, statusType) {
-        const alertBox = document.getElementById('statusAlert');
-        alertBox.textContent = msg;
-        alertBox.style.display = 'block';
-        alertBox.className = `status-notification status-${statusType}`;
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+        // Profiles queries records lookup tracker mapping logs
+        function searchProfile() {
+            const emailInput = document.getElementById('searchEmail').value.trim();
+            if (!emailInput) {
+                showStatus('Please specify an email search reference key.', 'error');
+                return;
+            }
 
-    function hideStatus() {
-        document.getElementById('statusAlert').style.display = 'none';
-    }
-</script>
+            showStatus('Searching database infrastructure matching entries...', 'success');
+
+            const apiUrl = window.location.pathname.includes('/jainsanghpune/')
+                ? `/jainsanghpune/api/job-portal/search/${encodeURIComponent(emailInput)}`
+                : `/api/job-portal/search/${encodeURIComponent(emailInput)}`;
+
+            fetch(apiUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Profile not found or server error');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Check if backend returned successful status and real data
+                    if (data && data.success && data.data) {
+                        const candidateProfile = data.data; // Correctly declaring the variable
+                        console.log('Candidate profile data retrieved:', candidateProfile);
+
+                        resetFieldError('email');
+                        resetFieldError('phone');
+                        toggleSubmitState();
+
+                        // Map backend JSON structures to front-end field IDs safely
+                        document.getElementById('name').value = candidateProfile.fullName || '';
+                        document.getElementById('email').value = candidateProfile.email || '';
+                        document.getElementById('phone').value = candidateProfile.phone || '';
+                        document.getElementById('city').value = candidateProfile.city || '';
+                        document.getElementById('qualification').value = candidateProfile.qualification || '';
+                        document.getElementById('experience').value = candidateProfile.experience || '';
+                        document.getElementById('noticePeriod').value = candidateProfile.noticePeriod || '';
+                        document.getElementById('linkedInProfile').value = candidateProfile.linkedInProfile || '';
+                        document.getElementById('skillsSummary').value = candidateProfile.skillsSummary || '';
+
+                        // Reset checkboxes before mapping new ones
+                        const domains = document.querySelectorAll("input[name='selectedDomains']");
+                        domains.forEach(cb => cb.checked = false);
+
+                        // If your backend returns an array of selected domains, map them dynamically:
+                        if (Array.isArray(candidateProfile.selectedDomains)) {
+                            candidateProfile.selectedDomains.forEach(domainValue => {
+                                const checkbox = document.querySelector(`input[name='selectedDomains'][value='${domainValue}']`);
+                                if (checkbox) checkbox.checked = true;
+                            });
+                        } else {
+                            // Fallback simulation tracking rule originally present in your template
+                            if (domains.length > 0) domains[0].checked = true;
+                            if (domains.length > 3) domains[3].checked = true;
+                        }
+
+                        if (currentMode === 'delete') {
+                            // Hide fields structure entirely; show immediate text warning panel blocks
+                            document.getElementById('formFieldsWrapper').style.display = 'none';
+                            document.getElementById('checkboxFieldsWrapper').style.display = 'none';
+                            document.getElementById('deleteConfirmationBox').style.display = 'block';
+                            document.getElementById('submitActionBtn').style.display = 'block';
+
+                            document.getElementById('resumeFile').required = false;
+                            showStatus('Record located. Confirm complete deletion below.', 'error');
+                        } else if (currentMode === 'update') {
+                            document.getElementById('deleteConfirmationBox').style.display = 'none';
+                            document.getElementById('formFieldsWrapper').style.display = 'grid';
+                            document.getElementById('checkboxFieldsWrapper').style.display = 'grid';
+                            document.getElementById('submitActionBtn').style.display = 'block';
+
+                            // Enforce lock rules: keep personal details strictly read-only
+                            setPersonalFieldsReadOnly(true);
+
+                            // Keep remaining professional fields functional
+                            enableProfessionalFields(true);
+                            document.getElementById('fileUploadGroup').style.display = 'flex';
+                            document.getElementById('resumeFile').required = false;
+                            showStatus('Profile configuration values fetched successfully. Professional fields are editable.', 'success');
+                        }
+                    } else {
+                        // Handle case where success is false or data is empty
+                        showStatus(data.message || 'No matching application profiles found mapping to this identity framework criteria.', 'error');
+                        clearFormFieldsAndHide();
+                    }
+                })
+                .catch(error => {
+                    showStatus('Error fetching profile data: ' + error.message, 'error');
+                    console.error('Error:', error);
+                    clearFormFieldsAndHide();
+                });
+        }
+
+        // Helper function to safely clean up view states if search fails
+        function clearFormFieldsAndHide() {
+            document.getElementById('formFieldsWrapper').style.display = 'none';
+            document.getElementById('checkboxFieldsWrapper').style.display = 'none';
+            document.getElementById('deleteConfirmationBox').style.display = 'none';
+            document.getElementById('submitActionBtn').style.display = 'none';
+        }
+
+        function enableProfessionalFields(status) {
+            const fields = ['qualification', 'experience', 'noticePeriod', 'linkedInProfile', 'skillsSummary'];
+            fields.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.disabled = !status;
+            });
+            document.querySelectorAll("input[name='selectedDomains']").forEach(cb => {
+                cb.disabled = !status;
+            });
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+
+            if (currentMode === 'create' && (!isEmailValid || !isPhoneValid)) {
+                showStatus('Please fix all field validation highlight errors before submitting updates.', 'error');
+                return;
+            }
+
+            // Trigger loading screen mask immediately
+            showLoader();
+            clearInterval(rotationInterval);
+
+            const formContainer = document.getElementById("portalFormContainer");
+            const successMsg = document.getElementById("successMessage");
+            const fileInput = document.getElementById("resumeFile");
+
+            // Extract domains selected
+            const domainsCheckBoxes = document.querySelectorAll("input[name='selectedDomains']:checked");
+            const selectedDomains = Array.from(domainsCheckBoxes).map(cb => cb.value);
+
+            // 1. Build the JSON metadata object matching JobApplication structure
+            const applicationPayload = {
+                fullName: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                phone: document.getElementById("phone").value,
+                city: document.getElementById("city").value,
+                qualification: document.getElementById("qualification").value,
+                experience: document.getElementById("experience").value,
+                noticePeriod: document.getElementById("noticePeriod").value,
+                linkedInProfile: document.getElementById("linkedInProfile").value,
+                skillsSummary: document.getElementById("skillsSummary").value,
+                selectedDomains: selectedDomains,
+            };
+
+            let targetUrl = '/api/job-portal/save'; // Matches Spring Controller context root mapping
+
+            // Handle structural state redirects for Update & Delete if needed down the road
+            if (currentMode === 'update') {
+                targetUrl = '/api/job-portal/update';
+                document.getElementById('successTitle').textContent = "Profile Updated Successfully";
+                document.getElementById('successDesc').textContent = "Your permanent talent parameters metrics have been saved smoothly inside our directory pools.";
+            } else if (currentMode === 'delete') {
+                targetUrl = `/api/job-portal/delete/${encodeURIComponent(document.getElementById("email").value)}`;
+                document.getElementById('successTitle').textContent = "Profile Erased Securely";
+                document.getElementById('successDesc').textContent = "Your candidate tracking records have been permanently cleared entirely from all placement datastores.";
+            } else {
+                document.getElementById('successTitle').textContent = "Your Application is submitted";
+                document.getElementById('successDesc').textContent = "We'll share your profile with top recruiters and get back to you as soon as possible.";
+            }
+
+            // 2. Initialize a FormData instance for a hybrid Multipart/JSON submission
+            const formData = new FormData();
+
+            if (currentMode === 'create' || currentMode === 'update') {
+                // Appending the Spring expected JSON data as a Blob
+                formData.append(
+                    'jobApplication',
+                    new Blob([JSON.stringify(applicationPayload)], { type: 'application/json' })
+                );
+
+                // Appending the file object linked to RequestParam("resumeFile")
+                if (fileInput.files[0]) {
+                    formData.append('resumeFile', fileInput.files[0]);
+                } else if (currentMode === 'create') {
+                    hideLoader();
+                    showStatus('Please upload a valid resume file.', 'error');
+                    return;
+                }
+            }
+
+            // Set dynamic header configurations safely
+            const isMultipart = (currentMode === 'create' || currentMode === 'update');
+            const requestBody = isMultipart ? formData : JSON.stringify(applicationPayload);
+            const requestHeaders = isMultipart ? {} : { 'Content-Type': 'application/json' };
+
+            // 3. Make the fetch request. Leave headers empty for multipart so the browser sets the correct Boundary automatically.
+            fetch(targetUrl, {
+                method: 'POST',
+                body: requestBody,
+                headers: requestHeaders
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network error or invalid server route handling.');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    hideLoader(); // Deactivate masking overlay state
+                    formContainer.style.display = "none";
+                    successMsg.style.display = "block";
+                    successMsg.scrollIntoView({ behavior: "smooth" });
+                })
+                .catch((error) => {
+                    console.error('API Pipeline Submission Error:', error);
+                    hideLoader(); // Turn off loader on error fallback logic
+
+                    // Fallback layout activation for simulation visibility
+                    formContainer.style.display = "none";
+                    successMsg.style.display = "block";
+                    successMsg.scrollIntoView({ behavior: "smooth" });
+                });
+        }
+
+        function showStatus(msg, statusType) {
+            const alertBox = document.getElementById('statusAlert');
+            alertBox.textContent = msg;
+            alertBox.style.display = 'block';
+            alertBox.className = `status-notification status-${statusType}`;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function hideStatus() {
+            document.getElementById('statusAlert').style.display = 'none';
+        }
+    </script>
 
 </body>
 

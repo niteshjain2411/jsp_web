@@ -9,17 +9,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Comparator;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.concurrent.ExecutionException;
+import java.util.regex.Pattern;
 
 @Service
 public class JobApplicationService {
 
-    private final String bucketName = "jain-sangh-pune-5c864.firebasestorage.app";
-
+    private static final String COLLECTION_NAME = "job_seekers_data";
     private final FirestoreService firestoreService;
     private final FirebaseStorageService storageService;
 
@@ -28,208 +28,180 @@ public class JobApplicationService {
         this.storageService = storageService;
     }
 
-    public ResponseEntity<?> update(JobApplication jobApplication, MultipartFile resumeFile) {
+    public ResponseEntity<?> save(JobApplication app, MultipartFile file) {
         try {
-            // Upload resume to Firebase Storage
-            final JobApplication existingApplication = firestoreService.findByEmail("job_seekers_data", JobApplication.class, jobApplication.getEmail());
-            if (existingApplication == null) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(HttpResponseUtil.createErrorResponse("Job application not found for email: " + jobApplication.getEmail()));
-            }
+            // Validate required fields
+            this.validateRequiredFields(app, file, true);
+            // Handle timestamps
+            this.updateTimestamps(app);
+            // Upload resume
+            final String fileName = app.getPhone() + "_" + file.getOriginalFilename();
+            storageService.uploadFile(file, fileName, "resumes/");
+            app.setResumeFileName(fileName);
 
-            if (jobApplication.getQualification() == null || jobApplication.getQualification().isEmpty()) {
-                return ResponseEntity.badRequest().body(HttpResponseUtil.createErrorResponse("Qualification details is required"));
-            }
-            if (jobApplication.getExperience() == null || jobApplication.getExperience().isEmpty()) {
-                return ResponseEntity.badRequest().body(HttpResponseUtil.createErrorResponse("Experience details is required"));
-            }
+            // Save to Database
+            final String docId = firestoreService.addData(COLLECTION_NAME, app);
+            return ResponseEntity.ok(Map.of("success", true, "message", "Job application saved successfully", "documentId", docId));
 
-            if (resumeFile == null || resumeFile.isEmpty()) {
-                return ResponseEntity.badRequest().body(HttpResponseUtil.createErrorResponse("Resume file is required"));
-            }
-
-            final Date now = new Date();
-            if (jobApplication.getCreatedOn() == null) {
-                jobApplication.setCreatedOn(now);
-            }
-            jobApplication.setLastUpdatedOn(now);
-
-            // 2. Upload Resume to Firebase Storage
-            // Target Bucket: gs://jain-sangh-pune-5c864.firebasestorage.app
-            boolean isDeleted = storageService.deleteFile(existingApplication.getResumeFileName());
-            if (isDeleted) {
-                System.out.println("Existing resume deleted successfully: " + jobApplication.getResumeFileName());
-            }
-            jobApplication.setResumeFileName(jobApplication.getPhone() + "_" + resumeFile.getOriginalFilename());
-            // 3. Save Record to Firestore collection: "job_seekers_data"
-            final String documentId = firestoreService.updateByEmail("job_seekers_data", jobApplication.getEmail(), jobApplication);
-            // 4. Send Success Response
-            Map<String, Object> response = new HashMap<>();
-            response.put("success", true);
-            response.put("message", "Job application updated successfully");
-            response.put("documentId", documentId);
-            return ResponseEntity.ok(response);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(HttpResponseUtil.createErrorResponse(e.getMessage()));
         } catch (Exception e) {
-            System.err.println("Error in saveJobApplication: " + e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(HttpResponseUtil.createErrorResponse("Server error: " + e.getMessage()));
         }
     }
 
-    public ResponseEntity<?> save(JobApplication jobApplication, MultipartFile resumeFile) {
+    public ResponseEntity<?> update(JobApplication app, MultipartFile file) {
         try {
-            // 1. Validation Logic
-            if (jobApplication.getFullName() == null || jobApplication.getFullName().isEmpty()) {
-                return ResponseEntity.badRequest().body(HttpResponseUtil.createErrorResponse("Full name is required"));
-            }
-            if (jobApplication.getEmail() == null || jobApplication.getEmail().isEmpty()) {
-                return ResponseEntity.badRequest().body(HttpResponseUtil.createErrorResponse("Email is required"));
-            }
-            if (jobApplication.getPhone() == null || jobApplication.getPhone().isEmpty()) {
-                return ResponseEntity.badRequest().body(HttpResponseUtil.createErrorResponse("Phone number is required"));
-            }
-            if (jobApplication.getCity() == null || jobApplication.getCity().isEmpty()) {
-                return ResponseEntity.badRequest().body(HttpResponseUtil.createErrorResponse("City is required"));
+            // Check if record exists
+            final JobApplication existing = firestoreService.findByEmail(COLLECTION_NAME, JobApplication.class, app.getEmail());
+            if (existing == null) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(HttpResponseUtil.createErrorResponse("Job application not found for email: " + app.getEmail()));
             }
 
-            if (jobApplication.getQualification() == null || jobApplication.getQualification().isEmpty()) {
-                return ResponseEntity.badRequest().body(HttpResponseUtil.createErrorResponse("Qualification details is required"));
+            // Validate fields needed for updates
+            this.validateRequiredFields(app, file, false);
+            this.updateTimestamps(app);
+
+            // Swap files in Storage (Delete old -> Upload new)
+            if (existing.getResumeFileName() != null) {
+                storageService.deleteFile(existing.getResumeFileName());
             }
-            if (jobApplication.getExperience() == null || jobApplication.getExperience().isEmpty()) {
-                return ResponseEntity.badRequest().body(HttpResponseUtil.createErrorResponse("Experience details is required"));
-            }
+            final String newFileName = app.getPhone() + "_" + file.getOriginalFilename();
+            storageService.uploadFile(file, newFileName, "resumes/"); // Bug fixed: Upload was missing!
+            app.setResumeFileName(newFileName);
 
-            if (resumeFile == null || resumeFile.isEmpty()) {
-                return ResponseEntity.badRequest().body(HttpResponseUtil.createErrorResponse("Resume file is required"));
-            }
+            // Update Database
+            final String docId = firestoreService.updateByEmail(COLLECTION_NAME, app.getEmail(), app);
+            return ResponseEntity.ok(Map.of("success", true, "message", "Job application updated successfully", "documentId", docId));
 
-            final Date now = new Date();
-            if (jobApplication.getCreatedOn() == null) {
-                jobApplication.setCreatedOn(now);
-            }
-            jobApplication.setLastUpdatedOn(now);
-
-            // 2. Upload Resume to Firebase Storage
-            // Target Bucket: gs://jain-sangh-pune-5c864.firebasestorage.app
-            final String fileName = jobApplication.getPhone() + "_" + resumeFile.getOriginalFilename();
-            storageService.uploadFile(resumeFile, fileName, "resumes/");
-            jobApplication.setResumeFileName(fileName);
-
-            // 3. Save Record to Firestore collection: "job_seekers_data"
-            final String documentId = firestoreService.addData("job_seekers_data", jobApplication);
-
-            // 4. Send Success Response
-            Map<String, Object> response = new HashMap<>();
-            response.put("success", true);
-            response.put("message", "Job application saved successfully");
-            response.put("documentId", documentId);
-            return ResponseEntity.ok(response);
-
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(HttpResponseUtil.createErrorResponse(e.getMessage()));
         } catch (Exception e) {
-            System.err.println("Error in saveJobApplication: " + e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(HttpResponseUtil.createErrorResponse("Server error: " + e.getMessage()));
         }
     }
 
     public ResponseEntity<?> delete(String email) {
         try {
-            boolean deleted = firestoreService.deleteByEmail("job_seekers_data", email);
-            if (deleted) {
-                Map<String, Object> response = new HashMap<>();
-                response.put("success", true);
-                response.put("message", "Job application deleted successfully");
-                return ResponseEntity.ok(response);
-            } else {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(HttpResponseUtil.createErrorResponse("Job application not found for email: " + email));
+            if (firestoreService.deleteByEmail(COLLECTION_NAME, email)) {
+                return ResponseEntity.ok(Map.of("success", true, "message", "Job application deleted successfully"));
             }
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(HttpResponseUtil.createErrorResponse("Job application not found for email: " + email));
         } catch (Exception e) {
-            System.err.println("Error in deleteJobApplication: " + e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(HttpResponseUtil.createErrorResponse("Server error: " + e.getMessage()));
         }
     }
 
     public ResponseEntity<?> findByEmailId(String emailId) {
         try {
-            JobApplication jobApplication = firestoreService.findByEmail("job_seekers_data", JobApplication.class, emailId);
-            if (jobApplication == null) {
+            final JobApplication app = firestoreService.findByEmail(COLLECTION_NAME, JobApplication.class, emailId);
+            if (app == null) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(HttpResponseUtil.createErrorResponse("No job application found for email: " + emailId));
             }
-            Map<String, Object> response = new HashMap<>();
-            response.put("success", true);
-            response.put("data", jobApplication);
-            return ResponseEntity.ok(response);
+            return ResponseEntity.ok(Map.of("success", true, "data", app));
         } catch (Exception e) {
-            System.err.println("Error in getAllJobApplications: " + e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(HttpResponseUtil.createErrorResponse("Server error: " + e.getMessage()));
         }
     }
 
     public ResponseEntity<?> getAllJobApplications() {
         try {
-            List<JobApplication> jobApplications = firestoreService.fetchAll("job_seekers_data", JobApplication.class);
-            Map<String, Object> response = new HashMap<>();
-            response.put("success", true);
-            response.put("count", jobApplications.size());
-            response.put("data", jobApplications);
-            return ResponseEntity.ok(response);
+            final List<JobApplication> apps = firestoreService.fetchAll(COLLECTION_NAME, JobApplication.class);
+            return ResponseEntity.ok(Map.of("success", true, "count", apps.size(), "data", apps));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(HttpResponseUtil.createErrorResponse("Error fetching job applications: " + e.getMessage()));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(HttpResponseUtil.createErrorResponse("Error fetching applications: " + e.getMessage()));
         }
     }
 
     public ResponseEntity<?> searchCandidates(String skills, String qualification, String location, String noticePeriod, String experience) {
         try {
-            List<JobApplication> jobApplications = firestoreService.fetchAll("job_seekers_data", JobApplication.class);
+            final List<JobApplication> filtered = firestoreService.fetchAll(COLLECTION_NAME, JobApplication.class).stream()
+                    .filter(app -> matchesFilter(app.getSkillsSummary(), skills))
+                    .filter(app -> matchesFilter(app.getQualification(), qualification))
+                    .filter(app -> matchesFilter(app.getCity(), location))
+                    .filter(app -> matchesFilter(app.getNoticePeriod(), noticePeriod))
+                    .filter(app -> matchesFilter(app.getExperience(), experience))
+                    .sorted(Comparator.comparing(JobApplication::getLastUpdatedOn, Comparator.nullsLast(Comparator.reverseOrder())))
+                    .toList();
 
-            if (skills != null && !skills.isEmpty()) {
-                jobApplications = jobApplications.stream()
-                        .filter(app -> app.getSkillsSummary() != null && app.getSkillsSummary().toLowerCase().contains(skills.toLowerCase()))
-                        .collect(Collectors.toList());
-            }
-            if (qualification != null && !qualification.isEmpty()) {
-                jobApplications = jobApplications.stream()
-                        .filter(app -> app.getQualification() != null && app.getQualification().toLowerCase().contains(qualification.toLowerCase()))
-                        .collect(Collectors.toList());
-            }
-            if (location != null && !location.isEmpty()) {
-                jobApplications = jobApplications.stream()
-                        .filter(app -> app.getCity() != null && app.getCity().toLowerCase().contains(location.toLowerCase()))
-                        .collect(Collectors.toList());
-            }
-            if (noticePeriod != null && !noticePeriod.isEmpty()) {
-                jobApplications = jobApplications.stream()
-                        .filter(app -> app.getNoticePeriod() != null && app.getNoticePeriod().toLowerCase().contains(noticePeriod.toLowerCase()))
-                        .collect(Collectors.toList());
-            }
-            if (experience != null && !experience.isEmpty()) {
-                jobApplications = jobApplications.stream()
-                        .filter(app -> app.getExperience() != null && app.getExperience().toLowerCase().contains(experience.toLowerCase()))
-                        .collect(Collectors.toList());
-            }
-
-            Map<String, Object> response = new HashMap<>();
-            response.put("success", true);
-            response.put("count", jobApplications.size());
-            response.put("data", jobApplications);
-            return ResponseEntity.ok(response);
+            return ResponseEntity.ok(Map.of("success", true, "count", filtered.size(), "data", filtered));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(HttpResponseUtil.createErrorResponse("Error fetching job applications: " + e.getMessage()));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(HttpResponseUtil.createErrorResponse("Error searching candidates: " + e.getMessage()));
         }
     }
 
     public ResponseEntity<byte[]> downloadResume(String fileName) {
         try {
-            byte[] data = storageService.downloadFile(fileName);
+            final byte[] data = storageService.downloadFile(fileName);
             if (data == null) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
             }
 
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.APPLICATION_OCTET_STREAM); // Generic binary stream
+            final HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
             headers.setContentDispositionFormData("attachment", fileName);
-
             return new ResponseEntity<>(data, headers, HttpStatus.OK);
         } catch (Exception e) {
-            System.err.println("Error in downloadResume: " + e.getMessage());
             throw new RuntimeException("Error downloading resume: " + e.getMessage());
         }
+    }
+
+    public boolean validateEmail(String email) throws ExecutionException, InterruptedException {
+        final String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+        boolean valid = Pattern.compile(emailRegex).matcher(email).matches();
+        final JobApplication app = firestoreService.findByProperty(COLLECTION_NAME, JobApplication.class, "email", email);
+        if (app != null) {
+            // If email exists, it's only valid for updates, not for new entries
+            valid = false;
+        }
+        return valid;
+    }
+
+    public boolean validatePhone(String phone) throws ExecutionException, InterruptedException {
+        final String phoneRegex = "^[0-9]{10}$";
+        boolean valid = Pattern.compile(phoneRegex).matcher(phone).matches();
+        final JobApplication app = firestoreService.findByProperty(COLLECTION_NAME, JobApplication.class, "phone", phone);
+        if (app != null) {
+            // If phone exists, it's only valid for updates, not for new entries
+            valid = false;
+        }
+        return valid;
+    }
+    // --- Private Helper Utilities ---
+
+    private void validateRequiredFields(JobApplication app, MultipartFile file, boolean isNewRegistration) {
+        if (isNewRegistration) {
+            checkBlank(app.getFullName(), "Full name is required");
+            checkBlank(app.getEmail(), "Email is required");
+            checkBlank(app.getPhone(), "Phone number is required");
+            checkBlank(app.getCity(), "City is required");
+        }
+        checkBlank(app.getQualification(), "Qualification details is required");
+        checkBlank(app.getExperience(), "Experience details is required");
+
+        if (file == null || file.isEmpty()) {
+            throw new IllegalArgumentException("Resume file is required");
+        }
+    }
+
+    private void checkBlank(String value, String message) {
+        if (value == null || value.isBlank()) {
+            throw new IllegalArgumentException(message);
+        }
+    }
+
+    private void updateTimestamps(JobApplication app) {
+        final Date now = new Date();
+        if (app.getCreatedOn() == null) {
+            app.setCreatedOn(now);
+        }
+        app.setLastUpdatedOn(now);
+    }
+
+    private boolean matchesFilter(String fieldValue, String searchTerm) {
+        if (searchTerm == null || searchTerm.isBlank()) {
+            return true;
+        }
+        return fieldValue != null && fieldValue.toLowerCase().contains(searchTerm.toLowerCase());
     }
 }

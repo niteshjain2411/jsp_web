@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.concurrent.ExecutionException;
+
 @RestController
 @RequestMapping("/api/job-portal")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -67,5 +69,15 @@ public class JobApplicationController {
     @GetMapping("/download/{fileName}")
     public ResponseEntity<byte[]> downloadResume(@PathVariable("fileName") String fileName) {
         return jobApplicationService.downloadResume(fileName);
+    }
+
+    @GetMapping("/validate-email")
+    public boolean validateEmail(@RequestParam final String email) throws ExecutionException, InterruptedException {
+        return jobApplicationService.validateEmail(email);
+    }
+
+    @GetMapping("/validate-phone")
+    public boolean validatePhone(@RequestParam final String phone) throws ExecutionException, InterruptedException {
+        return jobApplicationService.validatePhone(phone);
     }
 }

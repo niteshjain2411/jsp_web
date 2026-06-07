@@ -55,6 +55,19 @@ public class FirestoreService {
         return null;
     }
 
+    public <T> T findByProperty(String collection, Class<T> clazz, String property, String value) throws InterruptedException, ExecutionException {
+        Firestore db = FirestoreClient.getFirestore();
+        ApiFuture<QuerySnapshot> future = db.collection(collection).whereEqualTo(property, value).get();
+        QuerySnapshot querySnapshot = future.get();
+        for (DocumentSnapshot doc : querySnapshot.getDocuments()) {
+            T obj = doc.toObject(clazz);
+            if (obj != null) {
+                return obj;
+            }
+        }
+        return null;
+    }
+
     public String addData(String collection, Object data) {
         // Use add() to create a new document with auto-generated ID
         Firestore db = FirestoreClient.getFirestore();
