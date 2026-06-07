@@ -1296,8 +1296,8 @@
 
             // 3. Make the fetch request. Leave headers empty for multipart so the browser sets the correct Boundary automatically.
             fetch(targetUrl, {
-                method: 'POST',
-                body: requestBody,
+                method: currentMode === 'delete' ? 'DELETE' : 'POST',
+                body: currentMode === 'delete' ? null : requestBody,
                 headers: requestHeaders
             })
                 .then(response => {
