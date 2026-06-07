@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JSP Header Component - Premium Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -15,10 +15,10 @@
             --logo-red: #c62817;
             --text-dark: #222222;
             --text-muted: #666666;
-            --light-bg: #f9fbfb;
+            --light-bg: #f5f9fa; /* Slightly tweaked for a cleaner dropdown background */
             --border-color: #eef2f3;
-            --shadow-premium: 0 10px 30px rgba(0, 0, 0, 0.06);
-            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-premium: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         body {
@@ -29,11 +29,12 @@
         }
 
         header {
-            background: linear-gradient(to right, var(--accent-gold) 0, var(--accent-gold) 100%) top/100% 6px no-repeat,
-                        rgba(255, 255, 255, 0.96);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            padding: 22px 5%;
+            /* Subtly tinted background gradient to provide depth behind the navbar elements */
+            background: linear-gradient(to right, var(--accent-gold) 0, var(--accent-gold) 100%) top/100% 5px no-repeat,
+                        linear-gradient(to bottom, rgba(255, 255, 255, 0.98), rgba(249, 251, 251, 0.96));
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 14px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -42,6 +43,7 @@
             top: 0;
             z-index: 1000;
             box-sizing: border-box;
+            border-bottom: 1px solid rgba(29, 100, 115, 0.06);
         }
 
         .logo-container {
@@ -52,7 +54,7 @@
         }
 
         .logo-img {
-            height: 82px;
+            height: 62px;
             width: auto;
             display: block;
             filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05));
@@ -60,7 +62,7 @@
         }
 
         .logo-container:hover .logo-img {
-            transform: scale(1.03) rotate(1deg);
+            transform: scale(1.02);
         }
 
         .logo-text-block {
@@ -73,18 +75,18 @@
             font-family: 'Montserrat', sans-serif;
             font-weight: 800;
             color: var(--logo-red);
-            font-size: 1.9rem;
+            font-size: 1.5rem;
             letter-spacing: -0.5px;
             line-height: 1;
         }
 
         .header-tagline {
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.85rem;
+            font-size: 0.78rem;
             font-weight: 500;
             color: #e67e22;
             font-style: italic;
-            margin: 6px 0 0 2px;
+            margin: 4px 0 0 2px;
             letter-spacing: 0.5px;
             display: block;
             animation: softGlow 3s infinite alternate;
@@ -106,15 +108,17 @@
             align-items: center;
         }
 
-        nav > a:not(.donate-btn):not(.join-us-btn),
+        /* PREMIUM NAV ITEMS - UPGRADED TO FONT WEIGHT 600 */
+        nav > a:not(.donate-icon-btn):not(.join-icon-btn),
         .nav-item > a {
             margin-left: 24px;
             text-decoration: none;
             color: var(--primary-teal);
             font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 0.9rem;
-            letter-spacing: 0.3px;
+            font-weight: 600; /* Increased font weight to 600 as requested */
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
             padding: 10px 0;
             position: relative;
             transition: var(--transition-smooth);
@@ -122,60 +126,73 @@
             align-items: center;
         }
 
-        nav > a:not(.donate-btn):not(.join-us-btn):hover,
+        nav > a:not(.donate-icon-btn):not(.join-icon-btn):hover,
         .nav-item:hover > a {
             color: var(--logo-red);
         }
 
-        nav > a:not(.donate-btn):not(.join-us-btn)::after,
+        /* PREMIUM DOT INDICATOR EFFECT */
+        nav > a:not(.donate-icon-btn):not(.join-icon-btn)::after,
         .nav-item > a::after {
             content: '';
             position: absolute;
-            bottom: 2px;
-            left: 0;
-            width: 0;
-            height: 3px;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%) scale(0);
+            width: 4px;
+            height: 4px;
             background-color: var(--logo-red);
-            border-radius: 4px;
+            border-radius: 50%;
             transition: var(--transition-smooth);
+            opacity: 0;
         }
 
-        nav > a:not(.donate-btn):not(.join-us-btn):hover::after,
+        nav > a:not(.donate-icon-btn):not(.join-icon-btn):hover::after,
         .nav-item:hover > a::after {
-            width: 100%;
+            transform: translateX(-50%) scale(1);
+            opacity: 1;
         }
 
         .nav-item {
             position: relative;
         }
 
+        /* CHEVRON CARET */
         .nav-item > a .caret {
+            display: inline-block;
             margin-left: 6px;
-            font-size: 0.75rem;
-            transition: transform 0.25s ease;
+            width: 5px;
+            height: 5px;
+            border-right: 1.5px solid var(--primary-teal);
+            border-bottom: 1.5px solid var(--primary-teal);
+            transform: translateY(-2px) rotate(45deg);
+            transition: var(--transition-smooth);
         }
 
         .nav-item:hover > a .caret {
-            transform: rotate(180deg);
-            color: var(--logo-red);
+            transform: translateY(1px) rotate(225deg);
+            border-color: var(--logo-red);
         }
 
-        /* Modern Dropdown Menu Grid Design - UPDATED FOR REDUCED WIDTH */
+        /* DROPDOWN SHEET - SET TO AUTO WIDTH & NO WRAPPING FOR CLEAN SINGLE LINE SIZING */
         .nav-dropdown {
             position: absolute;
             top: 100%;
             right: 0;
-            background: #ffffff;
-            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.99);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 10px;
+            width: max-content; /* Dynamic expansion based on long content text lengths */
             min-width: 240px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
-            border: 1px solid var(--border-color);
+            box-shadow: 0 15px 35px rgba(29, 100, 115, 0.08);
+            border: 1px solid rgba(238, 242, 243, 0.8);
             z-index: 1010;
-            padding: 12px;
+            padding: 8px;
             display: grid;
             grid-template-columns: 1fr;
-            gap: 4px;
-            transform: translateY(15px);
+            gap: 2px;
+            transform: translateY(10px);
             opacity: 0;
             visibility: hidden;
             transition: var(--transition-smooth);
@@ -189,98 +206,126 @@
             pointer-events: auto;
         }
 
+        /* DROPDOWN MENU ITEMS - UPGRADED TO FONT WEIGHT 600 & FORCE SINGLE LINE */
         .nav-dropdown a {
             display: flex;
             align-items: center;
-            padding: 10px 14px;
+            padding: 9px 16px 9px 12px;
             color: var(--text-dark);
-            font-size: 0.9rem;
-            font-weight: 600;
+            font-size: 0.84rem;
+            font-weight: 600; /* Increased sub-menu items font weight to 600 as requested */
+            text-transform: none;
+            letter-spacing: normal;
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 6px;
             transition: var(--transition-smooth);
+            white-space: nowrap; /* Prevents text from breaking or wrapping into multiple lines */
         }
 
         .nav-dropdown a::after { display: none !important; }
 
         .nav-dropdown a .dropdown-icon {
             margin-right: 12px;
-            font-size: 1.1rem;
-            width: 20px;
-            text-align: center;
+            font-size: 0.9rem;
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(29, 100, 115, 0.05);
+            color: var(--primary-teal);
+            border-radius: 6px;
+            transition: var(--transition-smooth);
         }
 
-        /* Support for nested images inside icons */
         .nav-dropdown a .dropdown-icon img {
-            width: 20px;
-            height: 20px;
+            width: 14px;
+            height: 14px;
             vertical-align: middle;
         }
 
         .nav-dropdown a:hover {
             background: var(--light-bg);
             color: var(--primary-glow);
-            padding-left: 18px;
+            padding-left: 16px;
         }
 
-        .donate-btn {
-            background: linear-gradient(135deg, var(--logo-red) 0%, #a3190c 100%);
-            color: #ffffff !important;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 0.88rem;
-            letter-spacing: 0.5px;
-            padding: 11px 24px;
-            border-radius: 30px;
-            box-shadow: 0 4px 15px rgba(198, 40, 23, 0.25);
-            margin-left: 25px;
-            text-decoration: none;
-            transition: var(--transition-smooth);
+        .nav-dropdown a:hover .dropdown-icon {
+            background-color: var(--primary-teal);
+            color: #ffffff;
         }
 
-        .donate-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(198, 40, 23, 0.35);
-            background: linear-gradient(135deg, #a3190c 0%, #821005 100%);
-        }
-
-        .join-us-btn {
+        /* CIRCULAR INTERACTION BUTTONS */
+        .donate-icon-btn, .join-icon-btn {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            background-color: transparent;
-            color: var(--primary-teal) !important;
-            border: 2px solid var(--primary-teal);
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 0.88rem;
-            letter-spacing: 0.5px;
-            padding: 9px 22px;
-            border-radius: 30px;
-            margin-left: 15px;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            margin-left: 14px;
             text-decoration: none;
-            height: 40px;
-            box-sizing: border-box;
             transition: var(--transition-smooth);
             position: relative;
-            overflow: hidden;
-            z-index: 1;
+            border: 1px solid transparent;
         }
 
-        .join-us-btn i {
-            font-size: 0.9rem;
-            transition: transform 0.3s ease;
+        .donate-icon-btn {
+            background-color: rgba(198, 40, 23, 0.06);
+            color: var(--logo-red) !important;
         }
 
-        .join-us-btn:hover {
+        .donate-icon-btn:hover {
+            background-color: var(--logo-red);
             color: #ffffff !important;
-            background-color: var(--primary-teal);
-            box-shadow: 0 4px 15px rgba(29, 100, 115, 0.25);
-            transform: translateY(-2px);
+            transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(198, 40, 23, 0.2);
         }
 
-        .join-us-btn:hover i {
-            transform: translateX(3px) scale(1.1);
+        .join-icon-btn {
+            background-color: rgba(29, 100, 115, 0.06);
+            color: var(--primary-teal) !important;
+            border-color: rgba(29, 100, 115, 0.1);
+        }
+
+        .join-icon-btn:hover {
+            background-color: var(--primary-teal);
+            color: #ffffff !important;
+            transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(29, 100, 115, 0.2);
+        }
+
+        .donate-icon-btn i, .join-icon-btn i {
+            font-size: 0.9rem;
+        }
+
+        .donate-icon-btn::before, .join-icon-btn::before {
+            content: attr(data-tooltip);
+            position: absolute;
+            top: 135%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-3px);
+            background: #222222;
+            color: #fff;
+            padding: 5px 9px;
+            font-size: 0.68rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            border-radius: 4px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition-smooth);
+            pointer-events: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .donate-icon-btn:hover::before, .join-icon-btn:hover::before {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
         }
 
         .mobile-menu-checkbox {
@@ -298,28 +343,27 @@
 
         .mobile-menu-btn span {
             display: block;
-            width: 26px;
-            height: 3px;
+            width: 24px;
+            height: 2px;
             background-color: var(--primary-teal);
             border-radius: 2px;
             transition: var(--transition-smooth);
         }
 
-        @media (max-width: 1024px) {
-            header { padding: 15px 4%; }
-            .logo-main-title { font-size: 1.6rem; }
-            .logo-img { height: 72px; }
-            .header-tagline { font-size: 0.85rem; }
-            nav > a:not(.donate-btn):not(.join-us-btn), .nav-item > a { margin-left: 14px; font-size: 0.85rem; }
-            .donate-btn { margin-left: 15px; padding: 10px 18px; }
-            .join-us-btn { margin-left: 10px; padding: 8px 18px; }
+        @media (max-width: 1240px) {
+            /* Responsive layout adjustment padding scaling due to max-content sizing widths */
+            nav > a:not(.donate-icon-btn):not(.join-icon-btn), .nav-item > a { margin-left: 16px; font-size: 0.78rem; }
+        }
+
+        @media (max-width: 1040px) {
+            header { padding: 12px 4%; }
+            .logo-main-title { font-size: 1.35rem; }
+            .logo-img { height: 52px; }
+            nav > a:not(.donate-icon-btn):not(.join-icon-btn), .nav-item > a { margin-left: 10px; font-size: 0.75rem; letter-spacing: 0.5px; }
+            .donate-icon-btn, .join-icon-btn { width: 32px; height: 32px; margin-left: 6px; }
         }
 
         @media (max-width: 868px) {
-            header { padding: 12px 4%; }
-            .logo-img { height: 65px; }
-            .logo-main-title { font-size: 1.4rem; }
-            .header-tagline { font-size: 0.8rem; margin-top: 3px; }
             .mobile-menu-btn { display: flex; }
 
             nav {
@@ -339,21 +383,40 @@
                 z-index: 1040;
             }
 
-            nav > a:not(.donate-btn):not(.join-us-btn), .nav-item {
+            nav > a:not(.donate-icon-btn):not(.join-icon-btn), .nav-item {
                 width: 100%;
                 margin-left: 0;
-                margin-bottom: 15px;
+                margin-bottom: 12px;
             }
 
-            nav > a:not(.donate-btn):not(.join-us-btn), .nav-item > a {
-                font-size: 1.05rem;
+            nav > a:not(.donate-icon-btn):not(.join-icon-btn), .nav-item > a {
+                font-size: 0.95rem;
                 width: 100%;
                 padding: 12px 0;
+                text-transform: none;
+                letter-spacing: normal;
                 border-bottom: 1px solid var(--border-color);
             }
 
-            nav > a:not(.donate-btn):not(.join-us-btn)::after, .nav-item > a::after {
+            .nav-item > a .caret {
+                margin-left: auto;
+                width: 6px;
+                height: 6px;
+                border-right: 2px solid var(--primary-teal);
+                border-bottom: 2px solid var(--primary-teal);
+            }
+
+            nav > a:not(.donate-icon-btn):not(.join-icon-btn)::after, .nav-item > a::after {
                 display: none;
+            }
+
+            .nav-dropdown {
+                width: 100%;
+                min-width: 100%;
+            }
+
+            .nav-dropdown a {
+                white-space: normal; /* Permits responsive wrapping within the mobile drawer layer if needed */
             }
 
             .nav-item:hover .nav-dropdown {
@@ -366,17 +429,33 @@
                 pointer-events: auto;
                 box-shadow: none;
                 border: none;
-                min-width: 100%;
-                padding-left: 15px;
+                padding-left: 10px;
                 background-color: var(--light-bg);
             }
 
-            .donate-btn { margin-left: 0; margin-top: 15px; width: 100%; text-align: center; box-sizing: border-box; }
-            .join-us-btn { margin-left: 0; margin-top: 15px; width: 100%; justify-content: center; }
+            .nav-dropdown a .dropdown-icon {
+                background-color: transparent;
+            }
+
+            .donate-icon-btn, .join-icon-btn {
+                width: 100%;
+                height: auto;
+                border-radius: 8px;
+                margin-left: 0;
+                margin-top: 12px;
+                padding: 12px;
+                justify-content: center;
+                gap: 10px;
+                box-sizing: border-box;
+            }
+            .donate-icon-btn::before, .join-icon-btn::before { display: none; }
+            .donate-icon-btn::after { content: 'Donate Now'; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.9rem; }
+            .join-icon-btn::after { content: 'Join Us'; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.9rem; }
+
             .mobile-menu-checkbox:checked ~ nav { right: 0; }
-            .mobile-menu-checkbox:checked ~ .mobile-menu-btn span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+            .mobile-menu-checkbox:checked ~ .mobile-menu-btn span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
             .mobile-menu-checkbox:checked ~ .mobile-menu-btn span:nth-child(2) { opacity: 0; }
-            .mobile-menu-checkbox:checked ~ .mobile-menu-btn span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+            .mobile-menu-checkbox:checked ~ .mobile-menu-btn span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
         }
     </style>
 </head>
@@ -400,11 +479,10 @@
         </label>
 
         <nav>
-            <a href="/pages/home.html">Home</a>
             <a href="/pages/activities/jsp_foundation.html">JSP foundation</a>
 
             <div class="nav-item">
-                <a href="#">Activities <span class="caret">▼</span></a>
+                <a href="#">Activities <span class="caret"></span></a>
                 <div class="nav-dropdown">
                     <a href="/pages/activities/mandir_nirman.html"><span class="dropdown-icon">🛕</span> मंदिर निर्माण</a>
                     <a href="/pages/activities/anandshala.html"><span class="dropdown-icon">🎮</span> आनंदशाला (पाठशाला)</a>
@@ -418,15 +496,26 @@
             </div>
 
             <div class="nav-item">
-                <a href="#">Useful Info <span class="caret">▼</span></a>
+                <a href="#">Community <span class="caret"></span></a>
                 <div class="nav-dropdown">
-                    <a href="/pages/activities/Pune_temples.html">पुणे जैन मंदिर एवं धर्मशालायें</a>
+                    <a href="/pages/job-portal/job-seeker.html"><span class="dropdown-icon">💼</span> Job Portal</a>
+                    <a href="/pages/page-under-construction.html"><span class="dropdown-icon">📝</span> Support Request</a>
+                    <a href="/pages/page-under-construction.html"><span class="dropdown-icon">💝</span> Donor Desk</a>
                 </div>
             </div>
 
-            <a href="/pages/activities/donate-now.html" class="donate-btn">Donate Now</a>
-            <a href="/pages/volunteer-registration.html" class="join-us-btn">
-                Join Us <i class="fas fa-arrow-right"></i>
+            <div class="nav-item">
+                <a href="#">Temples & Stay <span class="caret"></span></a>
+                <div class="nav-dropdown">
+                    <a href="/pages/activities/Pune_temples.html"><span class="dropdown-icon">🛕</span> पुणे जैन मंदिर एवं धर्मशालायें</a>
+                </div>
+            </div>
+
+            <a href="/pages/activities/donate-now.html" class="donate-icon-btn" data-tooltip="Donate Now">
+                <i class="fas fa-heart"></i>
+            </a>
+            <a href="/pages/volunteer-registration.html" class="join-icon-btn" data-tooltip="Join Us">
+                <i class="fas fa-user-plus"></i>
             </a>
         </nav>
     </div>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Portal - Selection | JSP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght=400;500;600;700&family=Open+Sans:wght=400;600&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Re-engineered Color Palette: Sky Blue, Navy & Energetic Cyan Accent */
+        :root {
+            --primary-blue: #0284c7;        /* Vibrant Sky Blue */
+            --secondary-blue: #0369a1;      /* Deep Sky Blue */
+            --dark-navy: #0f172a;           /* Professional Background Navy */
+            --accent-cyan: #06b6d4;         /* Energetic Motivation Highlight */
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --light-bg: #f0f9ff;            /* Soft Sky Tint */
+            --card-shadow: 0 10px 30px rgba(2, 132, 199, 0.08);
+            --border-color: #cbd5e1;
+            --focus-ring: rgba(2, 132, 199, 0.2);
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            /* Added a colorful, vibrant, and modern mesh gradient background */
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 25%, #dcf0fa 50%, #bae6fd 75%, #7dd3fc 100%);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            padding: 10px 5% 80px 5%;
+            max-width: 950px;
+            margin: 0 auto;
+            box-sizing: border-box;
+            flex: 1;
+            width: 100%;
+        }
+
+        /* Hero Banner with Modern Sky-Gradient System */
+        .compact-hero {
+            background: linear-gradient(135deg, var(--dark-navy) 0%, var(--secondary-blue) 100%);
+            color: #ffffff;
+            padding: 40px;
+            border-radius: 12px 12px 0 0;
+            margin-bottom: 0;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        /* Subtle background glow effect */
+        .compact-hero::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background: rgba(6, 182, 212, 0.2);
+            filter: blur(80px);
+            border-radius: 50%;
+        }
+
+        .compact-hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            margin: 0 0 12px 0;
+            font-size: 28px;
+            letter-spacing: -0.5px;
+        }
+
+        .compact-hero p {
+            font-size: 15px;
+            margin: 0;
+            opacity: 0.9;
+            line-height: 1.6;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        /* Selection Layout Structure */
+        .portal-card {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+
+        .selection-padding {
+            padding: 45px;
+        }
+
+        /* Responsive Grid Framework matching layout blueprints */
+        .selection-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 10px;
+        }
+
+        /* Staggered load animation for entry points */
+        .animated-section {
+            animation: slideUp 0.6s ease-out both;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Interactive Path Selection Box Components */
+        .choice-box {
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+            padding: 40px 25px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .choice-box i {
+            font-size: 48px;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .choice-box h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--secondary-blue);
+            font-size: 20px;
+            margin: 0 0 10px 0;
+            transition: color 0.2s ease;
+        }
+
+        .choice-box p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* Dynamic Field Focus Hover Frames */
+        .choice-box:hover {
+            background-color: var(--light-bg);
+            border-color: var(--primary-blue);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(2, 132, 199, 0.15);
+        }
+
+        .choice-box:hover i {
+            transform: scale(1.1);
+            color: var(--accent-cyan);
+        }
+
+        .choice-box:hover h2 {
+            color: var(--primary-blue);
+        }
+
+        @media (max-width: 768px) {
+            .selection-grid { grid-template-columns: 1fr; }
+            .selection-padding { padding: 30px 20px; }
+            .compact-hero { padding: 30px 25px; }
+            .compact-hero h1 { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Dynamic Header Injection Hooks -->
+<script src="../header-loader.js"></script>
+<div id="header-placeholder"></div>
+
+<a href="../home.html" class="back-link"><i class="fas fa-arrow-left"></i>Back to Home</a>
+
+<div class="content">
+    <div class="portal-card">
+        <!-- Matching Hero Header Block -->
+        <div class="compact-hero">
+            <h1>💼 Career Opportunities & Job Portal</h1>
+            <p>Welcome to the structured Job Placement Framework of Jain Sangh Pune (JSP). Please select your workspace below to continue.</p>
+        </div>
+
+        <div class="selection-padding">
+            <div class="selection-grid animated-section">
+
+                <!-- Job Seeker Navigation Track -->
+                <a href="job-seeker.html" class="choice-box">
+                    <i class="fas fa-user-graduate"></i>
+                    <h2>I am a Job-Seeker</h2>
+                    <p>Submit your profile, upload your resume, and accelerate matches with top industry leaders.</p>
+                </a>
+
+                <!-- Recruiter Navigation Track -->
+                <a href="job-recruiter.html" class="choice-box">
+                    <i class="fas fa-building"></i>
+                    <h2>I am a Recruiter</h2>
+                    <p>Post vacancies, explore our verified talent pool, and hire top premium candidates quickly.</p>
+                </a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Dynamic Footer Injection Hooks -->
+<div id="footer-placeholder"></div>
+<script src="../footer-loader.js"></script>
+
+</body>
+</html>

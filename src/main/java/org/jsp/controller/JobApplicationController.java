@@ -2,8 +2,10 @@ package org.jsp.controller;
 
 import org.jsp.model.JobApplication;
 import org.jsp.service.JobApplicationService;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/job-portal")
@@ -20,9 +22,19 @@ public class JobApplicationController {
      * Save a new job application
      * POST /api/job-portal/save
      */
-    @PostMapping("/save")
-    public ResponseEntity<?> saveRegistration(@RequestBody JobApplication jobApplication) {
-        return jobApplicationService.save(jobApplication);
+    @PostMapping(value = "/save", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<?> save(@RequestPart JobApplication jobApplication, @RequestParam("resumeFile") MultipartFile resumeFile) {
+        return jobApplicationService.save(jobApplication, resumeFile);
+    }
+
+    @PostMapping(value = "/update", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<?> update(@RequestPart JobApplication jobApplication, @RequestParam("resumeFile") MultipartFile resumeFile) {
+        return jobApplicationService.update(jobApplication, resumeFile);
+    }
+
+    @DeleteMapping(value = "/delete/{email}")
+    public ResponseEntity<?> delete(@PathVariable("email") String email) {
+        return jobApplicationService.delete(email);
     }
 
     /**
@@ -32,5 +44,28 @@ public class JobApplicationController {
     @GetMapping("/all")
     public ResponseEntity<?> getAllJobApplications() {
         return jobApplicationService.getAllJobApplications();
+    }
+
+    /**
+     * Get a job application by email
+     * GET /api/job-portal/search/by-email?email=someone@example.com
+     */
+    @GetMapping("/search/{email}")
+    public ResponseEntity<?> getJobApplicationByEmail(@PathVariable("email") String email) {
+        return jobApplicationService.findByEmailId(email);
+    }
+
+    @GetMapping("/searchCandidates")
+    public ResponseEntity<?> searchCandidates(@RequestParam(required = false) String skills,
+                                              @RequestParam(required = false) String qualification,
+                                              @RequestParam(required = false) String location,
+                                              @RequestParam(required = false) String noticePeriod,
+                                              @RequestParam(required = false) String experience) {
+        return jobApplicationService.searchCandidates(skills, qualification, location, noticePeriod, experience);
+    }
+
+    @GetMapping("/download/{fileName}")
+    public ResponseEntity<byte[]> downloadResume(@PathVariable("fileName") String fileName) {
+        return jobApplicationService.downloadResume(fileName);
     }
 }
