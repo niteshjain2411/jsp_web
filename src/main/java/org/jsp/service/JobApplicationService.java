@@ -50,28 +50,29 @@ public class JobApplicationService {
         }
     }
 
-    public ResponseEntity<?> update(JobApplication app, MultipartFile file) {
+    public ResponseEntity<?> update(JobApplication application, MultipartFile file) {
         try {
             // Check if record exists
-            final JobApplication existing = firestoreService.findByEmail(COLLECTION_NAME, JobApplication.class, app.getEmail());
+            final JobApplication existing = firestoreService.findByEmail(COLLECTION_NAME, JobApplication.class, application.getEmail());
             if (existing == null) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(HttpResponseUtil.createErrorResponse("Job application not found for email: " + app.getEmail()));
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(HttpResponseUtil.createErrorResponse("Job application not found for email: " + application.getEmail()));
             }
 
             // Validate fields needed for updates
-            this.validateRequiredFields(app, file, false);
-            this.updateTimestamps(app);
+            this.validateRequiredFields(application, file, false);
+            application.setCreatedOn(existing.getCreatedOn()); // Preserve original creation timestamp
+            this.updateTimestamps(application);
 
             // Swap files in Storage (Delete old -> Upload new)
             if (existing.getResumeFileName() != null) {
                 storageService.deleteFile(existing.getResumeFileName());
             }
-            final String newFileName = app.getPhone() + "_" + file.getOriginalFilename();
-            storageService.uploadFile(file, newFileName, "resumes/"); // Bug fixed: Upload was missing!
-            app.setResumeFileName(newFileName);
+            final String newFileName = application.getPhone() + "_" + file.getOriginalFilename();
+            storageService.uploadFile(file, newFileName, "resumes/");
+            application.setResumeFileName(newFileName);
 
             // Update Database
-            final String docId = firestoreService.updateByEmail(COLLECTION_NAME, app.getEmail(), app);
+            final String docId = firestoreService.updateByEmail(COLLECTION_NAME, application.getEmail(), application);
             return ResponseEntity.ok(Map.of("success", true, "message", "Job application updated successfully", "documentId", docId));
 
         } catch (IllegalArgumentException e) {
@@ -132,7 +133,7 @@ public class JobApplicationService {
 
     public ResponseEntity<byte[]> downloadResume(String fileName) {
         try {
-            final byte[] data = storageService.downloadFile(fileName);
+            final byte[] data = storageService.downloadFile("resumes/", fileName);
             if (data == null) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
             }
@@ -190,12 +191,12 @@ public class JobApplicationService {
         }
     }
 
-    private void updateTimestamps(JobApplication app) {
+    private void updateTimestamps(JobApplication application) {
         final Date now = new Date();
-        if (app.getCreatedOn() == null) {
-            app.setCreatedOn(now);
+        if (application.getCreatedOn() == null) {
+            application.setCreatedOn(now);
         }
-        app.setLastUpdatedOn(now);
+        application.setLastUpdatedOn(now);
     }
 
     private boolean matchesFilter(String fieldValue, String searchTerm) {
