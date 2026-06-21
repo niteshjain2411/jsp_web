@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Service Requests Console | JSP</title>
     <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght=400;500;600;700&family=Open+Sans:wght=400;600&display=swap"
-        rel="stylesheet">
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght=400;500;600;700&family=Open+Sans:wght=400;600&display=swap"
+            rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -30,7 +30,7 @@
 
         body {
             font-family: 'Open Sans', sans-serif;
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 25%, #dcf0fa 50%, #bae6fd 75%, #7dd3fc 100%);
+            background: #f0f9ff; /* Simplified layout background fill */
             color: var(--text-dark);
             margin: 0;
             padding: 0;
@@ -38,30 +38,13 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            width: 100%;
         }
 
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin: 30px 5% 10px 5%;
-            color: var(--secondary-blue);
-            text-decoration: none;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            font-size: 14px;
-            transition: all 0.2s ease;
-        }
-
-        .back-link:hover {
-            color: var(--accent-cyan);
-            transform: translateX(-3px);
-        }
-
+        /* FIXED: Removed max-width and margin auto restriction entirely to consume 100% iframe space */
         .content {
-            padding: 10px 5% 80px 5%;
-            max-width: 1100px;
-            margin: 0 auto;
+            padding: 0;
+            margin: 0;
             box-sizing: border-box;
             flex: 1;
             width: 100%;
@@ -69,59 +52,24 @@
 
         .main-card {
             background: #ffffff;
-            border-radius: 12px;
-            box-shadow: var(--card-shadow);
-            border: 1px solid #e2e8f0;
+            border-radius: 0;
+            box-shadow: none;
+            border: none;
             overflow: hidden;
+            width: 100%;
         }
 
-        /* Hero Header Element matching job-recruiter.html layout blueprint */
-        .compact-hero {
-            background: linear-gradient(135deg, var(--dark-navy) 0%, var(--secondary-blue) 100%);
-            color: #ffffff;
-            padding: 40px;
-            border-radius: 12px 12px 0 0;
-            margin-bottom: 0;
-            box-shadow: var(--card-shadow);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .compact-hero::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 300px;
-            height: 300px;
-            background: rgba(6, 182, 212, 0.2);
-            filter: blur(80px);
-            border-radius: 50%;
-        }
-
-        .compact-hero h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            margin: 0 0 12px 0;
-            font-size: 28px;
-            letter-spacing: -0.5px;
-        }
-
-        .compact-hero p {
-            font-size: 15px;
-            margin: 0;
-            opacity: 0.9;
-            line-height: 1.6;
-            max-width: 750px;
-        }
-
+        /* FIXED: Reconfigured to fluid padding that takes full screen width nicely */
         .card-body-padding {
-            padding: 45px;
+            padding: 24px;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         /* Layout Framework Results Components */
         #resultsSection {
             animation: fadeIn 0.4s ease-out;
+            width: 100%;
         }
 
         @keyframes fadeIn {
@@ -141,6 +89,7 @@
             margin: 0 0 25px 0;
             border-bottom: 1px dashed #e2e8f0;
             padding-bottom: 20px;
+            width: 100%;
         }
 
         .results-count {
@@ -157,6 +106,7 @@
             display: flex;
             flex-direction: column;
             gap: 25px;
+            width: 100%;
         }
 
         /* Enclosing card styling rules mapping candidate layouts */
@@ -168,6 +118,8 @@
             transition: all 0.25s ease;
             position: relative;
             animation: slideUp 0.5s ease-out both;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .request-card:hover {
@@ -193,6 +145,7 @@
             justify-content: space-between;
             align-items: flex-start;
             margin-bottom: 15px;
+            width: 100%;
         }
 
         .applicant-name {
@@ -210,6 +163,7 @@
             font-size: 13.5px;
             color: var(--text-muted);
             font-weight: 600;
+            width: 100%;
         }
 
         .request-meta span {
@@ -235,6 +189,7 @@
             background-color: #f0f9ff;
             color: var(--secondary-blue);
             border: 1px solid #bae6fd;
+            white-space: nowrap;
         }
 
         /* Subsection layout partitions inside a result card */
@@ -248,6 +203,7 @@
             display: flex;
             align-items: center;
             gap: 6px;
+            width: 100%;
         }
 
         .details-box {
@@ -259,6 +215,8 @@
             padding: 12px 16px;
             border-radius: 6px;
             border-left: 3px solid #cbd5e1;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         /* Nested table layouts for embedded family elements visualization */
@@ -316,6 +274,8 @@
             font-size: 14px;
             text-align: center;
             font-family: 'Open Sans', sans-serif;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .status-error {
@@ -348,210 +308,186 @@
         }
     </style>
 </head>
-
 <body>
-
-    <script src="../header-loader.js"></script>
-    <script src="../footer-loader.js"></script>
-    <div id="header-placeholder"></div>
-
-    <a href="../home.html" class="back-link"><i class="fas fa-arrow-left"></i>Back to Home</a>
-
-    <div class="content">
-
-        <div id="statusAlert" class="status-notification"></div>
-
-        <div class="main-card">
-            <div class="compact-hero">
-                <h1>📋 Community Service Requests Console</h1>
-                <p>Monitor and track community registration metrics, evaluate requested help targets, and cross-examine
-                    submitted data profiles efficiently without parameters constraint matching fields.</p>
-            </div>
-
-            <div class="card-body-padding">
-                <div id="resultsSection">
-                    <div class="results-header">
-                        <div class="results-count">Total Collected Profiles: <strong id="visibleCount">0</strong>
-                            incoming records</div>
+<div class="content" style="width: 100%; padding: 24px; box-sizing: border-box; align-self: center;">
+    <div id="statusAlert" class="status-notification"></div>
+    <div class="main-card">
+        <div class="card-body-padding">
+            <div id="resultsSection">
+                <div class="results-header">
+                    <div class="results-count">Total Collected Profiles: <strong id="visibleCount">0</strong> incoming
+                        records
                     </div>
+                </div>
 
-                    <div id="requestResultsWrapper" class="request-cards-container">
-                        <div class="empty-results-box">
-                            <i class="fas fa-spinner fa-spin" style="color: var(--primary-blue);"></i>
-                            <p>Loading application registries from server streams...</p>
-                        </div>
+                <div id="requestResultsWrapper" class="request-cards-container">
+                    <div class="empty-results-box">
+                        <i class="fas fa-spinner fa-spin" style="color: var(--primary-blue);"></i>
+                        <p>Loading application registries from server streams...</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <div id="footer-placeholder"></div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        loadAllServiceRequests();
+    });
 
-    <script>
-        // Automatic runtime call executed instantly on content initialized cycle
-        document.addEventListener('DOMContentLoaded', function () {
-            loadAllServiceRequests();
+    function loadAllServiceRequests() {
+        const resultsWrapper = document.getElementById('requestResultsWrapper');
+        const requestUrl = window.location.pathname.includes('/jainsanghpune/') ?
+            '/jainsanghpune/api/service-request/all' : '/api/service-request/all';
+
+        fetch(requestUrl, {
+            method: 'GET',
+            headers: { 'Accept': 'application/json' }
+        })
+            .then(response => {
+                if (!response.ok) throw new Error('Data endpoint failure response sequence maps.');
+                return response.json();
+            })
+            .then(res => {
+                const finalRecordsList = Array.isArray(res) ? res : (res.data || []);
+                renderRequestCards(finalRecordsList);
+            })
+            .catch(error => {
+                console.error('API Pull Error Exception:', error);
+                flashStatusAlert('Could not aggregate service data maps smoothly from infrastructure storage backend layer.', 'error');
+                resultsWrapper.innerHTML = `
+            <div class="empty-results-box">
+                <i class="fas fa-exclamation-triangle" style="color: var(--danger-red);"></i>
+                <p>Error tracking service record collections packages.</p>
+            </div>
+        `;
+            });
+    }
+
+    function renderRequestCards(requests) {
+        const resultsWrapper = document.getElementById('requestResultsWrapper');
+        const countBadge = document.getElementById('visibleCount');
+
+        if (!requests || requests.length === 0) {
+            countBadge.textContent = "0";
+            resultsWrapper.innerHTML = `
+            <div class="empty-results-box">
+                <i class="fas fa-folder-open"></i>
+                <p>No active service request profiles are currently available in the system repository.</p>
+            </div>
+        `;
+            return;
+        }
+
+        countBadge.textContent = requests.length;
+        let htmlBuffer = "";
+
+        requests.forEach(req => {
+            const incomeMetric = req.monthlyIncome ? `₹${req.monthlyIncome} / mo` : 'Not Declared';
+            const fileDownloadLinkName = req.documentFileName || 'Verified_Envelope.pdf';
+
+            let familyRowsHtml = '';
+            if (req.familyMembers && req.familyMembers.length > 0) {
+                req.familyMembers.forEach(member => {
+                    familyRowsHtml += `
+                    <tr>
+                        <td>${escapeHtml(member.name || 'N/A')}</td>
+                        <td>${escapeHtml(member.age || 'N/A')}</td>
+                        <td>${escapeHtml(member.relation || 'N/A')}</td>
+                        <td>${escapeHtml(member.occupation || 'N/A')}</td>
+                    </tr>
+                `;
+                });
+            } else {
+                familyRowsHtml = `<tr><td colspan="4" style="text-align: center; color: var(--text-muted);">No matching family structural profile entries registered.</td></tr>`;
+            }
+
+            htmlBuffer += `
+            <div class="request-card">
+                <div class="card-top">
+                    <div>
+                        <h3 class="applicant-name">${escapeHtml(req.fullName || 'Anonymous Beneficiary')}</h3>
+                        <div class="request-meta">
+                            <span><i class="fas fa-phone-alt"></i> ${escapeHtml(req.phone || 'N/A')}</span>
+                            <span><i class="fas fa-calendar-alt"></i> DOB: ${escapeHtml(req.dob || 'N/A')} (${escapeHtml(req.gender || 'Unspecified')})</span>
+                            <span><i class="fas fa-briefcase"></i> Occupation: ${escapeHtml(req.occupation || 'N/A')}</span>
+                            <span><i class="fas fa-id-card"></i> PAN: ${escapeHtml(req.panNumber || 'N/A')}</span>
+                        </div>
+                    </div>
+                    <span class="badge badge-income">Income: ${escapeHtml(incomeMetric)}</span>
+                </div>
+
+                <div class="request-meta" style="margin-top: 5px; margin-bottom: 12px; font-size: 13px; color: #475569;">
+                    <span><i class="fas fa-user-friends"></i> <strong>Father/Husband Name:</strong> ${escapeHtml(req.fatherName || 'N/A')}</span>
+                    <span><i class="fas fa-history"></i> <strong>Applied Before:</strong> ${escapeHtml(req.appliedBefore || 'No')}</span>
+                </div>
+
+                <div class="info-block-title"><i class="fas fa-hand-holding-heart"></i> Required Help Details / सहायता विवरण</div>
+                <p class="details-box">${escapeHtml(req.helpWanted || 'No parameters explicit layout declarations provided.')}</p>
+
+                <div class="info-block-title"><i class="fas fa-chart-line"></i> Post-Support Implementation Plan / सहायता के बाद की योजना</div>
+                <p class="details-box">${escapeHtml(req.afterHelpPlan || 'No subsequent target blueprint provided.')}</p>
+
+                <div class="info-block-title"><i class="fas fa-users"></i> Registered Family Members / परिवार के सदस्यों का विवरण</div>
+                <table class="family-display-table">
+                    <thead>
+                        <tr>
+                            <th>Name (नाम)</th>
+                            <th>Age (उम्र)</th>
+                            <th>Relation (रिश्ता)</th>
+                            <th>Occupation (व्यवसाय)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${familyRowsHtml}
+                    </tbody>
+                </table>
+
+                <div class="info-block-title"><i class="fas fa-map-marker-alt"></i> Residential Address Details / पता</div>
+                <p class="details-box" style="font-size: 13px; background: #fdfdfd;"><i class="fas fa-home" style="color: var(--text-muted); margin-right: 4px;"></i> ${escapeHtml(req.address || 'No location metric verified.')}</p>
+
+                <button class="download-docs-btn" onclick="triggerDocumentExtraction('${escapeHtml(fileDownloadLinkName)}')">
+                    <i class="fas fa-file-download"></i> Download Document (${escapeHtml(fileDownloadLinkName)})
+                </button>
+            </div>
+        `;
         });
 
-        function loadAllServiceRequests() {
-            const resultsWrapper = document.getElementById('requestResultsWrapper');
+        resultsWrapper.innerHTML = htmlBuffer;
+    }
 
-            // Build absolute/relative matching base configuration path patterns
-            const requestUrl = window.location.pathname.includes('/jainsanghpune/') ?
-                '/jainsanghpune/api/service-request/all' : '/api/service-request/all';
-
-            fetch(requestUrl, {
-                method: 'GET',
-                headers: { 'Accept': 'application/json' }
-            })
-                .then(response => {
-                    if (!response.ok) throw new Error('Data endpoint failure response sequence maps.');
-                    return response.json();
-                })
-                .then(res => {
-                    // Safeguard against raw listing wrappers variations structures smoothly
-                    const finalRecordsList = Array.isArray(res) ? res : (res.data || []);
-                    renderRequestCards(finalRecordsList);
-                })
-                .catch(error => {
-                    console.error('API Pull Error Exception:', error);
-                    flashStatusAlert('Could not aggregate service data maps smoothly from infrastructure storage backend layer.', 'error');
-                    resultsWrapper.innerHTML = `
-                <div class="empty-results-box">
-                    <i class="fas fa-exclamation-triangle" style="color: var(--danger-red);"></i>
-                    <p>Error tracking service record collections packages.</p>
-                </div>
-            `;
-                });
+    function triggerDocumentExtraction(fileName) {
+        try {
+            let encodedFileName = encodeURIComponent(fileName);
+            flashStatusAlert("Opening active verification attachment payload data streams...", "success");
+            const backendDownloadUrl = `/api/service-request/download/${encodedFileName}`;
+            window.open(backendDownloadUrl, '_blank');
+        } catch (error) {
+            console.error("Document collection error layer mapping failure:", error);
+            flashStatusAlert("An operational tracking error occurred while pulling documentation logs.", "error");
         }
+    }
 
-        function renderRequestCards(requests) {
-            const resultsWrapper = document.getElementById('requestResultsWrapper');
-            const countBadge = document.getElementById('visibleCount');
+    function flashStatusAlert(message, statusType = "success") {
+        const alertBox = document.getElementById('statusAlert');
+        alertBox.textContent = message;
+        alertBox.style.display = 'block';
+        alertBox.className = `status-notification status-${statusType}`;
+        setTimeout(() => {
+            alertBox.style.display = 'none';
+        }, 4000);
+    }
 
-            if (!requests || requests.length === 0) {
-                countBadge.textContent = "0";
-                resultsWrapper.innerHTML = `
-                <div class="empty-results-box">
-                    <i class="fas fa-folder-open"></i>
-                    <p>No active service request profiles are currently available in the system repository.</p>
-                </div>
-            `;
-                return;
-            }
-
-            countBadge.textContent = requests.length;
-            let htmlBuffer = "";
-
-            requests.forEach(req => {
-                const incomeMetric = req.monthlyIncome ? `₹${req.monthlyIncome} / mo` : 'Not Declared';
-                const fileDownloadLinkName = req.documentFileName || 'Verified_Envelope.pdf';
-
-                // Core logic step: Aggregate inner array nested rows safely for family matrices evaluation
-                let familyRowsHtml = '';
-                if (req.familyMembers && req.familyMembers.length > 0) {
-                    req.familyMembers.forEach(member => {
-                        familyRowsHtml += `
-                        <tr>
-                            <td>${escapeHtml(member.name || 'N/A')}</td>
-                            <td>${escapeHtml(member.age || 'N/A')}</td>
-                            <td>${escapeHtml(member.relation || 'N/A')}</td>
-                            <td>${escapeHtml(member.occupation || 'N/A')}</td>
-                        </tr>
-                    `;
-                    });
-                } else {
-                    familyRowsHtml = `<tr><td colspan="4" style="text-align: center; color: var(--text-muted);">No matching family structural profile entries registered.</td></tr>`;
-                }
-
-                htmlBuffer += `
-                <div class="request-card">
-                    <div class="card-top">
-                        <div>
-                            <h3 class="applicant-name">${escapeHtml(req.fullName || 'Anonymous Beneficiary')}</h3>
-                            <div class="request-meta">
-                                <span><i class="fas fa-phone-alt"></i> ${escapeHtml(req.phone || 'N/A')}</span>
-                                <span><i class="fas fa-calendar-alt"></i> DOB: ${escapeHtml(req.dob || 'N/A')} (${escapeHtml(req.gender || 'Unspecified')})</span>
-                                <span><i class="fas fa-briefcase"></i> Occupation: ${escapeHtml(req.occupation || 'N/A')}</span>
-                                <span><i class="fas fa-id-card"></i> PAN: ${escapeHtml(req.panNumber || 'N/A')}</span>
-                            </div>
-                        </div>
-                        <span class="badge badge-income">Income: ${escapeHtml(incomeMetric)}</span>
-                    </div>
-
-                    <div class="request-meta" style="margin-top: 5px; margin-bottom: 12px; font-size: 13px; color: #475569;">
-                        <span><i class="fas fa-user-friends"></i> <strong>Father/Husband Name:</strong> ${escapeHtml(req.fatherName || 'N/A')}</span>
-                        <span><i class="fas fa-history"></i> <strong>Applied Before:</strong> ${escapeHtml(req.appliedBefore || 'No')}</span>
-                    </div>
-
-                    <div class="info-block-title"><i class="fas fa-hand-holding-heart"></i> Required Help Details / सहायता विवरण</div>
-                    <p class="details-box">${escapeHtml(req.helpWanted || 'No parameters explicit layout declarations provided.')}</p>
-
-                    <div class="info-block-title"><i class="fas fa-chart-line"></i> Post-Support Implementation Plan / सहायता के बाद की योजना</div>
-                    <p class="details-box">${escapeHtml(req.afterHelpPlan || 'No subsequent target blueprint provided.')}</p>
-
-                    <div class="info-block-title"><i class="fas fa-users"></i> Registered Family Members / परिवार के सदस्यों का विवरण</div>
-                    <table class="family-display-table">
-                        <thead>
-                            <tr>
-                                <th>Name (नाम)</th>
-                                <th>Age (उम्र)</th>
-                                <th>Relation (रिश्ता)</th>
-                                <th>Occupation (व्यवसाय)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${familyRowsHtml}
-                        </tbody>
-                    </table>
-
-                    <div class="info-block-title"><i class="fas fa-map-marker-alt"></i> Residential Address Details / पता</div>
-                    <p class="details-box" style="font-size: 13px; background: #fdfdfd;"><i class="fas fa-home" style="color: var(--text-muted); margin-right: 4px;"></i> ${escapeHtml(req.address || 'No location metric verified.')}</p>
-
-                    <button class="download-docs-btn" onclick="triggerDocumentExtraction('${escapeHtml(fileDownloadLinkName)}')">
-                        <i class="fas fa-file-download"></i> Download Document (${escapeHtml(fileDownloadLinkName)})
-                    </button>
-                </div>
-            `;
-            });
-
-            resultsWrapper.innerHTML = htmlBuffer;
-        }
-
-        function triggerDocumentExtraction(fileName) {
-            try {
-                let encodedFileName = encodeURIComponent(fileName);
-                flashStatusAlert("Opening active verification attachment payload data streams...", "success");
-                const backendDownloadUrl = `/api/service-request/download/${encodedFileName}`;
-                window.open(backendDownloadUrl, '_blank');
-            } catch (error) {
-                console.error("Document collection error layer mapping failure:", error);
-                flashStatusAlert("An operational tracking error occurred while pulling documentation logs.", "error");
-            }
-        }
-
-        function flashStatusAlert(message, statusType = "success") {
-            const alertBox = document.getElementById('statusAlert');
-            alertBox.textContent = message;
-            alertBox.style.display = 'block';
-            alertBox.className = `status-notification status-${statusType}`;
-            setTimeout(() => {
-                alertBox.style.display = 'none';
-            }, 4000);
-        }
-
-        function escapeHtml(str) {
-            if (!str) return '';
-            return str.toString()
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
-        }
-    </script>
-
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.toString()
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+</script>
 </body>
-
 </html>

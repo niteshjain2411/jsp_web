@@ -6,35 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recruiter Console - Candidate Search | JSP</title>
     <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght=400;500;600;700&family=Open+Sans:wght=400;600&display=swap"
-        rel="stylesheet">
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght=400;500;600;700&family=Open+Sans:wght=400;600&display=swap"
+            rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* Re-engineered Color Palette matching manage-profile theme */
+        /* DISTINCT THEME: Deep Emerald & Corporate Mint Slate Theme */
         :root {
-            --primary-blue: #0284c7;
-            /* Vibrant Sky Blue */
-            --secondary-blue: #0369a1;
-            /* Deep Sky Blue */
-            --dark-navy: #0f172a;
-            /* Professional Background Navy */
-            --accent-cyan: #06b6d4;
-            /* Energetic Motivation Highlight */
-            --text-dark: #1e293b;
+            --primary-green: #0f766e;
+            /* Deep Teal/Emerald */
+            --secondary-green: #115e59;
+            /* Shaded Forest Teal */
+            --dark-slate: #1e293b;
+            /* Charcoal Title Slate */
+            --accent-mint: #0d9488;
+            /* Mint Highlight Accent */
+            --text-dark: #334155;
             --text-muted: #64748b;
-            --light-bg: #f0f9ff;
-            /* Soft Sky Tint */
-            --card-shadow: 0 10px 30px rgba(2, 132, 199, 0.08);
+            --light-bg: #f0fdfa;
+            /* Emerald Ice Glow Tint */
+            --card-shadow: 0 10px 30px rgba(15, 118, 110, 0.06);
             --border-color: #cbd5e1;
-            --focus-ring: rgba(2, 132, 199, 0.2);
-            --success-green: #22c55e;
+            --focus-ring: rgba(13, 148, 136, 0.2);
+            --success-green: #16a34a;
+            --danger-red: #dc2626;
         }
 
         body {
             font-family: 'Open Sans', sans-serif;
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 25%, #dcf0fa 50%, #bae6fd 75%, #7dd3fc 100%);
+            background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 25%, #e2e8f0 50%, #cbd5e1 100%);
             color: var(--text-dark);
             margin: 0;
             padding: 0;
@@ -44,94 +45,80 @@
             flex-direction: column;
         }
 
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin: 30px 5% 10px 5%;
-            color: var(--secondary-blue);
-            text-decoration: none;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            font-size: 14px;
-            transition: all 0.2s ease;
-        }
-
-        .back-link:hover {
-            color: var(--accent-cyan);
-            transform: translateX(-3px);
-        }
-
+        /* SYNCHRONIZED: Completely edge-to-edge for admin iframe dashboards */
         .content {
-            padding: 10px 5% 80px 5%;
-            max-width: 1100px;
-            margin: 0 auto;
+            padding: 0;
+            margin: 0;
             box-sizing: border-box;
             flex: 1;
             width: 100%;
         }
 
-        /* Recruiter Hero Banner */
+        .main-card {
+            background: #ffffff;
+            border-radius: 0;
+            box-shadow: none;
+            border: none;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        /* SYNCHRONIZED: Reconfigured fluid 24px structural padding */
+        .card-body-padding {
+            padding: 24px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Recruiter Header Box Panel Style */
         .compact-hero {
-            background: linear-gradient(135deg, var(--dark-navy) 0%, var(--secondary-blue) 100%);
+            background: linear-gradient(135deg, var(--dark-slate) 0%, var(--secondary-green) 100%);
             color: #ffffff;
-            padding: 40px;
-            border-radius: 12px 12px 0 0;
-            margin-bottom: 0;
-            box-shadow: var(--card-shadow);
+            padding: 30px 24px;
+            margin-bottom: 25px;
             position: relative;
             overflow: hidden;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .compact-hero::after {
             content: '';
             position: absolute;
             top: -50%;
-            right: -20%;
-            width: 300px;
-            height: 300px;
-            background: rgba(6, 182, 212, 0.2);
-            filter: blur(80px);
+            right: -10%;
+            width: 250px;
+            height: 250px;
+            background: rgba(13, 148, 136, 0.25);
+            filter: blur(60px);
             border-radius: 50%;
         }
 
         .compact-hero h1 {
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
-            margin: 0 0 12px 0;
-            font-size: 28px;
+            margin: 0 0 8px 0;
+            font-size: 24px;
             letter-spacing: -0.5px;
         }
 
         .compact-hero p {
-            font-size: 15px;
+            font-size: 14px;
             margin: 0;
-            opacity: 0.9;
-            line-height: 1.6;
-            max-width: 750px;
+            opacity: 0.85;
+            line-height: 1.5;
+            max-width: 850px;
         }
 
-        .main-card {
-            background: #ffffff;
-            border-radius: 12px;
-            box-shadow: var(--card-shadow);
-            border: 1px solid #e2e8f0;
-            overflow: hidden;
-        }
-
-        .card-body-padding {
-            padding: 45px;
-        }
-
-        /* Filter Console Layout */
+        /* Filter Console Layout Layouts */
         .filter-section-title {
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
-            color: var(--secondary-blue);
-            font-size: 18px;
+            color: var(--secondary-green);
+            font-size: 16px;
             margin: 0 0 20px 0;
-            border-left: 5px solid var(--accent-cyan);
-            padding-left: 14px;
+            border-left: 5px solid var(--accent-mint);
+            padding-left: 12px;
         }
 
         .filter-grid {
@@ -139,6 +126,7 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
             margin-bottom: 25px;
+            width: 100%;
         }
 
         .filter-group {
@@ -153,18 +141,18 @@
 
         label {
             font-weight: 600;
-            font-size: 13.5px;
+            font-size: 13px;
             color: #334155;
         }
 
         input[type="text"],
         select {
             width: 100%;
-            padding: 12px 16px;
+            padding: 10px 14px;
             border: 1px solid var(--border-color);
             background-color: #ffffff;
             border-radius: 6px;
-            font-size: 14px;
+            font-size: 13.5px;
             font-family: inherit;
             color: var(--text-dark);
             box-sizing: border-box;
@@ -174,11 +162,11 @@
         input:focus,
         select:focus {
             outline: none;
-            border-color: var(--primary-blue);
+            border-color: var(--primary-green);
             box-shadow: 0 0 0 4px var(--focus-ring);
         }
 
-        /* Action Buttons */
+        /* Actions Custom Footers Row */
         .action-row {
             display: flex;
             justify-content: flex-end;
@@ -186,14 +174,15 @@
             margin-top: 25px;
             border-bottom: 1px dashed #e2e8f0;
             padding-bottom: 30px;
+            width: 100%;
         }
 
         .btn {
-            padding: 12px 30px;
+            padding: 10px 24px;
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
-            font-size: 14px;
-            border-radius: 6px;
+            font-size: 13px;
+            border-radius: 4px;
             cursor: pointer;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -201,19 +190,18 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            border: none;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
             color: #ffffff;
-            border: none;
-            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+            box-shadow: 0 4px 12px rgba(15, 118, 110, 0.2);
         }
 
         .btn-primary:hover {
-            background: linear-gradient(135deg, var(--secondary-blue) 0%, #025a87) 100%;
+            background: linear-gradient(135deg, var(--secondary-green) 0%, #0a4440) 100%;
             transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(2, 132, 199, 0.35);
         }
 
         .btn-secondary {
@@ -224,32 +212,29 @@
 
         .btn-secondary:hover {
             background: #e2e8f0;
-            color: var(--text-dark);
+            color: #0f172a;
         }
 
-        /* Enclosing Result Section Panel Wrapper (Hidden Initially) */
+        /* Results Display Section Layout */
         #resultsSection {
             display: none;
             animation: fadeIn 0.4s ease-out;
-            margin-top: 20px;
+            width: 100%;
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
-        /* Candidates List Framework Result Section Elements */
         .results-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin: 25px 0 20px 0;
+            border-bottom: 1px dashed #e2e8f0;
+            padding-bottom: 15px;
+            width: 100%;
         }
 
         .results-count {
@@ -259,15 +244,17 @@
         }
 
         .results-count strong {
-            color: var(--secondary-blue);
+            color: var(--secondary-green);
         }
 
         .candidate-cards-container {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 25px;
+            width: 100%;
         }
 
+        /* SYNCHRONIZED: Matching .request-card configuration properties precisely */
         .candidate-card {
             background: #ffffff;
             border: 1px solid #e2e8f0;
@@ -276,11 +263,13 @@
             transition: all 0.25s ease;
             position: relative;
             animation: slideUp 0.5s ease-out both;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .candidate-card:hover {
-            border-color: var(--primary-blue);
-            box-shadow: 0 6px 20px rgba(2, 132, 199, 0.05);
+            border-color: var(--primary-green);
+            box-shadow: 0 6px 20px rgba(15, 118, 110, 0.05);
             transform: translateY(-2px);
         }
 
@@ -289,7 +278,6 @@
                 opacity: 0;
                 transform: translateY(12px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -301,13 +289,14 @@
             justify-content: space-between;
             align-items: flex-start;
             margin-bottom: 15px;
+            width: 100%;
         }
 
         .candidate-name {
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
-            font-size: 18px;
-            color: var(--dark-navy);
+            font-size: 19px;
+            color: var(--dark-slate);
             margin: 0 0 6px 0;
         }
 
@@ -318,6 +307,7 @@
             font-size: 13.5px;
             color: var(--text-muted);
             font-weight: 600;
+            width: 100%;
         }
 
         .candidate-meta span {
@@ -327,60 +317,80 @@
         }
 
         .candidate-meta i {
-            color: var(--primary-blue);
+            color: var(--primary-green);
         }
 
-        /* Notice Period Pill Badges */
+        /* Dynamic Pill Badges layout rules */
         .badge {
             padding: 6px 12px;
             border-radius: 20px;
             font-size: 12px;
             font-weight: 700;
             text-transform: uppercase;
+            white-space: nowrap;
         }
 
         .badge-immediate {
             background-color: #dcfce7;
             color: #15803d;
+            border: 1px solid #bbf7d0;
         }
 
         .badge-days {
-            background-color: #fef9c3;
-            color: #a16207;
+            background-color: var(--light-bg);
+            color: var(--secondary-green);
+            border: 1px solid #99f6e4;
         }
 
         .skills-container {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin: 15px 0;
+            margin: 15px 0 5px 0;
+            width: 100%;
         }
 
         .skill-tag {
-            background: var(--light-bg);
-            color: var(--secondary-blue);
+            background: #f8fafc;
+            color: #475569;
             padding: 4px 10px;
             border-radius: 4px;
-            font-size: 12.5px;
+            font-size: 12px;
             font-weight: 600;
-            border: 1px solid #bae6fd;
+            border: 1px solid #e2e8f0;
+        }
+
+        /* Info block labels synchronized visually with Service Module layout keys */
+        .info-block-title {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--secondary-green);
+            margin: 18px 0 6px 0;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            width: 100%;
         }
 
         .candidate-summary {
             font-size: 14px;
             color: #475569;
-            margin: 12px 0 0 0;
+            margin: 5px 0 15px 0;
             line-height: 1.6;
             background: #f8fafc;
             padding: 12px 16px;
             border-radius: 6px;
             border-left: 3px solid #cbd5e1;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .download-resume-btn {
             background: none;
-            border: 1px solid var(--primary-blue);
-            color: var(--primary-blue);
+            border: 1px solid var(--primary-green);
+            color: var(--primary-green);
             padding: 8px 16px;
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
@@ -392,15 +402,15 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            margin-top: 15px;
+            margin-top: 5px;
         }
 
         .download-resume-btn:hover {
-            background: var(--primary-blue);
+            background: var(--primary-green);
             color: #ffffff;
         }
 
-        /* Status notification panel states */
+        /* Notification layouts status bars */
         .status-notification {
             display: none;
             padding: 15px;
@@ -410,6 +420,8 @@
             font-size: 14px;
             text-align: center;
             font-family: 'Open Sans', sans-serif;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .status-success {
@@ -424,10 +436,9 @@
             border: 1px solid #fca5a5;
         }
 
-        /* No records style frame wrapper */
         .empty-results-box {
             text-align: center;
-            padding: 50px 20px;
+            padding: 65px 20px;
             color: var(--text-muted);
             border: 1px dashed var(--border-color);
             background: #f8fafc;
@@ -437,292 +448,276 @@
         }
 
         .empty-results-box i {
-            font-size: 40px;
+            font-size: 44px;
             color: #94a3b8;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
     </style>
 </head>
 
 <body>
+<div class="content" style="width: 100%; padding: 24px; box-sizing: border-box; align-self: center;">
+    <div id="statusAlert" class="status-notification"></div>
+    <div class="main-card">
+        <!-- <div class="compact-hero">
+             <h1>🔍 Search Candidates Registry</h1>
+             <p>Refine and filter candidate parameters across experience ranges, core technical competencies, educational
+                 qualifications, and availability structures to fulfill your current organizational openings.</p>
+         </div>-->
 
-    <script src="../header-loader.js"></script>
-    <script src="../footer-loader.js"></script>
-    <div id="header-placeholder"></div>
+        <div class="card-body-padding">
+            <form id="filterForm" onsubmit="executeSearch(event)">
+                <div class="filter-section-title">Filter Candidates Database Matrix</div>
 
-    <a href="job-portal.html" class="back-link"><i class="fas fa-arrow-left"></i>Back to Portal Dashboard</a>
-
-    <div class="content">
-
-        <div id="statusAlert" class="status-notification"></div>
-
-        <div class="main-card">
-            <div class="compact-hero">
-                <h1>🔍 Search Your Candidates</h1>
-                <p>Refine and drill down into candidate parameters across experience profiles, technical core
-                    competencies, and availability matrices to scale your engineering teams.</p>
-            </div>
-
-            <div class="card-body-padding">
-                <form id="filterForm" onsubmit="executeSearch(event)">
-                    <div class="filter-section-title">Filter Candidates Index</div>
-
-                    <div class="filter-grid">
-                        <div class="filter-group full-width">
-                            <label for="searchSkills">Search Technologies / Core Skills</label>
-                            <input type="text" id="searchSkills"
-                                placeholder="e.g. Java, React, Node.js, Python, Sales, Finance">
-                        </div>
-
-                        <div class="filter-group">
-                            <label for="filterQualification">Academic Qualification</label>
-                            <select id="filterQualification">
-                                <option value="">All Qualifications</option>
-                                <option value="Graduate - Non Tech">Graduate (B.A., B.Com, B.Sc)</option>
-                                <option value="Graduate - Tech">Technical Graduate (B.E., B.Tech, BCA)</option>
-                                <option value="Post Graduate">Post Graduate (M.Sc, MBA)</option>
-                                <option value="Post Graduate - Tech">Technical Post Graduate (M.Tech, MCA)</option>
-                                <option value="Doctorate">Doctorate / Professional</option>
-                            </select>
-                        </div>
-
-                        <div class="filter-group">
-                            <label for="filterExperience">Total Work Experience</label>
-                            <select id="filterExperience">
-                                <option value="">All Experience Ranges</option>
-                                <option value="Fresher">Fresher / Entry Track</option>
-                                <option value="1-2 Years">1 - 2 Years</option>
-                                <option value="3-5 Years">3 - 5 Years</option>
-                                <option value="6-10 Years">6 - 10 Years</option>
-                                <option value="10+ Years">10+ Years Executive Track</option>
-                            </select>
-                        </div>
-
-                        <div class="filter-group">
-                            <label for="filterNotice">Availability / Notice Period</label>
-                            <select id="filterNotice">
-                                <option value="">All Availabilities</option>
-                                <option value="Immediate">Immediate / Serving</option>
-                                <option value="15 Days">15 Days</option>
-                                <option value="30 Days">30 Days</option>
-                                <option value="60 Days">60 Days</option>
-                                <option value="90 Days">90 Days</option>
-                            </select>
-                        </div>
-
-                        <div class="filter-group full-width">
-                            <label for="searchLocation">Preferred Placement City / Location Target</label>
-                            <input type="text" id="searchLocation" placeholder="e.g. Pune, Mumbai, Bangalore">
-                        </div>
+                <div class="filter-grid">
+                    <div class="filter-group full-width">
+                        <label for="searchSkills">Search Technologies / Core Skillsets Tag</label>
+                        <input type="text" id="searchSkills"
+                               placeholder="e.g. Java, React, Node.js, Python, Sales, Finance Core operations">
                     </div>
 
-                    <div class="action-row">
-                        <button type="button" class="btn btn-secondary" onclick="resetFilters()"><i
-                                class="fas fa-undo"></i> Reset Filters
-                        </button>
-                        <button type="submit" class="btn btn-primary"><i class="fas fa-filter"></i> Evaluate
-                            Profiles
-                        </button>
-                    </div>
-                </form>
-
-                <div id="resultsSection">
-                    <div class="results-header">
-                        <div class="results-count">Showing <strong id="visibleCount">0</strong> active talent pools
-                            matching evaluation records
-                        </div>
+                    <div class="filter-group">
+                        <label for="filterQualification">Academic Background Tier</label>
+                        <select id="filterQualification">
+                            <option value="">All Qualifications</option>
+                            <option value="Graduate - Non Tech">Graduate (B.A., B.Com, B.Sc)</option>
+                            <option value="Graduate - Tech">Technical Graduate (B.E., B.Tech, BCA)</option>
+                            <option value="Post Graduate">Post Graduate (M.Sc, MBA)</option>
+                            <option value="Post Graduate - Tech">Technical Post Graduate (M.Tech, MCA)</option>
+                            <option value="Doctorate">Doctorate / Professional Certification</option>
+                        </select>
                     </div>
 
-                    <div id="candidateResultsWrapper" class="candidate-cards-container">
+                    <div class="filter-group">
+                        <label for="filterExperience">Total Active Work Experience</label>
+                        <select id="filterExperience">
+                            <option value="">All Experience Ranges</option>
+                            <option value="Fresher">Fresher / Entry Track</option>
+                            <option value="1-2 Years">1 - 2 Years</option>
+                            <option value="3-5 Years">3 - 5 Years</option>
+                            <option value="6-10 Years">6 - 10 Years</option>
+                            <option value="10+ Years">10+ Years Executive Track</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="filterNotice">Availability Timeline / Notice Period</label>
+                        <select id="filterNotice">
+                            <option value="">All Availabilities</option>
+                            <option value="Immediate">Immediate / Currently Serving</option>
+                            <option value="15 Days">15 Days</option>
+                            <option value="30 Days">30 Days</option>
+                            <option value="60 Days">60 Days</option>
+                            <option value="90 Days">90 Days</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group full-width">
+                        <label for="searchLocation">Preferred Placement Target Locations</label>
+                        <input type="text" id="searchLocation" placeholder="e.g. Pune, Mumbai, Bangalore, Remote Hubs">
                     </div>
                 </div>
 
+                <div class="action-row">
+                    <button type="button" class="btn btn-secondary" onclick="resetFilters()"><i
+                            class="fas fa-undo"></i> Reset Filters Matrix
+                    </button>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-filter"></i> Evaluate Matching
+                        Profiles
+                    </button>
+                </div>
+            </form>
+
+            <div id="resultsSection">
+                <div class="results-header">
+                    <div class="results-count">Showing <strong id="visibleCount">0</strong> active candidate records
+                        matching criteria filters
+                    </div>
+                </div>
+
+                <div id="candidateResultsWrapper" class="candidate-cards-container">
+                </div>
             </div>
+
         </div>
     </div>
+</div>
 
-    <div id="footer-placeholder"></div>
+<script>
+    function executeSearch(event) {
+        event.preventDefault();
 
-    <script>
-        function executeSearch(event) {
-            event.preventDefault();
+        const skills = document.getElementById('searchSkills').value.trim();
+        const qualification = document.getElementById('filterQualification').value;
+        const experience = document.getElementById('filterExperience').value;
+        const noticePeriod = document.getElementById('filterNotice').value;
+        const city = document.getElementById('searchLocation').value.trim();
 
-            // Harvest criteria inputs from form variables
-            const skills = document.getElementById('searchSkills').value.trim();
-            const qualification = document.getElementById('filterQualification').value;
-            const experience = document.getElementById('filterExperience').value;
-            const noticePeriod = document.getElementById('filterNotice').value;
-            const city = document.getElementById('searchLocation').value.trim();
+        const payloadParams = {};
+        if (skills) payloadParams.skills = skills;
+        if (qualification) payloadParams.qualification = qualification;
+        if (experience) payloadParams.experience = experience;
+        if (noticePeriod) payloadParams.noticePeriod = noticePeriod;
+        if (city) payloadParams.city = city;
 
-            // Build key criteria parameters context mapping maps
-            const payloadParams = {};
-            if (skills) payloadParams.skills = skills;
-            if (qualification) payloadParams.qualification = qualification;
-            if (experience) payloadParams.experience = experience;
-            if (noticePeriod) payloadParams.noticePeriod = noticePeriod;
-            if (city) payloadParams.city = city;
+        loadCandidateRegistry(payloadParams);
+    }
 
-            loadCandidateRegistry(payloadParams);
-        }
+    function loadCandidateRegistry(params) {
+        const resultsSection = document.getElementById('resultsSection');
+        const resultsWrapper = document.getElementById('candidateResultsWrapper');
 
+        resultsSection.style.display = 'block';
+        resultsWrapper.innerHTML = `
+            <div class="empty-results-box">
+                <i class="fas fa-spinner fa-spin" style="color: var(--primary-green);"></i>
+                <p>Retrieving matching profiles data from secure server streams...</p>
+            </div>
+        `;
 
-        function loadCandidateRegistry(params) {
-            const resultsSection = document.getElementById('resultsSection');
-            const resultsWrapper = document.getElementById('candidateResultsWrapper');
+        const queryString = new URLSearchParams(params).toString();
+        const requestUrl = window.location.pathname.includes('/jainsanghpune/') ?
+            `/jainsanghpune/api/job-portal/searchCandidates${queryString ? '?' + queryString : ''}`
+            : `/api/job-portal/searchCandidates${queryString ? '?' + queryString : ''}`;
 
-            // Dynamic visibility execution step: Reveal container to display inline network loaders
-            resultsSection.style.display = 'block';
-            resultsWrapper.innerHTML = `
-    <div class="empty-results-box">
-        <i class="fas fa-spinner fa-spin" style="color: var(--primary-blue);"></i>
-        <p>Retrieving matching profiles...</p>
-    </div>
-`;
-
-            // Parse object rules parameters into URI encoding strings maps
-            const queryString = new URLSearchParams(params).toString();
-            const requestUrl = window.location.pathname.includes('/jainsanghpune/') ?
-                `/jainsanghpune/api/job-portal/searchCandidates${queryString ? '?' + queryString : ''}`
-                : `/api/job-portal/searchCandidates${queryString ? '?' + queryString : ''}`;
-
-            fetch(requestUrl, {
-                method: 'GET',
-                headers: { 'Accept': 'application/json' }
+        fetch(requestUrl, {
+            method: 'GET',
+            headers: { 'Accept': 'application/json' }
+        })
+            .then(response => {
+                if (!response.ok) throw new Error('Network query track mapping error encountered.');
+                return response.json();
             })
-                .then(response => {
-                    if (!response.ok) throw new Error('Network query track mapping error encountered.');
-                    return response.json();
-                })
-                .then(res => {
-                    // FIX: Pass the underlying array payload 'res.data' to the renderer
-                    renderCandidateCards(res.data);
-                })
-                .catch(error => {
-                    console.error('API Candidate Search Log Track Error:', error);
-                    flashStatusAlert('Unable to pull active listings from the service environment layers smoothly.', 'error');
-                });
-        }
-
-        function renderCandidateCards(candidatesList) {
-            const resultsWrapper = document.getElementById('candidateResultsWrapper');
-            const countBadge = document.getElementById('visibleCount');
-
-            if (!candidatesList || candidatesList.length === 0) {
-                countBadge.textContent = "0";
+            .then(res => {
+                renderCandidateCards(res.data);
+            })
+            .catch(error => {
+                console.error('API Candidate Search Log Track Error:', error);
+                flashStatusAlert('Unable to pull active listings from the service environment layers smoothly.', 'error');
                 resultsWrapper.innerHTML = `
-        <div class="empty-results-box">
-            <i class="fas fa-folder-open"></i>
-            <p>No active talent profiles matching these structural filter configurations were found.</p>
-        </div>
-    `;
-                return;
-            }
-
-            countBadge.textContent = candidatesList.length;
-            let htmlCardsBuffer = "";
-
-            candidatesList.forEach(candidate => {
-                // Setup dynamic clean string splits mapping for array tags parsing layouts
-                let skillsArr = [];
-                if (candidate.skillsSummary) {
-                    skillsArr = candidate.skillsSummary.split(',').map(s => s.trim()).filter(s => s.length > 0);
-                } else if (candidate.skills) {
-                    skillsArr = typeof candidate.skills === 'string' ? candidate.skills.split(',') : candidate.skills;
-                }
-
-                const tagsHtml = skillsArr.map(skill => `<span class="skill-tag">${escapeHtml(skill)}</span>`).join('');
-
-                // Configure availability layout styles dynamically
-                const isImmediate = (candidate.noticePeriod || '').toLowerCase().includes('immediate');
-                const badgeClass = isImmediate ? 'badge-immediate' : 'badge-days';
-                const badgeLabel = candidate.noticePeriod ? candidate.noticePeriod : 'Standard Notice';
-
-                // FIX: Extract file name from Firebase URL or fallback cleanly
-                const resumeFileName = candidate.resumeFileName || '#';
-                let displayFileName = 'Resume_Document.pdf';
-                if (candidate.resumeUrl) {
-                    const urlParts = candidate.resumeUrl.split('/');
-                    const encodedName = urlParts[urlParts.length - 1].split('?')[0];
-                    displayFileName = decodeURIComponent(encodedName).split('_').pop() || 'Download_Resume.pdf';
-                }
-
-                htmlCardsBuffer += `
-        <div class="candidate-card">
-            <div class="card-top">
-                <div>
-                    <h3 class="candidate-name">${escapeHtml(candidate.fullName || candidate.name || 'Verified Applicant')}</h3>
-                    <div class="candidate-meta">
-                        <span><i class="fas fa-graduation-cap"></i> ${escapeHtml(candidate.qualification || 'Not Specified')}</span>
-                        <span><i class="fas fa-briefcase"></i> ${escapeHtml(candidate.experience || 'Fresher')}</span>
-                        <span><i class="fas fa-map-marker-alt"></i> ${escapeHtml(candidate.city || 'India')}</span>
+                    <div class="empty-results-box">
+                        <i class="fas fa-exclamation-triangle" style="color: var(--danger-red);"></i>
+                        <p>Error loading applicant directory dataset profiles.</p>
                     </div>
-                </div>
-                <span class="badge ${badgeClass}">${escapeHtml(badgeLabel)}</span>
-            </div>
-            <div class="skills-container">
-                ${tagsHtml || '<span class="skill-tag">General Industry Competencies</span>'}
-            </div>
-            <p class="candidate-summary">${escapeHtml(candidate.skillsSummary || 'Professional track candidate profile optimized for enterprise placement parameters.')}</p>
-
-            <button class="download-resume-btn" onclick="triggerDownload('${escapeHtml(resumeFileName)}')">
-                <i class="fas fa-file-download"></i> Extract Profile Document (${escapeHtml(displayFileName)})
-            </button>
-        </div>
-    `;
+                `;
             });
+    }
 
-            resultsWrapper.innerHTML = htmlCardsBuffer;
+    function renderCandidateCards(candidatesList) {
+        const resultsWrapper = document.getElementById('candidateResultsWrapper');
+        const countBadge = document.getElementById('visibleCount');
+
+        if (!candidatesList || candidatesList.length === 0) {
+            countBadge.textContent = "0";
+            resultsWrapper.innerHTML = `
+                <div class="empty-results-box">
+                    <i class="fas fa-folder-open"></i>
+                    <p>No active talent profiles matching these structural filter configurations were found in the database logs.</p>
+                </div>
+            `;
+            return;
         }
 
+        countBadge.textContent = candidatesList.length;
+        let htmlCardsBuffer = "";
 
-        function resetFilters() {
-            document.getElementById('filterForm').reset();
-
-            // Fully reset result section display parameters to native hidden status
-            const resultsSection = document.getElementById('resultsSection');
-            const resultsWrapper = document.getElementById('candidateResultsWrapper');
-
-            resultsSection.style.display = 'none';
-            resultsWrapper.innerHTML = '';
-            document.getElementById('visibleCount').textContent = "0";
-
-            flashStatusAlert("Search criteria matrices cleared. Reverted to complete active talent registry.", "success");
-        }
-
-        function triggerDownload(fileName) {
-            try {
-                let encodedFileName = encodeURIComponent(fileName);
-                flashStatusAlert("Opening applicant profile stream...", "success");
-                const backendDownloadUrl = `/api/job-portal/download/${encodedFileName}`;
-                window.open(backendDownloadUrl, '_blank');
-            } catch (error) {
-                console.error("Download failed:", error);
-                flashStatusAlert("An error occurred while trying to fetch the file.", "error");
+        candidatesList.forEach(candidate => {
+            let skillsArr = [];
+            if (candidate.skillsSummary) {
+                skillsArr = candidate.skillsSummary.split(',').map(s => s.trim()).filter(s => s.length > 0);
+            } else if (candidate.skills) {
+                skillsArr = typeof candidate.skills === 'string' ? candidate.skills.split(',') : candidate.skills;
             }
+
+            const tagsHtml = skillsArr.map(skill => `<span class="skill-tag">${escapeHtml(skill)}</span>`).join('');
+
+            const isImmediate = (candidate.noticePeriod || '').toLowerCase().includes('immediate');
+            const badgeClass = isImmediate ? 'badge-immediate' : 'badge-days';
+            const badgeLabel = candidate.noticePeriod ? candidate.noticePeriod : 'Standard Notice';
+
+            const resumeFileName = candidate.resumeFileName || '#';
+            let displayFileName = 'Resume_Document.pdf';
+            if (candidate.resumeUrl) {
+                const urlParts = candidate.resumeUrl.split('/');
+                const encodedName = urlParts[urlParts.length - 1].split('?')[0];
+                displayFileName = decodeURIComponent(encodedName).split('_').pop() || 'Download_Resume.pdf';
+            }
+
+            htmlCardsBuffer += `
+                <div class="candidate-card">
+                    <div class="card-top">
+                        <div>
+                            <h3 class="candidate-name">${escapeHtml(candidate.fullName || candidate.name || 'Verified Applicant')}</h3>
+                            <div class="candidate-meta">
+                                <span><i class="fas fa-graduation-cap"></i> ${escapeHtml(candidate.qualification || 'Not Specified')}</span>
+                                <span><i class="fas fa-briefcase"></i> ${escapeHtml(candidate.experience || 'Fresher')}</span>
+                                <span><i class="fas fa-map-marker-alt"></i> ${escapeHtml(candidate.city || 'India')}</span>
+                            </div>
+                        </div>
+                        <span class="badge ${badgeClass}">${escapeHtml(badgeLabel)}</span>
+                    </div>
+
+                    <div class="info-block-title"><i class="fas fa-tags"></i> Core Professional Competencies / कौशल्य सूची</div>
+                    <div class="skills-container">
+                        ${tagsHtml || '<span class="skill-tag">General Industry Competencies</span>'}
+                    </div>
+
+                    <div class="info-block-title"><i class="fas fa-user-tie"></i> Executive Track Profile Summary / उम्मीदवार का सारांश</div>
+                    <p class="candidate-summary">${escapeHtml(candidate.skillsSummary || 'Professional track candidate profile optimized for enterprise placement parameters.')}</p>
+
+                    <button class="download-resume-btn" onclick="triggerDownload('${escapeHtml(resumeFileName)}')">
+                        <i class="fas fa-file-download"></i> Download Candidate Profile (${escapeHtml(displayFileName)})
+                    </button>
+                </div>
+            `;
+        });
+
+        resultsWrapper.innerHTML = htmlCardsBuffer;
+    }
+
+    function resetFilters() {
+        document.getElementById('filterForm').reset();
+        const resultsSection = document.getElementById('resultsSection');
+        const resultsWrapper = document.getElementById('candidateResultsWrapper');
+
+        resultsSection.style.display = 'none';
+        resultsWrapper.innerHTML = '';
+        document.getElementById('visibleCount').textContent = "0";
+
+        flashStatusAlert("Search criteria configurations reset. Reverted filter cache mapping maps.", "success");
+    }
+
+    function triggerDownload(fileName) {
+        try {
+            let encodedFileName = encodeURIComponent(fileName);
+            flashStatusAlert("Opening applicant profile verification streaming attachment payloads...", "success");
+            const backendDownloadUrl = `/api/job-portal/download/${encodedFileName}`;
+            window.open(backendDownloadUrl, '_blank');
+        } catch (error) {
+            console.error("Download failed:", error);
+            flashStatusAlert("An operational exception trace occurred while trying to request documentation.", "error");
         }
+    }
 
-        function flashStatusAlert(message, statusType = "success") {
-            const alertBox = document.getElementById('statusAlert');
-            alertBox.textContent = message;
-            alertBox.style.display = 'block';
-            alertBox.className = `status-notification status-${statusType}`;
-            setTimeout(() => {
-                alertBox.style.display = 'none';
-            }, 4000);
-        }
+    function flashStatusAlert(message, statusType = "success") {
+        const alertBox = document.getElementById('statusAlert');
+        alertBox.textContent = message;
+        alertBox.style.display = 'block';
+        alertBox.className = `status-notification status-${statusType}`;
+        setTimeout(() => {
+            alertBox.style.display = 'none';
+        }, 4000);
+    }
 
-        function escapeHtml(str) {
-            if (!str) return '';
-            return str.toString()
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
-        }
-
-    </script>
-
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.toString()
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+</script>
 </body>
-
 </html>

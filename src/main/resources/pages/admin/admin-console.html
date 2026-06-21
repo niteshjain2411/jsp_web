@@ -1,165 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jain Sangh Pune - Admin Console</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome for Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-    </style>
-</head>
-<body class="bg-gray-50 text-gray-800 flex h-screen overflow-hidden">
 
-<!-- SIDEBAR NAVIGATION -->
-<aside class="w-64 bg-white border-r border-gray-200 flex flex-col justify-between hidden md:flex">
-    <div>
-        <!-- Header Brand -->
-        <div class="p-6 border-b border-gray-100 flex items-center space-x-3">
-            <div class="w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center text-white font-bold">J</div>
-            <div>
-                <h1 class="font-bold text-sm text-gray-900 leading-tight">Jain Sangh Pune</h1>
-                <span class="text-xs text-gray-500">Management Panel</span>
-            </div>
+    <script>
+        // Check if the login flag exists in session storage
+        if (sessionStorage.getItem("isLoggedIn") !== "true") {
+            // If not logged in, alert the user and boot them back to login page
+            alert("Access Denied! Please login first.");
+            window.location.href = "login.html";
+        }
+
+        function logoutUser() {
+            // Clear the specific login flag
+            sessionStorage.removeItem("isLoggedIn");
+            // Send them back to the login page
+            window.location.href = "login.html";
+        }
+
+        // Function to switch between dashboard views smoothly
+        function switchView(viewType, url = '', title = 'Dashboard Overview') {
+            const dashboardView = document.getElementById('dashboard-view');
+            const pageFrame = document.getElementById('page-frame');
+            const pageTitle = document.getElementById('page-title');
+
+            // Dynamic title updater
+            if (pageTitle) pageTitle.textContent = title;
+
+            // Reset navigation link styles
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('bg-amber-600', 'text-white', 'font-medium');
+                link.classList.add('text-slate-300', 'hover:bg-slate-800', 'hover:text-white');
+            });
+
+            // Set active navigation style
+            const activeLink = document.getElementById(`nav-${viewType}`);
+            if (activeLink) {
+                activeLink.classList.remove('text-slate-300', 'hover:bg-slate-800', 'hover:text-white');
+                activeLink.classList.add('bg-amber-600', 'text-white', 'font-medium');
+            }
+
+            // Toggle view visibility
+            if (viewType === 'dashboard') {
+                dashboardView.classList.remove('hidden');
+                pageFrame.classList.add('hidden');
+                pageFrame.src = '';
+            } else {
+                dashboardView.classList.add('hidden');
+                pageFrame.classList.remove('hidden');
+                pageFrame.src = url;
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-gray-100 font-sans antialiased">
+
+<div class="flex h-screen overflow-hidden">
+
+    <aside class="w-64 bg-slate-900 text-white flex flex-col hidden md:flex">
+        <div class="p-5 text-xl font-bold border-b border-slate-800 flex items-center gap-3">
+            <i class="fa-solid fa-user-shield text-amber-500"></i>
+            <span>JSP Admin</span>
         </div>
-        <!-- Navigation Links -->
-        <nav class="p-4 space-y-1">
-            <a href="#" class="flex items-center space-x-3 px-4 py-2.5 rounded-lg bg-orange-50 text-orange-600 font-medium text-sm transition">
-                <i class="fa-solid fa-chart-pie w-5"></i>
-                <span>Dashboard</span>
+
+        <nav class="flex-1 p-4 space-y-2 overflow-y-auto">
+            <a href="javascript:void(0)" id="nav-volunteers" onclick="switchView('volunteers', 'registration_data.html', 'Volunteer Registration Data')"
+               class="nav-link flex items-center gap-3 px-4 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition">
+                <i class="fa-solid fa-users w-5"></i>Volunteers
             </a>
-            <a href="#" class="flex items-center space-x-3 px-4 py-2.5 rounded-lg text-gray-600 hover:bg-gray-50 font-medium text-sm transition">
-                <i class="fa-solid fa-users w-5"></i>
-                <span>Member Directory</span>
+            <a href="javascript:void(0)" id="nav-requests" onclick="switchView('requests', '../service_request/service-requests.html', 'Open Service Requests')"
+               class="nav-link flex items-center gap-3 px-4 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition">
+                <i class="fas fa-hands-helping" style="color: #bae6fd;"></i>Open Requests
             </a>
-            <a href="#" class="flex items-center space-x-3 px-4 py-2.5 rounded-lg text-gray-600 hover:bg-gray-50 font-medium text-sm transition">
-                <i class="fa-solid fa-hand-holding-heart w-5"></i>
-                <span>Support Desk</span>
-            </a>
-            <a href="#" class="flex items-center space-x-3 px-4 py-2.5 rounded-lg text-gray-600 hover:bg-gray-50 font-medium text-sm transition">
-                <i class="fa-solid fa-indian-rupee-sign w-5"></i>
-                <span>Donations & CMS</span>
+            <a href="javascript:void(0)" id="nav-job-requests" onclick="switchView('job-requests', '../job-portal/job-recruiter.html', 'Open Job applications')"
+               class="nav-link flex items-center gap-3 px-4 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition">
+                <i class="fa-solid fa-paper-plane"></i>Job Requests
             </a>
         </nav>
-    </div>
-    <!-- User Profile Footer -->
-    <div class="p-4 border-t border-gray-100 flex items-center justify-between">
-        <div class="flex items-center space-x-3">
-            <div class="w-9 h-9 rounded-full bg-gray-200 flex items-center justify-center font-semibold text-gray-700">A</div>
+
+        <div class="p-4 border-t border-slate-800 text-sm text-slate-400 flex items-center justify-between">
             <div>
-                <p class="text-xs font-semibold text-gray-900">Admin Account</p>
-                <p class="text-[10px] text-gray-500">Super Administrator</p>
+                <p class="font-semibold text-white">Admin User</p>
+                <p class="text-xs">trustee@jsp.com</p>
+            </div>
+            <a href="#" class="text-slate-400 hover:text-red-400 transition" title="Logout" onclick="logoutUser()">
+                <i class="fa-solid fa-right-from-bracket text-lg"></i>
+            </a>
+        </div>
+    </aside>
+
+    <main class="flex-1 flex flex-col overflow-hidden">
+
+        <header class="bg-white shadow-sm px-6 py-4 flex items-center justify-between sticky top-0 z-10">
+            <div class="flex items-center gap-4">
+                <button class="md:hidden text-slate-600 text-xl hover:text-slate-900">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <h1 id="page-title" class="text-xl font-bold text-slate-800">Console Overview</h1>
+            </div>
+        </header>
+
+        <div id="dashboard-view" class="flex-1 p-6 space-y-6 overflow-y-auto">
+            <!-- Hardcoded metrics cards and recent updates table have been cleared out -->
+            <div class="text-center py-20 text-slate-500">
+                <i class="fa-solid fa-folder-open text-4xl mb-3 block"></i>
+                <p class="text-lg font-medium">Select a module from the sidebar to view metrics or management data.</p>
             </div>
         </div>
-        <button class="text-gray-400 hover:text-red-500 transition"><i class="fa-solid fa-right-from-bracket"></i></button>
-    </div>
-</aside>
 
-<!-- MAIN APP CONTAINER -->
-<main class="flex-1 flex flex-col min-w-0 overflow-hidden">
-    <!-- TOP NAVBAR -->
-    <header class="h-16 bg-white border-b border-gray-200 px-6 flex items-center justify-between flex-shrink-0">
-        <div class="flex items-center space-x-4">
-            <button class="md:hidden text-gray-600"><i class="fa-solid fa-bars text-xl"></i></button>
-            <h2 class="text-lg font-semibold text-gray-900">Console Overview</h2>
-        </div>
-        <div class="flex items-center space-x-4">
-                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                    <span class="w-1.5 h-1.5 mr-1.5 bg-green-500 rounded-full"></span> Live Server Connected
-                </span>
-        </div>
-    </header>
+        <!-- iframe uses full-width and layout flex tracking -->
+        <iframe id="page-frame" class="w-full flex-1 border-none hidden"></iframe>
 
-    <!-- SCROLLABLE WORKSPACE -->
-    <div class="flex-1 overflow-y-auto p-6 space-y-6 bg-gray-50/50">
-        <!-- METRICS ROW -->
-        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            <div class="bg-white p-5 rounded-xl border border-gray-200 flex items-center justify-between shadow-sm">
-                <div>
-                    <p class="text-xs font-medium text-gray-500 uppercase tracking-wider">Total Registered Sangh Members</p>
-                    <h3 class="text-2xl font-bold text-gray-900 mt-1">1,240</h3>
-                </div>
-                <div class="w-12 h-12 rounded-lg bg-orange-100 text-orange-600 flex items-center justify-center text-lg"><i class="fa-solid fa-users"></i></div>
-            </div>
-            <div class="bg-white p-5 rounded-xl border border-gray-200 flex items-center justify-between shadow-sm">
-                <div>
-                    <p class="text-xs font-medium text-gray-500 uppercase tracking-wider">Open Support Requests</p>
-                    <h3 class="text-2xl font-bold text-gray-900 mt-1">14</h3>
-                </div>
-                <div class="w-12 h-12 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center text-lg"><i class="fa-solid fa-envelope-open-text"></i></div>
-            </div>
-            <div class="bg-white p-5 rounded-xl border border-gray-200 flex items-center justify-between shadow-sm">
-                <div>
-                    <p class="text-xs font-medium text-gray-500 uppercase tracking-wider">Monthly Donations Collected</p>
-                    <h3 class="text-2xl font-bold text-gray-900 mt-1">₹45,200</h3>
-                </div>
-                <div class="w-12 h-12 rounded-lg bg-green-100 text-green-600 flex items-center justify-center text-lg"><i class="fa-solid fa-indian-rupee-sign"></i></div>
-            </div>
-        </section>
-
-        <!-- DATA DATA & CMS WRAPPER -->
-        <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
-            <!-- LEADS / SUPPORT TICKETS TABLE -->
-            <div class="bg-white rounded-xl border border-gray-200 shadow-sm xl:col-span-2 overflow-hidden flex flex-col">
-                <div class="p-5 border-b border-gray-100 flex items-center justify-between bg-white">
-                    <h4 class="font-semibold text-gray-900">Recent Community Service Requests</h4>
-                    <button class="text-xs font-medium text-orange-600 hover:underline">View All Tickets</button>
-                </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left text-sm text-gray-500">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50/70 border-b border-gray-100">
-                        <tr>
-                            <th class="px-6 py-3">Applicant Name</th>
-                            <th class="px-6 py-3">Request Category</th>
-                            <th class="px-6 py-3">Status</th>
-                            <th class="px-6 py-3 text-right">Actions</th>
-                        </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-100 bg-white">
-                        <tr>
-                            <td class="px-6 py-4 font-medium text-gray-900">Rahul Shah</td>
-                            <td class="px-6 py-4">Medical Fund Subsidy</td>
-                            <td class="px-6 py-4"><span class="px-2 py-0.5 rounded text-xs font-medium bg-amber-100 text-amber-800">Pending</span></td>
-                            <td class="px-6 py-4 text-right"><button class="text-orange-600 hover:text-orange-800 font-medium">Review</button></td>
-                        </tr>
-                        <tr>
-                            <td class="px-6 py-4 font-medium text-gray-900">Meena Mehta</td>
-                            <td class="px-6 py-4">Anandshala Classroom Registry</td>
-                            <td class="px-6 py-4"><span class="px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">Approved</span></td>
-                            <td class="px-6 py-4 text-right"><button class="text-orange-600 hover:text-orange-800 font-medium">Review</button></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- QUICK ACTIONS / CMS PANELS -->
-            <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm space-y-4">
-                <h4 class="font-semibold text-gray-900 border-b border-gray-100 pb-3">Quick CMS Toolkit</h4>
-                <div class="space-y-2">
-                    <button class="w-full text-left flex items-center justify-between px-4 py-3 border border-gray-200 hover:border-orange-200 rounded-lg text-sm text-gray-700 hover:bg-orange-50/40 group transition">
-                        <div class="flex items-center space-x-3">
-                            <i class="fa-solid fa-calendar-plus text-gray-400 group-hover:text-orange-500"></i>
-                            <span class="font-medium">Publish Global Event Notice</span>
-                        </div>
-                        <i class="fa-solid fa-angle-right text-gray-300 group-hover:text-orange-400"></i>
-                    </button>
-                    <button class="w-full text-left flex items-center justify-between px-4 py-3 border border-gray-200 hover:border-orange-200 rounded-lg text-sm text-gray-700 hover:bg-orange-50/40 group transition">
-                        <div class="flex items-center space-x-3">
-                            <i class="fa-solid fa-bullhorn text-gray-400 group-hover:text-orange-500"></i>
-                            <span class="font-medium">Update Latest News Banner</span>
-                        </div>
-                        <i class="fa-solid fa-angle-right text-gray-300 group-hover:text-orange-400"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</main>
-
+    </main>
+</div>
 </body>
 </html>
