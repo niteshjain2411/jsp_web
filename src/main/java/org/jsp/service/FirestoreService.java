@@ -4,11 +4,13 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.QuerySnapshot;
+import com.google.cloud.firestore.SetOptions;
 import com.google.firebase.cloud.FirestoreClient;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 @Service
@@ -75,6 +77,18 @@ public class FirestoreService {
         db.collection(collection).document(documentId).set(data);
         System.out.println("New record added successfully to Firestore with ID: " + documentId);
         return documentId;
+    }
+
+    public void updateData(String collection, String documentId, Object data) {
+        Firestore db = FirestoreClient.getFirestore();
+        db.collection(collection).document(documentId).set(data, SetOptions.merge());
+        System.out.println("Record updated successfully in Firestore with ID: " + documentId);
+    }
+
+    public void updateData(String collection, String documentId, Map<String, Object> data) {
+        Firestore db = FirestoreClient.getFirestore();
+        db.collection(collection).document(documentId).update(data);
+        System.out.println("Record updated successfully in Firestore with ID: " + documentId);
     }
 
     public String updateByEmail(String collection, String email, Object data) throws InterruptedException, ExecutionException {

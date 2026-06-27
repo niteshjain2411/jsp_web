@@ -31,6 +31,7 @@ public class ServiceRequestService {
             this.validateRequiredFields(request, file);
             // Handle entity update metadata timestamps
             this.updateTimestamps(request);
+            request.setStatus("Pending");
             // Safe reference string assembly for standard attachments pipeline
             final String fileName = request.getPhone() + "_" + file.getOriginalFilename();
             storageService.uploadFile(file, fileName, "service_request_documents/");
@@ -43,6 +44,30 @@ public class ServiceRequestService {
             return ResponseEntity.badRequest().body(HttpResponseUtil.createErrorResponse(e.getMessage()));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(HttpResponseUtil.createErrorResponse("Server error: " + e.getMessage()));
+        }
+    }
+
+    public ResponseEntity<?> update(final String id, final String status, final String remarks) {
+        try {
+            ServiceRequest existingRequest = firestoreService.findByProperty(COLLECTION_NAME, ServiceRequest.class, "id", id);
+            if (existingRequest == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(HttpResponseUtil.createErrorResponse("Application not found for ID: " + id));
+            }
+
+           /* Map<String, Object> data = new HashMap<>();
+            data.put("status", status);
+            data.put("remarks", remarks);
+            data.put("lastUpdatedOn", new Date());
+            firestoreService.updateData(COLLECTION_NAME, id, data);*/
+
+            existingRequest.setStatus(status);
+            existingRequest.setRemarks(remarks);
+            this.updateTimestamps(existingRequest);
+            firestoreService.updateData(COLLECTION_NAME, id, existingRequest);
+            return ResponseEntity.ok(Map.of("success", true, "message", "Application updated successfully"));
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(HttpResponseUtil.createErrorResponse("Error updating application: " + e.getMessage()));
         }
     }
 

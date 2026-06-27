@@ -27,6 +27,15 @@ public class ServiceRequestController {
         }
     }
 
+    @PostMapping(value = "/update/{id}")
+    public ResponseEntity<?> updateServiceRequest(@PathVariable("id") String id, @RequestParam String status, @RequestParam String remarks) {
+        try {
+            return applicationService.update(id, status, remarks);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Malformed structure payload declaration data conversion framework mismatch.");
+        }
+    }
+
     @GetMapping("/all")
     public ResponseEntity<?> getAllApplications() {
         return applicationService.fetchAllApplications();

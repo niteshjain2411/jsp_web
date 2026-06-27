@@ -23,6 +23,8 @@ public class ServiceRequest {
     private String documentFileName;
 
     private List<FamilyMember> familyMembers;
+    private String status;
+    private String remarks;
 
     private Date createdOn;
     private Date lastUpdatedOn;

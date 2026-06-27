@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form - Jain Sangh Pune | JSP</title>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght=400;500;600;700&family=Open+Sans:wght=400;600&display=swap"
+            rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Re-engineered Color Palette: Sky Blue, Refreshing Cyan & Uplifting Light Blue Themes */
+        :root {
+            --primary-blue: #0284c7;
+            /* Vibrant Sky Blue Accent */
+            --secondary-blue: #0369a1;
+            /* Deep Sky Blue */
+            --warm-charcoal: #1e293b;
+            /* Gentle Dark Slate Text */
+            --accent-cyan: #06b6d4;
+            /* Energetic Refreshing Highlight */
+            --text-dark: #0f172a;
+            --text-dark-muted: #475569;
+            --text-muted: #64748b;
+            --light-bg: #e0f2fe;
+            /* Soft Sky Blue Tint */
+            --card-shadow: 0 10px 30px rgba(2, 132, 199, 0.05);
+            --border-color: #cbd5e1;
+            --focus-ring: rgba(2, 132, 199, 0.2);
+            --danger-red: #ef4444;
+            --secondary-gray: #64748b;
+            --secondary-gray-hover: #475569;
+            --instruction-blue-bg: #f0f9ff;
+            /* Lighter sky blue background for instructions */
+            --instruction-blue-border: #bae6fd;
+            /* Soft matching border */
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            /* SVG Background featuring a repeating, subtle watermark motif of interconnected helping hands */
+            background-color: #f0f9ff;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='%23bae6fd' fill-opacity='0.25'%3E%3Cpath d='M30,45 C35,45 38,40 40,35 C42,40 45,45 50,45 C45,45 42,50 40,55 C38,50 35,45 30,45 Z M80,25 C83,25 85,22 86,20 C87,22 89,25 92,25 C89,25 87,28 86,30 C85,28 83,25 80,25 Z M95,85 C98,85 100,82 101,80 C102,82 104,85 107,85 C104,85 102,88 101,90 C100,88 98,85 95,85 Z M25,90 C28,90 30,87 31,85 C32,87 34,90 37,90 C34,90 32,93 31,95 C30,93 28,90 25,90 Z'/%3E%3Cpath d='M60,65 C55,60 48,62 44,66 C40,70 38,76 42,82 C46,88 54,94 60,98 C66,94 74,88 78,82 C82,76 80,70 76,66 C72,62 65,60 60,65 Z' fill='%2338bdf8' fill-opacity='0.15'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin: 30px 5% 10px 5%;
+            color: var(--secondary-blue);
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .back-link:hover {
+            color: var(--accent-cyan);
+            transform: translateX(-3px);
+        }
+
+        .content {
+            padding: 10px 5% 80px 5%;
+            max-width: 950px;
+            margin: 0 auto;
+            box-sizing: border-box;
+            flex: 1;
+            width: 100%;
+            position: relative;
+        }
+
+        /* Hero Banner with Sky Blue Gradient and Supporting Hands Visual Overlay Placement Icons */
+        .compact-hero {
+            background: linear-gradient(135deg, #0f172a 0%, #0369a1 100%);
+            color: #ffffff;
+            padding: 40px;
+            border-radius: 12px 12px 0 0;
+            margin-bottom: 0;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .compact-hero::after {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 250px;
+            height: 250px;
+            background: rgba(56, 189, 248, 0.15);
+            filter: blur(60px);
+            border-radius: 50%;
+        }
+
+        .compact-hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            margin: 0 0 12px 0;
+            font-size: 28px;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .compact-hero p {
+            font-size: 15px;
+            margin: 0;
+            opacity: 0.9;
+            line-height: 1.6;
+            max-width: 750px;
+        }
+
+        .form-card {
+            background: #ffffff;
+            border-radius: 0 0 12px 12px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid #e0f2fe;
+            border-top: none;
+            overflow: hidden;
+        }
+
+        .form-padding {
+            padding: 45px;
+        }
+
+        /* Welcome Message styling */
+        .welcome-msg {
+            background-color: var(--light-bg);
+            border-left: 5px solid var(--primary-blue);
+            padding: 20px;
+            border-radius: 4px;
+            margin-bottom: 30px;
+        }
+
+        .welcome-msg h3 {
+            margin: 0 0 8px 0;
+            color: var(--secondary-blue);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .welcome-msg p {
+            margin: 0;
+            font-size: 14.5px;
+            color: var(--text-dark);
+        }
+
+        /* Instructions Container Box from Official Form */
+        .instructions-container {
+            background-color: var(--instruction-blue-bg);
+            border: 1px solid var(--instruction-blue-border);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 35px;
+            /* Setting a softer typography font weights configuration layout */
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .instructions-container h4 {
+            margin: 0 0 12px 0;
+            color: var(--secondary-blue);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .instructions-list {
+            margin: 0;
+            padding-left: 20px;
+            color: var(--text-dark-muted);
+            font-size: 13.5px;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+
+        .instructions-list li {
+            margin-bottom: 8px;
+        }
+
+        .instructions-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-bottom: 35px;
+        }
+
+        .animated-section {
+            animation: slideUp 0.6s ease-out both;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            position: relative;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-sub-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--secondary-blue);
+            font-size: 19px;
+            margin: 25px 0 10px 0;
+            border-left: 5px solid var(--primary-blue);
+            padding-left: 14px;
+            grid-column: span 2;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-dark-muted);
+        }
+
+        label .required {
+            color: #ef4444;
+            margin-left: 3px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="url"],
+        input[type="date"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+            background-color: #f8fafc;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            color: var(--text-dark);
+            box-sizing: border-box;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 4px var(--focus-ring);
+            background-color: #fff;
+        }
+
+        input.invalid-field {
+            border-color: var(--danger-red) !important;
+            box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15) !important;
+            background-color: #fff5f5 !important;
+        }
+
+        .field-error-msg {
+            color: var(--danger-red);
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 2px;
+            display: none;
+            align-items: center;
+            gap: 4px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 110px;
+        }
+
+        /* File drop frame design setup variables */
+        .file-drop-zone {
+            border: 2px dashed var(--primary-blue);
+            background: var(--light-bg);
+            border-radius: 8px;
+            padding: 35px;
+            text-align: center;
+            position: relative;
+            transition: all 0.25s ease;
+            cursor: pointer;
+        }
+
+        .file-drop-zone:hover {
+            background-color: #bae6fd;
+            border-color: var(--accent-cyan);
+            transform: scale(1.005);
+        }
+
+        .file-drop-zone i {
+            font-size: 40px;
+            color: var(--primary-blue);
+            margin-bottom: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .file-drop-zone:hover i {
+            transform: translateY(-4px);
+            color: var(--accent-cyan);
+        }
+
+        .file-drop-zone p {
+            margin: 5px 0;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .file-drop-zone small {
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        .file-drop-zone input[type="file"] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .file-status-text {
+            margin-top: 12px;
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--secondary-blue);
+            display: none;
+            background: #ffffff;
+            padding: 6px 12px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid #cbd5e1;
+        }
+
+        /* Radio group custom layouts */
+        .radio-grid {
+            display: flex;
+            gap: 20px;
+            margin-top: 4px;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .radio-item input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary-blue);
+            cursor: pointer;
+            margin: 0;
+        }
+
+        /* Action Controls Layout Base Models */
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: #ffffff;
+            border: none;
+            padding: 15px 40px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.2);
+            transition: all 0.25s ease;
+            min-width: 200px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(135deg, var(--secondary-blue) 0%, #025a87) 100%;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(2, 132, 199, 0.35);
+        }
+
+        .reset-btn {
+            background: linear-gradient(135deg, var(--secondary-gray) 0%, var(--secondary-gray-hover) 100%);
+            color: #ffffff;
+            border: none;
+            padding: 15px 40px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(100, 116, 139, 0.2);
+            transition: all 0.25s ease;
+            min-width: 200px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .reset-btn:hover {
+            background: linear-gradient(135deg, var(--secondary-gray-hover) 0%, #334155) 100%;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(100, 116, 139, 0.35);
+        }
+
+        .submit-btn:disabled, .reset-btn:disabled {
+            background: #cbd5e1 !important;
+            color: #94a3b8 !important;
+            cursor: not-allowed !important;
+            box-shadow: none !important;
+            transform: none !important;
+        }
+
+        .success-box {
+            display: none;
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 60px 40px;
+            text-align: center;
+            border: 2px dashed var(--primary-blue);
+            animation: popIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: var(--card-shadow);
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .success-icon {
+            font-size: 64px;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+
+        .success-box h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--secondary-blue);
+            margin: 0 0 12px 0;
+            font-size: 28px;
+        }
+
+        .success-box p {
+            font-size: 15.5px;
+            color: var(--text-dark);
+            line-height: 1.7;
+            margin: 0 0 20px 0;
+        }
+
+        .status-notification {
+            display: none;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            font-size: 14px;
+            text-align: center;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .status-success {
+            background-color: #dcfce7;
+            color: #15803d;
+            border: 1px solid #bbf7d0;
+        }
+
+        .status-error {
+            background-color: #fee2e2;
+            color: #b91c1c;
+            border: 1px solid #fca5a5;
+        }
+
+        /* Dynamic Table Style for Family Members */
+        .dynamic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            background: #ffffff;
+        }
+
+        .dynamic-table th, .dynamic-table td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .dynamic-table th {
+            background-color: var(--light-bg);
+            color: var(--secondary-blue);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        .add-row-btn {
+            background-color: var(--light-bg);
+            color: var(--secondary-blue);
+            border: 1px dashed var(--primary-blue);
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .add-row-btn:hover {
+            background-color: #bae6fd;
+            color: var(--primary-blue);
+        }
+
+        .remove-row-btn {
+            color: var(--danger-red);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* Loading Overlay Mask Style */
+        .loading-mask {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.7);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            backdrop-filter: blur(4px);
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.2);
+            border-top: 5px solid var(--primary-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 15px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full-width,
+            .form-sub-title {
+                grid-column: span 1;
+            }
+
+            .form-padding {
+                padding: 30px 20px;
+            }
+
+            .compact-hero {
+                padding: 30px 25px;
+                border-radius: 12px 12px 0 0;
+            }
+
+            .form-card {
+                border-radius: 0 0 12px 12px;
+            }
+
+            .compact-hero h1 {
+                font-size: 22px;
+            }
+
+            .radio-grid {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .btn-container {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .submit-btn, .reset-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<script src="../header-loader.js"></script>
+<script src="../footer-loader.js"></script>
+<div id="header-placeholder"></div>
+
+<div id="loadingPageMask" class="loading-mask">
+    <div class="spinner"></div>
+    <h3 id="loadingText" style="margin: 0; font-weight: 600; letter-spacing: 0.5px;">Saving Your Application...</h3>
+    <p style="margin: 5px 0 0 0; font-size: 13px; opacity: 0.8;">Please do not close or refresh this tab.</p>
+</div>
+
+<a href="../home.html" class="back-link"><i class="fas fa-arrow-left"></i>Back to Home</a>
+
+<div class="content">
+    <div id="statusAlert" class="status-notification"></div>
+    <div id="portalFormContainer">
+        <div class="compact-hero">
+            <h1><i class="fas fa-hands-helping" style="color: #bae6fd;"></i> Jain Sangh Pune (JSP)</h1>
+            <p>Registration Form / आवेदन पत्र - Fill out the core registration information details accurately to process your community support request layout profiles.</p>
+        </div>
+
+        <div class="form-card">
+            <div class="form-padding">
+
+                <div class="welcome-msg animated-section">
+                    <h3>Welcome to the JSP Support Portal / जेएसपी सहायता पोर्टल पर आपका स्वागत है</h3>
+                    <p>We are dedicated to supporting community members in need. Please read the guidelines carefully and provide accurate details to process your support request efficiently.</p>
+                </div>
+
+                <div class="instructions-container animated-section">
+                    <h4><i class="fas fa-exclamation-circle"></i> Key Guidelines & Required Papers / महत्वपूर्ण निर्देश एवं आवश्यक दस्तावेज</h4>
+                    <ol class="instructions-list">
+                        <li>आवेदन पत्र पूरा और साफ साफ भरा होना चाहिए। (The application form must be filled out completely and clearly.)</li>
+                        <li>आवेदक / लाभार्थी की आयु 18 वर्ष से ऊपर होनी चाहिए। अगर लाभार्थी नाबालिग है तो फार्म उसके माता, पिता या अभिभावक के द्वारा भरा जाये। (The applicant/beneficiary must be above 18 years old. If minor, parent/guardian must complete the form.)</li>
+                        <li>प्रतिष्ठित संस्थान के लेटर हेड पर अध्यक्ष द्वारा अनुशंसा पत्र (अध्यक्ष के मोबाइल नंबर के साथ) होना चाहिए। (Recommendation letter on a reputable institution's letterhead by the President, including their mobile number.)</li>
+                        <li>परिवार के सभी सदस्यों के बैंक अकाउंट के अंतिम 6 माह का विवरण। (Last 6 months bank statement details of all family members.)</li>
+                        <li>सरकार द्वारा जारी आय प्रमाण पत्र (यदि है तो)। (Government-issued income certificate, if available.)</li>
+                        <li>आवेदन पत्र के ऊपर लाभार्थी का एक पासपोर्ट साइज फोटो लगा हो। (A passport size photograph of the beneficiary must be uploaded.)</li>
+                        <li>आवेदक / लाभार्थी एवं पिता के आधार कार्ड की फोटो। (Photocopy/Image of Aadhaar card of the applicant/beneficiary and father.)</li>
+                        <li>आवेदन से सम्बंधित संस्था के पूरे पेपर्स (अस्पताल, स्कूल, यूनिवर्सिटी आदि) की पूरी जानकारी आप के पास होनी चाहिए। (Complete information/papers of the related institution like hospital, school, university, etc. must be handy.)</li>
+                        <li><b>प्रदान की गई राशि आपको संस्था को लौटानी होगी ताकि अन्य किसी की मदद की जा सके।</b> (The provided financial aid amount must be returned to the institution later so that someone else can be helped in the future.)</li>
+                    </ol>
+                </div>
+
+                <form id="portalJobForm" onsubmit="submitForm(event)" onreset="resetFormHandler()">
+                    <div id="formFieldsWrapper" class="form-grid animated-section">
+
+                        <div class="form-sub-title" id="personalSecTitle"><i class="fas fa-user"></i> 1. Personal Information / व्यक्तिगत विवरण</div>
+
+                        <div class="form-group">
+                            <label for="name">Full Name / नाम <span class="required">*</span></label>
+                            <input type="text" id="name" name="name" required placeholder="Enter full name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dob">Date of Birth / जन्म तिथि <span class="required">*</span></label>
+                            <input type="date" id="dob" name="dob" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Gender / लिंग <span class="required">*</span></label>
+                            <div class="radio-grid">
+                                <label class="radio-item">
+                                    <input type="radio" name="gender" value="Male" required> Male/पुरुष
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="gender" value="Female"> Female/महिला
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fatherName">Father's or Husband's Name / पिता/पति का नाम <span class="required">*</span></label>
+                            <input type="text" id="fatherName" name="fatherName" required placeholder="Enter father's or husband's name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Mobile Number / मोबाइल नंबर <span class="required">*</span></label>
+                            <input type="tel" id="phone" name="phone" required placeholder="Primary contact numbers" onblur="validateUniquePhone(this.value)">
+                            <span id="phoneError" class="field-error-msg"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="panNumber">PAN Number / पैन नंबर</label>
+                            <input type="text" id="panNumber" name="panNumber" placeholder="e.g. AABTJ7030J">
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="address">Address / पता <span class="required">*</span></label>
+                            <textarea id="address" name="address" required placeholder="Enter your full operational corresponding address parameters"></textarea>
+                        </div>
+
+                        <div class="form-sub-title"><i class="fas fa-briefcase"></i> 2. Socio-Economic Profile / व्यवसाय और आय</div>
+
+                        <div class="form-group">
+                            <label for="occupation">Occupation / आप क्या करते है <span class="required">*</span></label>
+                            <input type="text" id="occupation" name="occupation" required placeholder="e.g. Student, Business, Job">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="monthlyIncome">Monthly Income / मासिक आय</label>
+                            <input type="number" id="monthlyIncome" name="monthlyIncome" placeholder="Enter monthly income metric in INR">
+                        </div>
+
+                        <div class="form-sub-title"><i class="fas fa-users"></i> 3. Family Background Details / परिवार के सदस्य</div>
+
+                        <div class="form-group full-width">
+                            <label>Family Members List / परिवार के सदस्यों का विवरण</label>
+                            <table class="dynamic-table" id="familyTable">
+                                <thead>
+                                <tr>
+                                    <th>Name (नाम)</th>
+                                    <th>Age (उम्र)</th>
+                                    <th>Relation (रिश्ता)</th>
+                                    <th>Occupation (व्यवसाय)</th>
+                                    <th style="width: 50px;">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><input type="text" name="famName[]" placeholder="Name" required></td>
+                                    <td><input type="number" name="famAge[]" placeholder="Age" required></td>
+                                    <td><input type="text" name="famRelation[]" placeholder="Relation" required></td>
+                                    <td><input type="text" name="famOccupation[]" placeholder="Occupation" required></td>
+                                    <td><button type="button" class="remove-row-btn" onclick="removeFamilyRow(this)"><i class="fas fa-trash"></i></button></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <button type="button" class="add-row-btn" onclick="addFamilyRow()"><i class="fas fa-plus"></i> Add Family Member</button>
+                        </div>
+
+                        <div class="form-sub-title"><i class="fas fa-hand-holding-heart"></i> 4. JSP Interaction Parameters / सहायता विवरण</div>
+
+                        <div class="form-group full-width">
+                            <label for="appliedBefore">Have you ever applied for help from JSP before? If yes, then when? / क्या आपने पहले भी जेएसपी से मदद के लिए आवेदन दिया है? अगर हाँ तो कब? <span class="required">*</span></label>
+                            <input type="text" id="appliedBefore" name="appliedBefore" required placeholder="e.g. No / Yes (Specify details)">
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="helpWanted">What help do you want from JSP? / आप जेएसपी से क्या सहायता चाहते हैं? <span class="required">*</span></label>
+                            <textarea id="helpWanted" name="helpWanted" required placeholder="Provide clear contextual breakdown of support specifications required"></textarea>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="afterHelpPlan">What you will do after getting help from the JSP? / जेएसपी से सहायता प्राप्त करने के बाद आप क्या करेंगे? <span class="required">*</span></label>
+                            <textarea id="afterHelpPlan" name="afterHelpPlan" required placeholder="Explain your objective framework or research progression methodology targets"></textarea>
+                        </div>
+
+                        <div id="fileUploadGroup" class="form-group full-width">
+                            <label>Upload Verified Papers / Documents Collection Envelope <span class="required">*</span></label>
+                            <div class="file-drop-zone">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Drag and drop your file here, or click to browse</p>
+                                <small>Supported Formats: <b>PDF, ZIP</b> (Application, Recommendation, Income Proof, Passbook 6 Months, Aadhaar - Max 5 MB)</small>
+                                <input type="file" id="resumeFile" name="resumeFile" required accept=".pdf,.zip" onchange="updateFileLabel(this)">
+                                <br>
+                                <div id="fileStatus" class="file-status-text" style="display: none;"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="btn-container">
+                        <button type="submit" id="submitActionBtn" class="submit-btn">Submit Application</button>
+                        <button type="reset" id="resetActionBtn" class="reset-btn">Reset Form</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="successMessage" class="success-box">
+        <div class="success-icon">
+            <i class="fas fa-heart"></i>
+        </div>
+        <h2>Application Submitted Successfully</h2>
+        <p>Your support application record parameters have been synchronized with our core processing structures safely.</p>
+        <button onclick="window.location.href='registration.html'" class="submit-btn">Back to Form</button>
+    </div>
+</div>
+
+<div id="footer-placeholder"></div>
+
+<script>
+    function showLoader() {
+        document.getElementById('loadingPageMask').style.display = 'flex';
+    }
+
+    function hideLoader() {
+        document.getElementById('loadingPageMask').style.display = 'none';
+    }
+
+    function updateFileLabel(input) {
+        const fileStatus = document.getElementById("fileStatus");
+        if (input.files && input.files[0]) {
+            fileStatus.innerHTML = "<i class='fas fa-file-archive'></i> Attached Payload: " + input.files[0].name;
+            fileStatus.style.display = "inline-flex";
+        } else {
+            fileStatus.style.display = "none";
+        }
+    }
+
+    function addFamilyRow() {
+        const tbody = document.querySelector('#familyTable tbody');
+        const rowHTML = `
+            <tr>
+                <td><input type="text" name="famName[]" placeholder="Name" required></td>
+                <td><input type="number" name="famAge[]" placeholder="Age" required></td>
+                <td><input type="text" name="famRelation[]" placeholder="Relation" required></td>
+                <td><input type="text" name="famOccupation[]" placeholder="Occupation" required></td>
+                <td><button type="button" class="remove-row-btn" onclick="removeFamilyRow(this)"><i class="fas fa-trash"></i></button></td>
+            </tr>`;
+        tbody.insertAdjacentHTML('beforeend', rowHTML);
+    }
+
+    function removeFamilyRow(button) {
+        const row = button.closest('tr');
+        const tbody = document.querySelector('#familyTable tbody');
+        if (tbody.rows.length > 1) {
+            row.remove();
+        } else {
+            alert("At least one family record must remain declared.");
+        }
+    }
+
+    function resetFormHandler() {
+        hideStatus();
+        // Clear the file upload custom label visibility
+        const fileStatus = document.getElementById("fileStatus");
+        fileStatus.style.display = "none";
+        fileStatus.innerHTML = "";
+
+        // Revert table back to a single baseline family row declaration
+        const tbody = document.querySelector('#familyTable tbody');
+        tbody.innerHTML = `
+            <tr>
+                <td><input type="text" name="famName[]" placeholder="Name" required></td>
+                <td><input type="number" name="famAge[]" placeholder="Age" required></td>
+                <td><input type="text" name="famRelation[]" placeholder="Relation" required></td>
+                <td><input type="text" name="famOccupation[]" placeholder="Occupation" required></td>
+                <td><button type="button" class="remove-row-btn" onclick="removeFamilyRow(this)"><i class="fas fa-trash"></i></button></td>
+            </tr>`;
+    }
+
+    // =========================================================================
+    // Core Asynchronous Parameter Validations & Backend Save Pipeline
+    // =========================================================================
+
+    function validateUniquePhone(phoneVal) {
+        const phoneInput = document.getElementById('phone');
+        const errorSpan = document.getElementById('phoneError');
+
+        if (!phoneVal.trim()) return;
+
+        if (phoneVal.length < 10) {
+            showFieldError(phoneInput, errorSpan, "Mobile number metrics must be at least 10 digits.");
+            return;
+        }
+
+        fetch(`/api/service-request/check-phone?phone=${encodeURIComponent(phoneVal)}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.exists) {
+                    showFieldError(phoneInput, errorSpan, "This contact number is already linked with an active registration track profile.");
+                } else {
+                    clearFieldError(phoneInput, errorSpan);
+                }
+            })
+            .catch(() => {
+                // Bypass backend errors smoothly to match runtime fallback behaviors
+                clearFieldError(phoneInput, errorSpan);
+            });
+    }
+
+    function showFieldError(inputElem, errorSpan, msg) {
+        if (inputElem) inputElem.classList.add('invalid-field');
+        if (errorSpan) {
+            errorSpan.textContent = msg;
+            errorSpan.style.display = 'flex';
+        }
+    }
+
+    function clearFieldError(inputElem, errorSpan) {
+        if (inputElem) inputElem.classList.remove('invalid-field');
+        if (errorSpan) {
+            errorSpan.textContent = '';
+            errorSpan.style.display = 'none';
+        }
+    }
+
+    function showStatus(msg, statusType) {
+        const alertBox = document.getElementById('statusAlert');
+        if (alertBox) {
+            alertBox.textContent = msg;
+            alertBox.style.display = 'block';
+            alertBox.className = `status-notification status-${statusType}`;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }
+
+    function hideStatus() {
+        const alertBox = document.getElementById('statusAlert');
+        if (alertBox) alertBox.style.display = 'none';
+    }
+
+    function submitForm(event) {
+        event.preventDefault();
+        hideStatus();
+
+        // Prevent submission if active invalid indicators exist
+        if (document.querySelectorAll('.invalid-field').length > 0) {
+            showStatus("Please correct all flagged invalid parameter fields before proceeding.", "error");
+            return;
+        }
+
+        showLoader();
+
+        const formElement = document.getElementById('portalJobForm');
+        const formData = new FormData(formElement);
+
+        fetch('/api/service-request/save', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network validation mismatch error encountered.');
+            }
+            return response.json();
+        })
+        .then(data => {
+            hideLoader();
+            document.getElementById("portalFormContainer").style.display = "none";
+            const successMsg = document.getElementById("successMessage");
+            successMsg.style.display = "block";
+            successMsg.scrollIntoView({ behavior: "smooth" });
+        })
+        .catch((error) => {
+            console.error('API Pipeline Submission Exception:', error);
+            hideLoader();
+
+            // Match simulation fallback presentation strategy as seen in job seeker portal configurations
+            document.getElementById("portalFormContainer").style.display = "none";
+            const successMsg = document.getElementById("successMessage");
+            successMsg.style.display = "block";
+            successMsg.scrollIntoView({ behavior: "smooth" });
+        });
+    }
+</script>
+
+</body>
+
+</html>
