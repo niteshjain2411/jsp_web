@@ -25,18 +25,16 @@ public class ServiceRequestService {
         this.storageService = storageService;
     }
 
-    public ResponseEntity<?> save(final ServiceRequest request, final MultipartFile file) {
+    public ResponseEntity<?> save(final ServiceRequest request, final List<MultipartFile> files) {
         try {
-            // Validate application specifications
-            this.validateRequiredFields(request, file);
-            // Handle entity update metadata timestamps
+            this.validateRequiredFields(request, files);
             this.updateTimestamps(request);
             request.setStatus("Pending");
-            // Safe reference string assembly for standard attachments pipeline
-            final String fileName = request.getPhone() + "_" + file.getOriginalFilename();
-            storageService.uploadFile(file, fileName, "service_request_documents/");
-            request.setDocumentFileName(fileName);
-            // Persist document parameters payload structure to Cloud Firestore target
+            for (final MultipartFile file : files) {
+                final String fileName = request.getPhone() + "_" + file.getOriginalFilename();
+                storageService.uploadFile(file, fileName, "service_request_documents/");
+                request.getDocumentFileNames().add(fileName);
+            }
             final var docId = firestoreService.addData(COLLECTION_NAME, request);
             return ResponseEntity.ok(Map.of("success", true, "message", "Job application saved successfully", "documentId", docId));
 
@@ -53,12 +51,6 @@ public class ServiceRequestService {
             if (existingRequest == null) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(HttpResponseUtil.createErrorResponse("Application not found for ID: " + id));
             }
-
-           /* Map<String, Object> data = new HashMap<>();
-            data.put("status", status);
-            data.put("remarks", remarks);
-            data.put("lastUpdatedOn", new Date());
-            firestoreService.updateData(COLLECTION_NAME, id, data);*/
 
             existingRequest.setStatus(status);
             existingRequest.setRemarks(remarks);
@@ -97,7 +89,7 @@ public class ServiceRequestService {
     }
 
     // --- Private Helper Utilities ---
-    private void validateRequiredFields(ServiceRequest app, MultipartFile file) {
+    private void validateRequiredFields(ServiceRequest app, List<MultipartFile> files) {
         checkBlank(app.getFullName(), "Full Name is required");
         checkBlank(app.getDob(), "Date of Birth is required");
         checkBlank(app.getGender(), "Gender declaration is required");
@@ -109,9 +101,10 @@ public class ServiceRequestService {
         checkBlank(app.getHelpWanted(), "Targeted support descriptions are required");
         checkBlank(app.getAfterHelpPlan(), "Future plan specification criteria is required");
 
-        if (file == null || file.isEmpty()) {
-            throw new IllegalArgumentException("Payload validation failure: verification papers package stream is empty");
+        if (files == null || files.isEmpty()) {
+            throw new IllegalArgumentException("Payload validation failure: At least one document file is required for submission");
         }
+        app.setId(app.getHelpWanted().replaceAll("\\s+", "_") + "_" + app.getPhone());
     }
 
     private void checkBlank(String value, String message) {

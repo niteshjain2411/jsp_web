@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/service-request")
 @CrossOrigin(origins = "*")
@@ -19,9 +21,9 @@ public class ServiceRequestController {
     }
 
     @PostMapping(value = "/save", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<?> saveServiceRequest(@RequestPart ServiceRequest application, @RequestParam("file") MultipartFile file) {
+    public ResponseEntity<?> saveServiceRequest(@RequestPart ServiceRequest application, @RequestParam("files") List<MultipartFile> files) {
         try {
-            return applicationService.save(application, file);
+            return applicationService.save(application, files);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Malformed structure payload declaration data conversion framework mismatch.");
         }

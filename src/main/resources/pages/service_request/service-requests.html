@@ -253,7 +253,7 @@
         .info-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 10px;
+            gap: 5px;
             margin-top: 8px;
         }
 
@@ -307,6 +307,15 @@
             color: var(--secondary-blue);
             font-weight: 700;
             font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Documents Container Layout styling */
+        .documents-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 4px;
+            margin-bottom: 8px;
         }
 
         .card-footer-actions {
@@ -404,10 +413,10 @@
             border-radius: 4px;
             cursor: pointer;
             transition: all 0.2s ease;
-            text-transform: uppercase;
+            text-transform: none; /* Changed from uppercase to safely display real file extensions clearly */
             display: inline-flex;
             align-items: center;
-            gap: 4px;
+            gap: 6px;
         }
 
         .download-docs-btn:hover {
@@ -557,7 +566,6 @@
 
             requests.forEach((req, index) => {
                 const incomeMetric = req.monthlyIncome ? `₹${req.monthlyIncome} / mo` : 'Not Declared';
-                const fileDownloadLinkName = req.documentFileName || 'Verified_Envelope.pdf';
                 const currentRemarks = req.remarks || '';
                 const recordIdString = req.id ? req.id.toString() : 'N/A';
 
@@ -581,6 +589,20 @@
                     });
                 } else {
                     familyRowsHtml = `<tr><td colspan="4" style="text-align: center; color: var(--text-muted); padding: 4px;">No registered family entries.</td></tr>`;
+                }
+
+                // Parse and map multiple document files from the backend array (documentFileNames)
+                let filesHtmlBuffer = '';
+                if (req.documentFileNames && req.documentFileNames.length > 0) {
+                    req.documentFileNames.forEach(fileName => {
+                        filesHtmlBuffer += `
+                            <button class="download-docs-btn" onclick="triggerDocumentExtraction('${escapeHtml(fileName)}')">
+                                <i class="fas fa-file-download"></i> ${escapeHtml(fileName)}
+                            </button>
+                        `;
+                    });
+                } else {
+                    filesHtmlBuffer = `<span style="font-size: 12px; color: var(--text-muted); font-style: italic;"><i class="fas fa-info-circle"></i> No attached documents.</span>`;
                 }
 
                 htmlBuffer += `
@@ -634,11 +656,14 @@
                         ${familyRowsHtml}
                     </tbody>
                 </table>
+                
                 <div>
-                 <button class="download-docs-btn" onclick="triggerDocumentExtraction('${escapeHtml(fileDownloadLinkName)}')">
-                        <i class="fas fa-file-download"></i> Download Doc
-                  </button>
+                    <div class="info-block-title"><i class="fas fa-folder-open"></i> Attached Document Profiles</div>
+                    <div class="documents-wrapper">
+                        ${filesHtmlBuffer}
+                    </div>
                 </div>
+
                 <div class="card-footer-actions">
                     <div class="action-update-form">
                         <span class="badge-id-static">ID: #${escapeHtml(recordIdString)}</span>

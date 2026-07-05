@@ -2,6 +2,7 @@ package org.jsp.model;
 
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class ServiceRequest {
     private String appliedBefore;
     private String helpWanted;
     private String afterHelpPlan;
-    private String documentFileName;
+    private List<String> documentFileNames = new ArrayList<>();
 
     private List<FamilyMember> familyMembers;
     private String status;
