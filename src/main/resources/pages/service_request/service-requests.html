@@ -21,8 +21,8 @@
             --text-dark: #1e293b;
             --text-muted: #64748b;
             --light-bg: #f0f9ff;
-            --card-shadow: 0 10px 30px rgba(2, 132, 199, 0.08);
-            --border-color: #cbd5e1;
+            --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --border-color: #e2e8f0;
             --focus-ring: rgba(2, 132, 199, 0.2);
             --success-green: #22c55e;
             --danger-red: #ef4444;
@@ -31,7 +31,7 @@
 
         body {
             font-family: 'Open Sans', sans-serif;
-            background: #f0f9ff;
+            background: #f8fafc;
             color: var(--text-dark);
             margin: 0;
             padding: 0;
@@ -51,7 +51,7 @@
         }
 
         .main-card {
-            background: #ffffff;
+            background: transparent;
             border-radius: 0;
             box-shadow: none;
             border: none;
@@ -65,19 +65,61 @@
             box-sizing: border-box;
         }
 
+        /* Filter Panel Styles */
+        .filter-panel {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--dark-navy);
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .filter-input, .filter-select {
+            width: 100%;
+            padding: 6px 10px;
+            font-size: 13px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            outline: none;
+            background-color: #fff;
+            color: var(--text-dark);
+        }
+
+        .filter-input:focus, .filter-select:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 2px var(--focus-ring);
+        }
+
         #resultsSection {
             animation: fadeIn 0.4s ease-out;
             width: 100%;
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .results-header {
@@ -100,9 +142,8 @@
             color: var(--secondary-blue);
         }
 
-        /* Refresh Button Styles */
         .refresh-btn {
-            background: none;
+            background: #ffffff;
             border: 1px solid var(--border-color);
             color: var(--text-dark);
             padding: 6px 12px;
@@ -123,49 +164,36 @@
             color: var(--primary-blue);
         }
 
-        .refresh-btn i {
-            font-size: 11px;
-            transition: transform 0.4s ease;
-        }
-
-        .refresh-btn:active i {
-            transform: rotate(180deg);
-        }
-
         .request-cards-container {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px;
             width: 100%;
         }
 
+        /* Isolated & Compact Request Card Layout */
         .request-card {
             background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 6px;
-            padding: 15px;
-            transition: all 0.25s ease;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 14px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
             position: relative;
-            animation: slideUp 0.4s ease-out both;
+            animation: slideUp 0.3s ease-out both;
             width: 100%;
             box-sizing: border-box;
         }
 
         .request-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
             border-color: var(--primary-blue);
-            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.05);
         }
 
         @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(8px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .card-top {
@@ -173,35 +201,42 @@
             justify-content: space-between;
             align-items: flex-start;
             margin-bottom: 8px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #f1f5f9;
             width: 100%;
         }
 
         .applicant-name {
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
-            font-size: 16px;
+            font-size: 15px;
             color: var(--dark-navy);
             margin: 0 0 4px 0;
         }
 
-        .request-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
+        /* Highly Compact 2-Column Core Data Layout */
+        .two-column-data-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4px 16px;
             font-size: 12px;
-            color: var(--text-muted);
-            font-weight: 600;
-            width: 100%;
+            color: #475569;
+            margin-bottom: 8px;
         }
 
-        .request-meta span {
+        .two-column-data-grid span {
             display: inline-flex;
             align-items: center;
-            gap: 4px;
+            gap: 6px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
         }
 
-        .request-meta i {
+        .two-column-data-grid i {
             color: var(--primary-blue);
+            width: 14px;
+            text-align: center;
         }
 
         .badge-container {
@@ -211,9 +246,9 @@
         }
 
         .badge {
-            padding: 3px 8px;
+            padding: 2px 6px;
             border-radius: 4px;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
             text-transform: uppercase;
         }
@@ -231,74 +266,52 @@
             border: 1px solid #cbd5e1;
         }
 
-        .badge-status.approved {
-            background-color: #dcfce7;
-            color: #166534;
-            border-color: #bbf7d0;
-        }
+        .badge-status.approved { background-color: #dcfce7; color: #166534; border-color: #bbf7d0; }
+        .badge-status.pending { background-color: #fef3c7; color: #92400e; border-color: #fde68a; }
+        .badge-status.rejected { background-color: #fee2e2; color: #991b1b; border-color: #fca5a5; }
 
-        .badge-status.pending {
-            background-color: #fef3c7;
-            color: #92400e;
-            border-color: #fde68a;
-        }
-
-        .badge-status.rejected {
-            background-color: #fee2e2;
-            color: #991b1b;
-            border-color: #fca5a5;
-        }
-
-        /* Compact info blocks flex layout */
         .info-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 5px;
-            margin-top: 8px;
+            gap: 10px;
+            margin-top: 6px;
+            margin-bottom: 8px;
         }
 
         .info-block-title {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
             text-transform: uppercase;
             color: var(--secondary-blue);
-            margin: 8px 0 3px 0;
+            margin: 0 0 3px 0;
             letter-spacing: 0.5px;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 4px;
-            width: 100%;
-        }
-
-        /* Target the Registered Family Members heading directly below the help details grid */
-        .info-grid+.info-block-title {
-            margin-top: -5px;
-            /* Adjusted gap to tighten space above family members */
         }
 
         .details-box {
-            font-size: 12.5px;
-            color: #475569;
-            margin: 0 0 5px 0;
+            font-size: 12px;
+            color: #334155;
+            margin: 0;
             background: #f8fafc;
-            padding: 8px 12px;
+            padding: 6px 10px;
             border-radius: 4px;
-            border-left: 3px solid #cbd5e1;
-            width: 100%;
+            border-left: 3px solid var(--primary-blue);
             box-sizing: border-box;
         }
 
         .family-display-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 4px 0 8px 0;
-            font-size: 12px;
+            margin: 3px 0 8px 0;
+            font-size: 11px;
         }
 
         .family-display-table th,
         .family-display-table td {
             border: 1px solid #e2e8f0;
-            padding: 6px 10px;
+            padding: 4px 8px;
             text-align: left;
         }
 
@@ -306,123 +319,99 @@
             background-color: var(--light-bg);
             color: var(--secondary-blue);
             font-weight: 700;
-            font-family: 'Montserrat', sans-serif;
         }
 
-        /* Documents Container Layout styling */
         .documents-wrapper {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 4px;
-            margin-bottom: 8px;
+            gap: 6px;
+            margin-top: 2px;
+            margin-bottom: 2px;
         }
 
         .card-footer-actions {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 12px;
-            padding-top: 10px;
+            margin-top: 8px;
+            padding-top: 6px;
             border-top: 1px solid #f1f5f9;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
         }
 
-        /* Update Flow Form Layout styles */
         .action-update-form {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             flex: 1;
             min-width: 280px;
             flex-wrap: wrap;
-            /* Allows textarea to break to the next line */
         }
 
         .badge-id-static {
             background: #f1f5f9;
-            border: 1px solid var(--border-color);
+            border: 1px solid #cbd5e1;
             color: var(--text-dark);
             font-size: 11px;
             font-weight: 600;
-            padding: 5px 8px;
+            padding: 4px 6px;
             border-radius: 4px;
-            white-space: nowrap;
         }
 
         .update-select {
-            padding: 5px 8px;
+            padding: 4px 6px;
             font-size: 12px;
-            border: 1px solid var(--border-color);
+            border: 1px solid #cbd5e1;
             border-radius: 4px;
-            color: var(--text-dark);
             background: #ffffff;
             outline: none;
         }
 
-        .update-select:focus {
-            border-color: var(--primary-blue);
-        }
-
         .update-remark {
-            padding: 6px 10px;
+            padding: 4px 8px;
             font-size: 12px;
-            border: 1px solid var(--border-color);
+            border: 1px solid #cbd5e1;
             border-radius: 4px;
             flex: 1 1 100%;
-            /* Spans full width to push down to the next line */
             outline: none;
             resize: vertical;
-            min-height: 42px;
-            font-family: 'Open Sans', sans-serif;
+            min-height: 32px;
             box-sizing: border-box;
-            margin-top: 4px;
-        }
-
-        .update-remark:focus {
-            border-color: var(--primary-blue);
+            margin-top: 2px;
         }
 
         .submit-update-btn {
             background: var(--primary-blue);
             color: white;
             border: none;
-            padding: 6px 12px;
+            padding: 5px 10px;
             font-family: 'Montserrat', sans-serif;
             font-weight: 600;
-            font-size: 11px;
+            font-size: 10px;
             border-radius: 4px;
             cursor: pointer;
             text-transform: uppercase;
-            transition: background 0.2s ease;
         }
 
-        .submit-update-btn:hover {
-            background: var(--secondary-blue);
-        }
+        .submit-update-btn:hover { background: var(--secondary-blue); }
 
         .download-docs-btn {
             background: none;
             border: 1px solid var(--primary-blue);
             color: var(--primary-blue);
-            padding: 5px 12px;
+            padding: 3px 8px;
             font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
+            font-weight: 600;
             font-size: 11px;
             border-radius: 4px;
             cursor: pointer;
-            transition: all 0.2s ease;
-            text-transform: none; /* Changed from uppercase to safely display real file extensions clearly */
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
         }
 
-        .download-docs-btn:hover {
-            background: var(--primary-blue);
-            color: #ffffff;
-        }
+        .download-docs-btn:hover { background: var(--primary-blue); color: #ffffff; }
 
         .status-notification {
             display: none;
@@ -436,42 +425,18 @@
             box-sizing: border-box;
         }
 
-        .status-error {
-            background-color: #fee2e2;
-            color: #b91c1c;
-            border: 1px solid #fca5a5;
-        }
-
-        .status-success {
-            background-color: #dcfce7;
-            color: #15803d;
-            border: 1px solid #bbf7d0;
-        }
+        .status-error { background-color: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
+        .status-success { background-color: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
 
         .empty-results-box {
             text-align: center;
             padding: 40px 20px;
             color: var(--text-muted);
-            border: 1px dashed var(--border-color);
-            background: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            background: #ffffff;
             border-radius: 6px;
             width: 100%;
             box-sizing: border-box;
-        }
-
-        .empty-results-box i {
-            font-size: 32px;
-            color: #94a3b8;
-            margin-bottom: 10px;
-        }
-
-        /* Record Separator Line */
-        .record-separator {
-            border: 0;
-            height: 1px;
-            background: linear-gradient(to right, rgba(2, 132, 199, 0), rgba(2, 132, 199, 0.4), rgba(2, 132, 199, 0));
-            margin: 20px 0;
-            width: 100%;
         }
     </style>
 </head>
@@ -479,12 +444,31 @@
 <body>
     <div class="content" style="width: 100%; padding: 12px; box-sizing: border-box; align-self: center;">
         <div id="statusAlert" class="status-notification"></div>
+        
+        <div class="filter-panel">
+            <div class="filter-group">
+                <span class="filter-label"><i class="fas fa-filter"></i> Status:</span>
+                <select id="filterStatus" class="filter-select" onchange="applyFilters()">
+                    <option value="ALL">All Statuses</option>
+                    <option value="Pending">Pending Review</option>
+                    <option value="Under verification">Under Verification</option>
+                    <option value="Verification completed">Verification Completed</option>
+                    <option value="Approved">Approved & Active</option>
+                    <option value="Rejected">Rejected / Declined</option>
+                    <option value="Closed">Closed</option>
+                </select>
+            </div>
+            <div class="filter-group" style="flex: 2;">
+                <span class="filter-label"><i class="fas fa-search"></i> Required Help:</span>
+                <input type="text" id="filterHelpText" class="filter-input" placeholder="Type keyword to filter help requirements..." oninput="applyFilters()">
+            </div>
+        </div>
+
         <div class="main-card">
             <div class="card-body-padding">
                 <div id="resultsSection">
                     <div class="results-header">
-                        <div class="results-count">Total Collected Profiles: <strong id="visibleCount">0</strong>
-                            incoming records</div>
+                        <div class="results-count">Showing <strong id="visibleCount">0</strong> of <strong id="totalCount">0</strong> total incoming records</div>
                         <div>
                             <button class="refresh-btn" onclick="loadAllServiceRequests()">
                                 <i class="fas fa-sync-alt"></i> Refresh Records
@@ -504,20 +488,20 @@
     </div>
 
     <script>
+        let cachedRecordsList = [];
+
         document.addEventListener('DOMContentLoaded', function () {
             loadAllServiceRequests();
         });
 
         function loadAllServiceRequests() {
             const resultsWrapper = document.getElementById('requestResultsWrapper');
-
-            // Show active loading state when layout refreshes manually
             resultsWrapper.innerHTML = `
-            <div class="empty-results-box">
-                <i class="fas fa-spinner fa-spin" style="color: var(--primary-blue);"></i>
-                <p>Loading application registries from server streams...</p>
-            </div>
-        `;
+                <div class="empty-results-box">
+                    <i class="fas fa-spinner fa-spin" style="color: var(--primary-blue);"></i>
+                    <p>Loading application registries from server streams...</p>
+                </div>
+            `;
 
             const requestUrl = window.location.pathname.includes('/jainsanghpune/') ?
                 '/jainsanghpune/api/service-request/all' : '/api/service-request/all';
@@ -526,50 +510,71 @@
                 method: 'GET',
                 headers: { 'Accept': 'application/json' }
             })
-                .then(response => {
-                    if (!response.ok) throw new Error('Data endpoint failure response sequence maps.');
-                    return response.json();
-                })
-                .then(res => {
-                    const finalRecordsList = Array.isArray(res) ? res : (res.data || []);
-                    renderRequestCards(finalRecordsList);
-                })
-                .catch(error => {
-                    console.error('API Pull Error Exception:', error);
-                    flashStatusAlert('Could not aggregate service data maps smoothly.', 'error');
-                    resultsWrapper.innerHTML = `
-            <div class="empty-results-box">
-                <i class="fas fa-exclamation-triangle" style="color: var(--danger-red);"></i>
-                <p>Error tracking service record collections packages.</p>
-            </div>
-        `;
-                });
+            .then(response => {
+                if (!response.ok) throw new Error('Data endpoint failure response.');
+                return response.json();
+            })
+            .then(res => {
+                cachedRecordsList = Array.isArray(res) ? res : (res.data || []);
+                document.getElementById('totalCount').textContent = cachedRecordsList.length;
+                applyFilters();
+            })
+            .catch(error => {
+                console.error('API Pull Error:', error);
+                flashStatusAlert('Could not aggregate service data maps smoothly.', 'error');
+                resultsWrapper.innerHTML = `
+                    <div class="empty-results-box">
+                        <i class="fas fa-exclamation-triangle" style="color: var(--danger-red);"></i>
+                        <p>Error tracking service record collections packages.</p>
+                    </div>
+                `;
+            });
+        }
+
+        function applyFilters() {
+            const statusSelection = document.getElementById('filterStatus').value.toLowerCase();
+            const searchKeyword = document.getElementById('filterHelpText').value.toLowerCase().trim();
+
+            const filtered = cachedRecordsList.filter(req => {
+                const reqStatus = (req.status || 'Pending').toLowerCase();
+                const reqHelp = (req.helpWanted || '').toLowerCase();
+                
+                const matchesStatus = (statusSelection === 'all') || 
+                                      (statusSelection === 'approved' && reqStatus === 'active') || 
+                                      (statusSelection === 'rejected' && reqStatus === 'declined') || 
+                                      (reqStatus === statusSelection);
+                                      
+                const matchesHelp = !searchKeyword || reqHelp.includes(searchKeyword);
+
+                return matchesStatus && matchesHelp;
+            });
+
+            renderRequestCards(filtered);
         }
 
         function renderRequestCards(requests) {
             const resultsWrapper = document.getElementById('requestResultsWrapper');
             const countBadge = document.getElementById('visibleCount');
 
-            if (!requests || requests.length === 0) {
-                countBadge.textContent = "0";
+            countBadge.textContent = requests.length;
+
+            if (requests.length === 0) {
                 resultsWrapper.innerHTML = `
-            <div class="empty-results-box">
-                <i class="fas fa-folder-open"></i>
-                <p>No active service request profiles are currently available.</p>
-            </div>
-        `;
+                    <div class="empty-results-box">
+                        <i class="fas fa-folder-open"></i>
+                        <p>No active service request profiles matched your filter parameters.</p>
+                    </div>
+                `;
                 return;
             }
 
-            countBadge.textContent = requests.length;
             let htmlBuffer = "";
 
-            requests.forEach((req, index) => {
-                const incomeMetric = req.monthlyIncome ? `₹${req.monthlyIncome} / mo` : 'Not Declared';
+            requests.forEach((req) => {
+                const incomeMetric = req.monthlyIncome ? `₹${req.monthlyIncome}/mo` : 'Not Declared';
                 const currentRemarks = req.remarks || '';
                 const recordIdString = req.id ? req.id.toString() : 'N/A';
 
-                // Status calculations
                 const statusText = req.status || 'Pending';
                 let statusClass = 'pending';
                 if (statusText.toLowerCase() === 'approved' || statusText.toLowerCase() === 'active') statusClass = 'approved';
@@ -579,19 +584,18 @@
                 if (req.familyMembers && req.familyMembers.length > 0) {
                     req.familyMembers.forEach(member => {
                         familyRowsHtml += `
-                    <tr>
-                        <td>${escapeHtml(member.name || 'N/A')}</td>
-                        <td>${escapeHtml(member.age || 'N/A')}</td>
-                        <td>${escapeHtml(member.relation || 'N/A')}</td>
-                        <td>${escapeHtml(member.occupation || 'N/A')}</td>
-                    </tr>
-                `;
+                            <tr>
+                                <td>${escapeHtml(member.name || 'N/A')}</td>
+                                <td>${escapeHtml(member.age || 'N/A')}</td>
+                                <td>${escapeHtml(member.relation || 'N/A')}</td>
+                                <td>${escapeHtml(member.occupation || 'N/A')}</td>
+                            </tr>
+                        `;
                     });
                 } else {
                     familyRowsHtml = `<tr><td colspan="4" style="text-align: center; color: var(--text-muted); padding: 4px;">No registered family entries.</td></tr>`;
                 }
 
-                // Parse and map multiple document files from the backend array (documentFileNames)
                 let filesHtmlBuffer = '';
                 if (req.documentFileNames && req.documentFileNames.length > 0) {
                     req.documentFileNames.forEach(fileName => {
@@ -602,65 +606,67 @@
                         `;
                     });
                 } else {
-                    filesHtmlBuffer = `<span style="font-size: 12px; color: var(--text-muted); font-style: italic;"><i class="fas fa-info-circle"></i> No attached documents.</span>`;
+                    filesHtmlBuffer = `<span style="font-size: 11px; color: var(--text-muted); font-style: italic;"><i class="fas fa-info-circle"></i> No documents.</span>`;
                 }
 
                 htmlBuffer += `
             <div class="request-card" id="card-${recordIdString}">
                 <div class="card-top">
-                    <div>
+                    <div style="flex: 1; margin-right: 12px;">
                         <h3 class="applicant-name">${escapeHtml(req.fullName || 'Anonymous Beneficiary')}</h3>
-                        <div class="request-meta">
-                            <span><i class="fas fa-phone-alt"></i> ${escapeHtml(req.phone || 'N/A')}</span>
-                            <span><i class="fas fa-calendar-alt"></i> DOB: ${escapeHtml(req.dob || 'N/A')} (${escapeHtml(req.gender || 'Unspecified')})</span>
-                            <span><i class="fas fa-briefcase"></i> Occup: ${escapeHtml(req.occupation || 'N/A')}</span>
-                            <span><i class="fas fa-id-card"></i> PAN: ${escapeHtml(req.panNumber || 'N/A')}</span>
+                        
+                        <div class="two-column-data-grid">
+                            <span><i class="fas fa-phone-alt"></i> <strong>Mobile:</strong> ${escapeHtml(req.phone || 'N/A')}</span>
+                            <span><i class="fas fa-id-card"></i> <strong>PAN:</strong> ${escapeHtml(req.panNumber || 'N/A')}</span>
+                            <span><i class="fas fa-calendar-alt"></i> <strong>DOB:</strong> ${escapeHtml(req.dob || 'N/A')} (${escapeHtml(req.gender || 'U')})</span>
+                            <span><i class="fas fa-user-friends"></i> <strong>Parent:</strong> ${escapeHtml(req.fatherName || 'N/A')}</span>
+                            <span><i class="fas fa-briefcase"></i> <strong>Occup:</strong> ${escapeHtml(req.occupation || 'N/A')}</span>
+                            <span><i class="fas fa-history"></i> <strong>Prev Apply:</strong> ${escapeHtml(req.appliedBefore || 'No')}</span>
                         </div>
                     </div>
                     <div class="badge-container">
-                        <span class="badge badge-status ${statusClass}">Status: ${escapeHtml(statusText)}</span>
-                        <span class="badge badge-income">Income: ${escapeHtml(incomeMetric)}</span>
+                        <span class="badge badge-status ${statusClass}">${escapeHtml(statusText)}</span>
+                        <span class="badge badge-income">${escapeHtml(incomeMetric)}</span>
                     </div>
                 </div>
 
-                <div class="request-meta" style="margin-bottom: 6px; font-size: 12px; color: #475569;">
-                    <span><i class="fas fa-user-friends"></i> <strong>Father/Husband Name:</strong> ${escapeHtml(req.fatherName || 'N/A')}</span>
-                    <span><i class="fas fa-history"></i> <strong>Applied Before:</strong> ${escapeHtml(req.appliedBefore || 'No')}</span>
-                </div>
-                <div class="request-meta" style="margin-bottom: 6px; font-size: 12px; color: #475569;">
-                    <span><i class="fas fa-map-marker-alt"></i> <strong>Address:</strong> ${escapeHtml(req.address || 'No location metric verified.')}</span>
+                <div style="font-size: 12px; color: #475569; margin-bottom: 8px;">
+                    <span><i class="fas fa-map-marker-alt" style="color: var(--primary-blue); width: 14px; text-align: center; margin-right: 6px;"></i><strong>Address:</strong> ${escapeHtml(req.address || 'No verification address.')}</span>
                 </div>
 
                 <div class="info-grid">
                     <div>
-                        <div class="info-block-title"><i class="fas fa-hand-holding-heart"></i> Required Help Details</div>
-                        <p class="details-box">${escapeHtml(req.helpWanted || 'No parameters explicit layout declarations provided.')}</p>
+                        <div class="info-block-title"><i class="fas fa-hand-holding-heart"></i> Required Help</div>
+                        <p class="details-box">${escapeHtml(req.helpWanted || 'No parameters declared.')}</p>
                     </div>
                     <div>
-                        <div class="info-block-title"><i class="fas fa-chart-line"></i> Post-Support Implementation Plan</div>
-                        <p class="details-box">${escapeHtml(req.afterHelpPlan || 'No subsequent target blueprint provided.')}</p>
+                        <div class="info-block-title"><i class="fas fa-chart-line"></i> Implementation Plan</div>
+                        <p class="details-box">${escapeHtml(req.afterHelpPlan || 'No blueprint provided.')}</p>
                     </div>
                 </div>
 
-                <div class="info-block-title"><i class="fas fa-users"></i> Registered Family Members</div>
-                <table class="family-display-table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Age</th>
-                            <th>Relation</th>
-                            <th>Occupation</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${familyRowsHtml}
-                    </tbody>
-                </table>
-                
-                <div>
-                    <div class="info-block-title"><i class="fas fa-folder-open"></i> Attached Document Profiles</div>
-                    <div class="documents-wrapper">
-                        ${filesHtmlBuffer}
+                <div style="display: flex; gap: 15px; align-items: flex-start; flex-wrap: wrap;">
+                    <div style="flex: 2; min-width: 250px;">
+                        <div class="info-block-title"><i class="fas fa-users"></i> Family Members</div>
+                        <table class="family-display-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Age</th>
+                                    <th>Relation</th>
+                                    <th>Occupation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${familyRowsHtml}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div style="flex: 1; min-width: 180px;">
+                        <div class="info-block-title"><i class="fas fa-folder-open"></i> Attached Profiles</div>
+                        <div class="documents-wrapper">
+                            ${filesHtmlBuffer}
+                        </div>
                     </div>
                 </div>
 
@@ -675,17 +681,12 @@
                             <option value="Rejected" ${statusText.toLowerCase() === 'rejected' || statusText.toLowerCase() === 'declined' ? 'selected' : ''}>❌ Rejected / Declined</option>
                             <option value="Closed" ${statusText.toLowerCase() === 'closed' ? 'selected' : ''}>🔒 Closed</option>
                         </select>
-                        <textarea class="update-remark" id="remark-input-${recordIdString}" placeholder="Enter processing remarks..." rows="2">${escapeHtml(currentRemarks)}</textarea>
-                        <button class="submit-update-btn" style="margin-right: auto; margin-top: 5px;" onclick="submitStatusUpdate('${recordIdString}')">Update</button>
+                        <textarea class="update-remark" id="remark-input-${recordIdString}" placeholder="Remarks..." rows="1">${escapeHtml(currentRemarks)}</textarea>
+                        <button class="submit-update-btn" onclick="submitStatusUpdate('${recordIdString}')">Update</button>
                     </div>
                 </div>
             </div>
             `;
-
-                // If it is not the last record, append a visual separator
-                if (index < requests.length - 1) {
-                    htmlBuffer += `<div class="record-separator"></div>`;
-                }
             });
 
             resultsWrapper.innerHTML = htmlBuffer;
@@ -699,7 +700,6 @@
             const baseUrl = window.location.pathname.includes('/jainsanghpune/') ? '/jainsanghpune' : '';
             const updateUrl = `${baseUrl}/api/service-request/update/${requestId}`;
 
-            // Create URL-encoded form parameters to match @RequestParam in backend
             const formParams = new URLSearchParams();
             formParams.append('status', selectedStatus);
             formParams.append('remarks', inputRemark);
@@ -712,18 +712,18 @@
                 },
                 body: formParams
             })
-                .then(response => {
-                    if (!response.ok) throw new Error('Failed updating parameters.');
-                    return response.json();
-                })
-                .then(res => {
-                    flashStatusAlert("Status and remarks updated successfully!", "success");
-                    loadAllServiceRequests();
-                })
-                .catch(error => {
-                    console.error('Update Error:', error);
-                    flashStatusAlert('Could not sync status change updates upstream.', 'error');
-                });
+            .then(response => {
+                if (!response.ok) throw new Error('Failed updating parameters.');
+                return response.json();
+            })
+            .then(() => {
+                flashStatusAlert("Status and remarks updated successfully!", "success");
+                loadAllServiceRequests();
+            })
+            .catch(error => {
+                console.error('Update Error:', error);
+                flashStatusAlert('Could not sync status change updates upstream.', 'error');
+            });
         }
 
         function triggerDocumentExtraction(fileName) {
@@ -743,9 +743,7 @@
             alertBox.textContent = message;
             alertBox.style.display = 'block';
             alertBox.className = `status-notification status-${statusType}`;
-            setTimeout(() => {
-                alertBox.style.display = 'none';
-            }, 4000);
+            setTimeout(() => { alertBox.style.display = 'none'; }, 4000);
         }
 
         function escapeHtml(str) {

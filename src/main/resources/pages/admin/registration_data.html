@@ -3,9 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Volunteer Registration Data</title>
+    <title>Volunteer Registration Data | JSP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght=400;500;600;700&family=Open+Sans:wght=400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
+        /* Lightened & Edge-to-Edge Synchronized CSS Palette */
+        :root {
+            --primary-blue: #0284c7;
+            --secondary-blue: #0369a1;
+            --dark-navy: #0f172a;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --light-bg: #f8fafc;        
+            --table-header-bg: #0284c7; /* Updated to use primary blue for a rich background contrast */
+            --border-color: #cbd5e1;
+            --success-green: #22c55e;
+            --danger-red: #ef4444;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -14,197 +31,286 @@
 
         body {
             font-family: 'Open Sans', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #ffffff; 
+            color: var(--text-dark);
             min-height: 100vh;
-            /* remove global page padding so iframe-hosting layout can control spacing */
             padding: 0;
             margin: 0;
+            line-height: 1.4;
+            width: 100%;
         }
 
-        .container {
-            /* allow the container to expand to the full iframe width while keeping its content visually centred */
+        /* Full page width expansion wrapper matching service-requests console design format */
+        .content {
             width: 100%;
-            max-width: none;
-            margin: 0 auto;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 24px;
+            padding: 12px;
             box-sizing: border-box;
         }
 
-        h1 {
-            color: #333;
-            margin-bottom: 10px;
-            text-align: center;
+        .main-card {
+            background: #ffffff;
+            border-radius: 0; 
+            box-shadow: none;  
+            border: none;
+            overflow: hidden;
+            width: 100%;
         }
 
-        .header-info {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #666;
+        .card-body-padding {
+            padding: 16px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        #resultsSection {
+            animation: fadeIn 0.4s ease-out;
+            width: 100%;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0 0 15px 0;
+            border-bottom: 1px dashed #e2e8f0;
+            padding-bottom: 10px;
+            width: 100%;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .results-count {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .results-count strong {
+            color: var(--secondary-blue);
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn {
+            border: 1px solid var(--border-color);
+            color: var(--text-dark);
+            padding: 6px 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            background: #ffffff;
+        }
+
+        .refresh-btn:hover {
+            background: var(--light-bg);
+            border-color: var(--primary-blue);
+            color: var(--primary-blue);
+        }
+
+        .export-btn {
+            background: #ffffff;
+            border-color: var(--border-color);
+            color: var(--text-dark);
+        }
+
+        .export-btn:hover {
+            background: #f0fdf4; 
+            border-color: var(--success-green);
+            color: var(--success-green);
+        }
+
+        .status-notification {
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            font-weight: 600;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .error {
+            background-color: #fee2e2;
+            color: #b91c1c;
+            border: 1px solid #fca5a5;
+        }
+
+        .success-message {
+            background-color: #dcfce7;
+            color: #15803d;
+            border: 1px solid #bbf7d0;
         }
 
         .loading {
             text-align: center;
             padding: 40px;
-            font-size: 18px;
-            color: #667eea;
+            color: var(--primary-blue);
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
         }
 
-        .error {
-            background: #fee;
-            border: 1px solid #fcc;
-            color: #c00;
-            padding: 15px;
-            border-radius: 4px;
-            margin-bottom: 20px;
-        }
-
-        .success-message {
-            background: #efe;
-            border: 1px solid #cfc;
-            color: #060;
-            padding: 15px;
-            border-radius: 4px;
-            margin-bottom: 20px;
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            font-size: 12.5px;
+            background: #ffffff;
         }
 
         thead {
-            background: #667eea;
-            color: white;
+            background-color: var(--table-header-bg);
         }
 
         th {
-            padding: 15px;
+            padding: 12px 12px;
             text-align: left;
             font-weight: 600;
-            border: 1px solid #667eea;
+            color: #ffffff; /* Explicitly forced clean white font */
+            font-family: 'Montserrat', sans-serif;
+            border-bottom: 1px solid var(--secondary-blue);
+            white-space: nowrap;
         }
 
         td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #ddd;
-            border-right: 1px solid #ddd;
+            padding: 10px 12px;
+            border-bottom: 1px solid #e2e8f0;
+            color: #475569;
         }
 
         tbody tr:hover {
-            background: #f5f5f5;
+            background-color: #f8fafc;
         }
 
         tbody tr:nth-child(even) {
-            background: #fafafa;
+            background-color: #fafafa;
+        }
+
+        .id-cell {
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .name-cell {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--dark-navy);
         }
 
         .activities-cell {
             font-size: 12px;
-            color: #555;
+            color: var(--text-muted);
         }
 
         .no-data {
             text-align: center;
-            padding: 40px;
-            color: #999;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            background: #f8fafc;
         }
 
-        .controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        button {
-            background: #667eea;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: background 0.3s;
-        }
-
-        button:hover {
-            background: #764ba2;
-        }
-
-        .export-btn {
-            background: #27ae60;
-        }
-
-        .export-btn:hover {
-            background: #229954;
+        .no-data i {
+            font-size: 28px;
+            margin-bottom: 8px;
+            display: block;
+            color: #94a3b8;
         }
 
         @media (max-width: 768px) {
-            .container {
-                padding: 15px;
+            .results-header {
+                flex-direction: column;
+                align-items: stretch;
             }
-
-            table {
-                font-size: 12px;
-            }
-
-            th, td {
-                padding: 8px;
-            }
-
             .controls {
                 flex-direction: column;
                 align-items: stretch;
             }
-
-            button {
+            .btn {
                 width: 100%;
+                justify-content: center;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header-info" id="headerInfo"></div>
-
-        <div class="controls">
-            <button onclick="fetchRegistrations()">🔄 Refresh Data</button>
-            <button class="export-btn" onclick="exportToCSV()">📥 Export to CSV</button>
-        </div>
-
+    <div class="content">
         <div id="message"></div>
-        <div id="loading" class="loading" style="display: none;">Loading registrations...</div>
-        <div id="tableContainer" style="display: none;">
-            <table id="registrationTable">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Full Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>City</th>
-                        <th>Gender</th>
-                        <th>Age</th>
-                        <th>Professional Skills</th>
-                        <th>Selected Activities</th>
-                    </tr>
-                </thead>
-                <tbody id="tableBody">
-                </tbody>
-            </table>
+        
+        <div class="main-card">
+            <div class="card-body-padding">
+                <div id="resultsSection">
+                    
+                    <div class="results-header">
+                        <div class="results-count" id="headerInfo">
+                            Total Registrations: <strong>0</strong> incoming records
+                        </div>
+                        <div class="controls">
+                            <button class="btn refresh-btn" onclick="fetchRegistrations()">
+                                <i class="fas fa-sync-alt"></i> Refresh Data
+                            </button>
+                            <button class="btn export-btn" onclick="exportToCSV()">
+                                <i class="fas fa-file-download"></i> Export CSV
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="loading" class="loading" style="display: none;">
+                        <i class="fas fa-spinner fa-spin"></i> Loading application registries from server streams...
+                    </div>
+                    
+                    <div id="tableContainer" class="table-responsive" style="display: none;">
+                        <table id="registrationTable">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Full Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>City</th>
+                                    <th>Gender</th>
+                                    <th>Age</th>
+                                    <th>Professional Skills</th>
+                                    <th>Selected Activities</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody">
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
         let registrationData = [];
 
-        // Fetch registrations when page loads
         document.addEventListener('DOMContentLoaded', function() {
             fetchRegistrations();
         });
@@ -219,7 +325,6 @@
             loadingDiv.style.display = 'block';
             tableContainer.style.display = 'none';
 
-            // Determine the correct API path
             const apiUrl = window.location.pathname.includes('/jainsanghpune/')
                 ? '/jainsanghpune/api/registration/all'
                 : '/api/registration/all';
@@ -232,7 +337,7 @@
                     if (data.success && data.data && Array.isArray(data.data)) {
                         registrationData = data.data;
                         displayTable();
-                        headerInfo.innerHTML = `<p>Total Registrations: <strong>${data.count}</strong></p>`;
+                        headerInfo.innerHTML = `Total Registrations: <strong>${data.count}</strong> incoming records`;
                         tableContainer.style.display = 'block';
                     } else if (!data.success) {
                         showError(data.message || 'Failed to fetch registrations');
@@ -242,7 +347,7 @@
                 })
                 .catch(error => {
                     loadingDiv.style.display = 'none';
-                    showError('Error fetching data: ' + error.message);
+                    showError('Error tracking data maps: ' + error.message);
                     console.error('Error:', error);
                 });
         }
@@ -252,7 +357,7 @@
             tableBody.innerHTML = '';
 
             if (registrationData.length === 0) {
-                tableBody.innerHTML = '<tr><td colspan="9" class="no-data">No registrations found</td></tr>';
+                tableBody.innerHTML = `<tr><td colspan="9" class="no-data"><i class="fas fa-folder-open"></i>No active volunteer profiles are currently available.</td></tr>`;
                 return;
             }
 
@@ -263,15 +368,15 @@
                     : '-';
 
                 row.innerHTML = `
-                    <td>${index + 1}</td>
-                    <td>${registration.fullName || '-'}</td>
-                    <td>${registration.email || '-'}</td>
-                    <td>${registration.phone || '-'}</td>
-                    <td>${registration.city || '-'}</td>
-                    <td>${registration.gender || '-'}</td>
-                    <td>${registration.age || '-'}</td>
-                    <td>${registration.professionSkills || '-'}</td>
-                    <td class="activities-cell">${activities}</td>
+                    <td class="id-cell">${index + 1}</td>
+                    <td class="name-cell">${escapeHtml(registration.fullName || 'Anonymous Volunteer')}</td>
+                    <td>${escapeHtml(registration.email || '-')}</td>
+                    <td>${escapeHtml(registration.phone || '-')}</td>
+                    <td>${escapeHtml(registration.city || '-')}</td>
+                    <td>${escapeHtml(registration.gender || '-')}</td>
+                    <td>${escapeHtml(registration.age || '-')}</td>
+                    <td>${escapeHtml(registration.professionSkills || '-')}</td>
+                    <td class="activities-cell">${escapeHtml(activities)}</td>
                 `;
                 tableBody.appendChild(row);
             });
@@ -279,17 +384,18 @@
 
         function showError(message) {
             const messageDiv = document.getElementById('message');
-            messageDiv.innerHTML = `<div class="error">❌ ${message}</div>`;
+            messageDiv.innerHTML = `<div class="status-notification error"><i class="fas fa-exclamation-triangle"></i> Error: ${escapeHtml(message)}</div>`;
         }
 
         function showSuccess(message) {
             const messageDiv = document.getElementById('message');
-            messageDiv.innerHTML = `<div class="success-message">✅ ${message}</div>`;
+            messageDiv.innerHTML = `<div class="status-notification success-message"><i class="fas fa-check-circle"></i> ${escapeHtml(message)}</div>`;
+            setTimeout(() => { messageDiv.innerHTML = ''; }, 4000);
         }
 
         function exportToCSV() {
             if (registrationData.length === 0) {
-                showError('No data to export');
+                showError('No active service record collections packages to export.');
                 return;
             }
 
@@ -308,7 +414,17 @@
             element.click();
             document.body.removeChild(element);
 
-            showSuccess('Data exported successfully!');
+            showSuccess('Data log exported successfully!');
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.toString()
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
         }
     </script>
 </body>

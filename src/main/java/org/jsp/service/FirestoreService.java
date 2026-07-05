@@ -79,6 +79,14 @@ public class FirestoreService {
         return documentId;
     }
 
+    public String addData(String collection, String documentId, Object data) {
+        // Use the provided documentId to create a new document with custom ID
+        Firestore db = FirestoreClient.getFirestore();
+        db.collection(collection).document(documentId).set(data);
+        System.out.println("New record added successfully to Firestore with custom ID: " + documentId);
+        return documentId;
+    }
+
     public void updateData(String collection, String documentId, Object data) {
         Firestore db = FirestoreClient.getFirestore();
         db.collection(collection).document(documentId).set(data, SetOptions.merge());

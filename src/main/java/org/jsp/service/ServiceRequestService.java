@@ -35,7 +35,8 @@ public class ServiceRequestService {
                 storageService.uploadFile(file, fileName, "service_request_documents/");
                 request.getDocumentFileNames().add(fileName);
             }
-            final var docId = firestoreService.addData(COLLECTION_NAME, request);
+            // Use the custom ID that was set in validateRequiredFields
+            final var docId = firestoreService.addData(COLLECTION_NAME, request.getId(), request);
             return ResponseEntity.ok(Map.of("success", true, "message", "Job application saved successfully", "documentId", docId));
 
         } catch (IllegalArgumentException e) {
