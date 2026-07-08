@@ -792,7 +792,6 @@
                                                 <th>Age (उम्र)</th>
                                                 <th>Relation (रिश्ता)</th>
                                                 <th>Occupation (व्यवसाय)</th>
-                                                <th style="width: 50px;">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -828,10 +827,9 @@
                                         placeholder="Explain your objective framework or research progression methodology targets"></textarea>
                                 </div>
 
-                                <div class="form-sub-title"><i class="fas fa-cloud-upload-alt"></i> 5. Verified Papers & Documents / दस्तावेज अपलोड</div>
+                                <div class="form-sub-title"><i class="fas fa-cloud-upload-alt"></i> 5. Verified Papers & Documents</div>
 
                                 <div id="fileUploadGroup" class="form-group full-width">
-                                    <label>Upload Papers Envelope / आवश्यक दस्तावेज संकलन संग्रह <span class="required">*</span></label>
                                     <p style="margin: 0 0 10px 0; font-size: 13px; color: var(--text-muted);">
                                         Supported Formats: <b>PDF, ZIP</b> (Max 5 MB per file). Please match each document type carefully.
                                     </p>
@@ -839,38 +837,68 @@
                                     <table class="dynamic-table" id="documentTable">
                                         <thead>
                                             <tr>
-                                                <th style="width: 40%;">Document Type</th>
-                                                <th style="width: 50%;">Select File</th>
-                                                <th style="width: 10px;">Action</th>
+                                                <th style="width: 60%;">Document Type</th>
+                                                <th style="width: 40%;">Select File</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <!-- MANDATORY CORE DOCUMENTS -->
                                             <tr>
                                                 <td>
-                                                    <select name="docType[]" required onchange="validateDocumentSelection(this)">
-                                                        <option value="" disabled selected>-- Select Document Type --</option>
-                                                        <option value="Recommendation Letter">Recommendation Letter / अनुशंसा पत्र</option>
-                                                        <option value="Bank Statement">6 Months Bank Statement / बैंक विवरण</option>
-                                                        <option value="Income Certificate">Income Certificate / आय प्रमाण पत्र</option>
-                                                        <option value="Passport Photo">Beneficiary Passport Photo / पासपोर्ट फोटो</option>
-                                                        <option value="Aadhaar Card">Aadhaar Card / आधार कार्ड</option>
-                                                        <option value="Institutional Papers">Institutional Papers / संस्था के पेपर्स</option>
-                                                        <option value="Other">Other / अन्य पेपर</option>
-                                                    </select>
+                                                    <input type="hidden" name="docType[]" value="Recommendation Letter">
+                                                    <b>Recommendation Letter <span class="required">*</span></b>
                                                 </td>
                                                 <td>
                                                     <input type="file" name="docFiles[]" accept=".pdf,.zip" required>
                                                 </td>
+                                            </tr>
+                                            <tr>
                                                 <td>
-                                                    <button type="button" class="remove-row-btn" onclick="removeDocumentRow(this)">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
+                                                    <input type="hidden" name="docType[]" value="Passport Photo">
+                                                    <b>Beneficiary Passport Photo / पासपोर्ट फोटो <span class="required">*</span></b>
+                                                </td>
+                                                <td>
+                                                    <input type="file" name="docFiles[]" accept=".pdf,.zip" required>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input type="hidden" name="docType[]" value="Aadhaar Card">
+                                                    <b>Aadhaar Card / आधार कार्ड <span class="required">*</span></b>
+                                                </td>
+                                                <td>
+                                                    <input type="file" name="docFiles[]" accept=".pdf,.zip" required>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input type="hidden" name="docType[]" value="Bank Statement">
+                                                    <b>6 Months Bank Statement / बैंक विवरण <span class="required">*</span></b>
+                                                </td>
+                                                <td>
+                                                    <input type="file" name="docFiles[]" accept=".pdf,.zip" required>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <b>Income Certificate / आय प्रमाण पत्र</b>
+                                                </td>
+                                                <td>
+                                                    <input type="file" name="docFiles[]" accept=".pdf,.zip">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <b>Institution Certificate / संस्था प्रमाण पत्र</b>
+                                                </td>
+                                                <td>
+                                                    <input type="file" name="docFiles[]" accept=".pdf,.zip">
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                     <button type="button" class="add-row-btn" onclick="addDocumentRow()">
-                                        <i class="fas fa-plus"></i> Add Another Document
+                                        <i class="fas fa-plus"></i> Add More Document
                                     </button>
                                 </div>
 
@@ -955,22 +983,13 @@
             }
         }
 
-        /* Document Table Operations */
+        /* Document Table Dynamic Extension Operations[cite: 1] */
         function addDocumentRow() {
             const tbody = document.querySelector('#documentTable tbody');
             const rowHTML = `
             <tr>
                 <td>
-                    <select name="docType[]" required onchange="validateDocumentSelection(this)">
-                        <option value="" disabled selected>-- Select Document Type --</option>
-                        <option value="Recommendation Letter">Recommendation Letter / अनुशंसा पत्र</option>
-                        <option value="Bank Statement">6 Months Bank Statement / बैंक विवरण</option>
-                        <option value="Income Certificate">Income Certificate / आय प्रमाण पत्र</option>
-                        <option value="Passport Photo">Beneficiary Passport Photo / पासपोर्ट फोटो</option>
-                        <option value="Aadhaar Card">Aadhaar Card / आधार कार्ड</option>
-                        <option value="Institutional Papers">Institutional Papers / संस्था के पेपर्स</option>
-                        <option value="Other">Other / अन्य पेपर</option>
-                    </select>
+                    <input type="text" name="docType[]" placeholder="Document Type" required>
                 </td>
                 <td>
                     <input type="file" name="docFiles[]" accept=".pdf,.zip" required>
@@ -986,12 +1005,7 @@
 
         function removeDocumentRow(button) {
             const row = button.closest('tr');
-            const tbody = document.querySelector('#documentTable tbody');
-            if (tbody.rows.length > 1) {
-                row.remove();
-            } else {
-                alert("At least one target verification document wrapper must be declared.");
-            }
+            row.remove();
         }
 
         /**
@@ -1002,7 +1016,6 @@
             hideStatus();
             const chosenValue = currentSelect.value;
 
-            // If the user chooses empty or "Other", no duplicate constraint checks are needed.
             if (!chosenValue || chosenValue === "Other") {
                 return;
             }
@@ -1016,11 +1029,8 @@
                 }
             }
 
-            // If the match counter exceeds 1, a conflict with another row selection is verified.
             if (structuralMatches > 1) {
-                alert(`The document type "${chosenValue}" has already been selected in another row. Please choose a different document type.`);
-                
-                // Revert this specific dropdown element back to its default unselected configuration state.
+                alert(`The document type "${chosenValue}" has already been selected. Please choose a different document type.`);
                 currentSelect.value = "";
             }
         }
@@ -1039,28 +1049,40 @@
                 <td><button type="button" class="remove-row-btn" onclick="removeFamilyRow(this)"><i class="fas fa-trash"></i></button></td>
             </tr>`;
 
-            // Revert Document table back to a single baseline document upload declaration
+            // Revert Document table back to the core mandatory grid array settings[cite: 1]
             const docTbody = document.querySelector('#documentTable tbody');
             docTbody.innerHTML = `
             <tr>
                 <td>
-                    <select name="docType[]" required onchange="validateDocumentSelection(this)">
-                        <option value="" disabled selected>-- Select Document Type --</option>
-                        <option value="Recommendation Letter">Recommendation Letter / अनुशंसा पत्र</option>
-                        <option value="Bank Statement">6 Months Bank Statement / बैंक विवरण</option>
-                        <option value="Income Certificate">Income Certificate / आय प्रमाण पत्र</option>
-                        <option value="Passport Photo">Beneficiary Passport Photo / पासपोर्ट फोटो</option>
-                        <option value="Aadhaar Card">Aadhaar Card / आधार कार्ड</option>
-                        <option value="Institutional Papers">Institutional Papers / संस्था के पेपर्स</option>
-                        <option value="Other">Other / अन्य पेपर</option>
-                    </select>
+                    <input type="hidden" name="docType[]" value="Recommendation Letter">
+                    <strong>Recommendation Letter / अनुशंसा पत्र <span class="required">*</span></strong>
                 </td>
+                <td><input type="file" name="docFiles[]" accept=".pdf,.zip" required></td>
+                <td></td>
+            </tr>
+            <tr>
                 <td>
-                    <input type="file" name="docFiles[]" accept=".pdf,.zip" required>
+                    <input type="hidden" name="docType[]" value="Passport Photo">
+                    <strong>Beneficiary Passport Photo / पासपोर्ट फोटो <span class="required">*</span></strong>
                 </td>
+                <td><input type="file" name="docFiles[]" accept=".pdf,.zip" required></td>
+                <td></td>
+            </tr>
+            <tr>
                 <td>
-                    <button type="button" class="remove-row-btn" onclick="removeDocumentRow(this)"><i class="fas fa-trash"></i></button>
+                    <input type="hidden" name="docType[]" value="Aadhaar Card">
+                    <strong>Aadhaar Card / आधार कार्ड <span class="required">*</span></strong>
                 </td>
+                <td><input type="file" name="docFiles[]" accept=".pdf,.zip" required></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="hidden" name="docType[]" value="Bank Statement">
+                    <strong>6 Months Bank Statement / बैंक विवरण <span class="required">*</span></strong>
+                </td>
+                <td><input type="file" name="docFiles[]" accept=".pdf,.zip" required></td>
+                <td></td>
             </tr>`;
         }
 
@@ -1103,13 +1125,12 @@
             event.preventDefault();
             hideStatus();
 
-            // Prevent submission if active invalid indicators exist
             if (document.querySelectorAll('.invalid-field').length > 0) {
                 showStatus("Please correct all flagged invalid parameter fields before proceeding.", "error");
                 return;
             }
 
-            // Fail-safe pre-submission check for duplicate document types
+            // Fail-safe check for duplicate optional document selections
             const docTypesElements = document.getElementsByName('docType[]');
             const checkedTypes = [];
             for (let i = 0; i < docTypesElements.length; i++) {
@@ -1125,7 +1146,6 @@
 
             showLoader();
 
-            // Build a plain JS object representing the ServiceRequest payload
             const application = {};
             application.fullName = document.getElementById('fullName').value.trim();
             application.dob = document.getElementById('dob').value;
@@ -1141,7 +1161,6 @@
             application.helpWanted = document.getElementById('helpWanted').value.trim();
             application.afterHelpPlan = document.getElementById('afterHelpPlan').value.trim();
 
-            // Collect family members from the dynamic table
             application.familyMembers = [];
             const famNames = Array.from(document.getElementsByName('famName[]'));
             const famAges = Array.from(document.getElementsByName('famAge[]'));
@@ -1159,7 +1178,6 @@
                 }
             }
 
-            // Collect custom structured metadata descriptions for chosen docs
             application.documentMetadata = [];
             const docTypes = Array.from(document.getElementsByName('docType[]'));
             for (let i = 0; i < docTypes.length; i++) {
@@ -1168,12 +1186,10 @@
                 }
             }
 
-            // Create FormData with a JSON part named 'application'
             const formData = new FormData();
             const jsonBlob = new Blob([JSON.stringify(application)], { type: 'application/json' });
             formData.append('application', jsonBlob);
 
-            // Loop over all dynamically generated table file rows and attach them sequentially
             const docFilesInputs = document.getElementsByName('docFiles[]');
             if (docFilesInputs && docFilesInputs.length > 0) {
                 for (let i = 0; i < docFilesInputs.length; i++) {
