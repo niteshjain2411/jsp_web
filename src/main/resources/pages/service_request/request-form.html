@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Form - Jain Sangh Pune | JSP</title>
     <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght=400;500;600;700&family=Open+Sans:wght=400;600&display=swap"
-        rel="stylesheet">
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght=400;500;600;700&family=Open+Sans:wght=400;600&display=swap"
+            rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -167,7 +167,6 @@
             border-radius: 8px;
             padding: 24px;
             margin-bottom: 35px;
-            /* Setting a softer typography font weights configuration layout */
             font-family: 'Open Sans', sans-serif;
         }
 
@@ -593,9 +592,21 @@
             }
         }
 
+        /*
+           MODERN RESPONSIVE ADAPTATIONS
+        */
         @media (max-width: 768px) {
+            .back-link {
+                margin: 20px 20px 5px 20px;
+            }
+
+            .content {
+                padding: 10px 15px 60px 15px;
+            }
+
             .form-grid {
                 grid-template-columns: 1fr;
+                gap: 16px;
             }
 
             .form-group.full-width,
@@ -603,21 +614,32 @@
                 grid-column: span 1;
             }
 
+            .form-sub-title {
+                font-size: 17px;
+                padding-left: 10px;
+                margin: 15px 0 5px 0;
+            }
+
             .form-padding {
-                padding: 30px 20px;
+                padding: 25px 16px;
             }
 
             .compact-hero {
-                padding: 30px 25px;
-                border-radius: 12px 12px 0 0;
-            }
-
-            .form-card {
-                border-radius: 0 0 12px 12px;
+                padding: 30px 20px;
             }
 
             .compact-hero h1 {
-                font-size: 22px;
+                font-size: 20px;
+                flex-wrap: wrap;
+            }
+
+            .compact-hero p {
+                font-size: 13.5px;
+            }
+
+            .instructions-container {
+                padding: 16px;
+                margin-bottom: 25px;
             }
 
             .radio-grid {
@@ -628,17 +650,54 @@
             .btn-container {
                 flex-direction: column;
                 width: 100%;
+                gap: 12px;
             }
 
             .submit-btn,
             .reset-btn {
                 width: 100%;
+                min-width: 100%;
+                box-sizing: border-box;
+                padding: 14px 20px;
             }
 
-            /* Responsive tweaks for tables on compact screens */
-            .dynamic-table {
+            /* Transforms wide data tables into stacked vertical block cards on mobile screens */
+            .dynamic-table,
+            .dynamic-table thead,
+            .dynamic-table tbody,
+            .dynamic-table th,
+            .dynamic-table td,
+            .dynamic-table tr {
                 display: block;
-                overflow-x: auto;
+                width: 100%;
+            }
+
+            .dynamic-table thead {
+                display: none; /* Hide default tabular headers on screens where columns collapse */
+            }
+
+            .dynamic-table tr {
+                margin-bottom: 15px;
+                border: 1px solid var(--border-color);
+                border-radius: 8px;
+                padding: 12px;
+                background-color: #f8fafc;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            }
+
+            .dynamic-table td {
+                border: none;
+                padding: 6px 0;
+            }
+
+            .dynamic-table td:last-child {
+                text-align: right;
+                padding-top: 10px;
+                border-top: 1px dashed var(--border-color);
+            }
+
+            td input[type="file"] {
+                background-color: #f1f5f9;
             }
         }
     </style>
@@ -646,591 +705,591 @@
 
 <body>
 
-    <script src="../header-loader.js"></script>
-    <script src="../footer-loader.js"></script>
-    <div id="header-placeholder"></div>
+<script src="../header-loader.js"></script>
+<script src="../footer-loader.js"></script>
+<div id="header-placeholder"></div>
 
-    <div id="loadingPageMask" class="loading-mask">
-        <div class="spinner"></div>
-        <h3 id="loadingText" style="margin: 0; font-weight: 600; letter-spacing: 0.5px;">Saving Your Application...</h3>
-        <p style="margin: 5px 0 0 0; font-size: 13px; opacity: 0.8;">Please do not close or refresh this tab.</p>
-    </div>
+<div id="loadingPageMask" class="loading-mask">
+    <div class="spinner"></div>
+    <h3 id="loadingText" style="margin: 0; font-weight: 600; letter-spacing: 0.5px;">Saving Your Application...</h3>
+    <p style="margin: 5px 0 0 0; font-size: 13px; opacity: 0.8;">Please do not close or refresh this tab.</p>
+</div>
 
-    <a href="../home.html" class="back-link"><i class="fas fa-arrow-left"></i>Back to Home</a>
+<a href="../home.html" class="back-link"><i class="fas fa-arrow-left"></i>Back to Home</a>
 
-    <div class="content">
-        <div id="statusAlert" class="status-notification"></div>
-        
-        <div id="portalFormContainer">
-            <div class="compact-hero">
-                <h1><i class="fas fa-hands-helping" style="color: #bae6fd;"></i> Jain Sangh Pune (JSP)</h1>
-                <p>Registration Form - Fill out the core registration information details accurately to
-                    process your community support request layout profiles.</p>
-            </div>
+<div class="content">
+    <div id="statusAlert" class="status-notification"></div>
 
-            <div class="form-card">
-                <div class="form-padding">
+    <div id="portalFormContainer">
+        <div class="compact-hero">
+            <h1><i class="fas fa-hands-helping" style="color: #bae6fd;"></i> Jain Sangh Pune (JSP)</h1>
+            <p>Registration Form - Fill out the core registration information details accurately to
+                process your community support request layout profiles.</p>
+        </div>
 
-                    <!-- PAGE 1: Welcome Note and Guidelines -->
-                    <div id="page1">
-                        <div class="welcome-msg animated-section">
-                            <h3>Welcome to the JSP Support Portal</h3>
-                            <p>We are dedicated to supporting community members in need. Please read the guidelines
-                                carefully and provide accurate details to process your support request efficiently.</p>
-                        </div>
+        <div class="form-card">
+            <div class="form-padding">
 
-                        <div class="instructions-container animated-section">
-                            <h4><i class="fas fa-exclamation-circle"></i> Key Guidelines & Required Papers </h4>
-                            <ol class="instructions-list">
-                                <li>आवेदन पत्र पूरा और साफ साफ भरा होना चाहिए। (The application form must be filled out
-                                    completely and clearly.)</li>
-                                <li>आवेदक / लाभार्थी की आयु 18 वर्ष से ऊपर होनी चाहिए। अगर लाभार्थी नाबालिग है तो फार्म उसके
-                                    माता, पिता या अभिभावक के द्वारा भरा जाये। (The applicant/beneficiary must be above 18
-                                    years old. If minor, parent/guardian must complete the form.)</li>
-                                <li>प्रतिष्ठित संस्थान के लेटर हेड पर अध्यक्ष द्वारा अनुशंसा पत्र (अध्यक्ष के मोबाइल नंबर के
-                                    साथ) होना चाहिए। (Recommendation letter on a reputable institution's letterhead by the
-                                    President, including their mobile number.)</li>
-                                <li>परिवार के सभी सदस्यों के बैंक अकाउंट के अंतिम 6 माह का विवरण। (Last 6 months bank
-                                    statement details of all family members.)</li>
-                                <li>सरकार द्वारा जारी आय प्रमाण पत्र (यदि है तो)। (Government-issued income certificate, if
-                                    available.)</li>
-                                <li>आवेदन पत्र के ऊपर लाभार्थी का एक पासपोर्ट साइज फोटो लगा हो। (A passport size photograph
-                                    of the beneficiary must be uploaded.)</li>
-                                <li>आवेदक / लाभार्थी एवं पिता के आधार कार्ड की फोटो। (Photocopy/Image of Aadhaar card of the
-                                    applicant/beneficiary and father.)</li>
-                                <li>आवेदक से सम्बंधित संस्था के पूरे पेपर्स (अस्पताल, स्कूल, यूनिवर्सिटी आदि) की पूरी
-                                    जानकारी आप के पास होनी चाहिए। (Complete information/papers of the related institution
-                                    like hospital, school, university, etc. must be handy.)</li>
-                                <li><b>प्रदान की गई राशि आपको संस्था को लौटानी होगी ताकि अन्य किसी की मदद की जा सके।</b>
-                                    (The provided financial aid amount must be returned to the institution later so that
-                                    someone else can be helped in the future.)</li>
-                            </ol>
+                <!-- PAGE 1: Welcome Note and Guidelines -->
+                <div id="page1">
+                    <div class="welcome-msg animated-section">
+                        <h3>Welcome to the JSP Support Portal</h3>
+                        <p>We are dedicated to supporting community members in need. Please read the guidelines
+                            carefully and provide accurate details to process your support request efficiently.</p>
+                    </div>
+
+                    <div class="instructions-container animated-section">
+                        <h4><i class="fas fa-exclamation-circle"></i> Key Guidelines & Required Papers </h4>
+                        <ol class="instructions-list">
+                            <li>आवेदन पत्र पूरा और साफ साफ भरा होना चाहिए। (The application form must be filled out
+                                completely and clearly.)</li>
+                            <li>आवेदक / लाभार्थी की आयु 18 वर्ष से ऊपर होनी चाहिए। अगर लाभार्थी नाबालिग है तो फार्म उसके
+                                माता, पिता या अभिभावक के द्वारा भरा जाये। (The applicant/beneficiary must be above 18
+                                years old. If minor, parent/guardian must complete the form.)</li>
+                            <li>प्रतिष्ठित संस्थान के लेटर हेड पर अध्यक्ष द्वारा अनुशंसा पत्र (अध्यक्ष के मोबाइल नंबर के
+                                साथ) होना चाहिए। (Recommendation letter on a reputable institution's letterhead by the
+                                President, including their mobile number.)</li>
+                            <li>परिवार के सभी सदस्यों के बैंक अकाउंट के अंतिम 6 माह का विवरण। (Last 6 months bank
+                                statement details of all family members.)</li>
+                            <li>सरकार द्वारा जारी आय प्रमाण पत्र (यदि है तो)। (Government-issued income certificate, if
+                                available.)</li>
+                            <li>आवेदन पत्र के ऊपर लाभार्थी का एक पासपोर्ट साइज फोटो लगा हो। (A passport size photograph
+                                of the beneficiary must be uploaded.)</li>
+                            <li>आवेदक / लाभार्थी एवं पिता के आधार कार्ड की फोटो। (Photocopy/Image of Aadhaar card of the
+                                applicant/beneficiary and father.)</li>
+                            <li>आवेदक से सम्बंधित संस्था के पूरे पेपर्स (अस्पताल, स्कूल, यूनिवर्सिटी आदि) की पूरी
+                                जानकारी आप के पास होनी चाहिए। (Complete information/papers of the related institution
+                                like hospital, school, university, etc. must be handy.)</li>
+                            <li><b>प्रदान की गई राशि आपको संस्था को लौटानी होगी ताकि अन्य किसी की मदद की जा सके।</b>
+                                (The provided financial aid amount must be returned to the institution later so that
+                                someone else can be helped in the future.)</li>
+                        </ol>
+                    </div>
+
+                    <div class="btn-container">
+                        <button type="button" onclick="goToFormPage()" class="submit-btn">Accept & Proceed to Form</button>
+                    </div>
+                </div>
+
+                <!-- PAGE 2: Registration Data Form Fields (Hidden initially) -->
+                <div id="page2" style="display: none;">
+                    <form id="portalJobForm" onsubmit="submitForm(event)" onreset="resetFormHandler()">
+                        <div id="formFieldsWrapper" class="form-grid animated-section">
+
+                            <div class="form-sub-title" id="personalSecTitle"><i class="fas fa-user"></i> 1. Personal Information</div>
+
+                            <div class="form-group">
+                                <label for="fullName">Full Name<span class="required">*</span></label>
+                                <input type="text" id="fullName" name="fullName" required placeholder="Enter full name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="dob">Date of Birth<span class="required">*</span></label>
+                                <input type="date" id="dob" name="dob" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Gender <span class="required">*</span></label>
+                                <div class="radio-grid">
+                                    <label class="radio-item">
+                                        <input type="radio" name="gender" value="Male" required> Male
+                                    </label>
+                                    <label class="radio-item">
+                                        <input type="radio" name="gender" value="Female"> Female
+                                    </label>
+                                    <label class="radio-item">
+                                        <input type="radio" name="gender" value="Other"> Other
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="fatherName">Father's or Husband's Name<span class="required">*</span></label>
+                                <input type="text" id="fatherName" name="fatherName" required
+                                       placeholder="Enter father's or husband's name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Mobile Number<span class="required">*</span></label>
+                                <input type="tel" id="phone" name="phone" required placeholder="Primary contact numbers">
+                                <span id="phoneError" class="field-error-msg"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="panNumber">PAN Number<span class="required">*</span></label>
+                                <input type="text" id="panNumber" name="panNumber" placeholder="e.g. AABTJ7030J">
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="address">Address<span class="required">*</span></label>
+                                <textarea id="address" name="address" required
+                                          placeholder="Enter your full operational corresponding address parameters"></textarea>
+                            </div>
+
+                            <div class="form-sub-title"><i class="fas fa-briefcase"></i> 2. Socio-Economic Profile / व्यवसाय और आय</div>
+
+                            <div class="form-group">
+                                <label for="occupation">Occupation / आप क्या करते है <span class="required">*</span></label>
+                                <input type="text" id="occupation" name="occupation" required
+                                       placeholder="e.g. Student, Business, Job">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="monthlyIncome">Monthly Income / मासिक आय</label>
+                                <input type="number" id="monthlyIncome" name="monthlyIncome"
+                                       placeholder="Enter monthly income metric in INR">
+                            </div>
+
+                            <div class="form-sub-title"><i class="fas fa-users"></i> 3. Family Background Details / परिवार के सदस्य</div>
+
+                            <div class="form-group full-width">
+                                <label>Family Members List / परिवार के सदस्यों का विवरण</label>
+                                <table class="dynamic-table" id="familyTable">
+                                    <thead>
+                                    <tr>
+                                        <th>Name (नाम)</th>
+                                        <th>Age (उम्र)</th>
+                                        <th>Relation (रिश्ता)</th>
+                                        <th>Occupation (व्यवसाय)</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td><input type="text" name="famName[]" placeholder="Name" required></td>
+                                        <td><input type="number" name="famAge[]" placeholder="Age" required></td>
+                                        <td><input type="text" name="famRelation[]" placeholder="Relation" required></td>
+                                        <td><input type="text" name="famOccupation[]" placeholder="Occupation" required></td>
+                                        <td><button type="button" class="remove-row-btn" onclick="removeFamilyRow(this)"><i class="fas fa-trash"></i></button></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <button type="button" class="add-row-btn" onclick="addFamilyRow()"><i class="fas fa-plus"></i> Add Family Member</button>
+                            </div>
+
+                            <div class="form-sub-title"><i class="fas fa-hand-holding-heart"></i> 4. JSP Interaction Parameters / सहायता विवरण</div>
+
+                            <div class="form-group full-width">
+                                <label for="appliedBefore">Have you ever applied for help from JSP before? If yes, then when? / क्या आपने पहले भी जेएसपी से मदद के लिए आवेदन दिया है? अगर हाँ तो कब? <span class="required">*</span></label>
+                                <input type="text" id="appliedBefore" name="appliedBefore" required
+                                       placeholder="e.g. No / Yes (Specify details)">
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="helpWanted">What help do you want from JSP? / आप जेएसपी से क्या सहायता चाहते हैं? <span class="required">*</span></label>
+                                <textarea id="helpWanted" name="helpWanted" required
+                                          placeholder="Provide clear contextual breakdown of support specifications required"></textarea>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="afterHelpPlan">What you will do after getting help from the JSP? / जेएसपी से सहायता प्राप्त करने के बाद आप क्या करेंगे? <span class="required">*</span></label>
+                                <textarea id="afterHelpPlan" name="afterHelpPlan" required
+                                          placeholder="Explain your objective framework or research progression methodology targets"></textarea>
+                            </div>
+
+                            <div class="form-sub-title"><i class="fas fa-cloud-upload-alt"></i> 5. Verified Papers & Documents</div>
+
+                            <div id="fileUploadGroup" class="form-group full-width">
+                                <p style="margin: 0 0 10px 0; font-size: 13px; color: var(--text-muted);">
+                                    Supported Formats: <b>PDF, ZIP</b> (Max 5 MB per file). Please match each document type carefully.
+                                </p>
+
+                                <table class="dynamic-table" id="documentTable">
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 60%;">Document Type</th>
+                                        <th style="width: 40%;">Select File</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <!-- MANDATORY CORE DOCUMENTS -->
+                                    <tr>
+                                        <td>
+                                            <input type="hidden" name="docType[]" value="Recommendation Letter">
+                                            <b>Recommendation Letter <span class="required">*</span></b>
+                                        </td>
+                                        <td>
+                                            <input type="file" name="docFiles[]" accept=".pdf,.zip" required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="hidden" name="docType[]" value="Passport Photo">
+                                            <b>Beneficiary Passport Photo / पासपोर्ट फोटो <span class="required">*</span></b>
+                                        </td>
+                                        <td>
+                                            <input type="file" name="docFiles[]" accept=".pdf,.zip" required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="hidden" name="docType[]" value="Aadhaar Card">
+                                            <b>Aadhaar Card / आधार कार्ड <span class="required">*</span></b>
+                                        </td>
+                                        <td>
+                                            <input type="file" name="docFiles[]" accept=".pdf,.zip" required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="hidden" name="docType[]" value="Bank Statement">
+                                            <b>6 Months Bank Statement / बैंक विवरण <span class="required">*</span></b>
+                                        </td>
+                                        <td>
+                                            <input type="file" name="docFiles[]" accept=".pdf,.zip" required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>Income Certificate / आय प्रमाण पत्र</b>
+                                        </td>
+                                        <td>
+                                            <input type="file" name="docFiles[]" accept=".pdf,.zip">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>Institution Certificate / संस्था प्रमाण पत्र</b>
+                                        </td>
+                                        <td>
+                                            <input type="file" name="docFiles[]" accept=".pdf,.zip">
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <button type="button" class="add-row-btn" onclick="addDocumentRow()">
+                                    <i class="fas fa-plus"></i> Add More Document
+                                </button>
+                            </div>
+
                         </div>
 
                         <div class="btn-container">
-                            <button type="button" onclick="goToFormPage()" class="submit-btn">Accept & Proceed to Form</button>
+                            <button type="button" onclick="goToGuidelinesPage()" class="reset-btn" style="background: var(--secondary-gray);">Back</button>
+                            <button type="submit" id="submitActionBtn" class="submit-btn">Submit Application</button>
+                            <button type="reset" id="resetActionBtn" class="reset-btn">Reset Form</button>
                         </div>
-                    </div>
-
-                    <!-- PAGE 2: Registration Data Form Fields (Hidden initially) -->
-                    <div id="page2" style="display: none;">
-                        <form id="portalJobForm" onsubmit="submitForm(event)" onreset="resetFormHandler()">
-                            <div id="formFieldsWrapper" class="form-grid animated-section">
-
-                                <div class="form-sub-title" id="personalSecTitle"><i class="fas fa-user"></i> 1. Personal Information</div>
-
-                                <div class="form-group">
-                                    <label for="fullName">Full Name<span class="required">*</span></label>
-                                    <input type="text" id="fullName" name="fullName" required placeholder="Enter full name">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="dob">Date of Birth<span class="required">*</span></label>
-                                    <input type="date" id="dob" name="dob" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Gender <span class="required">*</span></label>
-                                    <div class="radio-grid">
-                                        <label class="radio-item">
-                                            <input type="radio" name="gender" value="Male" required> Male
-                                        </label>
-                                        <label class="radio-item">
-                                            <input type="radio" name="gender" value="Female"> Female
-                                        </label>
-                                         <label class="radio-item">
-                                            <input type="radio" name="gender" value="Other"> Other
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="fatherName">Father's or Husband's Name<span class="required">*</span></label>
-                                    <input type="text" id="fatherName" name="fatherName" required
-                                        placeholder="Enter father's or husband's name">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="phone">Mobile Number<span class="required">*</span></label>
-                                    <input type="tel" id="phone" name="phone" required placeholder="Primary contact numbers">
-                                    <span id="phoneError" class="field-error-msg"></span>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="panNumber">PAN Number<span class="required">*</span></label>
-                                    <input type="text" id="panNumber" name="panNumber" placeholder="e.g. AABTJ7030J">
-                                </div>
-
-                                <div class="form-group full-width">
-                                    <label for="address">Address<span class="required">*</span></label>
-                                    <textarea id="address" name="address" required
-                                        placeholder="Enter your full operational corresponding address parameters"></textarea>
-                                </div>
-
-                                <div class="form-sub-title"><i class="fas fa-briefcase"></i> 2. Socio-Economic Profile / व्यवसाय और आय</div>
-
-                                <div class="form-group">
-                                    <label for="occupation">Occupation / आप क्या करते है <span class="required">*</span></label>
-                                    <input type="text" id="occupation" name="occupation" required
-                                        placeholder="e.g. Student, Business, Job">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="monthlyIncome">Monthly Income / मासिक आय</label>
-                                    <input type="number" id="monthlyIncome" name="monthlyIncome"
-                                        placeholder="Enter monthly income metric in INR">
-                                </div>
-
-                                <div class="form-sub-title"><i class="fas fa-users"></i> 3. Family Background Details / परिवार के सदस्य</div>
-
-                                <div class="form-group full-width">
-                                    <label>Family Members List / परिवार के सदस्यों का विवरण</label>
-                                    <table class="dynamic-table" id="familyTable">
-                                        <thead>
-                                            <tr>
-                                                <th>Name (नाम)</th>
-                                                <th>Age (उम्र)</th>
-                                                <th>Relation (रिश्ता)</th>
-                                                <th>Occupation (व्यवसाय)</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td><input type="text" name="famName[]" placeholder="Name" required></td>
-                                                <td><input type="number" name="famAge[]" placeholder="Age" required></td>
-                                                <td><input type="text" name="famRelation[]" placeholder="Relation" required></td>
-                                                <td><input type="text" name="famOccupation[]" placeholder="Occupation" required></td>
-                                                <td><button type="button" class="remove-row-btn" onclick="removeFamilyRow(this)"><i class="fas fa-trash"></i></button></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <button type="button" class="add-row-btn" onclick="addFamilyRow()"><i class="fas fa-plus"></i> Add Family Member</button>
-                                </div>
-
-                                <div class="form-sub-title"><i class="fas fa-hand-holding-heart"></i> 4. JSP Interaction Parameters / सहायता विवरण</div>
-
-                                <div class="form-group full-width">
-                                    <label for="appliedBefore">Have you ever applied for help from JSP before? If yes, then when? / क्या आपने पहले भी जेएसपी से मदद के लिए आवेदन दिया है? अगर हाँ तो कब? <span class="required">*</span></label>
-                                    <input type="text" id="appliedBefore" name="appliedBefore" required
-                                        placeholder="e.g. No / Yes (Specify details)">
-                                </div>
-
-                                <div class="form-group full-width">
-                                    <label for="helpWanted">What help do you want from JSP? / आप जेएसपी से क्या सहायता चाहते हैं? <span class="required">*</span></label>
-                                    <textarea id="helpWanted" name="helpWanted" required
-                                        placeholder="Provide clear contextual breakdown of support specifications required"></textarea>
-                                </div>
-
-                                <div class="form-group full-width">
-                                    <label for="afterHelpPlan">What you will do after getting help from the JSP? / जेएसपी से सहायता प्राप्त करने के बाद आप क्या करेंगे? <span class="required">*</span></label>
-                                    <textarea id="afterHelpPlan" name="afterHelpPlan" required
-                                        placeholder="Explain your objective framework or research progression methodology targets"></textarea>
-                                </div>
-
-                                <div class="form-sub-title"><i class="fas fa-cloud-upload-alt"></i> 5. Verified Papers & Documents</div>
-
-                                <div id="fileUploadGroup" class="form-group full-width">
-                                    <p style="margin: 0 0 10px 0; font-size: 13px; color: var(--text-muted);">
-                                        Supported Formats: <b>PDF, ZIP</b> (Max 5 MB per file). Please match each document type carefully.
-                                    </p>
-                                    
-                                    <table class="dynamic-table" id="documentTable">
-                                        <thead>
-                                            <tr>
-                                                <th style="width: 60%;">Document Type</th>
-                                                <th style="width: 40%;">Select File</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <!-- MANDATORY CORE DOCUMENTS -->
-                                            <tr>
-                                                <td>
-                                                    <input type="hidden" name="docType[]" value="Recommendation Letter">
-                                                    <b>Recommendation Letter <span class="required">*</span></b>
-                                                </td>
-                                                <td>
-                                                    <input type="file" name="docFiles[]" accept=".pdf,.zip" required>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <input type="hidden" name="docType[]" value="Passport Photo">
-                                                    <b>Beneficiary Passport Photo / पासपोर्ट फोटो <span class="required">*</span></b>
-                                                </td>
-                                                <td>
-                                                    <input type="file" name="docFiles[]" accept=".pdf,.zip" required>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <input type="hidden" name="docType[]" value="Aadhaar Card">
-                                                    <b>Aadhaar Card / आधार कार्ड <span class="required">*</span></b>
-                                                </td>
-                                                <td>
-                                                    <input type="file" name="docFiles[]" accept=".pdf,.zip" required>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <input type="hidden" name="docType[]" value="Bank Statement">
-                                                    <b>6 Months Bank Statement / बैंक विवरण <span class="required">*</span></b>
-                                                </td>
-                                                <td>
-                                                    <input type="file" name="docFiles[]" accept=".pdf,.zip" required>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <b>Income Certificate / आय प्रमाण पत्र</b>
-                                                </td>
-                                                <td>
-                                                    <input type="file" name="docFiles[]" accept=".pdf,.zip">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <b>Institution Certificate / संस्था प्रमाण पत्र</b>
-                                                </td>
-                                                <td>
-                                                    <input type="file" name="docFiles[]" accept=".pdf,.zip">
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <button type="button" class="add-row-btn" onclick="addDocumentRow()">
-                                        <i class="fas fa-plus"></i> Add More Document
-                                    </button>
-                                </div>
-
-                            </div>
-
-                            <div class="btn-container">
-                                <button type="button" onclick="goToGuidelinesPage()" class="reset-btn" style="background: var(--secondary-gray);">Back</button>
-                                <button type="submit" id="submitActionBtn" class="submit-btn">Submit Application</button>
-                                <button type="reset" id="resetActionBtn" class="reset-btn">Reset Form</button>
-                            </div>
-                        </form>
-                    </div>
-
+                    </form>
                 </div>
-            </div>
-        </div>
 
-        <div id="successMessage" class="success-box">
-            <div class="success-icon">
-                <i class="fas fa-heart"></i>
             </div>
-            <h2>Service Request Submitted Successfully</h2>
-            <p>Your Service Request has been submitted successfully. Our team will review it and get back to you soon.</p>
-            <button onclick="window.location.href='request-form.html'" class="submit-btn">Back to Form</button>
-        </div>
-
-        <div id="errorMessage" class="error-message-box">
-            <div class="error-icon">
-                <i class="fas fa-exclamation-triangle"></i>
-            </div>
-            <h2>Service Request Submission Failed</h2>
-            <p>An error occurred while submitting your Service Request. Please try again later.</p>
-            <button onclick="window.location.href='request-form.html'" class="submit-btn">Back to Form</button>
         </div>
     </div>
 
-    <div id="footer-placeholder"></div>
+    <div id="successMessage" class="success-box">
+        <div class="success-icon">
+            <i class="fas fa-heart"></i>
+        </div>
+        <h2>Service Request Submitted Successfully</h2>
+        <p>Your Service Request has been submitted successfully. Our team will review it and get back to you soon.</p>
+        <button onclick="window.location.href='request-form.html'" class="submit-btn">Back to Form</button>
+    </div>
 
-    <script>
-        /* Multi-Page Toggle Management Navigation */
-        function goToFormPage() {
-            document.getElementById('page1').style.display = 'none';
-            document.getElementById('page2').style.display = 'block';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+    <div id="errorMessage" class="error-message-box">
+        <div class="error-icon">
+            <i class="fas fa-exclamation-triangle"></i>
+        </div>
+        <h2>Service Request Submission Failed</h2>
+        <p>An error occurred while submitting your Service Request. Please try again later.</p>
+        <button onclick="window.location.href='request-form.html'" class="submit-btn">Back to Form</button>
+    </div>
+</div>
 
-        function goToGuidelinesPage() {
-            document.getElementById('page2').style.display = 'none';
-            document.getElementById('page1').style.display = 'block';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+<div id="footer-placeholder"></div>
 
-        function showLoader() {
-            document.getElementById('loadingPageMask').style.display = 'flex';
-        }
+<script>
+    /* Multi-Page Toggle Management Navigation */
+    function goToFormPage() {
+        document.getElementById('page1').style.display = 'none';
+        document.getElementById('page2').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
-        function hideLoader() {
-            document.getElementById('loadingPageMask').style.display = 'none';
-        }
+    function goToGuidelinesPage() {
+        document.getElementById('page2').style.display = 'none';
+        document.getElementById('page1').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
-        /* Family Table Operations */
-        function addFamilyRow() {
-            const tbody = document.querySelector('#familyTable tbody');
-            const rowHTML = `
-            <tr>
-                <td><input type="text" name="famName[]" placeholder="Name" required></td>
-                <td><input type="number" name="famAge[]" placeholder="Age" required></td>
-                <td><input type="text" name="famRelation[]" placeholder="Relation" required></td>
-                <td><input type="text" name="famOccupation[]" placeholder="Occupation" required></td>
-                <td><button type="button" class="remove-row-btn" onclick="removeFamilyRow(this)"><i class="fas fa-trash"></i></button></td>
-            </tr>`;
-            tbody.insertAdjacentHTML('beforeend', rowHTML);
-        }
+    function showLoader() {
+        document.getElementById('loadingPageMask').style.display = 'flex';
+    }
 
-        function removeFamilyRow(button) {
-            const row = button.closest('tr');
-            const tbody = document.querySelector('#familyTable tbody');
-            if (tbody.rows.length > 1) {
-                row.remove();
-            } else {
-                alert("At least one family record must remain declared.");
-            }
-        }
+    function hideLoader() {
+        document.getElementById('loadingPageMask').style.display = 'none';
+    }
 
-        /* Document Table Dynamic Extension Operations[cite: 1] */
-        function addDocumentRow() {
-            const tbody = document.querySelector('#documentTable tbody');
-            const rowHTML = `
-            <tr>
-                <td>
-                    <input type="text" name="docType[]" placeholder="Document Type" required>
-                </td>
-                <td>
-                    <input type="file" name="docFiles[]" accept=".pdf,.zip" required>
-                </td>
-                <td>
-                    <button type="button" class="remove-row-btn" onclick="removeDocumentRow(this)">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </td>
-            </tr>`;
-            tbody.insertAdjacentHTML('beforeend', rowHTML);
-        }
+    /* Family Table Operations */
+    function addFamilyRow() {
+        const tbody = document.querySelector('#familyTable tbody');
+        const rowHTML = `
+        <tr>
+            <td><input type="text" name="famName[]" placeholder="Name" required></td>
+            <td><input type="number" name="famAge[]" placeholder="Age" required></td>
+            <td><input type="text" name="famRelation[]" placeholder="Relation" required></td>
+            <td><input type="text" name="famOccupation[]" placeholder="Occupation" required></td>
+            <td><button type="button" class="remove-row-btn" onclick="removeFamilyRow(this)"><i class="fas fa-trash"></i></button></td>
+        </tr>`;
+        tbody.insertAdjacentHTML('beforeend', rowHTML);
+    }
 
-        function removeDocumentRow(button) {
-            const row = button.closest('tr');
+    function removeFamilyRow(button) {
+        const row = button.closest('tr');
+        const tbody = document.querySelector('#familyTable tbody');
+        if (tbody.rows.length > 1) {
             row.remove();
+        } else {
+            alert("At least one family record must remain declared.");
+        }
+    }
+
+    /* Document Table Dynamic Extension Operations */
+    function addDocumentRow() {
+        const tbody = document.querySelector('#documentTable tbody');
+        const rowHTML = `
+        <tr>
+            <td>
+                <input type="text" name="docType[]" placeholder="Document Type" required>
+            </td>
+            <td>
+                <input type="file" name="docFiles[]" accept=".pdf,.zip" required>
+            </td>
+            <td>
+                <button type="button" class="remove-row-btn" onclick="removeDocumentRow(this)">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </td>
+        </tr>`;
+        tbody.insertAdjacentHTML('beforeend', rowHTML);
+    }
+
+    function removeDocumentRow(button) {
+        const row = button.closest('tr');
+        row.remove();
+    }
+
+    /**
+     * Validates document type immediately upon choice selection.
+     * Restricts selecting duplicate document types (excluding 'Other').
+     */
+    function validateDocumentSelection(currentSelect) {
+        hideStatus();
+        const chosenValue = currentSelect.value;
+
+        if (!chosenValue || chosenValue === "Other") {
+            return;
         }
 
-        /**
-         * Validates document type immediately upon choice selection.
-         * Restricts selecting duplicate document types (excluding 'Other').
-         */
-        function validateDocumentSelection(currentSelect) {
-            hideStatus();
-            const chosenValue = currentSelect.value;
+        const allDropdowns = document.getElementsByName('docType[]');
+        let structuralMatches = 0;
 
-            if (!chosenValue || chosenValue === "Other") {
-                return;
+        for (let i = 0; i < allDropdowns.length; i++) {
+            if (allDropdowns[i].value === chosenValue) {
+                structuralMatches++;
             }
+        }
 
-            const allDropdowns = document.getElementsByName('docType[]');
-            let structuralMatches = 0;
+        if (structuralMatches > 1) {
+            alert(`The document type "${chosenValue}" has already been selected. Please choose a different document type.`);
+            currentSelect.value = "";
+        }
+    }
 
-            for (let i = 0; i < allDropdowns.length; i++) {
-                if (allDropdowns[i].value === chosenValue) {
-                    structuralMatches++;
+    function resetFormHandler() {
+        hideStatus();
+
+        // Revert Family table back to a single baseline family row declaration
+        const familyTbody = document.querySelector('#familyTable tbody');
+        familyTbody.innerHTML = `
+        <tr>
+            <td><input type="text" name="famName[]" placeholder="Name" required></td>
+            <td><input type="number" name="famAge[]" placeholder="Age" required></td>
+            <td><input type="text" name="famRelation[]" placeholder="Relation" required></td>
+            <td><input type="text" name="famOccupation[]" placeholder="Occupation" required></td>
+            <td><button type="button" class="remove-row-btn" onclick="removeFamilyRow(this)"><i class="fas fa-trash"></i></button></td>
+        </tr>`;
+
+        // Revert Document table back to the core mandatory grid array settings
+        const docTbody = document.querySelector('#documentTable tbody');
+        docTbody.innerHTML = `
+        <tr>
+            <td>
+                <input type="hidden" name="docType[]" value="Recommendation Letter">
+                <strong>Recommendation Letter / अनुशंसा पत्र <span class="required">*</span></strong>
+            </td>
+            <td><input type="file" name="docFiles[]" accept=".pdf,.zip" required></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>
+                <input type="hidden" name="docType[]" value="Passport Photo">
+                <strong>Beneficiary Passport Photo / पासपोर्ट फोटो <span class="required">*</span></strong>
+            </td>
+            <td><input type="file" name="docFiles[]" accept=".pdf,.zip" required></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>
+                <input type="hidden" name="docType[]" value="Aadhaar Card">
+                <strong>Aadhaar Card / आधार कार्ड <span class="required">*</span></strong>
+            </td>
+            <td><input type="file" name="docFiles[]" accept=".pdf,.zip" required></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>
+                <input type="hidden" name="docType[]" value="Bank Statement">
+                <strong>6 Months Bank Statement / बैंक विवरण <span class="required">*</span></strong>
+            </td>
+            <td><input type="file" name="docFiles[]" accept=".pdf,.zip" required></td>
+            <td></td>
+        </tr>`;
+    }
+
+    // =========================================================================
+    // Core Asynchronous Parameter Validations & Backend Save Pipeline
+    // =========================================================================
+
+    function showFieldError(inputElem, errorSpan, msg) {
+        if (inputElem) inputElem.classList.add('invalid-field');
+        if (errorSpan) {
+            errorSpan.textContent = msg;
+            errorSpan.style.display = 'flex';
+        }
+    }
+
+    function clearFieldError(inputElem, errorSpan) {
+        if (inputElem) inputElem.classList.remove('invalid-field');
+        if (errorSpan) {
+            errorSpan.textContent = '';
+            errorSpan.style.display = 'none';
+        }
+    }
+
+    function showStatus(msg, statusType) {
+        const alertBox = document.getElementById('statusAlert');
+        if (alertBox) {
+            alertBox.textContent = msg;
+            alertBox.style.display = 'block';
+            alertBox.className = `status-notification status-${statusType}`;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }
+
+    function hideStatus() {
+        const alertBox = document.getElementById('statusAlert');
+        if (alertBox) alertBox.style.display = 'none';
+    }
+
+    function submitForm(event) {
+        event.preventDefault();
+        hideStatus();
+
+        if (document.querySelectorAll('.invalid-field').length > 0) {
+            showStatus("Please correct all flagged invalid parameter fields before proceeding.", "error");
+            return;
+        }
+
+        // Fail-safe check for duplicate optional document selections
+        const docTypesElements = document.getElementsByName('docType[]');
+        const checkedTypes = [];
+        for (let i = 0; i < docTypesElements.length; i++) {
+            const val = docTypesElements[i].value;
+            if (val && val !== "Other") {
+                if (checkedTypes.includes(val)) {
+                    showStatus(`Duplicate selection detected: You have selected "${val}" multiple times. Please choose unique document types.`, "error");
+                    return;
+                }
+                checkedTypes.push(val);
+            }
+        }
+
+        showLoader();
+
+        const application = {};
+        application.fullName = document.getElementById('fullName').value.trim();
+        application.dob = document.getElementById('dob').value;
+        const genderEl = document.querySelector('input[name="gender"]:checked');
+        application.gender = genderEl ? genderEl.value : '';
+        application.fatherName = document.getElementById('fatherName').value.trim();
+        application.phone = document.getElementById('phone').value.trim();
+        application.panNumber = document.getElementById('panNumber').value.trim();
+        application.address = document.getElementById('address').value.trim();
+        application.occupation = document.getElementById('occupation').value.trim();
+        application.monthlyIncome = document.getElementById('monthlyIncome').value;
+        application.appliedBefore = document.getElementById('appliedBefore').value.trim();
+        application.helpWanted = document.getElementById('helpWanted').value.trim();
+        application.afterHelpPlan = document.getElementById('afterHelpPlan').value.trim();
+
+        application.familyMembers = [];
+        const famNames = Array.from(document.getElementsByName('famName[]'));
+        const famAges = Array.from(document.getElementsByName('famAge[]'));
+        const famRelations = Array.from(document.getElementsByName('famRelation[]'));
+        const famOccupations = Array.from(document.getElementsByName('famOccupation[]'));
+
+        for (let i = 0; i < famNames.length; i++) {
+            const name = (famNames[i] && famNames[i].value.trim()) || '';
+            const age = (famAges[i] && famAges[i].value) || '';
+            const relation = (famRelations[i] && famRelations[i].value.trim()) || '';
+            const occ = (famOccupations[i] && famOccupations[i].value.trim()) || '';
+
+            if (name || age || relation || occ) {
+                application.familyMembers.push({ name: name, age: age, relation: relation, occupation: occ });
+            }
+        }
+
+        application.documentMetadata = [];
+        const docTypes = Array.from(document.getElementsByName('docType[]'));
+        for (let i = 0; i < docTypes.length; i++) {
+            if (docTypes[i] && docTypes[i].value) {
+                application.documentMetadata.push({ index: i, type: docTypes[i].value });
+            }
+        }
+
+        const formData = new FormData();
+        const jsonBlob = new Blob([JSON.stringify(application)], { type: 'application/json' });
+        formData.append('application', jsonBlob);
+
+        const docFilesInputs = document.getElementsByName('docFiles[]');
+        if (docFilesInputs && docFilesInputs.length > 0) {
+            for (let i = 0; i < docFilesInputs.length; i++) {
+                if (docFilesInputs[i].files && docFilesInputs[i].files.length > 0) {
+                    const fileObj = docFilesInputs[i].files[0];
+                    formData.append('files', fileObj, fileObj.name);
                 }
             }
-
-            if (structuralMatches > 1) {
-                alert(`The document type "${chosenValue}" has already been selected. Please choose a different document type.`);
-                currentSelect.value = "";
-            }
         }
 
-        function resetFormHandler() {
-            hideStatus();
-
-            // Revert Family table back to a single baseline family row declaration
-            const familyTbody = document.querySelector('#familyTable tbody');
-            familyTbody.innerHTML = `
-            <tr>
-                <td><input type="text" name="famName[]" placeholder="Name" required></td>
-                <td><input type="number" name="famAge[]" placeholder="Age" required></td>
-                <td><input type="text" name="famRelation[]" placeholder="Relation" required></td>
-                <td><input type="text" name="famOccupation[]" placeholder="Occupation" required></td>
-                <td><button type="button" class="remove-row-btn" onclick="removeFamilyRow(this)"><i class="fas fa-trash"></i></button></td>
-            </tr>`;
-
-            // Revert Document table back to the core mandatory grid array settings[cite: 1]
-            const docTbody = document.querySelector('#documentTable tbody');
-            docTbody.innerHTML = `
-            <tr>
-                <td>
-                    <input type="hidden" name="docType[]" value="Recommendation Letter">
-                    <strong>Recommendation Letter / अनुशंसा पत्र <span class="required">*</span></strong>
-                </td>
-                <td><input type="file" name="docFiles[]" accept=".pdf,.zip" required></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="hidden" name="docType[]" value="Passport Photo">
-                    <strong>Beneficiary Passport Photo / पासपोर्ट फोटो <span class="required">*</span></strong>
-                </td>
-                <td><input type="file" name="docFiles[]" accept=".pdf,.zip" required></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="hidden" name="docType[]" value="Aadhaar Card">
-                    <strong>Aadhaar Card / आधार कार्ड <span class="required">*</span></strong>
-                </td>
-                <td><input type="file" name="docFiles[]" accept=".pdf,.zip" required></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="hidden" name="docType[]" value="Bank Statement">
-                    <strong>6 Months Bank Statement / बैंक विवरण <span class="required">*</span></strong>
-                </td>
-                <td><input type="file" name="docFiles[]" accept=".pdf,.zip" required></td>
-                <td></td>
-            </tr>`;
-        }
-
-        // =========================================================================
-        // Core Asynchronous Parameter Validations & Backend Save Pipeline
-        // =========================================================================
-
-        function showFieldError(inputElem, errorSpan, msg) {
-            if (inputElem) inputElem.classList.add('invalid-field');
-            if (errorSpan) {
-                errorSpan.textContent = msg;
-                errorSpan.style.display = 'flex';
-            }
-        }
-
-        function clearFieldError(inputElem, errorSpan) {
-            if (inputElem) inputElem.classList.remove('invalid-field');
-            if (errorSpan) {
-                errorSpan.textContent = '';
-                errorSpan.style.display = 'none';
-            }
-        }
-
-        function showStatus(msg, statusType) {
-            const alertBox = document.getElementById('statusAlert');
-            if (alertBox) {
-                alertBox.textContent = msg;
-                alertBox.style.display = 'block';
-                alertBox.className = `status-notification status-${statusType}`;
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-        }
-
-        function hideStatus() {
-            const alertBox = document.getElementById('statusAlert');
-            if (alertBox) alertBox.style.display = 'none';
-        }
-
-        function submitForm(event) {
-            event.preventDefault();
-            hideStatus();
-
-            if (document.querySelectorAll('.invalid-field').length > 0) {
-                showStatus("Please correct all flagged invalid parameter fields before proceeding.", "error");
-                return;
-            }
-
-            // Fail-safe check for duplicate optional document selections
-            const docTypesElements = document.getElementsByName('docType[]');
-            const checkedTypes = [];
-            for (let i = 0; i < docTypesElements.length; i++) {
-                const val = docTypesElements[i].value;
-                if (val && val !== "Other") {
-                    if (checkedTypes.includes(val)) {
-                        showStatus(`Duplicate selection detected: You have selected "${val}" multiple times. Please choose unique document types.`, "error");
-                        return;
-                    }
-                    checkedTypes.push(val);
+        fetch('/api/service-request/save', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => {
+                hideLoader();
+                if (!response.ok) {
+                    return response.text().then(t => { throw new Error(t || 'Server returned an error'); });
                 }
-            }
-
-            showLoader();
-
-            const application = {};
-            application.fullName = document.getElementById('fullName').value.trim();
-            application.dob = document.getElementById('dob').value;
-            const genderEl = document.querySelector('input[name="gender"]:checked');
-            application.gender = genderEl ? genderEl.value : '';
-            application.fatherName = document.getElementById('fatherName').value.trim();
-            application.phone = document.getElementById('phone').value.trim();
-            application.panNumber = document.getElementById('panNumber').value.trim();
-            application.address = document.getElementById('address').value.trim();
-            application.occupation = document.getElementById('occupation').value.trim();
-            application.monthlyIncome = document.getElementById('monthlyIncome').value;
-            application.appliedBefore = document.getElementById('appliedBefore').value.trim();
-            application.helpWanted = document.getElementById('helpWanted').value.trim();
-            application.afterHelpPlan = document.getElementById('afterHelpPlan').value.trim();
-
-            application.familyMembers = [];
-            const famNames = Array.from(document.getElementsByName('famName[]'));
-            const famAges = Array.from(document.getElementsByName('famAge[]'));
-            const famRelations = Array.from(document.getElementsByName('famRelation[]'));
-            const famOccupations = Array.from(document.getElementsByName('famOccupation[]'));
-
-            for (let i = 0; i < famNames.length; i++) {
-                const name = (famNames[i] && famNames[i].value.trim()) || '';
-                const age = (famAges[i] && famAges[i].value) || '';
-                const relation = (famRelations[i] && famRelations[i].value.trim()) || '';
-                const occ = (famOccupations[i] && famOccupations[i].value.trim()) || '';
-
-                if (name || age || relation || occ) {
-                    application.familyMembers.push({ name: name, age: age, relation: relation, occupation: occ });
-                }
-            }
-
-            application.documentMetadata = [];
-            const docTypes = Array.from(document.getElementsByName('docType[]'));
-            for (let i = 0; i < docTypes.length; i++) {
-                if (docTypes[i] && docTypes[i].value) {
-                    application.documentMetadata.push({ index: i, type: docTypes[i].value });
-                }
-            }
-
-            const formData = new FormData();
-            const jsonBlob = new Blob([JSON.stringify(application)], { type: 'application/json' });
-            formData.append('application', jsonBlob);
-
-            const docFilesInputs = document.getElementsByName('docFiles[]');
-            if (docFilesInputs && docFilesInputs.length > 0) {
-                for (let i = 0; i < docFilesInputs.length; i++) {
-                    if (docFilesInputs[i].files && docFilesInputs[i].files.length > 0) {
-                        const fileObj = docFilesInputs[i].files[0];
-                        formData.append('files', fileObj, fileObj.name);
-                    }
-                }
-            }
-
-            fetch('/api/service-request/save', {
-                method: 'POST',
-                body: formData
+                return response.json().catch(() => ({}));
             })
-                .then(response => {
-                    hideLoader();
-                    if (!response.ok) {
-                        return response.text().then(t => { throw new Error(t || 'Server returned an error'); });
-                    }
-                    return response.json().catch(() => ({}));
-                })
-                .then(data => {
-                    document.getElementById('portalFormContainer').style.display = 'none';
-                    const successMsg = document.getElementById('successMessage');
-                    successMsg.style.display = 'block';
-                    successMsg.scrollIntoView({ behavior: 'smooth' });
-                })
-                .catch((error) => {
-                    console.error('API Pipeline Submission Exception:', error);
-                    hideLoader();
+            .then(data => {
+                document.getElementById('portalFormContainer').style.display = 'none';
+                const successMsg = document.getElementById('successMessage');
+                successMsg.style.display = 'block';
+                successMsg.scrollIntoView({ behavior: 'smooth' });
+            })
+            .catch((error) => {
+                console.error('API Pipeline Submission Exception:', error);
+                hideLoader();
 
-                    document.getElementById('portalFormContainer').style.display = 'none';
-                    const errorMsg = document.getElementById('errorMessage');
-                    if (errorMsg) {
-                        errorMsg.style.display = 'block';
-                        errorMsg.scrollIntoView({ behavior: 'smooth' });
-                    } else {
-                        showStatus('Failed to submit application. Please try again later.', 'error');
-                    }
-                });
-        }
-    </script>
+                document.getElementById('portalFormContainer').style.display = 'none';
+                const errorMsg = document.getElementById('errorMessage');
+                if (errorMsg) {
+                    errorMsg.style.display = 'block';
+                    errorMsg.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    showStatus('Failed to submit application. Please try again later.', 'error');
+                }
+            });
+    }
+</script>
 </body>
 </html>
