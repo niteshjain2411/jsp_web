@@ -425,25 +425,7 @@
 </section>
 
 <main class="main-content">
-
     <section class="about-col">
-        <h2>About JSP</h2>
-        <div class="about-text">
-            <p>Established on <b>Mahavir Jayanti 2007</b> at Manikbag Jain Temple, Jain Sangh Pune (JSP) is a religious
-                and social trust founded by highly educated young professionals.</p>
-            <p>Our mission is to support all Jains residing in or visiting Pune in practicing their faith, providing
-                comprehensive assistance and bringing the community together on a single platform.</p>
-            <div class="trust-badge">
-                ⚖️ JSP is officially registered under the Public Trust Act, 1950 (Reg No: E-6048/PUNE).
-            </div>
-        </div>
-
-        <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/PEyKxbKxvXc?si=aXuUbmrQpJHfBDQW" title="YouTube video player"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-
         <section class="stats-section">
             <h2>Our Impact | हमारी उपलब्धियां</h2>
             <div class="stats-grid">
@@ -490,22 +472,43 @@
                 </div>
             </div>
         </section>
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/PEyKxbKxvXc?si=aXuUbmrQpJHfBDQW" title="YouTube video player"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
     </section>
 
     <section class="info-card initiatives-col">
         <h3 class="events-title">News & Upcoming Events</h3>
-        <div class="event-banner-container">
-            <img src="../images/utthan.jpeg" alt="Utthan Event Banner" class="event-banner" style="height: auto; object-fit: cover; border-radius: 8px;">
-        </div>
         <div style="height:auto; overflow:auto">
             <div class="event-header">
-                <span class="event-badge">प्रथम अधिवेशन एवं जन संवाद</span>
-                <h4 class="event-banner-title">🌈 जैन संघ पुणे आयोजित 🌈</h4>
-                <div class="event-date">🗓️ 30 - 31 May</div>
+                <h3>सराक क्षेत्र में जैनोद्धार</h3>
+                <h4 class="event-banner-title">🌈 पूर्वी भारत में मचेगी दशलक्षण की धूम 🌈</h4>
+                <h4>15 - 24 September 2026</h4>
+                <video id="saraakVideo" width="450" height="400" src="../videos/JSP_saraak_2026.mp4" controls autoplay muted></video>
+                <p class="event-description">
+                <div style="font-family: Arial, sans-serif; background-color: #ffffff; color: #333333; padding: 20px; border: 1px solid #e0e0e0; border-radius: 12px; max-width: 450px; line-height: 1.6;">
+                    <p style="font-size: 18px; font-weight: bold; margin-bottom: 8px;">
+                        पूर्वी भारत में अहिंसा का शंखनाद 🐚
+                    </p>
+                    <p style="font-size: 16px; margin-bottom: 12px;">
+                        पूज्य मुनि श्री प्रमाण सागर जी महाराज ससंघ से जुड़ने का अभूतपूर्व मौका
+                    </p>
+                    <p style="font-size: 16px; font-weight: 500; color: #d9381e; margin-bottom: 16px;">
+                        जुड़ के देखो… अच्छा लगता है! ❤️
+                    </p>
+                    <p style="color: #1b74e4; font-weight: bold; margin-bottom: 16px;">
+                        #Gunayatan &nbsp; #JSP
+                    </p>
+                    <div style="font-size: 15px;">
+                        <p style="margin: 4px 0;">📞 75092 33075</p>
+                        <p style="margin: 4px 0;">📞 70036 34382</p>
+                        <p style="margin: 4px 0;">📞 87999 28258 (W)</p>
+                    </div>
+                </div>
             </div>
         </div>
-        <h3>Coverage of the event from Jinvani Channel</h3>
-        <iframe width="500" height="315" src="https://www.youtube.com/embed/87k0iZ_3Lyo?si=kxKQr6RP9FjljFmz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </section>
 </main>
 
@@ -528,6 +531,21 @@
 
         if (slides.length > 1) {
             setInterval(nextSlide, slideInterval);
+        }
+
+        // Auto-play video with audio workaround
+        const saraakVideo = document.getElementById('saraakVideo');
+        if (saraakVideo) {
+            saraakVideo.play().then(() => {
+                saraakVideo.muted = false;
+            }).catch(error => {
+                const enableAudio = () => {
+                    saraakVideo.muted = false;
+                    saraakVideo.play();
+                    document.removeEventListener('click', enableAudio);
+                };
+                document.addEventListener('click', enableAudio);
+            });
         }
     });
 </script>

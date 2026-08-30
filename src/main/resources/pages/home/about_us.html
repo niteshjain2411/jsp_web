@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>About Us - JSP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Theme variables */
+        :root{--primary-color:#2a7d8c;--primary-dark:#1e5c68;--accent:#f4b41a;--muted:#607d8b;--bg:#fafdfd;--card:#fff;--border:#e2e8f0;--radius:12px}
+        *{box-sizing:border-box}
+        body{font-family:'Open Sans',sans-serif;margin:0;color:var(--primary-dark);background:var(--bg);line-height:1.6}
+
+        /* Hero */
+        .hero{position:relative;height:420px;background-image:url('../images/jain-temple-background.png');background-size:cover;background-position:center;border-bottom:6px solid rgba(42,125,140,0.06)}
+        .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.15),rgba(0,0,0,0.45))}
+        .hero-inner{position:relative;z-index:2;padding:60px 5%;max-width:1200px;margin:0 auto;color:#fff}
+        .hero h1{font-family:'Montserrat',sans-serif;margin:0;font-size:2.4rem}
+        .hero p.lead{margin:10px 0 0;font-size:1.50rem;opacity:0.95; font-weight:500; font-style:italic}
+
+        /* Layout */
+        .container{max-width:1200px;margin:40px auto;padding:0 5%}
+        .grid{display:flex;gap:32px;flex-wrap:wrap}
+        .col-main{flex:1.6;min-width:320px}
+        .col-side{flex:1;min-width:300px}
+
+        .card{background:var(--card);padding:24px;border-radius:var(--radius);box-shadow:0 8px 20px rgba(42,125,140,0.06);border:1px solid var(--border)}
+        h2.section-title{font-family:'Montserrat',sans-serif;color:var(--primary-color);margin:0 0 14px;padding-left:12px;border-left:6px solid var(--accent)}
+
+        .about-text p{margin:0 0 12px;color:#334155}
+        .trust-badge{display:inline-block;background:#eef7f9;color:var(--primary-dark);padding:10px 14px;border-left:4px solid var(--primary-color);border-radius:0 10px 10px 0;font-weight:700;margin-top:12px}
+
+        /* Small features / values */
+        .values{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:18px}
+        .value{background:linear-gradient(180deg,#fff,#fafcff);padding:12px;border-radius:10px;border:1px solid #eef6f8;text-align:center}
+        .value .k{font-weight:700;color:var(--primary-color);font-size:1.05rem}
+        .value .l{font-size:0.9rem;color:var(--muted)}
+
+        /* Programs */
+        .programs{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:12px}
+        .program{padding:12px;border-radius:8px;border:1px solid var(--border);background:#fff}
+        .program h4{margin:6px 0;color:var(--primary-dark);font-size:1rem}
+        .program p{margin:0;color:#475569;font-size:0.95rem}
+
+        /* Stats */
+        .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-top:16px}
+        .stat{background:linear-gradient(180deg,#fff,#fbfbff);padding:14px;border-radius:10px;text-align:center;border:1px solid var(--border)}
+        .stat .icon{font-size:1.5rem;margin-bottom:4px}
+        .stat .num{font-family:'Montserrat',sans-serif;font-size:1.1rem;color:var(--primary-color);font-weight:800}
+        .stat .lbl{font-size:0.85rem;color:#475569;margin-top:6px}
+
+        /* Timeline */
+        .timeline{margin-top:18px;border-left:3px solid #eef6f8;padding-left:14px}
+        .tl-item{margin:10px 0;padding-left:12px}
+        .tl-item time{display:block;font-weight:700;color:var(--accent);font-size:0.9rem}
+
+        /* CTA */
+        .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+        .btn{display:inline-block;padding:10px 16px;border-radius:8px;text-decoration:none;font-weight:700}
+        .btn-primary{background:var(--primary-color);color:#fff}
+        .btn-outline{background:transparent;border:2px solid var(--primary-color);color:var(--primary-color)}
+
+        @media(max-width:992px){.hero{height:320px}.hero h1{font-size:1.6rem}.grid{flex-direction:column}}
+    </style>
+</head>
+
+<body>
+<div id="header-placeholder"></div>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-inner">
+
+    </div>
+</section>
+
+<main class="container">
+    <div class="grid">
+        <section class="col-main">
+            <div class="card about-card">
+                <h2 class="section-title">About Jain Sangh Pune(JSP)</h2>
+                <div class="about-text">
+                    <p> Since 2007, JSP has been serving the Jain community of Pune through spiritual guidance,
+                        social support, and community-led development programs. We combine tradition with a professional
+                        approach to deliver measurable impact.</p>
+                    <p>Established on <b>Mahavir Jayanti 2007</b> at Manikbag Jain Temple, JSP is a community
+                        trust founded by engaged professionals to preserve Jain culture, offer spiritual support,
+                        and provide social services for those in need.</p>
+                    <p>We work across spiritual, educational and humanitarian activities — from organizing religious
+                        events and pilgrimages to running scholarship programs and medical camps — always with
+                        an emphasis on dignity and transparency.</p>
+                    <div class="trust-badge">⚖️ Registered Public Trust (E-6048/PUNE)</div>
+
+                    <h3 style="margin-top:18px;margin-bottom:8px;color:var(--primary-dark)">Our Vision</h3>
+                    <p>To nurture a compassionate, informed and resilient Jain community that upholds its values
+                        while positively contributing to wider society.</p>
+
+                    <h3 style="margin-top:14px;margin-bottom:8px;color:var(--primary-dark)">Our Mission</h3>
+                    <p>Enable individuals and families through spiritual guidance, education, healthcare, and
+                        targeted social assistance — driven by accountability and community participation.</p>
+
+                    <div class="values">
+                        <div class="value"><div class="k">Integrity</div><div class="l">Transparent processes</div></div>
+                        <div class="value"><div class="k">Compassion</div><div class="l">People-first programs</div></div>
+                        <div class="value"><div class="k">Community</div><div class="l">Volunteer-led governance</div></div>
+                        <div class="value"><div class="k">Impact</div><div class="l">Measured &amp; reported</div></div>
+                    </div>
+
+                    <div class="cta-row">
+                        <a class="btn btn-primary" href="../test.html">Volunteer</a>
+                        <a class="btn btn-outline" href="../volunteer-registration.html">Register to help</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top:18px">
+                <h2 class="section-title">Milestones</h2>
+                <div class="timeline">
+                    <div class="tl-item"><time>2007</time><div>Founded at Manikbag Jain Temple on Mahavir Jayanti.</div></div>
+                    <div class="tl-item"><time>2010–2015</time><div>Expanded community services — sign boards, family support schemes and regular drives.</div></div>
+                    <div class="tl-item"><time>2016–Present</time><div>Scaled scholarship and healthcare programs; strengthened governance and reporting.</div></div>
+                </div>
+            </div>
+        </section>
+
+        <aside class="col-side">
+            <div class="card">
+                <h2 class="section-title">Our Impact</h2>
+                <div class="stats-grid">
+                    <div class="stat">
+                        <div class="stat-icon"><img src="../../images/JSP_sign_board.png" alt="Sign Board"
+                                                    style="width: 40px; height: auto;"></div>
+                        <div class="num">1100+</div>
+                        <div class="lbl">Sign Boards Installed</div>
+                    </div>
+                    <div class="stat">
+                        <div class="icon">👨‍👩‍👧‍👦</div>
+                        <div class="num">7,000+</div>
+                        <div class="lbl">Families Assisted</div>
+                    </div>
+                    <div class="stat">
+                        <div class="icon">👵</div>
+                        <div class="num">700+</div>
+                        <div class="lbl">Widow Pensions</div>
+                    </div>
+                    <div class="stat">
+                        <div class="icon">🎓</div>
+                        <div class="num">100+</div>
+                        <div class="lbl">Scholarships Awarded</div>
+                    </div>
+                    <div class="stat">
+                        <div class="icon">🚌</div>
+                        <div class="num">100+</div>
+                        <div class="lbl">Teerth Yatras</div>
+                    </div>
+                    <div class="stat">
+                        <div class="icon">🏢</div>
+                        <div class="num">JSP</div>
+                        <div class="lbl">Secure Jain Society</div>
+                    </div>
+                    <div class="stat">
+                        <div class="icon">⚕️</div>
+                        <div class="num">Seva</div>
+                        <div class="lbl">Charitable Dispensary</div>
+                    </div>
+                    <div class="stat">
+                        <div class="icon">🏡</div>
+                        <div class="num">Sant Nivas</div>
+                        <div class="lbl">Vidya Shanti Nilay</div>
+                    </div>
+                </div>
+                <div style="margin-top:12px;color:#566173;font-size:0.95rem">We maintain careful records and publish summaries of our activities to keep the community informed.</div>
+            </div>
+
+            <div class="card" style="margin-top:18px">
+                <h2 class="section-title">Governance</h2>
+                <p style="margin:0;color:#475569">JSP is governed by a volunteer board of trustees and a small team of coordinators. We follow
+                    standard financial practices and report to the community regularly. For trustee details and
+                    meeting minutes, please contact us.</p>
+                <div style="margin-top:12px;text-align:center">
+                    <a class="btn btn-primary" href="contact-us.html">Contact Us</a>
+                </div>
+            </div>
+        </aside>
+    </div>
+</main>
+
+<div id="footer-placeholder"></div>
+
+<script src="../header-loader.js"></script>
+<script src="../footer-loader.js"></script>
+</body>
+
+</html>
