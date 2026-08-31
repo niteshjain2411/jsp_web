@@ -4,17 +4,14 @@ import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import jakarta.annotation.PostConstruct;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 @Configuration
 public class FirebaseConfig {
 
-   /* @PostConstruct
+    @PostConstruct
     public void initialize() {
         try {
             FirebaseOptions options = FirebaseOptions.builder()
@@ -28,9 +25,9 @@ public class FirebaseConfig {
             e.printStackTrace();
             System.out.println("Failed to initialize Firebase: " + e.getMessage());
         }
-    }*/
+    }
 
-    @Bean
+   /* @Bean
     public FirebaseApp initializeFirebase() throws IOException {
         // Read the service account JSON from resources folder
         FirebaseOptions options;
@@ -48,5 +45,5 @@ public class FirebaseConfig {
         }
 
         return FirebaseApp.getInstance();
-    }
+    }*/
 }

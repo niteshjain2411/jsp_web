@@ -24,8 +24,8 @@ public class FirebaseStorageService {
         }
 
         // 1. Initialize Storage Options (Uses your application's service account credentials automatically)
-//        final Storage storage = StorageOptions.getDefaultInstance().getService();//This is required when running on a server or cloud environment
-        final Storage storage = StorageClient.getInstance().bucket(BUCKET_NAME).getStorage();//This line is required when running locally
+        final Storage storage = StorageOptions.getDefaultInstance().getService();//This is required when running on a server or cloud environment
+//        final Storage storage = StorageClient.getInstance().bucket(BUCKET_NAME).getStorage();//This line is required when running locally
 
         // 2. Generate a unique file name to avoid overwriting existing files
         final String originalFileName = multipartFile.getOriginalFilename();
