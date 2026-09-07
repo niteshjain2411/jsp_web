@@ -4,26 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jain Sangh Pune | JSP</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap"
           rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
         :root {
-            --primary-color: #2a7d8c;
-            --primary-dark: #1e5c68;
-            --primary-light: #eef7f9;
-            --secondary-color: #f4b41a;
+            --primary-color: #1e6b7b;
+            --primary-dark: #12434d;
+            --primary-light: #e6f4f8;
+            --secondary-color: #f39c12;
             --secondary-accent: #e67e22;
-            --text-dark: #2c3e50;
-            --text-muted: #607d8b;
-            --light-bg: #f8fbfb;
+            --accent-gold: #ffb703;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --light-bg: #f8fafc;
             --border-color: #e2e8f0;
             --card-bg: #ffffff;
-            --shadow-sm: 0 2px 4px rgba(0,0,0,0.02);
-            --shadow-md: 0 10px 25px rgba(42, 125, 140, 0.08);
-            --shadow-lg: 0 15px 35px rgba(0,0,0,0.1);
+            --shadow-sm: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+            --shadow-md: 0 10px 25px -5px rgba(30, 107, 123, 0.12), 0 8px 10px -6px rgba(0,0,0,0.04);
+            --shadow-lg: 0 20px 35px -5px rgba(0,0,0,0.15), 0 10px 10px -5px rgba(0,0,0,0.04);
+            --radius-lg: 16px;
             --radius-md: 12px;
-            --radius-sm: 6px;
+            --radius-sm: 8px;
+            --gradient-primary: linear-gradient(135deg, #1e6b7b 0%, #0d434e 100%);
+            --gradient-gold: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
         }
 
         * {
@@ -35,7 +39,7 @@
             margin: 0;
             padding: 0;
             color: var(--text-dark);
-            background-color: #fafdfd;
+            background: linear-gradient(180deg, #f0f7f9 0%, #f8fafc 100%);
             line-height: 1.6;
         }
 
@@ -44,8 +48,9 @@
             width: 100%;
             height: 600px;
             position: relative;
-            background: #111;
+            background: #0f172a;
             overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         .hero-slideshow img {
             position: absolute;
@@ -56,11 +61,13 @@
             object-fit: cover;
             object-position: center;
             opacity: 0;
-            transition: opacity 1.5s ease-in-out;
+            transition: opacity 1.5s ease-in-out, transform 8s ease-out;
+            transform: scale(1.05);
             z-index: 1;
         }
         .hero-slideshow img.active {
             opacity: 0.85;
+            transform: scale(1);
             z-index: 2;
         }
         .hero-overlay {
@@ -68,24 +75,28 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
-            padding: 40px 5%;
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.6) 50%, rgba(0,0,0,0) 100%);
+            padding: 60px 5% 40px 5%;
             color: #fff;
             z-index: 10;
         }
         .hero-overlay h1 {
             font-family: 'Montserrat', sans-serif;
             margin: 0 0 10px 0;
-            font-size: 2.5rem;
-            font-weight: 700;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ffffff, #f4b41a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            letter-spacing: -0.5px;
         }
 
         /* Main Content Structural Grid */
         .main-content {
             display: flex;
             flex-wrap: wrap;
-            padding: 60px 5% 30px 5%;
+            padding: 50px 5% 40px 5%;
             gap: 40px;
             max-width: 1400px;
             margin: 0 auto;
@@ -97,45 +108,28 @@
             min-width: 350px;
         }
 
-        h2 {
+        .section-title {
             font-family: 'Montserrat', sans-serif;
             color: var(--primary-color);
             margin-top: 0;
             margin-bottom: 25px;
-            font-size: 2rem;
-            font-weight: 700;
-            border-left: 6px solid var(--secondary-color);
-            padding-left: 15px;
+            font-size: 2.1rem;
+            font-weight: 800;
+            position: relative;
+            display: inline-block;
+            padding-left: 20px;
             letter-spacing: -0.5px;
         }
 
-        .about-text {
-            font-size: 1.1rem;
-            color: #4a5568;
-            background: var(--card-bg);
-            padding: 35px;
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-md);
-            border: 1px solid var(--border-color);
-            margin-bottom: 30px;
-        }
-        .about-text p {
-            margin-top: 0;
-            margin-bottom: 20px;
-            line-height: 1.8;
-        }
-        .about-text p:last-child {
-            margin-bottom: 0;
-        }
-        .trust-badge {
-            background: var(--primary-light);
-            border-left: 4px solid var(--primary-color);
-            padding: 12px 20px;
-            font-size: 1rem;
-            color: var(--primary-dark);
-            font-weight: 600;
-            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-            margin-top: 25px;
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 6px;
+            background: var(--gradient-gold);
+            border-radius: 4px;
         }
 
         /* Responsive Embedded Video Container */
@@ -145,11 +139,16 @@
             padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
             height: 0;
             overflow: hidden;
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-md);
-            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            border: 2px solid #ffffff;
             margin-bottom: 40px;
             background: #000;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .video-container:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(30, 107, 123, 0.2);
         }
         .video-container iframe {
             position: absolute;
@@ -165,13 +164,15 @@
             flex: 1;
             min-width: 320px;
             max-width: 540px;
-            background: var(--card-bg);
-            padding: 24px;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-md);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 28px;
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: var(--shadow-lg);
             display: flex;
             flex-direction: column;
+            position: relative;
         }
 
         .events-title {
@@ -179,221 +180,188 @@
             font-family: 'Montserrat', sans-serif;
             color: var(--primary-color);
             margin-top: 0;
-            margin-bottom: 16px;
-            font-size: 1.4rem;
-            font-weight: 700;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            position: relative;
+            padding-bottom: 10px;
         }
-        .event-banner-container {
-            width: 100%;
-            border-radius: var(--radius-sm);
+
+        .events-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: var(--gradient-gold);
+            border-radius: 2px;
+        }
+
+        /* News Carousel Slider */
+        .news-slider-wrapper {
+            position: relative;
             overflow: hidden;
-            margin-bottom: 16px;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--border-color);
-        }
-        .event-banner {
             width: 100%;
-            display: block;
-            height: auto;
-            transition: transform 0.5s ease;
+            border-radius: var(--radius-md);
         }
-        .event-banner-container:hover .event-banner {
-            transform: scale(1.03);
-        }
-        .event-header {
-            text-align: center;
-            background: var(--primary-light);
-            padding: 12px;
-            border-radius: var(--radius-sm);
-            border: 1px solid #d1e9ed;
-            margin-bottom: 16px;
-        }
-        .event-badge {
-            background: var(--secondary-color);
-            color: #fff;
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            display: inline-block;
-            margin-bottom: 6px;
-            letter-spacing: 0.3px;
-        }
-        .event-banner-title {
-            margin: 2px 0;
-            font-size: 1.15rem;
-            color: var(--primary-dark);
-            font-weight: 700;
-        }
-        .event-date {
-            font-weight: 700;
-            color: var(--secondary-accent);
-            margin-top: 4px;
-            font-size: 0.88rem;
-        }
-        .session-divider {
-            background: #f1f5f9;
-            color: var(--primary-dark);
-            padding: 6px 10px;
-            margin: 16px 0 8px 0;
-            border-left: 3px solid var(--primary-color);
-            font-size: 0.9rem;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-        }
-        .schedule-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .schedule-list li {
+
+        .news-slider {
             display: flex;
-            padding: 8px 0;
-            border-bottom: 1px dashed var(--border-color);
-            font-size: 0.88rem;
-            line-height: 1.4;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            width: 100%;
         }
-        .schedule-list li:last-child {
-            border-bottom: none;
+
+        .news-slide {
+            min-width: 100%;
+            box-sizing: border-box;
+            padding: 4px;
         }
-        .time {
-            font-weight: 700;
-            color: var(--secondary-accent);
-            min-width: 75px;
-            flex-shrink: 0;
-            font-family: 'Montserrat', sans-serif;
-        }
-        .desc {
-            color: #334155;
-            flex-grow: 1;
-        }
-        .topics-note {
-            display: block;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-top: 3px;
-            font-style: italic;
-        }
-        .topic-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 4px;
-            margin-top: 6px;
-        }
-        .tag {
-            background: var(--primary-light);
-            color: var(--primary-color);
-            font-size: 0.75rem;
-            padding: 2px 6px;
-            border-radius: 4px;
-            border: 1px solid #d1e9ed;
-            font-weight: 600;
-        }
-        .event-footer {
-            margin-top: 20px;
-            padding-top: 16px;
-            border-top: 2px dashed var(--border-color);
-            text-align: center;
-        }
-        .map-btn {
-            display: inline-block;
-            background: #4285F4;
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--gradient-primary);
             color: white;
-            text-decoration: none;
-            padding: 8px 16px;
-            border-radius: var(--radius-sm);
-            font-weight: 600;
-            font-size: 0.85rem;
-            margin-bottom: 12px;
-            transition: background 0.2s;
+            border: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
         }
-        .map-btn:hover {
-            background: #357ae8;
+
+        .slider-btn:hover {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 15px rgba(30, 107, 123, 0.4);
         }
-        .inviter {
-            margin-bottom: 8px;
-            color: #475569;
-            font-size: 0.85rem;
+
+        .slider-btn.prev { left: 10px; }
+        .slider-btn.next { right: 10px; }
+
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 16px;
         }
-        .contacts {
-            font-size: 0.85rem;
-            color: #475569;
-            background: #f8fafc;
-            padding: 8px;
-            border-radius: var(--radius-sm);
-            border: 1px solid var(--border-color);
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #cbd5e1;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        .contacts a {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 600;
-            margin: 0 2px;
-        }
-        .contacts a:hover {
-            text-decoration: underline;
+
+        .dot.active {
+            background: var(--gradient-gold);
+            width: 28px;
+            border-radius: 10px;
         }
 
         /* Aggregated Impact/Stats Matrix styling */
         .stats-section {
-            padding: 10px 0 10px 0;
+            padding: 10px 0 20px 0;
         }
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 15px;
+            gap: 18px;
             margin-top: 20px;
         }
         .stat-card {
-            border: 1px solid var(--border-color);
+            border: 1px solid rgba(255, 255, 255, 0.6);
             border-radius: var(--radius-md);
-            padding: 14px 10px;
+            padding: 18px 12px;
             text-align: center;
             box-shadow: var(--shadow-sm);
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: transparent;
+            transition: background 0.3s ease;
         }
 
         /* Individual grid item color assignments */
-        .stat-card:nth-child(1) { background-color: #f0f7f8; }
-        .stat-card:nth-child(2) { background-color: #fdf8eb; }
-        .stat-card:nth-child(3) { background-color: #fff4f2; }
-        .stat-card:nth-child(4) { background-color: #f3f0fa; }
-        .stat-card:nth-child(5) { background-color: #ebf6ff; }
-        .stat-card:nth-child(6) { background-color: #f0fbf4; }
-        .stat-card:nth-child(7) { background-color: #fbf2ff; }
-        .stat-card:nth-child(8) { background-color: #fffaf0; }
+        .stat-card:nth-child(1) { background: linear-gradient(135deg, #ffffff 0%, #eef7f9 100%); }
+        .stat-card:nth-child(2) { background: linear-gradient(135deg, #ffffff 0%, #fdf8eb 100%); }
+        .stat-card:nth-child(3) { background: linear-gradient(135deg, #ffffff 0%, #fff4f2 100%); }
+        .stat-card:nth-child(4) { background: linear-gradient(135deg, #ffffff 0%, #f3f0fa 100%); }
+        .stat-card:nth-child(5) { background: linear-gradient(135deg, #ffffff 0%, #ebf6ff 100%); }
+        .stat-card:nth-child(6) { background: linear-gradient(135deg, #ffffff 0%, #f0fbf4 100%); }
+        .stat-card:nth-child(7) { background: linear-gradient(135deg, #ffffff 0%, #fbf2ff 100%); }
+        .stat-card:nth-child(8) { background: linear-gradient(135deg, #ffffff 0%, #fffaf0 100%); }
 
         .stat-card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-6px) scale(1.02);
             box-shadow: var(--shadow-md);
-            border-color: var(--primary-color);
+            border-color: rgba(42, 125, 140, 0.3);
+        }
+        .stat-card:hover::before {
+            background: var(--gradient-gold);
         }
         .stat-icon {
-            font-size: 1.6rem;
-            margin-bottom: 6px;
+            font-size: 1.8rem;
+            margin-bottom: 8px;
             display: inline-block;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+            transition: transform 0.3s ease;
+        }
+        .stat-card:hover .stat-icon {
+            transform: scale(1.15);
         }
         .stat-number {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.25rem;
-            font-weight: 700;
+            font-size: 1.4rem;
+            font-weight: 800;
             color: var(--primary-color);
             margin-bottom: 4px;
             letter-spacing: -0.5px;
         }
         .stat-label {
-            font-size: 0.8rem;
-            color: #475569;
+            font-size: 0.85rem;
+            color: var(--text-dark);
             font-weight: 600;
             line-height: 1.3;
         }
 
+        .card-box {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #ffffff;
+            color: #333333;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            line-height: 1.6;
+            box-shadow: var(--shadow-sm);
+        }
+
         /* Adaptive Responsive Breakpoints */
         @media (max-width: 992px) {
-            .main-content { flex-direction: column; padding-top: 40px; }
+            .main-content { flex-direction: column; padding-top: 30px; }
             .initiatives-col { max-width: 100%; min-width: 100%; }
-            .hero-slideshow { height: 500px; }
-            .hero-overlay h1 { font-size: 1.8rem; }
+            .hero-slideshow { height: 450px; }
+            .hero-overlay h1 { font-size: 2rem; }
         }
     </style>
 </head>
@@ -427,7 +395,7 @@
 <main class="main-content">
     <section class="about-col">
         <section class="stats-section">
-            <h2>Our Impact | हमारी उपलब्धियां</h2>
+            <h2 class="section-title">Our Impact | हमारी उपलब्धियां</h2>
             <div class="stats-grid">
                 <div class="stat-card">
                     <div class="stat-icon"><img src="../images/JSP_sign_board.png" alt="Sign Board"
@@ -481,32 +449,83 @@
 
     <section class="info-card initiatives-col">
         <h3 class="events-title">News & Upcoming Events</h3>
-        <div style="height:auto; overflow:auto">
-            <div class="event-header">
-                <h3>सराक क्षेत्र में जैनोद्धार</h3>
-                <h4 class="event-banner-title">🌈 पूर्वी भारत में मचेगी दशलक्षण की धूम 🌈</h4>
-                <h4>15 - 24 September 2026</h4>
-                <video id="saraakVideo" width="450" height="400" src="../videos/JSP_saraak_2026.mp4" controls autoplay muted></video>
-                <p class="event-description">
-                <div style="font-family: Arial, sans-serif; background-color: #ffffff; color: #333333; padding: 20px; border: 1px solid #e0e0e0; border-radius: 12px; max-width: 450px; line-height: 1.6;">
-                    <p style="font-size: 18px; font-weight: bold; margin-bottom: 8px;">
-                        पूर्वी भारत में अहिंसा का शंखनाद 🐚
-                    </p>
-                    <p style="font-size: 16px; margin-bottom: 12px;">
-                        पूज्य मुनि श्री प्रमाण सागर जी महाराज ससंघ से जुड़ने का अभूतपूर्व मौका
-                    </p>
-                    <p style="font-size: 16px; font-weight: 500; color: #d9381e; margin-bottom: 16px;">
-                        जुड़ के देखो… अच्छा लगता है! ❤️
-                    </p>
-                    <p style="color: #1b74e4; font-weight: bold; margin-bottom: 16px;">
-                        #Gunayatan &nbsp; #JSP
-                    </p>
-                    <div style="font-size: 15px;">
-                        <p style="margin: 4px 0;">📞 75092 33075</p>
-                        <p style="margin: 4px 0;">📞 70036 34382</p>
-                        <p style="margin: 4px 0;">📞 87999 28258 (W)</p>
+        <div class="news-slider-wrapper" id="newsSliderWrapper">
+            <button class="slider-btn prev" id="prevNewsBtn">&#10094;</button>
+            <button class="slider-btn next" id="nextNewsBtn">&#10095;</button>
+            <div class="news-slider" id="newsSlider">
+                <div class="news-slide">
+                    <div class="event-header">
+                        <h3 style="color: var(--primary-color); font-weight: 700; margin-bottom: 4px;">सराक क्षेत्र में जैनोद्धार</h3>
+                        <h3 style="color: var(--secondary-accent); font-weight: 700; margin-top: 0; margin-bottom: 8px;">🌈 पूर्वी भारत में मचेगी दशलक्षण की धूम 🌈</h3>
+                        <h4 style="color: var(--text-muted); margin-top: 0; margin-bottom: 12px;">16 - 25 September 2026</h4>
+                        <video id="saraakVideo" width="100%" height="auto" src="../videos/JSP_saraak_2026.mp4" controls autoplay muted style="border-radius: var(--radius-sm); box-shadow: var(--shadow-sm);"></video>
+                        <div class="card-box" style="margin-top: 12px;">
+                            <p style="font-size: 16px; font-weight: bold; margin-top: 0; margin-bottom: 8px;">
+                                पूर्वी भारत में अहिंसा का शंखनाद 🐚
+                            </p>
+                            <p style="font-size: 14px; margin-bottom: 10px; font-weight: bold;">
+                                पूज्य मुनि श्री प्रमाण सागर जी महाराज ससंघ से जुड़ने का अभूतपूर्व मौका
+                            </p>
+                            <p style="font-size: 14px; line-height: 1.6; margin-bottom: 10px;">
+                                सराक समुदाय का मूल आधार जैन आचरण, अजातीयता, अहिंसा और शुद्ध जीवन मूल्य रहा है।
+                                यह अभियान उनके सांस्कृतिक, धार्मिक और सामाजिक उत्थान को मजबूत करने के लिए आयोजित है।
+                            </p>
+                            <p style="font-size: 14px; line-height: 1.6; margin-bottom: 12px;">
+                                इस योजना के माध्यम से समुदाय को अपनी पहचान, परंपरा और भावी जिम्मेदारियों से जोड़कर
+                                सेवा, शिक्षा और सामाजिक जागरूकता को आगे बढ़ाया जा रहा है।
+                            </p>
+                            <p style="font-size: 14px; font-weight: 600; color: #d9381e; margin-bottom: 12px;">
+                                जुड़ के देखो… अच्छा लगता है! ❤️
+                            </p>
+                            <p style="color: #1b74e4; font-weight: bold; margin-bottom: 12px;">
+                                #Gunayatan <br>
+                                #JSP
+                            </p>
+                            <div style="font-size: 14px;">
+                                <p style="margin: 4px 0;">📞 7509233075</p>
+                                <p style="margin: 4px 0;">📞 7003634382</p>
+                                <p style="margin: 4px 0;">📞 8799928258 (WhatsApp)</p>
+                            </div>
+                            <div style="margin-top: 10px; margin-bottom: 12px; text-align: right;">
+                                <a href="activities/saraak.html"
+                                   style="color: var(--primary-color); text-decoration: none; font-weight: 700; border: 1px solid var(--primary-color); border-radius: 999px; padding: 7px 12px; background: #f5fbfc;">
+                                    Learn More ...
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <div class="news-slide">
+                    <div class="news-img-container" style="border-radius: var(--radius-sm); overflow: hidden; margin-bottom: 12px; box-shadow: var(--shadow-sm);">
+                        <img src="../images/home/Janganna.jpeg" alt="जनगणना 2027 जानकारी" style="width: 100%; height: auto; display: block;">
+                    </div>
+                    <div class="card-box">
+                        <p style="font-size: 16px; font-weight: bold; color: var(--primary-color); margin-top: 0; margin-bottom: 8px;">
+                            जनगणना 2027 का दूसरा चरण (Phase 2) — Population Enumeration
+                        </p>
+                        <p style="font-size: 14px; margin-bottom: 10px;">
+                            जनगणना का दूसरा चरण जल्द शुरू होने वाला है। इस चरण में घर-घर जाकर धर्म और जाति, दोनों अलग-अलग पूछे जाएंगे।
+                        </p>
+                        <p style="font-size: 14px; font-weight: bold; color: #d9381e; margin-bottom: 10px;">
+                            याद रखिए — जैन एक धर्म है, जाति नहीं।
+                        </p>
+                        <div style="background: var(--primary-light); padding: 12px; border-radius: var(--radius-sm); border-left: 4px solid var(--primary-color); margin-bottom: 10px; font-size: 14px;">
+                            <p style="margin: 4px 0;">✅ <b>प्रश्न 9 (धर्म):</b> लिखें — जैन</p>
+                            <p style="margin: 4px 0;">✅ <b>प्रश्न 10 (जाति):</b> लिखें — अपनी असली जाति</p>
+                        </div>
+                        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 8px;">
+                            दोनों अलग सवाल हैं, इन्हें मिलाना नहीं है। कन्फ्यूजन नहीं, क्लैरिटी चाहिए। करोड़ों जैन हैं हम। हर घर तक यह बात सही तरीके से पहुंचनी चाहिए।
+                        </p>
+                        <p style="font-size: 14px; font-weight: bold; color: var(--primary-dark); margin: 0;">
+                            महावीर को धर्म से जोड़िये, जाति से नहीं। सभी जाति के लोग महावीर के अनुयायी हो सकते हैं। 🙏
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slider-dots" id="sliderDots">
+                <span class="dot active" onclick="goToSlide(0)"></span>
+                <span class="dot" onclick="goToSlide(1)"></span>
             </div>
         </div>
     </section>
@@ -518,23 +537,93 @@
 <script src="footer-loader.js"></script>
 <script src="news-loader.js"></script>
 <script>
+    let currentNewsSlide = 0;
+    let newsAutoSlideInterval;
+
+    function id(elemId) { return document.getElementById(elemId); }
+
+    function updateSlider() {
+        const slider = id('newsSlider');
+        const dots = document.querySelectorAll('.dot');
+        if (slider) {
+            slider.style.transform = `translateX(-${currentNewsSlide * 100}%)`;
+        }
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentNewsSlide);
+        });
+    }
+
+    function nextNewsSlide() {
+        const totalSlides = document.querySelectorAll('.news-slide').length;
+        currentNewsSlide = (currentNewsSlide + 1) % totalSlides;
+        updateSlider();
+    }
+
+    function prevNewsSlide() {
+        const totalSlides = document.querySelectorAll('.news-slide').length;
+        currentNewsSlide = (currentNewsSlide - 1 + totalSlides) % totalSlides;
+        updateSlider();
+    }
+
+    function goToSlide(index) {
+        currentNewsSlide = index;
+        updateSlider();
+        resetNewsAutoSlide();
+    }
+
+    function startNewsAutoSlide() {
+        newsAutoSlideInterval = setInterval(nextNewsSlide, 10000);
+    }
+
+    function resetNewsAutoSlide() {
+        clearInterval(newsAutoSlideInterval);
+        startNewsAutoSlide();
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
+        // Hero Slideshow
         const slides = document.querySelectorAll('.hero-slideshow img');
         let currentSlide = 0;
         const slideInterval = 5000;
 
-        function nextSlide() {
+        function nextHeroSlide() {
             slides[currentSlide].classList.remove('active');
             currentSlide = (currentSlide + 1) % slides.length;
             slides[currentSlide].classList.add('active');
         }
 
         if (slides.length > 1) {
-            setInterval(nextSlide, slideInterval);
+            setInterval(nextHeroSlide, slideInterval);
         }
 
+        // News Slider controls
+        const prevBtn = id('prevNewsBtn');
+        const nextBtn = id('nextNewsBtn');
+        const newsWrapper = id('newsSliderWrapper');
+
+        if (prevBtn && nextBtn) {
+            prevBtn.addEventListener('click', () => {
+                prevNewsSlide();
+                resetNewsAutoSlide();
+            });
+
+            nextBtn.addEventListener('click', () => {
+                nextNewsSlide();
+                resetNewsAutoSlide();
+            });
+        }
+
+        // Pause auto-sliding when user hovers over the news section
+        if (newsWrapper) {
+            newsWrapper.addEventListener('mouseenter', () => clearInterval(newsAutoSlideInterval));
+            newsWrapper.addEventListener('mouseleave', () => startNewsAutoSlide());
+        }
+
+        // Start auto slider (10 seconds)
+        startNewsAutoSlide();
+
         // Auto-play video with audio workaround
-        const saraakVideo = document.getElementById('saraakVideo');
+        const saraakVideo = id('saraakVideo');
         if (saraakVideo) {
             saraakVideo.play().then(() => {
                 saraakVideo.muted = false;
