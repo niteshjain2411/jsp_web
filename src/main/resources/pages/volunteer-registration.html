@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Volunteer Registration - Jain Sangh Pune | JSP</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap"
-          rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -18,7 +20,7 @@
             --text-dark: #2c3e50;
             --text-muted: #5a6b7c;
             --light-bg: #F5FAFA;
-            --card-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
 
         body {
@@ -146,7 +148,9 @@
             transition: all 0.2s ease;
         }
 
-        input:focus, select:focus, textarea:focus {
+        input:focus,
+        select:focus,
+        textarea:focus {
             outline: none;
             border-color: var(--primary-teal);
             box-shadow: 0 0 0 3px rgba(15, 76, 92, 0.1);
@@ -233,8 +237,15 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .success-icon {
@@ -259,186 +270,201 @@
         }
 
         @media (max-width: 600px) {
-            .form-card { padding: 20px 15px; }
-            .compact-hero h1 { font-size: 20px; }
-            .checkbox-grid { grid-template-columns: 1fr; }
+            .form-card {
+                padding: 20px 15px;
+            }
+
+            .compact-hero h1 {
+                font-size: 20px;
+            }
+
+            .checkbox-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
+
 <body>
 
-<script src="header-loader.js"></script>
-<script src="footer-loader.js"></script>
-<div id="header-placeholder"></div>
+    <script src="header-loader.js"></script>
+    <script src="footer-loader.js"></script>
+    <div id="header-placeholder"></div>
 
-<a href="home.html" class="back-link"><i class="fas fa-arrow-left"></i>Back to Home</a>
+    <a href="home.html" class="back-link"><i class="fas fa-arrow-left"></i>Back to Home</a>
 
-<div class="content">
+    <div class="content">
 
-    <div id="volunteerFormContainer" class="form-card">
-        <div class="compact-hero">
-            <h1>🤝 Volunteer Registration</h1>
-            <p>You are welcome to contribute your valuable time and skills to the social, religious, and humanitarian
-                projects of Jain Sangh Pune (JSP). Your self-less association forms a strong foundation for the
-                community.</p>
-        </div>
-
-        <form id="volunteerForm" onsubmit="submitForm(event)">
-            <div class="form-grid">
-
-                <div class="form-sub-title">Personal Details</div>
-
-                <div class="form-group">
-                    <label for="name">Full Name <span class="required">*</span></label>
-                    <input type="text" id="name" required placeholder="Enter your full name">
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" placeholder="username@example.com">
-                </div>
-
-                <div class="form-group">
-                    <label for="phone">Mobile Number <span class="required">*</span></label>
-                    <input type="tel" id="phone" required placeholder="10-digit contact number">
-                </div>
-
-                <div class="form-group">
-                    <label for="city">Local Area / City <span class="required">*</span></label>
-                    <input type="text" id="city" required placeholder="e.g. Sus, Kharadi, Hadapsar">
-                </div>
-
-                <div class="form-group">
-                    <label for="age">Age</label>
-                    <input type="number" id="age" min="5" max="100" placeholder="Enter your age">
-                </div>
-
-                <div class="form-group">
-                    <label for="gender">Gender</label>
-                    <select id="gender">
-                        <option value="">Select Gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                        <option value="Other">Other</option>
-                    </select>
-                </div>
-
-                <div class="form-sub-title">Skills & Professional Background</div>
-
-                <div class="form-group full-width">
-                    <label for="professionSkills">Current Profession / Special Expertises</label>
-                    <textarea id="professionSkills" placeholder="Share your field of work or special skills (e.g. IT, Management, Healthcare, Teaching, Art, Finance, etc...)"></textarea>
-                </div>
-
-                <div class="form-sub-title">Areas of Interest for contribution
-                    *</div>
+        <div id="volunteerFormContainer" class="form-card">
+            <div class="compact-hero">
+                <h1>🤝 Volunteer Registration</h1>
+                <p>You are welcome to contribute your valuable time and skills to the social, religious, and
+                    humanitarian
+                    projects of Jain Sangh Pune (JSP). Your self-less association forms a strong foundation for the
+                    community.</p>
             </div>
 
-            <div class="checkbox-grid">
-                <label class="checkbox-item">
-                    <input type="checkbox" name="selectedActivities" value="Anandshala">
-                    <span class="checkbox-label">आनंदशाला (वीर बाल संस्कार पाठशाला)</span>
-                </label>
-                <label class="checkbox-item">
-                    <input type="checkbox" name="selectedActivities" value="SarakUtthan">
-                    <span class="checkbox-label">सराक उत्थान</span>
-                </label>
-                <label class="checkbox-item">
-                    <input type="checkbox" name="selectedActivities" value="TirthYatra">
-                    <span class="checkbox-label">तीर्थ यात्रा</span>
-                </label>
-                <label class="checkbox-item">
-                    <input type="checkbox" name="selectedActivities" value="Dispensary">
-                    <span class="checkbox-label">धर्मार्थ औषधालय</span>
-                </label>
-                <label class="checkbox-item">
-                    <input type="checkbox" name="selectedActivities" value="Jirnodhar">
-                    <span class="checkbox-label">जीर्णोद्धार</span>
-                </label>
-                <label class="checkbox-item">
-                    <input type="checkbox" name="selectedActivities" value="SocialWork">
-                    <span class="checkbox-label">सामाजिक कार्य</span>
-                </label>
-                <label class="checkbox-item">
-                    <input type="checkbox" name="selectedActivities" value="EventManagement">
-                    <span class="checkbox-label">सांस्कृतिक एवं उत्सव प्रबंधन</span>
-                </label>
-                <label class="checkbox-item">
-                    <input type="checkbox" name="selectedActivities" value="MediaPublicity">
-                    <span class="checkbox-label">मीडिया, फोटोग्राफी और प्रचार</span>
-                </label>
-                <label class="checkbox-item">
-                    <input type="checkbox" name="selectedActivities" value="TechManagement">
-                    <span class="checkbox-label">वेबसाइट, आईटी और डेटा प्रबंधन</span>
-                </label>
-                <label class="checkbox-item">
-                    <input type="checkbox" name="selectedActivities" value="NationalService">
-                    <span class="checkbox-label">राष्ट्रहित</span>
-                </label>
-            </div>
+            <form id="volunteerForm" onsubmit="submitForm(event)">
+                <div class="form-grid">
 
-            <button type="submit" class="submit-btn">Submit Registration</button>
-        </form>
-    </div>
+                    <div class="form-sub-title">Personal Details</div>
 
-    <div id="successMessage" class="success-box">
-        <div class="success-icon">
-            <i class="fas fa-check-circle"></i>
+                    <div class="form-group">
+                        <label for="name">Full Name <span class="required">*</span></label>
+                        <input type="text" id="name" required placeholder="Enter your full name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="username@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Mobile Number <span class="required">*</span></label>
+                        <input type="tel" id="phone" required placeholder="10-digit contact number">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city">Local Area / City <span class="required">*</span></label>
+                        <input type="text" id="city" required placeholder="e.g. Sus, Kharadi, Hadapsar">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input type="number" id="age" min="5" max="100" placeholder="Enter your age">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender">
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-sub-title">Skills & Professional Background</div>
+
+                    <div class="form-group full-width">
+                        <label for="professionSkills">Current Profession / Special Expertises</label>
+                        <textarea id="professionSkills"
+                            placeholder="Share your field of work or special skills (e.g. IT, Management, Healthcare, Teaching, Art, Finance, etc...)"></textarea>
+                    </div>
+
+                    <div class="form-sub-title">Areas of Interest for contribution
+                        *
+                    </div>
+                </div>
+
+                <div class="checkbox-grid">
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="selectedActivities" value="Anandshala">
+                        <span class="checkbox-label">आनंदशाला (वीर बाल संस्कार पाठशाला)</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="selectedActivities" value="SarakUtthan">
+                        <span class="checkbox-label">सराक उत्थान</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="selectedActivities" value="TirthYatra">
+                        <span class="checkbox-label">तीर्थ यात्रा</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="selectedActivities" value="Dispensary">
+                        <span class="checkbox-label">धर्मार्थ औषधालय</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="selectedActivities" value="Jirnodhar">
+                        <span class="checkbox-label">जीर्णोद्धार</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="selectedActivities" value="SocialWork">
+                        <span class="checkbox-label">सामाजिक कार्य</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="selectedActivities" value="EventManagement">
+                        <span class="checkbox-label">सांस्कृतिक एवं उत्सव प्रबंधन</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="selectedActivities" value="MediaPublicity">
+                        <span class="checkbox-label">मीडिया, फोटोग्राफी और प्रचार</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="selectedActivities" value="TechManagement">
+                        <span class="checkbox-label">वेबसाइट, आईटी और डेटा प्रबंधन</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="selectedActivities" value="NationalService">
+                        <span class="checkbox-label">राष्ट्रहित</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Registration</button>
+            </form>
         </div>
-        <h2>Registration Successful!</h2>
-        <p>Thanks for submitting your contact info!
-            <br>
-           Join WhatsApp group "Jain Sangh Pune कार्यकर्ता" by clicking the link https://chat.whatsapp.com/GnWjfX14C4o6j3Lq2LOaFw</p>
-        <button onclick="window.location.href='home.html'" class="submit-btn" style="margin-top: 25px;">Back to Home</button>
+
+        <div id="successMessage" class="success-box">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>Registration Successful!</h2>
+            <p>Thanks for submitting your contact info!
+                <br>
+                Join WhatsApp group <a href="https://chat.whatsapp.com/GnWjfX14C4o6j3Lq2LOaFw" target="_blank">Jain
+                    Sangh Pune कार्यकर्ता</a>
+            </p>
+            <button onclick="window.location.href='home.html'" class="submit-btn" style="margin-top: 25px;">Back to Home
+            </button>
+        </div>
     </div>
-</div>
-</div>
 
-<div id="footer-placeholder"></div>
+    <div id="footer-placeholder"></div>
 
-<script>
-    function submitForm(event) {
-        event.preventDefault();
+    <script>
+        function submitForm(event) {
+            event.preventDefault();
 
-        const form = document.getElementById("volunteerForm");
-        const formContainer = document.getElementById("volunteerFormContainer");
-        const successMsg = document.getElementById("successMessage");
+            const form = document.getElementById("volunteerForm");
+            const formContainer = document.getElementById("volunteerFormContainer");
+            const successMsg = document.getElementById("successMessage");
 
-        const activitiesCheckBoxes = document.querySelectorAll("input[name='selectedActivities']:checked");
-        const selectedActivities = Array.from(activitiesCheckBoxes).map(cb => cb.value);
+            const activitiesCheckBoxes = document.querySelectorAll("input[name='selectedActivities']:checked");
+            const selectedActivities = Array.from(activitiesCheckBoxes).map(cb => cb.value);
 
-        const registrationData = {
-            fullName: document.getElementById("name").value,
-            email: document.getElementById("email").value,
-            phone: document.getElementById("phone").value,
-            city: document.getElementById("city").value,
-            age: document.getElementById("age").value,
-            gender: document.getElementById("gender").value,
-            professionSkills: document.getElementById("professionSkills").value,
-            selectedActivities: selectedActivities
-        };
+            const registrationData = {
+                fullName: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                phone: document.getElementById("phone").value,
+                city: document.getElementById("city").value,
+                age: document.getElementById("age").value,
+                gender: document.getElementById("gender").value,
+                professionSkills: document.getElementById("professionSkills").value,
+                selectedActivities: selectedActivities
+            };
 
-        fetch('/jainsanghpune/api/registration/save', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(registrationData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            formContainer.style.display = "none";
-            successMsg.style.display = "block";
-            successMsg.scrollIntoView({ behavior: "smooth" });
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-            formContainer.style.display = "none";
-            successMsg.style.display = "block";
-            successMsg.scrollIntoView({ behavior: "smooth" });
-        });
-    }
-</script>
+            fetch('/api/registration/save', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(registrationData)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    formContainer.style.display = "none";
+                    successMsg.style.display = "block";
+                    successMsg.scrollIntoView({ behavior: "smooth" });
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    formContainer.style.display = "none";
+                    successMsg.style.display = "block";
+                    successMsg.scrollIntoView({ behavior: "smooth" });
+                });
+        }
+    </script>
 
 </body>
+
 </html>
